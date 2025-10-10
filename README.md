@@ -19,6 +19,9 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung und mö
 
 > Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42), Test nur 1×.
 
+- **Performance Summary (PDW/Gini + Calibration)**  
+  ![Performance Summary](figures/perf_summary_vertical.png)
+
 
 ## Explorative Analyse (EDA)
 Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
