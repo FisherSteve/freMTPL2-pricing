@@ -14,7 +14,7 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung und mö
 | GLM2            | 29.52 % | 0.301 | 7.38 % / 7.36 % |
 | **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
 
-- **Dispersion (GLM2, Pearson χ²/df):** ~1.x → Poisson ausreichend; NegBin als Sensitivitäts-Check im Notebook.
+
 - **Interpretierbarkeit:** Splines (z. B. Driver Age) mit Konfidenzbändern statt Black-Box.
 
 > Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42), Test nur 1×.
