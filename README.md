@@ -29,8 +29,8 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | Fahrzeugalter & Bonus-Malus | ![VehAge × BM](reports/figs/B_vehage_bm_lowess.png) |
 | Brand & Fuel | ![Brand/Fuel](reports/figs/A_brand_fuel.png) |
 
-> Diese EDA-Grafiken sind im Ordner `reports/figs/` reproduzierbar.  
-> Ich nutze sie, um Feature-Binnings (z. B. `VehAge`, `DrivAge`) im GLM zu begründen.
+
+
 
 ---
 
@@ -43,7 +43,7 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | **Lorenz-/Gini-Vergleich (GLM1/2 vs GAM)** | ![Lorenz](figures/lorenz_glm_gam.png) |
 
 > Diese vier Grafiken stammen aus dem Notebook `03_glm_gam_boosting.ipynb`.  
-> Sie werden beim letzten Cell-Run automatisch in `figures/` gespeichert.
+
 
 
 
