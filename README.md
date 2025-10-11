@@ -1,21 +1,20 @@
-# freMTPL2 — Pricing (Frequency)
+# freMTPL2 — Pricing (Frequency & Severity)
 GLM/GAM mit OOF-Validierung, Kalibrierung und schlanker Governance
 
-Ein kleines, reproduzierbares Pricing-Setup auf dem freMTPL2-Datensatz. 
-Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung.
+Ein kleines, reproduzierbares Pricing-Setup auf dem freMTPL2-Datensatz.
+Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung – plus Severity und Pure Premium.
 
 ---
-
 
 ### Modell-Überblick (Test)
 ![Dashboard](figures/perf_dashboard.png)
 
-- PDW ↓: Poisson-Deviance (gewichtete PDW).  
-- Gini ↑: Discriminative Power (Lorenz-basiert).  
-- Calibration: Actual vs. Predicted Claim Frequency (gesamt).  
-- Pure Premium: Erwartete €/Exposure (E[N]×E[X]) aus GLM/GAM + Severity.
+- PDW ↓: Poisson-Deviance (gewichtete PDW)  
+- Gini ↑: Discriminative Power (Lorenz-basiert)  
+- Calibration: Actual vs. Predicted Claim Frequency (gesamt)  
+- Pure Premium: erwartete €/Exposure (E[N] × E[X]) aus GLM/GAM + Severity
 
-
+---
 
 ## TL;DR – Ergebnisse (aktueller Lauf)
 | Modell | Test-PDW ↓ | Gini ↑ | Kalibrierung (Act/Pred CF) |
@@ -25,18 +24,14 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung.
 | GLM2            | 29.52 % | 0.301 | 7.38 % / 7.36 % |
 | **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
 
+- Validierung: **5-Fold OOF (Seed 42), Fold 5 = Test (~20 %)**  
+- Severity/PP (Test): **E[X] ≈ 2 237 € · E[N] ≈ 0.0389 · PP ≈ 87.3 €/Exposure**  
+- Interpretierbarkeit: Splines (z. B. Driver Age) mit Konfidenzbändern; Decile-Kalibrierung; Lorenz/Gini
 
-- **Interpretierbarkeit:** Splines (z. B. Driver Age, s.u.) mit Konfidenzbändern statt "Black-Box".
-
-> Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42).
-
-- **Performance Summary (PDW/Gini + Calibration)**  
-  ![Performance Summary](figures/perf_summary.png)
-
-
+---
 
 ## Explorative Analyse (EDA)
-Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
+Zur Orientierung: klassische Muster im freMTPL2-Datensatz (höhere Frequenz bei jungen Fahrern/alten Fahrzeugen; BM verschiebt das Niveau erwartungsgemäß).
 
 | Fahrer-/Fahrzeugvariablen | Beispielplots |
 |:--|:--|
@@ -44,9 +39,7 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | Fahrzeugalter & Bonus-Malus | ![VehAge × BM](reports/figs/B_vehage_bm_lowess.png) |
 | Brand & Fuel | ![Brand/Fuel](reports/figs/A_brand_fuel.png) |
 
-> Diese Grafiken stammen aus dem Notebook `02_eda_overview.ipynb`.  
-
-
+> Diese Grafiken stammen aus `02_eda_overview.ipynb`.
 
 ---
 
@@ -58,18 +51,21 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | **Partial Effect – VehAge** | ![GAM VehAge](figures/gam_spline_vehage.png) |
 | **Lorenz-/Gini-Vergleich (GLM1/2 vs GAM)** | ![Lorenz](figures/lorenz_glm_gam.png) |
 
-> Diese vier Grafiken stammen aus dem Notebook `03_glm_gam_boosting.ipynb`.  
+> Diese vier Grafiken stammen aus `03_glm_gam_boosting.ipynb`.
+
 ---
 
-- **Pure Premium – Verteilung / gegen DrivAge**  
+## Severity & Pure Premium
+- **Verteilung** und **Profil nach DrivAge**  
   ![PP Hist](figures/pure_premium_hist.png)  
   ![PP vs. DrivAge](figures/pure_premium_drivage.png)
 
+> Diese Grafiken stammen aus `04_severity_pure_premium.ipynb`.
+
+---
 
 ## Quickstart
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Win: .venv\Scripts\activate
 pip install -r requirements.txt
-jupyter lab #für Notebooks
-
-```
+jupyter lab  # für Notebooks
