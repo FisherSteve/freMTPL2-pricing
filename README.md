@@ -2,7 +2,7 @@
 GLM/GAM mit OOF-Validierung, Kalibrierung und schlanker Governance
 
 Ein kleines, reproduzierbares Pricing-Setup auf dem freMTPL2-Datensatz. 
-Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung und möglichst wenig "Magie".
+Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung.
 
 ---
 
@@ -15,7 +15,7 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung und mö
 | **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
 
 
-- **Interpretierbarkeit:** Splines (z. B. Driver Age) mit Konfidenzbändern statt Black-Box.
+- **Interpretierbarkeit:** Splines (z. B. Driver Age, s.u.) mit Konfidenzbändern statt "Black-Box".
 
 > Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42), Test nur 1×.
 
@@ -33,6 +33,7 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | Fahrzeugalter & Bonus-Malus | ![VehAge × BM](reports/figs/B_vehage_bm_lowess.png) |
 | Brand & Fuel | ![Brand/Fuel](reports/figs/A_brand_fuel.png) |
 
+> Diese Grafiken stammen aus dem Notebook `02_eda_overview.ipynb`.  
 
 
 
@@ -47,11 +48,12 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 | **Lorenz-/Gini-Vergleich (GLM1/2 vs GAM)** | ![Lorenz](figures/lorenz_glm_gam.png) |
 
 > Diese vier Grafiken stammen aus dem Notebook `03_glm_gam_boosting.ipynb`.  
-
-
-
-
 ---
+
+- **Pure Premium – Verteilung / gegen DrivAge**  
+  ![PP Hist](figures/pure_premium_hist.png)  
+  ![PP vs. DrivAge](figures/pure_premium_drivage.png)
+
 
 ## Quickstart
 ```bash
