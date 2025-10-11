@@ -6,6 +6,17 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung.
 
 ---
 
+
+### Modell-Überblick (Test)
+![Dashboard](figures/perf_dashboard.png)
+
+- PDW ↓: Poisson-Deviance (gewichtete PDW).  
+- Gini ↑: Discriminative Power (Lorenz-basiert).  
+- Calibration: Actual vs. Predicted Claim Frequency (gesamt).  
+- Pure Premium: Erwartete €/Exposure (E[N]×E[X]) aus GLM/GAM + Severity.
+
+
+
 ## TL;DR – Ergebnisse (aktueller Lauf)
 | Modell | Test-PDW ↓ | Gini ↑ | Kalibrierung (Act/Pred CF) |
 |:--|--:|--:|--:|
@@ -17,7 +28,7 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung.
 
 - **Interpretierbarkeit:** Splines (z. B. Driver Age, s.u.) mit Konfidenzbändern statt "Black-Box".
 
-> Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42), Test nur 1×.
+> Hinweis: Zahlen stammen aus dem letzten Run. Seeds/Folds konstant (5-Fold OOF, Seed 42).
 
 - **Performance Summary (PDW/Gini + Calibration)**  
   ![Performance Summary](figures/perf_summary.png)
@@ -59,6 +70,6 @@ Zur Orientierung: ein paar klassische Muster aus dem freMTPL2-Datensatz.
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Win: .venv\Scripts\activate
 pip install -r requirements.txt
-jupyter lab
+jupyter lab #für Notebooks
 
 ```
