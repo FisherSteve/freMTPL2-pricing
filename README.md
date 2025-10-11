@@ -6,6 +6,11 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung – plu
 
 ---
 
+**Business-Nutzen:** Validierte Basismodelle (GLM/GAM) plus Severity liefern einen plausiblen Pure-Premium-Floor für Tarif-Szenarien und Governance-Prüfungen.
+
+> **EN (short):** Reproducible actuarial pricing on freMTPL2. GLM/GAM with 5-fold OOF validation, calibration plots, Lorenz/Gini, and severity → pure premium. Figures and notebooks included.
+
+
 ### Modell-Überblick (Test)
 ![Dashboard](figures/perf_dashboard.png)
 
@@ -25,7 +30,7 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung – plu
 | **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
 
 - Validierung: **5-Fold OOF (Seed 42), Fold 5 = Test (~20 %)**  
-- Severity/PP (Test): **E[X] ≈ 2 237 € · E[N] ≈ 0.0389 · PP ≈ 87.3 €/Exposure**  
+- **Severity/PP (Test): E[X] ≈ 2 237 € · E[N] ≈ 0.0389 · PP ≈ 87.3 €/Exposure** 
 - Interpretierbarkeit: Splines (z. B. Driver Age) mit Konfidenzbändern; Decile-Kalibrierung; Lorenz/Gini
 
 ---
