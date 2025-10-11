@@ -25,7 +25,7 @@ Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung – plu
 | Modell | Test-PDW ↓ | Gini ↑ | Kalibrierung (Act/Pred CF) |
 |:--|--:|--:|--:|
 | INT (Intercept) | 31.26 % | –    | – |
-| GLM1            | 29.55 % | 0.299 | 7.38 % / 7.36 % |
+| GLM1            | 29.55 % | 0.299 | 7.38 % / 7.38 % |
 | GLM2            | 29.52 % | 0.301 | 7.38 % / 7.36 % |
 | **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
 
