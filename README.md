@@ -56,11 +56,19 @@ Zur Orientierung: klassische Muster im freMTPL2-Datensatz (höhere Frequenz bei 
 ---
 
 ## Severity & Pure Premium
-- **Verteilung** und **Profil nach DrivAge**  
-  ![PP Hist](figures/pure_premium_hist.png)  
+**Verteilung und Profil nach DrivAge**
+
+- Lineare Skala: zeigt die Hauptmasse (bulk of exposure)  
+  ![PP Hist](figures/pure_premium_hist.png)
+
+- Logarithmische Skala: offenbart Heavy Tails  
+  ![PP Hist – Log Scale](figures/pure_premium_hist_log_scale.png)
+
+- Nach Fahrer-Alter (binned): zeigt leicht ansteigendes Risikoprofil  
   ![PP vs. DrivAge](figures/pure_premium_drivage.png)
 
 > Diese Grafiken stammen aus `04_severity_pure_premium.ipynb`.
+
 
 ---
 
