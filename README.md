@@ -84,6 +84,6 @@ pip install -r requirements.txt
 jupyter lab  # für Notebooks
 
 **Reproduce:**  
-1) Run `03_glm_gam_boosting.ipynb` → saves frequency rates & figures.  
+1) Run `03_glm_gam.ipynb` → saves frequency rates & figures.  
 2) Run `04_severity_pure_premium.ipynb` → severity fit, PP figures, dashboard.  
 3) All outputs land in `figures/` (used in this README).
