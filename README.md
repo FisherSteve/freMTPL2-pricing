@@ -60,7 +60,7 @@ Zur Orientierung: klassische Muster im freMTPL2-Datensatz (höhere Frequenz bei 
 
 ---
 
-## Severity & Pure Premium
+## Severity & Pure Premium (Proof of Concept)
 **Verteilung und Profil nach DrivAge**
 
 - Lineare Skala: zeigt die Hauptmasse (bulk of exposure)  
