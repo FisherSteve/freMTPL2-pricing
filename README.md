@@ -56,7 +56,7 @@ Zur Orientierung: klassische Muster im freMTPL2-Datensatz (höhere Frequenz bei 
 | **Partial Effect – VehAge** | ![GAM VehAge](figures/gam_spline_vehage.png) |
 | **Lorenz-/Gini-Vergleich (GLM1/2 vs GAM)** | ![Lorenz](figures/lorenz_glm_gam.png) |
 
-> Diese vier Grafiken stammen aus `03_glm_gam_boosting.ipynb`.
+> Diese vier Grafiken stammen aus `03_glm_gam.ipynb`.
 
 ---
 
