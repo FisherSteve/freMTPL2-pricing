@@ -5,7 +5,7 @@ import numpy as np
 _EPS = 1e-12
 
 def pdw(pred_counts, obs_counts, exposure) -> float:
-    """Weighted Poisson deviance in Prozent (wie im R-Notebook).
+    """Weighted Poisson deviance in Prozent.
     PDW = 200 * sum_ex[ ex * (pred - obs + obs*log(obs/pred)) ] / sum(ex)
     Konvention: obs*log(obs/pred)=0 für obs=0. pred wird unten auf >0 geclippt.
     """
