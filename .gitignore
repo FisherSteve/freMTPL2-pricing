@@ -1,5 +1,6 @@
 __pycache__/
 .venv/
+.venv-s0/
 .ipynb_checkpoints/
 .DS_Store
 .vscode/
@@ -9,4 +10,7 @@ outputs/
 models/
 *.csv
 *.parquet
+
+# Local historical brief and presentation; not authorized for publication.
+/files/
 

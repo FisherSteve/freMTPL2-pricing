@@ -1,0 +1,10 @@
+# Observed isolated S0 environment, CPython 3.12.14, Windows x64.
+# Produced by .venv-s0/Scripts/python.exe -m pip freeze; pip check passed.
+# S1 must define the supported full modeling environment separately.
+narwhals==2.28.0
+numpy==2.3.5
+pandas==3.0.1
+pyreadr==0.5.8
+python-dateutil==3.0.0
+six==1.17.0
+tzdata==2026.6
