@@ -1,89 +1,70 @@
-# freMTPL2 — Pricing (Frequency & Severity)
-GLM/GAM mit OOF-Validierung, Kalibrierung und schlanker Governance
+# Von der Exponierung zum erwarteten Schadenaufwand
 
-Ein kleines, reproduzierbares Pricing-Setup auf dem freMTPL2-Datensatz.
-Fokus: saubere Frequenz-Baselines (GLM/GAM), OOF-Vergleich, Kalibrierung – plus Severity und Pure Premium.
+Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio freMTPL2.
 
----
+**Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Business-Nutzen:** Validierte Basismodelle (GLM/GAM) plus Severity liefern einen plausiblen Pure-Premium-Floor für Tarif-Szenarien und Governance-Prüfungen.
+**Aktueller Stand: Datenquelle und Zielgröße geprüft; der korrigierte Modellvergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
-> **EN (short):** Reproducible actuarial pricing on freMTPL2. GLM/GAM with 5-fold OOF validation, calibration plots, Lorenz/Gini, and severity → pure premium. Figures and notebooks included.
+## Was bisher verifiziert ist
 
+Der Download und Abgleich zweier festgelegter öffentlicher Datenquellen zeigt: Die Wahl der Datensatzversion verändert auch die Zielgröße der Schadenanzahl.
 
-### Modell-Überblick (Test)
-![Dashboard](figures/perf_dashboard.png)
+| Größe | CASdatasets 1.2-1, festgelegter Commit | OpenML 41214/41215, Version 1 |
+|---|---:|---:|
+| Vertragszeilen | 677,991 | 678,013 |
+| Exponierung in Vertragsjahren | 358,482.835463 | 358,499.445463 |
+| Mitgelieferte Schadenanzahl | 26,444 | 36,102 |
+| Mit Verträgen verknüpfte Schadenzeilen mit positivem Betrag | 26,444 | 26,444 |
+| Verknüpfte erfasste Schadenbeträge, EUR | 59,909,216.50 | 59,909,216.50 |
+| Nicht zuordenbare Schadenzeilen | 0 | 195 |
 
-- PDW ↓: Poisson-Deviance (gewichtete PDW)  
-- Gini ↑: Discriminative Power (Lorenz-basiert)  
-- Calibration: Actual vs. Predicted Claim Frequency (gesamt)  
-- Pure Premium: erwartete €/Exposure (E[N] × E[X]) aus GLM/GAM + Severity
+Die 195 nicht zuordenbaren OpenML-Zeilen summieren sich auf **EUR 788,714.18**. Unter den in beiden Quellen enthaltenen Verträgen unterscheidet sich die mitgelieferte Schadenanzahl bei 9,095 Verträgen. Das betrifft die Zielgröße der Schadenfrequenz und geht über einen Dateiformatunterschied hinaus. Der Quellenvergleich klärt nicht, warum der Anbieter diese Anzahlen geändert hat.
 
----
+Die überarbeitete Studie verwendet den **CASdatasets-Datenstand** und modelliert die Anzahl **erfasster Schadenzeilen mit positivem Betrag je Vertragsperiode**. Die mitgelieferte und die rekonstruierte Schadenanzahl werden getrennt aufbewahrt und auf Gleichheit geprüft. Diese Zielgröße ermöglicht eine konsistente Zerlegung in Schadenfrequenz und Schadenhöhe; sie darf nicht als Gesamtheit aller gemeldeten Schäden oder aller wirtschaftlichen Verluste bezeichnet werden.
 
-## TL;DR – Ergebnisse (aktueller Lauf)
-| Modell | Test-PDW ↓ | Gini ↑ | Kalibrierung (Act/Pred CF) |
-|:--|--:|--:|--:|
-| INT (Intercept) | 31.26 % | –    | – |
-| GLM1            | 29.55 % | 0.299 | 7.38 % / 7.38 % |
-| GLM2            | 29.52 % | 0.301 | 7.38 % / 7.36 % |
-| **GAM**         | **29.16 %** | **0.299** | **7.38 % / 7.36 %** |
+Die primäre Analyse verwendet ungekappte Anzahlen, Exponierungen und Schadenbeträge und behält Verträge ohne Schaden bei. Mehrere Schadenzeilen desselben Vertrags bleiben erhalten; ohne eindeutige Schaden-ID belegen auch gleiche Beträge keine Dublette. Für die spätere Produktzerlegung aus Jahresfrequenz und mittlerer Schadenhöhe ist zusätzlich eine Annahme an den bedingten Erwartungswert nötig: beispielsweise `E[S | N,x,e] = N*m(x)` bei geeigneten endlichen Momenten, mit Gesamtbetrag `S`, Schadenanzahl `N`, Merkmalen `x`, Exponierung `e` und mittlerer Schadenhöhe `m(x)`. Der Abgleich der Anzahlen allein belegt diese Annahme nicht. Die jährliche reine Risikoprämie und der erwartete Schadenaufwand der tatsächlichen Vertragsperiode werden getrennt ausgewiesen.
 
-- Validierung: **5-Fold OOF (Seed 42), Fold 5 = Test (~20 %)**  
-- **Severity/PP (Test): E[X] ≈ 2 237 € · E[N] ≈ 0.0389 · PP ≈ 87.3 €/Exposure** 
-- Interpretierbarkeit: Splines (z. B. Driver Age) mit Konfidenzbändern; Decile-Kalibrierung; Lorenz/Gini
+Dies sind Ergebnisse des Quellenabgleichs, keine Schätzungen der Modellgüte. Der [berechnete Vergleich](reports/s0/source_comparison.json) und das [Quellenmanifest mit Prüfsummen](reports/s0/source_manifest.json) dokumentieren die Ergebnisse und die verwendeten Dateien, Lauf `s0-2a902c26d6f96e7a`.
 
----
+## Quellenvergleich reproduzieren
 
-## Explorative Analyse (EDA)
-Zur Orientierung: klassische Muster im freMTPL2-Datensatz (höhere Frequenz bei jungen Fahrern/alten Fahrzeugen; BM verschiebt das Niveau erwartungsgemäß).
+Benötigt wird **64-Bit-Python 3.12**. Die folgende kleine Umgebung ist ausschließlich für den Quellenvergleich vorgesehen. Die alte `requirements.txt` im Projektstamm und die bisherigen Notebooks bilden noch keinen unterstützten, durchgängig ausführbaren Ablauf.
 
-| Fahrer-/Fahrzeugvariablen | Beispielplots |
-|:--|:--|
-| Bonus-Malus & Fahrer-Alter | ![Driver Age × Bonus-Malus](reports/figs/D_violin_drivage_claims_by_bm.png) |
-| Fahrzeugalter & Bonus-Malus | ![VehAge × BM](reports/figs/B_vehage_bm_lowess.png) |
-| Brand & Fuel | ![Brand/Fuel](reports/figs/A_brand_fuel.png) |
+```powershell
+# Im Projektstamm (Windows PowerShell)
+py -3.12 -m venv .venv-s0
+.\.venv-s0\Scripts\python.exe -m pip install -r scripts/requirements-s0.txt
+.\.venv-s0\Scripts\python.exe scripts/s0_compare_sources.py --download
+.\.venv-s0\Scripts\python.exe -m unittest discover -s tests -v
+```
 
-> Diese Grafiken stammen aus `02_eda_overview.ipynb`.
+Unter Linux/macOS wird die Umgebung mit `python3.12 -m venv .venv-s0` erstellt. Für dieselben Befehle dient anschließend `.venv-s0/bin/python` als Interpreter. Die Pakete wurden unter Windows x64 mit CPython 3.12.14 geprüft; die [aufgelösten Paketversionen](reports/s0/environment-windows-py312.txt) sind dokumentiert.
 
----
+`--download` lädt ausschließlich fehlende Dateien und prüft die festgelegten SHA-256-Prüfsummen sowie die vom OpenML-Anbieter angegebenen MD5-Prüfsummen. Rohdateien bleiben im von Git ignorierten Verzeichnis `data/s0/raw/`. Ein erneuter Aufruf ohne `--download` verwendet ausschließlich diese zwischengespeicherten Dateien. `--output data/s0/recheck.json` schreibt einen gesonderten Vergleich zur Reproduzierbarkeitsprüfung. Das Prüfskript schätzt kein Modell, kappt keine Beobachtungen und exportiert keine Analysetabellen.
 
-## Modellplots (GLM/GAM)
-| Thema | Plot |
-|:--|:--|
-| **Kalibrierung (Deciles)** | ![Calibration GLM2](figures/calibration_glm2.png) |
-| **Partial Effect – Driver Age** | ![GAM Driver Age](figures/gam_spline_drivage.png) |
-| **Partial Effect – VehAge** | ![GAM VehAge](figures/gam_spline_vehage.png) |
-| **Lorenz-/Gini-Vergleich (GLM1/2 vs GAM)** | ![Lorenz](figures/lorenz_glm_gam.png) |
+## Die Modellierungsstudie
 
-> Diese vier Grafiken stammen aus `03_glm_gam.ipynb`.
+Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein substanzielles aktuarielles Poisson-GLM, ein penalisiertes Poisson-Spline-GAM und ein Histogramm-Boosting-Modell als Vergleich. GPU-Experimente sind optional.
 
----
+Vor der Auswahl von Modelltermen untersucht die Analyse Alter, Bonus-Malus und Portfoliozusammensetzung. Insbesondere ist ein vermeintlicher Anstieg im mittleren Alter zunächst eine zu prüfende Frage: Marginale Raten, adjustierte Zusammenhänge und plausible Mechanismen werden unterschieden. Die vorhandenen Variablen können eine Erklärung durch Haushaltszusammensetzung oder weitere Fahrer nicht belegen.
 
-## Severity & Pure Premium (Proof of Concept)
-**Verteilung und Profil nach DrivAge**
+Die Validierung verwendet Aufteilungen auf Vertragsebene, die für verknüpfte Schäden übernommen werden, tatsächliche Out-of-Fold-Vorhersagen im Entwicklungsdatensatz, ausschließlich auf Trainingsdaten geschätzte Vorverarbeitung und ein gesondert festgelegtes Evaluationsprotokoll. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden ausdrücklich unterschieden. Die frühere Exploration des gesamten Datensatzes wird offengelegt; eine neue Zufallsaufteilung macht diese Vorgeschichte nicht rückgängig.
 
-- Lineare Skala: zeigt die Hauptmasse (bulk of exposure)  
-  ![PP Hist](figures/pure_premium_hist.png)
+Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evaluiert. Ein erfolgloses Schadenhöhenmodell, ein dem GLM unterlegenes GAM oder ein geringer Zusatznutzen des Boostings sind zulässige Ergebnisse. Ein marktfähiger Tarif oder eine Übertragbarkeit auf Deutschland werden nicht behauptet.
 
-- Logarithmische Skala: offenbart Heavy Tails  
-  ![PP Hist – Log Scale](figures/pure_premium_hist_log_scale.png)
+## Daten und Reproduzierbarkeit
 
-- Nach Fahrer-Alter (binned): zeigt leicht ansteigendes Risikoprofil  
-  ![PP vs. DrivAge](figures/pure_premium_drivage.png)
+- [Berechneter Quellenvergleich](reports/s0/source_comparison.json): Schemata, Kategorien, Vertragsabgleich sowie Anzahl-, Exponierungs- und Schadenssummen.
+- [Quellenmanifest](reports/s0/source_manifest.json): Datenstand, Bezugsadressen, Abrufzeitpunkte, Prüfsummen, Quellenangaben und deklarierte Nutzungsbedingungen.
+- [Paketversionen der geprüften Umgebung](reports/s0/environment-windows-py312.txt): tatsächlich aufgelöste Abhängigkeiten des Quellenvergleichs.
 
-> Diese Grafiken stammen aus `04_severity_pure_premium.ipynb`.
+`notebooks/`, `src/`, `figures/` und `reports/figs/` enthalten die historische Analyse. Ihre gespeicherten Kennzahlen und Abbildungen müssen durch den korrigierten Ablauf ersetzt werden. Die abschließende Darstellung der Studie soll eine kleine mathematische Ausarbeitung und eine 10–15-minütige Präsentation für Vorstellungsgespräche umfassen.
 
+## Quelle, Kontext und Nutzungsbedingungen
 
----
+Verbindliche Datenquelle: CASdatasets **1.2-1**, Commit [`227fb56b8734bdb7c0327a41180e01d2ddaeaf26`](https://github.com/dutangc/CASdatasets/commit/227fb56b8734bdb7c0327a41180e01d2ddaeaf26). Quellenangabe: C. Dutang und A. Charpentier (2026), *CASdatasets: Insurance datasets*, [DOI 10.57745/P0KHAG](https://doi.org/10.57745/P0KHAG).
 
-## Quickstart
-```bash
-python -m venv .venv && source .venv/bin/activate   # Win: .venv\Scripts\activate
-pip install -r requirements.txt
-jupyter lab  # für Notebooks
+Die [Dokumentation der Datenbetreuer](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd) beschreibt einen unbekannten privaten Versicherer, ungefähr den Zeitraum 2011–2013, Exponierung in Jahren und teilweise feste Schadenbeträge aus dem IRSA-IDA-Abkommen. Die erfassten Beträge sind historische französische Schadenregulierungsdaten und keine heutigen deutschen Preise.
 
-**Reproduce:**  
-1) Run `03_glm_gam.ipynb` → saves frequency rates & figures.  
-2) Run `04_severity_pure_premium.ipynb` → severity fit, PP figures, dashboard.  
-3) All outputs land in `figures/` (used in this README).
+Der Projektcode steht unter der [MIT-Lizenz](LICENSE). CASdatasets [deklariert GPL ≥2](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION); die OpenML-[Frequenzmetadaten](https://www.openml.org/api/v1/json/data/41214) und -[Schadenhöhenmetadaten](https://www.openml.org/api/v1/json/data/41215) deklarieren jeweils CC0. Diese Angaben werden getrennt dokumentiert; die MIT-Lizenz des Projekts lizenziert die Quelldaten nicht um. Rohdatensätze und lokale Referenz-PDFs sind nicht Bestandteil der Veröffentlichung.

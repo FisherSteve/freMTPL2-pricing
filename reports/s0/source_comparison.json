@@ -1,0 +1,837 @@
+{
+  "between_sources": {
+    "cas_only": {
+      "IDs": [],
+      "exposure_years": 0.0,
+      "policies": 0,
+      "recorded_loss_eur": 0.0,
+      "recorded_positive_count": 0,
+      "supplied_claim_count": 0
+    },
+    "common_column_changes": {
+      "Area": {
+        "changed_policies": 0,
+        "label_cross_table": [
+          {
+            "cas": "A",
+            "openml": "A",
+            "policies": 103952
+          },
+          {
+            "cas": "B",
+            "openml": "B",
+            "policies": 75457
+          },
+          {
+            "cas": "C",
+            "openml": "C",
+            "policies": 191874
+          },
+          {
+            "cas": "D",
+            "openml": "D",
+            "policies": 151592
+          },
+          {
+            "cas": "E",
+            "openml": "E",
+            "policies": 137163
+          },
+          {
+            "cas": "F",
+            "openml": "F",
+            "policies": 17953
+          }
+        ]
+      },
+      "BonusMalus": {
+        "changed_policies": 0
+      },
+      "ClaimNb": {
+        "cas_minus_openml_sum": -9636.0,
+        "changed_policies": 9095,
+        "delta_range": [
+          -11.0,
+          -1.0
+        ]
+      },
+      "Density": {
+        "changed_policies": 0
+      },
+      "DrivAge": {
+        "changed_policies": 0
+      },
+      "Exposure": {
+        "cas_minus_openml_sum": 3.4652922892286497e-13,
+        "changed_policies": 6877,
+        "delta_range": [
+          1.0408340855860843e-17,
+          7.979727989493313e-17
+        ]
+      },
+      "Region": {
+        "changed_policies": 677991,
+        "label_cross_table": [
+          {
+            "cas": "Ile-de-France",
+            "openml": "R11",
+            "policies": 69789
+          },
+          {
+            "cas": "Champagne-Ardenne",
+            "openml": "R21",
+            "policies": 3025
+          },
+          {
+            "cas": "Picardie",
+            "openml": "R22",
+            "policies": 7994
+          },
+          {
+            "cas": "Haute-Normandie",
+            "openml": "R23",
+            "policies": 8784
+          },
+          {
+            "cas": "Centre",
+            "openml": "R24",
+            "policies": 160595
+          },
+          {
+            "cas": "Basse-Normandie",
+            "openml": "R25",
+            "policies": 10892
+          },
+          {
+            "cas": "Bourgogne",
+            "openml": "R26",
+            "policies": 10491
+          },
+          {
+            "cas": "Nord-Pas-de-Calais",
+            "openml": "R31",
+            "policies": 27284
+          },
+          {
+            "cas": "Lorraine",
+            "openml": "R41",
+            "policies": 12990
+          },
+          {
+            "cas": "Alsace",
+            "openml": "R42",
+            "policies": 2200
+          },
+          {
+            "cas": "Franche-Comte",
+            "openml": "R43",
+            "policies": 1326
+          },
+          {
+            "cas": "Pays-de-la-Loire",
+            "openml": "R52",
+            "policies": 38747
+          },
+          {
+            "cas": "Bretagne",
+            "openml": "R53",
+            "policies": 42120
+          },
+          {
+            "cas": "Poitou-Charentes",
+            "openml": "R54",
+            "policies": 19046
+          },
+          {
+            "cas": "Aquitaine",
+            "openml": "R72",
+            "policies": 31329
+          },
+          {
+            "cas": "Midi-Pyrenees",
+            "openml": "R73",
+            "policies": 17141
+          },
+          {
+            "cas": "Limousin",
+            "openml": "R74",
+            "policies": 4567
+          },
+          {
+            "cas": "Rhone-Alpes",
+            "openml": "R82",
+            "policies": 84748
+          },
+          {
+            "cas": "Auvergne",
+            "openml": "R83",
+            "policies": 5287
+          },
+          {
+            "cas": "Languedoc-Roussillon",
+            "openml": "R91",
+            "policies": 35805
+          },
+          {
+            "cas": "Provence-Alpes-Cotes-D'Azur",
+            "openml": "R93",
+            "policies": 79315
+          },
+          {
+            "cas": "Corse",
+            "openml": "R94",
+            "policies": 4516
+          }
+        ]
+      },
+      "VehAge": {
+        "changed_policies": 0
+      },
+      "VehBrand": {
+        "changed_policies": 0,
+        "label_cross_table": [
+          {
+            "cas": "B1",
+            "openml": "B1",
+            "policies": 162730
+          },
+          {
+            "cas": "B10",
+            "openml": "B10",
+            "policies": 17707
+          },
+          {
+            "cas": "B11",
+            "openml": "B11",
+            "policies": 13585
+          },
+          {
+            "cas": "B12",
+            "openml": "B12",
+            "policies": 166022
+          },
+          {
+            "cas": "B13",
+            "openml": "B13",
+            "policies": 12177
+          },
+          {
+            "cas": "B14",
+            "openml": "B14",
+            "policies": 4047
+          },
+          {
+            "cas": "B2",
+            "openml": "B2",
+            "policies": 159854
+          },
+          {
+            "cas": "B3",
+            "openml": "B3",
+            "policies": 53393
+          },
+          {
+            "cas": "B4",
+            "openml": "B4",
+            "policies": 25179
+          },
+          {
+            "cas": "B5",
+            "openml": "B5",
+            "policies": 34752
+          },
+          {
+            "cas": "B6",
+            "openml": "B6",
+            "policies": 28545
+          }
+        ]
+      },
+      "VehGas": {
+        "changed_policies": 0,
+        "label_cross_table": [
+          {
+            "cas": "Diesel",
+            "openml": "Diesel",
+            "policies": 332128
+          },
+          {
+            "cas": "Regular",
+            "openml": "Regular",
+            "policies": 345863
+          }
+        ]
+      },
+      "VehPower": {
+        "changed_policies": 0
+      }
+    },
+    "common_policies": 677991,
+    "openml_only": {
+      "IDs": [
+        26908,
+        93062,
+        128578,
+        131953,
+        158991,
+        1004967,
+        1039376,
+        1043837,
+        1048354,
+        1067938,
+        1068322,
+        1102749,
+        1143901,
+        1157992,
+        1159863,
+        1160043,
+        4114382,
+        4124801,
+        4126524,
+        4136585,
+        4186466,
+        5068217
+      ],
+      "exposure_years": 16.61,
+      "policies": 22,
+      "recorded_loss_eur": 0.0,
+      "recorded_positive_count": 0,
+      "supplied_claim_count": 22
+    },
+    "severity_multiset_cas_only_rows": 0,
+    "severity_multiset_common_rows": 26444,
+    "severity_multiset_differences_by_policy": [
+      {
+        "IDpol": 2220367,
+        "cas_minus_openml_loss_eur": -84441.63,
+        "cas_minus_openml_rows": -24
+      },
+      {
+        "IDpol": 2227533,
+        "cas_minus_openml_loss_eur": -64093.76,
+        "cas_minus_openml_rows": -25
+      },
+      {
+        "IDpol": 2262511,
+        "cas_minus_openml_loss_eur": -151800.59,
+        "cas_minus_openml_rows": -66
+      },
+      {
+        "IDpol": 2277846,
+        "cas_minus_openml_loss_eur": -73440.72,
+        "cas_minus_openml_rows": -23
+      },
+      {
+        "IDpol": 2282134,
+        "cas_minus_openml_loss_eur": -330920.05,
+        "cas_minus_openml_rows": -36
+      },
+      {
+        "IDpol": 2286775,
+        "cas_minus_openml_loss_eur": -84017.43,
+        "cas_minus_openml_rows": -21
+      }
+    ],
+    "severity_multiset_openml_only_rows": 195
+  },
+  "cas": {
+    "categories": {
+      "Area": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "Region": [
+        "Alsace",
+        "Aquitaine",
+        "Auvergne",
+        "Basse-Normandie",
+        "Bourgogne",
+        "Bretagne",
+        "Centre",
+        "Champagne-Ardenne",
+        "Corse",
+        "Franche-Comte",
+        "Haute-Normandie",
+        "Ile-de-France",
+        "Languedoc-Roussillon",
+        "Limousin",
+        "Lorraine",
+        "Midi-Pyrenees",
+        "Nord-Pas-de-Calais",
+        "Pays-de-la-Loire",
+        "Picardie",
+        "Poitou-Charentes",
+        "Provence-Alpes-Cotes-D'Azur",
+        "Rhone-Alpes"
+      ],
+      "VehBrand": [
+        "B1",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "VehGas": [
+        "Diesel",
+        "Regular"
+      ]
+    },
+    "count_cap_four_removed_counts": 39,
+    "count_cross_table": [
+      {
+        "policies": 653047,
+        "recorded": 0,
+        "supplied": 0
+      },
+      {
+        "policies": 23571,
+        "recorded": 1,
+        "supplied": 1
+      },
+      {
+        "policies": 1298,
+        "recorded": 2,
+        "supplied": 2
+      },
+      {
+        "policies": 62,
+        "recorded": 3,
+        "supplied": 3
+      },
+      {
+        "policies": 5,
+        "recorded": 4,
+        "supplied": 4
+      },
+      {
+        "policies": 2,
+        "recorded": 5,
+        "supplied": 5
+      },
+      {
+        "policies": 1,
+        "recorded": 6,
+        "supplied": 6
+      },
+      {
+        "policies": 1,
+        "recorded": 8,
+        "supplied": 8
+      },
+      {
+        "policies": 1,
+        "recorded": 9,
+        "supplied": 9
+      },
+      {
+        "policies": 2,
+        "recorded": 11,
+        "supplied": 11
+      },
+      {
+        "policies": 1,
+        "recorded": 16,
+        "supplied": 16
+      }
+    ],
+    "exposure_above_one": {
+      "exposure_years": 1363.34,
+      "policies": 1224,
+      "recorded_loss_eur": 87927.38,
+      "recorded_positive_count": 54,
+      "supplied_claim_count": 54
+    },
+    "frequency_rows": 677991,
+    "frequency_schema": {
+      "Area": "str",
+      "BonusMalus": "int32",
+      "ClaimNb": "float64",
+      "Density": "int32",
+      "DrivAge": "int32",
+      "Exposure": "float64",
+      "IDpol": "int64",
+      "Region": "str",
+      "VehAge": "int32",
+      "VehBrand": "str",
+      "VehGas": "str",
+      "VehPower": "int32"
+    },
+    "policies_without_severity_rows": 653047,
+    "ranges": {
+      "ClaimNb": [
+        0.0,
+        16.0
+      ],
+      "Density": [
+        1.0,
+        27000.0
+      ],
+      "DrivAge": [
+        18.0,
+        100.0
+      ],
+      "Exposure": [
+        0.00273224043715847,
+        2.01
+      ],
+      "VehAge": [
+        0.0,
+        100.0
+      ]
+    },
+    "raw_severity_loss_eur": 59909216.5,
+    "severity_exact_repeat_rows_beyond_first": 235,
+    "severity_range_eur": [
+      1.0,
+      4075400.56
+    ],
+    "severity_repeated_policy_rows_beyond_first": 1500,
+    "severity_rows": 26444,
+    "severity_schema": {
+      "ClaimAmount": "float64",
+      "IDpol": "int64"
+    },
+    "severity_unique_policy_keys": 24944,
+    "supplied_vs_recorded_mismatch": {
+      "exposure_years": 0.0,
+      "policies": 0,
+      "recorded_loss_eur": 0.0,
+      "recorded_positive_count": 0,
+      "supplied_claim_count": 0
+    },
+    "totals": {
+      "exposure_years": 358482.8354629838,
+      "policies": 677991,
+      "recorded_loss_eur": 59909216.5,
+      "recorded_positive_count": 26444,
+      "supplied_claim_count": 26444
+    },
+    "unmatched_severity": []
+  },
+  "comparison_units": {
+    "ClaimAmount": "recorded EUR per claim row",
+    "ClaimNb": "claims per policy period",
+    "Exposure": "policy-years"
+  },
+  "identity_scope": "run_id identifies raw-source hashes; script, manifest and software identify the comparison procedure",
+  "manifest_sha256": "8831b945331395bdf0097f516c4b8cedc52e4a9c418c5dafc76b9e1340def5ce",
+  "normalization": [
+    "IDs validated as exact positive integers, including scientific notation; no rounding",
+    "R factor labels retained as strings; row names discarded",
+    "Numeric values parsed without caps; no Region conversion",
+    "No full analysis tables exported in S0"
+  ],
+  "openml": {
+    "categories": {
+      "Area": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "Region": [
+        "R11",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26",
+        "R31",
+        "R41",
+        "R42",
+        "R43",
+        "R52",
+        "R53",
+        "R54",
+        "R72",
+        "R73",
+        "R74",
+        "R82",
+        "R83",
+        "R91",
+        "R93",
+        "R94"
+      ],
+      "VehBrand": [
+        "B1",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "VehGas": [
+        "Diesel",
+        "Regular"
+      ]
+    },
+    "count_cap_four_removed_counts": 39,
+    "count_cross_table": [
+      {
+        "policies": 643953,
+        "recorded": 0,
+        "supplied": 0
+      },
+      {
+        "policies": 8608,
+        "recorded": 0,
+        "supplied": 1
+      },
+      {
+        "policies": 23570,
+        "recorded": 1,
+        "supplied": 1
+      },
+      {
+        "policies": 485,
+        "recorded": 0,
+        "supplied": 2
+      },
+      {
+        "policies": 1,
+        "recorded": 1,
+        "supplied": 2
+      },
+      {
+        "policies": 1298,
+        "recorded": 2,
+        "supplied": 2
+      },
+      {
+        "policies": 20,
+        "recorded": 0,
+        "supplied": 3
+      },
+      {
+        "policies": 62,
+        "recorded": 3,
+        "supplied": 3
+      },
+      {
+        "policies": 2,
+        "recorded": 0,
+        "supplied": 4
+      },
+      {
+        "policies": 5,
+        "recorded": 4,
+        "supplied": 4
+      },
+      {
+        "policies": 2,
+        "recorded": 5,
+        "supplied": 5
+      },
+      {
+        "policies": 1,
+        "recorded": 6,
+        "supplied": 6
+      },
+      {
+        "policies": 1,
+        "recorded": 8,
+        "supplied": 8
+      },
+      {
+        "policies": 1,
+        "recorded": 9,
+        "supplied": 9
+      },
+      {
+        "policies": 1,
+        "recorded": 0,
+        "supplied": 11
+      },
+      {
+        "policies": 2,
+        "recorded": 11,
+        "supplied": 11
+      },
+      {
+        "policies": 1,
+        "recorded": 16,
+        "supplied": 16
+      }
+    ],
+    "exposure_above_one": {
+      "exposure_years": 1363.34,
+      "policies": 1224,
+      "recorded_loss_eur": 87927.38,
+      "recorded_positive_count": 54,
+      "supplied_claim_count": 54
+    },
+    "frequency_rows": 678013,
+    "frequency_schema": {
+      "Area": "str",
+      "BonusMalus": "int64",
+      "ClaimNb": "int64",
+      "Density": "int64",
+      "DrivAge": "int64",
+      "Exposure": "float64",
+      "IDpol": "int64",
+      "Region": "str",
+      "VehAge": "int64",
+      "VehBrand": "str",
+      "VehGas": "str",
+      "VehPower": "int64"
+    },
+    "policies_without_severity_rows": 653069,
+    "ranges": {
+      "ClaimNb": [
+        0.0,
+        16.0
+      ],
+      "Density": [
+        1.0,
+        27000.0
+      ],
+      "DrivAge": [
+        18.0,
+        100.0
+      ],
+      "Exposure": [
+        0.0027322404371584,
+        2.01
+      ],
+      "VehAge": [
+        0.0,
+        100.0
+      ]
+    },
+    "raw_severity_loss_eur": 60697930.68000001,
+    "severity_exact_repeat_rows_beyond_first": 255,
+    "severity_range_eur": [
+      1.0,
+      4075400.56
+    ],
+    "severity_repeated_policy_rows_beyond_first": 1689,
+    "severity_rows": 26639,
+    "severity_schema": {
+      "ClaimAmount": "float64",
+      "IDpol": "int64"
+    },
+    "severity_unique_policy_keys": 24950,
+    "supplied_vs_recorded_mismatch": {
+      "exposure_years": 4606.277431693989,
+      "policies": 9117,
+      "recorded_loss_eur": 543.33,
+      "recorded_positive_count": 1,
+      "supplied_claim_count": 9659
+    },
+    "totals": {
+      "exposure_years": 358499.4454629838,
+      "policies": 678013,
+      "recorded_loss_eur": 59909216.5,
+      "recorded_positive_count": 26444,
+      "supplied_claim_count": 36102
+    },
+    "unmatched_severity": [
+      {
+        "IDpol": 2220367,
+        "loss_eur": 84441.63,
+        "rows": 24
+      },
+      {
+        "IDpol": 2227533,
+        "loss_eur": 64093.76,
+        "rows": 25
+      },
+      {
+        "IDpol": 2262511,
+        "loss_eur": 151800.59,
+        "rows": 66
+      },
+      {
+        "IDpol": 2277846,
+        "loss_eur": 73440.72,
+        "rows": 23
+      },
+      {
+        "IDpol": 2282134,
+        "loss_eur": 330920.05,
+        "rows": 36
+      },
+      {
+        "IDpol": 2286775,
+        "loss_eur": 84017.43,
+        "rows": 21
+      }
+    ]
+  },
+  "raw_parsed_schema": {
+    "cas_freq": {
+      "columns": {
+        "Area": "category",
+        "BonusMalus": "int32",
+        "ClaimNb": "float64",
+        "Density": "int32",
+        "DrivAge": "int32",
+        "Exposure": "float64",
+        "IDpol": "category",
+        "Region": "category",
+        "VehAge": "int32",
+        "VehBrand": "category",
+        "VehGas": "category",
+        "VehPower": "int32"
+      },
+      "rows": 677991
+    },
+    "cas_sev": {
+      "columns": {
+        "ClaimAmount": "float64",
+        "IDpol": "category"
+      },
+      "rows": 26444
+    },
+    "openml_freq": {
+      "columns": {
+        "Area": "str",
+        "BonusMalus": "int64",
+        "ClaimNb": "int64",
+        "Density": "int64",
+        "DrivAge": "int64",
+        "Exposure": "float64",
+        "IDpol": "str",
+        "Region": "str",
+        "VehAge": "int64",
+        "VehBrand": "str",
+        "VehGas": "str",
+        "VehPower": "int64"
+      },
+      "rows": 678013
+    },
+    "openml_sev": {
+      "columns": {
+        "ClaimAmount": "float64",
+        "IDpol": "str"
+      },
+      "rows": 26639
+    }
+  },
+  "run_id": "s0-2a902c26d6f96e7a",
+  "script_sha256": "e7fde1c01b6fe01159a1e78bcd485462dc7451b156a1ddf5429211607aa22a30",
+  "software": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "pyreadr": "0.5.8",
+    "python": "3.12.14"
+  }
+}

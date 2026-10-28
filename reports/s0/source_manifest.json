@@ -1,0 +1,165 @@
+{
+  "cas_commit": "227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+  "cas_version": "1.2-1",
+  "cas_declared_terms": "GPL (>= 2)",
+  "data_files": {
+    "cas_freq": {
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2freq.rda",
+      "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2freq.rda",
+      "retrieved_utc": "2026-10-28T22:01:51.458784+00:00",
+      "sha256": "82c8598513d9fa78226b6c7d271a9940eca4b8083e9e32320a75d377bdfe15a3",
+      "md5": "b67f5cf5849b5744b2ce1bc945e4dcc6",
+      "bytes": 9282770,
+      "filename": "freMTPL2freq.rda",
+      "object": "freMTPL2freq"
+    },
+    "cas_sev": {
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2sev.rda",
+      "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2sev.rda",
+      "retrieved_utc": "2026-10-28T22:01:51.760167+00:00",
+      "sha256": "78e6e5016ae046603b37e88ff8ad8ca327f5d59f827c1f75d140388de09b14b3",
+      "md5": "b1451983f587a51f612abf5e12863f06",
+      "bytes": 267650,
+      "filename": "freMTPL2sev.rda",
+      "object": "freMTPL2sev"
+    },
+    "openml_freq": {
+      "url": "https://openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+      "resolved_url": "https://www.openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+      "retrieved_utc": "2026-10-28T22:01:58.615523+00:00",
+      "sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+      "md5": "f8875568bf0ca622929105197e2db613",
+      "bytes": 36288567,
+      "filename": "freMTPL2freq.arff",
+      "object": "freMTPL2freq",
+      "provider_md5": "f8875568bf0ca622929105197e2db613"
+    },
+    "openml_sev": {
+      "url": "https://openml.org/data/v1/download/20649149/freMTPL2sev.arff",
+      "resolved_url": "https://www.openml.org/data/v1/download/20649149/freMTPL2sev.arff",
+      "retrieved_utc": "2026-10-28T22:01:59.202869+00:00",
+      "sha256": "047632016b87e132247124f449a95d6d0e9f8ba05f2fe0947ef76ab8aaa10e0a",
+      "md5": "24cc74449e3931cb1aad0d43a12e7a6e",
+      "bytes": 376555,
+      "filename": "freMTPL2sev.arff",
+      "object": "freMTPL2sev",
+      "provider_md5": "24cc74449e3931cb1aad0d43a12e7a6e"
+    }
+  },
+  "provenance_files": {
+    "cas_commit.json": {
+      "url": "https://api.github.com/repos/dutangc/CASdatasets/commits/227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+      "resolved_url": "https://api.github.com/repos/dutangc/CASdatasets/commits/227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+      "retrieved_utc": "2026-10-28T22:01:48.737119+00:00",
+      "sha256": "5333da1c09c06e1805bb1ab6df66b4c149a0cf6a4913fbfbe114bfd6fdea4ab3",
+      "md5": "8b277d370be1bff4a70ca161c5637429",
+      "bytes": 5251
+    },
+    "DESCRIPTION": {
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION",
+      "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION",
+      "retrieved_utc": "2026-10-28T22:01:49.028536+00:00",
+      "sha256": "88e551b4459f159a7c11e67007242624594a597bf9032ad2fa978468348a7b08",
+      "md5": "ac5a4de286f6f01600605aa839f5bbe4",
+      "bytes": 1522
+    },
+    "CITATION": {
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/inst/CITATION",
+      "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/inst/CITATION",
+      "retrieved_utc": "2026-10-28T22:01:49.266247+00:00",
+      "sha256": "f710958bb5ba416fbab0c7e19ab5e8b3f65b69ec521f54a7ed9f779f0b3fafe9",
+      "md5": "55243229db071c5d73d4dc0aa36c1a43",
+      "bytes": 1090
+    },
+    "freMTPL.Rd": {
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd",
+      "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd",
+      "retrieved_utc": "2026-10-28T22:01:49.504057+00:00",
+      "sha256": "069aa7574904c882287c919354d69d2357ffcdfe3ea5d219bfad6343a19ed4c3",
+      "md5": "0c8a7ed4d9d26df04447633249170550",
+      "bytes": 5472
+    },
+    "openml_41214.json": {
+      "url": "https://www.openml.org/api/v1/json/data/41214",
+      "resolved_url": "https://www.openml.org/api/v1/json/data/41214",
+      "retrieved_utc": "2026-10-28T22:01:52.000233+00:00",
+      "sha256": "dffa9cf15df1a0b38b981b33525e60d10a34f696a27d83c17cc10c5cb2b1a297",
+      "md5": "c5cc350b5c16058e2490279ddeae906e",
+      "bytes": 1197
+    },
+    "openml_41215.json": {
+      "url": "https://www.openml.org/api/v1/json/data/41215",
+      "resolved_url": "https://www.openml.org/api/v1/json/data/41215",
+      "retrieved_utc": "2026-10-28T22:01:52.189579+00:00",
+      "sha256": "9ecd020483b14f115c62622ab61f261d6ab38e862fc5cf0ee616aaa9f74cce46",
+      "md5": "e736553dd4135d80ebd0351b33207de5",
+      "bytes": 883
+    }
+  },
+  "openml_metadata": {
+    "41214": {
+      "data_set_description": {
+        "id": "41214",
+        "name": "freMTPL2freq",
+        "version": "1",
+        "description": "The dataset freMTPL2freq contains risk features for 677,991 motor third-part liability policies (observed mostly on one year). See https://github.com/dutangc/CASdatasets for more details. The dataset is associated with 'Computational Actuarial Science with R' edited by Arthur Charpentier, CRC, 2018.",
+        "description_version": "2",
+        "format": "ARFF",
+        "upload_date": "2018-11-05T23:20:37",
+        "licence": "CC0",
+        "url": "https://openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+        "parquet_url": "https://data.openml.org/datasets/0004/41214/dataset_41214.pq",
+        "file_id": "20649148",
+        "version_label": "1",
+        "citation": "C. Dutang and A. Charpentier (2018), CASdatasets: Insurance datasets.",
+        "tag": [
+          "Actuarial Science",
+          "Data Science",
+          "Finance",
+          "freMTPL2freq",
+          "Kaggle",
+          "Risk Management",
+          "Statistics"
+        ],
+        "visibility": "public",
+        "original_data_url": "https://github.com/dutangc/CASdatasets",
+        "paper_url": "https://www.routledge.com/Computational-Actuarial-Science-with-R/Charpentier/p/book/9781466592599",
+        "status": "active",
+        "processing_date": "2021-04-28 14:52:24",
+        "md5_checksum": "f8875568bf0ca622929105197e2db613"
+      }
+    },
+    "41215": {
+      "data_set_description": {
+        "id": "41215",
+        "name": "freMTPL2sev",
+        "version": "1",
+        "description": "The dataset freMTPL2sev contains claim amounts for 26,639 motor third-part liability policies.",
+        "description_version": "1",
+        "format": "ARFF",
+        "upload_date": "2018-11-05T23:24:08",
+        "licence": "CC0",
+        "url": "https://openml.org/data/v1/download/20649149/freMTPL2sev.arff",
+        "parquet_url": "https://data.openml.org/datasets/0004/41215/dataset_41215.pq",
+        "file_id": "20649149",
+        "version_label": "1",
+        "citation": "C. Dutang and A. Charpentier (2018), CASdatasets: Insurance\n  datasets.",
+        "tag": [
+          "Actuarial Science",
+          "Data Science",
+          "Finance",
+          "freMTPL2sev",
+          "Risk Management",
+          "Statistics"
+        ],
+        "visibility": "public",
+        "original_data_url": "http://dutangc.free.fr/pub/RRepos/web/CASdatasets-index.html",
+        "status": "active",
+        "processing_date": "2021-04-28 14:52:04",
+        "md5_checksum": "24cc74449e3931cb1aad0d43a12e7a6e"
+      }
+    }
+  },
+  "citation": "Dutang and Charpentier (2026), CASdatasets: Insurance datasets, version 1.2-1, DOI 10.57745/P0KHAG",
+  "note": "Data declarations recorded separately from MIT project code; no data relicensing asserted. Original metadata preserved here; only the four data files are needed for offline comparison."
+}
