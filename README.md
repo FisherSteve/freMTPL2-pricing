@@ -43,6 +43,8 @@ Unter Linux/macOS wird die Umgebung mit `python3.12 -m venv .venv-s0` erstellt. 
 
 `--download` lädt ausschließlich fehlende Dateien und prüft die festgelegten SHA-256-Prüfsummen sowie die vom OpenML-Anbieter angegebenen MD5-Prüfsummen. Rohdateien bleiben im von Git ignorierten Verzeichnis `data/s0/raw/`. Ein erneuter Aufruf ohne `--download` verwendet ausschließlich diese zwischengespeicherten Dateien. `--output data/s0/recheck.json` schreibt einen gesonderten Vergleich zur Reproduzierbarkeitsprüfung. Das Prüfskript schätzt kein Modell, kappt keine Beobachtungen und exportiert keine Analysetabellen.
 
+Manifest und Vergleichsskript werden mit UTF-8-Kodierung und LF-Zeilenenden versioniert; auch die JSON-Ausgabe wird ausdrücklich mit LF geschrieben. Die Felder `manifest_sha256` und `script_sha256` beziehen sich auf die exakten Dateibytes. Abweichende Zeilenenden in diesen beiden Dateien führen zu einem Fehler, bevor ein Ergebnis gespeichert wird. Die Prüfsummen der heruntergeladenen Rohdateien werden weiterhin bytegetreu ohne Textnormalisierung berechnet.
+
 ## Die Modellierungsstudie
 
 Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein substanzielles aktuarielles Poisson-GLM, ein penalisiertes Poisson-Spline-GAM und ein Histogramm-Boosting-Modell als Vergleich. GPU-Experimente sind optional.

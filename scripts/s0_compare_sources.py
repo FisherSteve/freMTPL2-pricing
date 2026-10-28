@@ -34,6 +34,15 @@ def digest(path: Path, algorithm: str = "sha256") -> str:
     return h.hexdigest()
 
 
+def provenance_digest(path: Path) -> str:
+    """Hash exact UTF-8/LF text bytes, rejecting unstaged editor EOL changes."""
+    content = path.read_bytes()
+    content.decode("utf-8")
+    if b"\r" in content:
+        raise ValueError(f"Expected LF line endings in provenance file: {path}")
+    return hashlib.sha256(content).hexdigest()
+
+
 def checked_file(cache: Path, spec: dict, download: bool) -> Path:
     path = cache / spec["filename"]
     if not path.exists():
@@ -248,8 +257,9 @@ def main() -> None:
     identity = {k: v["sha256"] for k, v in manifest["data_files"].items()}
     run_id = "s0-" + hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()[:16]
     result = {"run_id": run_id,
-              "identity_scope": "run_id identifies raw-source hashes; script, manifest and software identify the comparison procedure",
-              "script_sha256": digest(Path(__file__)), "manifest_sha256": digest(manifest_path),
+              "identity_scope": "run_id identifies raw-source hashes; script and manifest SHA-256 identify exact UTF-8/LF file bytes; software identifies the runtime",
+              "script_sha256": provenance_digest(Path(__file__)),
+              "manifest_sha256": provenance_digest(manifest_path),
               "software": software, "raw_parsed_schema": raw_schema,
               "comparison_units": {"Exposure": "policy-years", "ClaimNb": "claims per policy period",
                                    "ClaimAmount": "recorded EUR per claim row"},
@@ -262,7 +272,8 @@ def main() -> None:
               "between_sources": compare(frames["cas_freq"], frames["cas_sev"],
                                          frames["openml_freq"], frames["openml_sev"])}
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n",
+                           encoding="utf-8", newline="\n")
     print(f"{run_id}: wrote {args.output}")
 
 

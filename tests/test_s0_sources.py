@@ -5,11 +5,13 @@ model tests or a claim that the future S1 ingestion pipeline has been built.
 """
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, redirect_stdout
 import hashlib
 import importlib.util
 import io
+import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -192,6 +194,93 @@ class LinkageAndComparisonTests(unittest.TestCase):
 
 
 class ProvenanceChecks(unittest.TestCase):
+    def test_provenance_hash_is_exact_and_rejects_crlf(self):
+        with workspace_tempdir() as directory:
+            path = directory / "source.py"
+            original = b"value = 1\n"
+            changed = b"value = 2\n"
+            path.write_bytes(original)
+            expected = hashlib.sha256(original).hexdigest()
+            self.assertEqual(audit.provenance_digest(path), expected)
+            path.write_bytes(changed)
+            self.assertEqual(audit.provenance_digest(path), hashlib.sha256(changed).hexdigest())
+            self.assertNotEqual(audit.provenance_digest(path), expected)
+            path.write_bytes(original.replace(b"\n", b"\r\n"))
+            with self.assertRaisesRegex(ValueError, "Expected LF line endings"):
+                audit.provenance_digest(path)
+
+    def test_raw_provider_checksums_preserve_crlf_bytes(self):
+        with workspace_tempdir() as directory:
+            raw = b"header\r\n1,2\r\n"
+            lf = raw.replace(b"\r\n", b"\n")
+            path = directory / "raw.arff"
+            path.write_bytes(raw)
+            spec = {"filename": path.name, "sha256": hashlib.sha256(raw).hexdigest(),
+                    "provider_md5": hashlib.md5(raw).hexdigest()}
+            self.assertEqual(audit.checked_file(directory, spec, False), path)
+            self.assertEqual(audit.digest(path), hashlib.sha256(raw).hexdigest())
+            self.assertEqual(audit.digest(path, "md5"), hashlib.md5(raw).hexdigest())
+            self.assertNotEqual(audit.digest(path), hashlib.sha256(lf).hexdigest())
+            with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+                audit.checked_file(directory, {**spec, "sha256": hashlib.sha256(lf).hexdigest()}, False)
+            self.assertEqual(path.read_bytes(), raw)
+
+    def test_main_writes_lf_and_records_exact_input_bytes(self):
+        with workspace_tempdir() as directory:
+            cache = directory / "data/s0/raw"
+            report_dir = directory / "reports/s0"
+            cache.mkdir(parents=True)
+            report_dir.mkdir(parents=True)
+            frames = {"freq": frequency(), "sev": severity()}
+            specs = {}
+            for source in ("cas", "openml"):
+                for kind, frame in frames.items():
+                    filename = f"{source}_{kind}" + (".rda" if source == "cas" else ".arff")
+                    if source == "cas":
+                        raw = f"R serialization fixture: {kind}\n".encode("utf-8")
+                    else:
+                        header = ["@relation fixture"] + [
+                            f"@attribute {column} " +
+                            ("string" if column in audit.CATEGORIES else "numeric")
+                            for column in frame.columns
+                        ] + ["@data"]
+                        raw = ("\n".join(header) + "\n" +
+                               frame.to_csv(index=False, header=False, lineterminator="\n")).encode("utf-8")
+                    (cache / filename).write_bytes(raw)
+                    specs[f"{source}_{kind}"] = {"filename": filename, "object": kind,
+                                                "sha256": hashlib.sha256(raw).hexdigest()}
+            manifest_path = report_dir / "source_manifest.json"
+            output = report_dir / "source_comparison.json"
+            manifest_lf = (json.dumps({"data_files": specs}, indent=2) + "\n").encode("utf-8")
+            valid_output = None
+            for newline in (b"\n", b"\r\n"):
+                with self.subTest(manifest_newline=newline):
+                    raw_manifest = manifest_lf.replace(b"\n", newline)
+                    manifest_path.write_bytes(raw_manifest)
+                    def read_r(path):
+                        kind = "freq" if Path(path).stem.endswith("freq") else "sev"
+                        return {kind: frames[kind].copy()}
+                    with patch.object(audit, "ROOT", directory), \
+                         patch.object(sys, "argv", [str(audit.__file__)]), \
+                         patch.object(audit.pyreadr, "read_r", side_effect=read_r), \
+                         redirect_stdout(io.StringIO()):
+                        if newline == b"\r\n":
+                            with self.assertRaisesRegex(ValueError, "Expected LF line endings"):
+                                audit.main()
+                            self.assertEqual(output.read_bytes(), valid_output)
+                            continue
+                        audit.main()
+                    raw_output = output.read_bytes()
+                    self.assertNotIn(b"\r", raw_output)
+                    self.assertTrue(raw_output.endswith(b"\n"))
+                    result = json.loads(raw_output)
+                    self.assertEqual(result["manifest_sha256"], hashlib.sha256(raw_manifest).hexdigest())
+                    self.assertEqual(result["script_sha256"],
+                                     hashlib.sha256(Path(audit.__file__).read_bytes()).hexdigest())
+                    self.assertEqual(result["cas"]["totals"]["recorded_positive_count"], 2)
+                    self.assertEqual(result["between_sources"]["severity_multiset_common_rows"], 3)
+                    valid_output = raw_output
+
     def test_bad_cached_sha_is_rejected_and_preserved(self):
         with workspace_tempdir() as directory:
             path = directory / "raw.bin"
