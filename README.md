@@ -4,7 +4,7 @@ Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio
 
 **Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Aktueller Stand: Datenquelle, Zielgröße und reproduzierbare Datenaufbereitung geprüft; der korrigierte Modellvergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
+**Aktueller Stand: Datenaufbereitung und Messgrößen geprüft, Vertragsaufteilung festgelegt und echte OOF-Vorhersagen des Exponierungs-Basismodells erzeugt. Der GLM-/GAM-/Boosting-Vergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
 ## Was bisher verifiziert ist
 
@@ -76,13 +76,33 @@ Der gesonderte Vergleich von CAS und OpenML bleibt mit `python scripts/s0_compar
 
 Code, Konfiguration und Nachweise werden mit UTF-8/LF versioniert. Provenienz-Hashes beziehen sich auf die exakten Dateibytes; abweichende Zeilenenden in den identifizierten Quelldateien führen vor der Speicherung zu einem Fehler. Rohdatei-Prüfsummen werden bytegetreu ohne Textnormalisierung berechnet.
 
+## Messgrößen und Validierung reproduzieren
+
+Nach der Datenvorbereitung werden die Vertragszuordnung festgelegt und anschließend echte Out-of-Fold-Vorhersagen im Entwicklungsbestand erzeugt:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.validation freeze
+.\.venv\Scripts\python.exe -m src.validation oof-baseline
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/02_validation_contracts.ipynb --output data/notebooks/02_validation_contracts.executed.ipynb
+```
+
+Die Aufteilung verwendet ausschließlich die Vertragsschlüssel: 80 % Entwicklung mit fünf Falten, 20 % Evaluation, feste Zufallsregel mit Seed `20261029`. Jede Schadenzeile übernimmt die Zuordnung ihres Vertrags. Die Vorhersagen tragen eindeutige Vertragsschlüssel, Falte, Modell- und Laufkennung sowie getrennte Jahresraten und erwartete Periodenanzahlen. Der [Splitnachweis](reports/s2/split_manifest.json) enthält die Identität und Prüfsummen der lokalen Zuordnungstabellen. Eine bereits festgelegte lokale Aufteilung wird nicht stillschweigend durch einen anderen Seed ersetzt.
+
+Der aktuelle [berechnete OOF-Nachweis](reports/s2/baseline_oof_report.json) betrifft ausschließlich das Exponierungs-Basismodell: In jeder Falte wird die Rate aus Anzahl- und Exponierungssumme der vier Trainingsfalten geschätzt. Alle Entwicklungsverträge erhalten genau eine Vorhersage aus einem Fit ohne ihre eigene Falte. Es wurden keine Evaluationsvorhersagen oder Evaluationsscores erzeugt. Das [Validierungsnotebook](notebooks/02_validation_contracts.ipynb) liest und prüft die gespeicherten Artefakte; es passt kein Modell an und teilt keine Verträge neu auf.
+
+Der primäre Frequenzscore ist `sum d(N, Exposure * annual_rate) / sum Exposure`. Er stimmt mit der exponierungsgewichteten mittleren Poisson-Deviance von `N/Exposure` und `annual_rate` überein. Erwartete Anzahlen werden nicht zusätzlich mit Exponierung gewichtet; die Deviance ist kein Prozentwert. Kalibrierung verwendet A/P in der Richtung tatsächlich durch vorhergesagt und zeigt Summen und Unterstützung. Konzentrationskurven ordnen Jahresraten, behandeln Gleichstände gemeinsam und verwenden je Modell dessen eigene kumulierte Exponierung. Die [statistische Erläuterung](docs/validierung.md) beschreibt Formeln, Grenzen, Prüfungen und das vorab begrenzte Auswahlprotokoll.
+
+Die ursprüngliche Exploration des gesamten Datenstands und die retrospektive Quellenwahl bleiben offengelegt. Die neue Evaluation ist keine externe oder buchstäblich nie gesehene Validierung. Ab ihrer Festlegung bleibt sie aus neuer Exploration, Vorverarbeitung und Auswahl ausgeschlossen. Vorhersagen und Scores zur Modellwahl entstehen ausschließlich in der Entwicklung. OOF-Werte, die zur Auswahl dienen, sind Selektionsschätzungen; sie bewerten nicht unverzerrt das gesamte abgestimmte Verfahren.
+
 ## Die Modellierungsstudie
 
 Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein substanzielles aktuarielles Poisson-GLM, ein penalisiertes Poisson-Spline-GAM und ein Histogramm-Boosting-Modell als Vergleich. GPU-Experimente sind optional.
 
 Vor der Auswahl von Modelltermen untersucht die Analyse Alter, Bonus-Malus und Portfoliozusammensetzung. Insbesondere ist ein vermeintlicher Anstieg im mittleren Alter zunächst eine zu prüfende Frage: Marginale Raten, adjustierte Zusammenhänge und plausible Mechanismen werden unterschieden. Die vorhandenen Variablen können eine Erklärung durch Haushaltszusammensetzung oder weitere Fahrer nicht belegen.
 
-Für die Validierung sind Aufteilungen auf Vertragsebene vorgesehen, die für verknüpfte Schäden übernommen werden, tatsächliche Out-of-Fold-Vorhersagen im Entwicklungsdatensatz, ausschließlich auf Trainingsdaten geschätzte Vorverarbeitung und ein gesondert festgelegtes Evaluationsprotokoll. Diese Schritte sind noch nicht umgesetzt. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden ausdrücklich unterschieden. Die frühere Exploration des gesamten Datensatzes wird offengelegt; eine neue Zufallsaufteilung macht diese Vorgeschichte nicht rückgängig.
+Das [Validierungsprotokoll](config/validation_protocol.json) begrenzt den späteren Vergleich auf höchstens sechs GLM-, sechs GAM- und vier Histogramm-Boosting-Konfigurationen auf gemeinsamen Entwicklungsfalten. Konkrete Kodierungen und Terme werden aus der Entwicklungs-EDA begründet und vor Anpassung registriert. Gelernte Vorverarbeitung wird je Trainingsfalte angepasst; unbekannte Validierungskategorien müssen ausdrücklich behandelt werden. Für Boosting sind feste Iterationszahl und deaktivierter Frühstopp vorgesehen. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden getrennt behandelt.
+
+Geplant sind Faltenstabilität und 500 gepaarte Bootstrap-Ziehungen auf Vertragszeilen bei festen Vorhersagen. Solche Intervalle enthalten weder erneutes Fitten noch Modellwahlunsicherheit. Die vorab festgelegte Toleranz von 0,5 % relativer Deviance für praktisch ähnliche Kandidaten ist kein Signifikanztest. Diese späteren Vergleiche wurden noch nicht ausgeführt; es ist kein Modellgewinner festgelegt.
 
 Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evaluiert. Ein erfolgloses Schadenhöhenmodell, ein dem GLM unterlegenes GAM oder ein geringer Zusatznutzen des Boostings sind zulässige Ergebnisse. Ein marktfähiger Tarif oder eine Übertragbarkeit auf Deutschland werden nicht behauptet.
 
@@ -93,9 +113,12 @@ Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evalui
 - [Vorbereitungsnachweis](reports/s1/preparation_report.json) und [Datenvertrag](config/data_contract.json): Zielgröße, Einheiten, Verknüpfung, Prüfgruppen und Tabellenidentität.
 - [Paketversionen der geprüften Projektumgebung](reports/s1/environment-windows-py312.json) und [Lockdatei](requirements.lock.txt): tatsächlich aufgelöste Abhängigkeiten.
 - [Reproduzierbarkeitsnachweis](reports/s1/reproducibility.json): ausgeführte Prüfungen, Wiederholung aus frischem Download und Cache sowie Notebook- und Tabellenkennungen.
+- [Validierungsprotokoll](config/validation_protocol.json) und [statistische Erläuterung](docs/validierung.md): Einheiten, Metriken, Lern- und Auswahlgrenzen.
+- [Splitnachweis](reports/s2/split_manifest.json) und [OOF-Basismodellnachweis](reports/s2/baseline_oof_report.json): tatsächliche Entwicklungszuordnung und berechnete Vorhersagebewertung; keine Evaluation.
+- [Validierungsprüfungen](reports/s2/reproducibility.json): ausgeführte Tests, unabhängiger Referenzabgleich, bytegleiche Wiederholung und Notebook-Nachweise.
 - [Paketversionen des historischen Quellenvergleichs](reports/s0/environment-windows-py312.txt): frühere gesonderte Vergleichsumgebung.
 
-`notebooks/legacy/`, `src/metrics.py`, `src/features_glm.py`, `figures/` und `reports/figs/` enthalten die historische Analyse. Ihre gespeicherten Kennzahlen und Abbildungen müssen durch den korrigierten Ablauf ersetzt werden. `src/data.py` und `notebooks/01_data_preparation.ipynb` bilden die neue Datenaufbereitung. Die abschließende Darstellung der Studie soll eine kleine mathematische Ausarbeitung und eine 10–15-minütige Präsentation für Vorstellungsgespräche umfassen.
+`notebooks/legacy/`, `src/legacy/metrics.py`, `src/features_glm.py`, `figures/` und `reports/figs/` enthalten die historische Analyse. Ihre gespeicherten Kennzahlen und Abbildungen müssen durch den korrigierten Ablauf ersetzt werden. `src/data.py` bildet die neue Datenaufbereitung; `src/metrics.py` und `src/validation.py` enthalten die geprüften Mess- und Validierungsfunktionen. Die aktiven Notebooks dokumentieren diesen ausführbaren Ablauf. Die abschließende Darstellung der Studie soll eine kleine mathematische Ausarbeitung und eine 10–15-minütige Präsentation für Vorstellungsgespräche umfassen.
 
 ## Quelle, Kontext und Nutzungsbedingungen
 

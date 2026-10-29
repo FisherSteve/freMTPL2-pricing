@@ -1,0 +1,56 @@
+{
+  "checks": {
+    "development_oof_predictions": 542392,
+    "development_policies": 542392,
+    "evaluation_predictions": 0,
+    "evaluation_scores": 0,
+    "independent_reference": "Five fold rates recomputed from other four development folds; pooled score matches sklearn exposure-weighted rate deviance within 2e-15",
+    "notebook_runs": [
+      {
+        "cell_errors": 0,
+        "code_cells": 7,
+        "path": "data/notebooks/02_validation_contracts.executed.ipynb",
+        "sha256": "8da0851d7ef6544589ba3420a9fa5dd4d9eab8fc95f37aabb345b54d60699122"
+      },
+      {
+        "cell_errors": 0,
+        "code_cells": 7,
+        "path": "data/notebooks/02_validation_contracts.from-notebooks.executed.ipynb",
+        "sha256": "61160ee482fdb43b0bb1ac9d71e03d154b38a84d033968aa6c0a9ce9f4f392a2"
+      }
+    ],
+    "oof_repeat": "identical manifest and Parquet bytes after five fresh fits",
+    "pip_check": "No broken requirements found",
+    "split_repeat": "identical saved manifest and membership bytes; registry forbids changed seed",
+    "unit_tests": {
+      "command": "python -m unittest discover -s tests -v",
+      "failed": 0,
+      "passed": 66
+    }
+  },
+  "hashes": {
+    "baseline_report_sha256": "9a1be8501e6840ca188eb25b3633e7bb6dc56aa1c029619b03d2f388147d16f4",
+    "metrics_sha256": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
+    "notebook_source_sha256": "c361b22bf8e96ef4a3d754cd45f7f18c80f687a1b3fde6e4463b88c68db4d1f9",
+    "protocol_sha256": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+    "runner_sha256": "680557fa40bbe2115ba45db0148112de4cb0cfa5bda739b71a2c277796832932",
+    "split_manifest_sha256": "8fa31ddf39339d7bf6b65a0bfb2345fa6fd9d8f1ec471984be08d15f9a6d27f1"
+  },
+  "limitations": [
+    "Windows x64 / CPython3.12.14 only; notebook kernels executed outside restricted automation sandbox.",
+    "Prior whole-data exploration/source reconciliation is disclosed; the evaluation is not external or literally historically unseen.",
+    "OOF selection estimates do not establish unbiased generalization of a tuned procedure; future bootstrap is conditional on fixed predictions.",
+    "Five intercept rates can produce a nonzero pooled concentration/Gini through fold composition; no substantive discrimination claim."
+  ],
+  "not_executed": [
+    "candidate model comparison",
+    "paired-bootstrap uncertainty intervals",
+    "evaluation scoring",
+    "synthetic augmentation"
+  ],
+  "preparation_id": "s1-cb931cb73e410280",
+  "run_id": "s2oof-743562bdcce0c506",
+  "scope": "Feste Vertragsaufteilung und echte Entwicklungs-OOF-Vorhersagen des Exponierungs-Basismodells; kein GLM/GAM/Boosting-Vergleich.",
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd"
+}

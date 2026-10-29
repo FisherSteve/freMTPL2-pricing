@@ -16,3 +16,11 @@
 /reports/s1/*.json text eol=lf
 /reports/s1/*.txt text eol=lf
 /notebooks/01_data_preparation.ipynb text eol=lf
+
+# Validation identities and measured frequency contracts.
+/src/validation.py text eol=lf
+/src/metrics.py text eol=lf
+/tests/test_validation.py text eol=lf
+/tests/test_metrics.py text eol=lf
+/reports/s2/*.json text eol=lf
+/notebooks/02_validation_contracts.ipynb text eol=lf

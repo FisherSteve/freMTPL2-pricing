@@ -1,0 +1,50 @@
+{
+  "protocol_version": 1,
+  "scope": "Frequenzvergleich und vertragsweise Verknüpfung der späteren Schadenhöhenanalyse; S2 führt nur das Exponierungs-Basismodell aus.",
+  "split": {
+    "algorithm": "sorted-ID-PCG64-permutation-evaluation-first-ceil-round-robin-development-v1",
+    "seed": 20261029,
+    "evaluation_fraction": 0.2,
+    "development_folds": 5,
+    "stratification": "none; no outcome or exposure is used to assign membership",
+    "grouping_unit": "IDpol",
+    "evaluation_fold_code": 0
+  },
+  "analysis_history": "Die historische Analyse explorierte den ganzen Datenstand und verwendete Fold 5 zur Entwicklung. Auch Quellenwahl und Zielabgleich erfolgten retrospektiv über den vollständigen Datenstand. Die neue Aufteilung hebt diese Vorgeschichte nicht auf: keine externe oder buchstäblich nie gesehene Validierung. Ab dieser Festlegung bleiben Evaluationsbeobachtungen aus neuer Exploration, Auswahl, Vorverarbeitung und Frühstopp ausgeschlossen.",
+  "grouping_limits": "IDpol verbindet Vertragszeile und Schadenzeilen. Keine verlässlichen Haushalts-, Fahrergruppen- oder Kalenderkennungen vorhanden; ID-Reihenfolge wird nicht als Zeitachse interpretiert. Keine Aussage über zeitliche oder neue Haushalte betreffende Generalisierung.",
+  "targets_and_units": {
+    "observed_count": "recorded_positive_count; erfasste positive Schadenzeilen je Vertragsperiode",
+    "annual_rate": "Schäden je Vertragsjahr",
+    "expected_count": "Exposure * annual_rate; Schäden je tatsächlicher Vertragsperiode",
+    "exposure": "Exposure; Vertragsjahre, unverändert und positiv",
+    "loss": "recorded_loss_eur; historische EUR je Vertragsperiode, keine S2-Auswahlzielgröße"
+  },
+  "prospective_features": ["VehPower", "VehAge", "DrivAge", "BonusMalus", "VehBrand", "VehGas", "Area", "Density", "Region"],
+  "forbidden_predictors": ["IDpol", "claim_row_id", "ClaimNb", "recorded_positive_count", "recorded_loss_eur", "ClaimAmount", "split", "fold", "annual_rate", "expected_count"],
+  "preprocessing": "Je äußerer Trainingsfalte neu klonen und fitten. Keine global geschätzten Kategorien, Skalierung, Imputation oder Glättung. Festes Quellschema ist keine gelernte Kodierung. Kategoriale Kodierung muss unbekannte Validierungsstufen ausdrücklich behandeln (z. B. OneHotEncoder(handle_unknown='ignore')); Häufigkeiten unbekannter Stufen dokumentieren. Gültige Rohdaten brauchen keine Imputation. Exponierung dient als Gewicht für N/e oder als echter Log-Offset, nicht zusätzlich als Gewicht bereits modellierter Anzahlen.",
+  "primary_metric": "sum Poisson_count_deviance(N, Exposure * annual_rate) / sum Exposure; kein Prozentwert und keine zweite Exponierungsgewichtung",
+  "aggregation": "OOF-Gesamtscore aus allen Vertragszeilen bzw. mit Exponierung gewichteten Faltenscores; kein ungewichtetes Mittel der fünf Quotienten.",
+  "secondary_metrics": ["A/P=sum N / sum expected_count zusammen mit Summen", "Kalibrierung in nach Jahresrate geordneten Gruppen gleicher ungefährer Vertragszahl, gleiche Scores ungeteilt", "Roher Frequenz-Gini über kumulierte Exponierung, absteigende Jahresrate, gebundene Blöcke, Ursprung", "Kalibrierung nach Alter, Bonus-Malus, Kraftstoff und Region mit sichtbarer Unterstützung"],
+  "support_threshold_policy_years": 500,
+  "candidate_budget": {
+    "intercept": {"configurations": 1, "fit": "sum training N / sum training Exposure"},
+    "glm": {"maximum_configurations": 6, "maximum_encodings": 2, "regularization_levels": [0.0, 0.0001, 0.01], "specification": "Höchstens zwei durch Entwicklungs-EDA begründete explizite Spezifikationen; vor Anpassung registrieren, Rang und Konvergenz prüfen."},
+    "gam": {"maximum_configurations": 6, "spline_basis_sizes": [10, 20], "smoothing_penalties": [0.1, 1.0, 10.0], "specification": "Penalisiertes additives Poisson-Modell mit Faktor-Effekten; genaue Terme nach Entwicklungs-EDA und vor Anpassung registrieren. Basis- und Strafskalierung, Nebenbedingungen und Konvergenz dokumentieren. Keine ungeprüfte UBRE-/p-Wert-Auswahl."},
+    "histogram_poisson": {"maximum_configurations": 4, "max_leaf_nodes": [15, 31], "l2_regularization": [0.0, 1.0], "learning_rate": 0.05, "max_iter": 300, "early_stopping": false, "random_state": 20261029},
+    "boundary": "Gemeinsame fünf Entwicklungsfalten. Keine Evaluationsdaten oder Evaluationsverteilungen für Hyperparameter, Encoder oder Frühstopp. Fehlgeschlagene Fits und begrenzte Konvergenzreparaturen dokumentieren; kein stilles Erweitern der Suche. Strafparameter verschiedener Bibliotheken sind nicht automatisch vergleichbar. Änderungen der Spezifikationen müssen vor Anpassung als neue Konfiguration innerhalb des Budgets festgehalten werden."
+  },
+  "selection": "Primär kleinste Entwicklungs-OOF-Deviance; Konvergenz, Aggregat-/Segmentkalibrierung, Faltenstabilität, Interpretierbarkeit und Rechenzeit ebenfalls prüfen. Liegen Kandidaten innerhalb 0,5 Prozent relativer Deviance des besten, kann das einfachere stabile Modell vorgezogen werden. Das ist eine praktische Konvention, kein Signifikanztest. OOF-Auswahlwerte sind Selektionsschätzungen, keine unverzerrte Bewertung des gesamten abgestimmten Verfahrens; keine Nested-CV-Behauptung.",
+  "stability": {
+    "fold_differences": "Gepaarte Faltendifferenzen auf denselben Verträgen beschreiben; fünf überlappende Trainingsfits sind keine unabhängigen Wiederholungen für einen Standardfehler.",
+    "paired_policy_bootstrap": {"replicates": 500, "seed": 20261030, "percentiles": [2.5, 97.5], "unit": "Vertragszeile; alle Kandidaten und Exponierungen mit denselben Indizes ziehen", "estimand": "Differenz der Exponierungs-Deviance bei festen OOF-Vorhersagen, jeweils durch gezogene Exponierung normalisieren; deskriptive bedingte Stichprobenstabilität. Keine Unsicherheit durch erneutes Fitten, Modellwahl oder unbekannte Haushaltsabhängigkeit."}
+  },
+  "evaluation_release": "Erst nach dokumentierter Entwicklungsentscheidung und gesperrtem Konfigurations-/Modellnachweis gemeinsam für Frequenz und spätere Schadenhöhe auswerten. S2 erzeugt keine Evaluationsvorhersagen oder Evaluationsscores. Evaluation niemals zur Auswahl zurückführen.",
+  "optional_synthetic_experiment": "Keine weitere unabhängige Reserve festgelegt. Eine spätere O2-Auswertung bleibt explorativ auf realen Entwicklungsbeobachtungen; keine bestätigende Nutzung der bereits für Kernmodelle geöffneten Evaluation.",
+  "baseline_oof_note": "Fünf getrennte Trainingsraten liefern echte OOF-Vorhersagen. Ihre gepoolte Konzentrationskurve kann durch die Falteneinteilung von null abweichen und ist kein Beleg für diskriminierende Exponierungsmerkmale.",
+  "references": [
+    "https://scikit-learn.org/stable/common_pitfalls.html",
+    "https://scikit-learn.org/stable/modules/cross_validation.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_poisson_deviance.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html"
+  ]
+}
