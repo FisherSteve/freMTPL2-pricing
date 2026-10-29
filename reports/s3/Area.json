@@ -1,0 +1,83 @@
+{
+  "rows": [
+    {
+      "Area": "A",
+      "claims": 2699,
+      "exposure": 49559.224266786434,
+      "frequency": 0.054460093755116,
+      "loss_cost_eur_per_year": 120.57173005439105,
+      "loss_eur": 5975441.41,
+      "poisson_lower": 0.052424682213268,
+      "poisson_upper": 0.056554285828442,
+      "policies": 83125,
+      "severity_eur": 2213.9464283067805,
+      "supported": true
+    },
+    {
+      "Area": "B",
+      "claims": 2107,
+      "exposure": 34414.79829328543,
+      "frequency": 0.061223662624549,
+      "loss_cost_eur_per_year": 228.36467449333767,
+      "loss_eur": 7859124.21,
+      "poisson_lower": 0.058637114359005,
+      "poisson_upper": 0.063894929939791,
+      "policies": 60462,
+      "severity_eur": 3730.0067441860465,
+      "supported": true
+    },
+    {
+      "Area": "C",
+      "claims": 5676,
+      "exposure": 83557.32328991691,
+      "frequency": 0.067929413922298,
+      "loss_cost_eur_per_year": 143.0550466357799,
+      "loss_eur": 11953296.78,
+      "poisson_lower": 0.066173580276762,
+      "poisson_upper": 0.069720041515162,
+      "policies": 153385,
+      "severity_eur": 2105.9367124735727,
+      "supported": true
+    },
+    {
+      "Area": "D",
+      "claims": 5129,
+      "exposure": 61804.84856126956,
+      "frequency": 0.082987016704934,
+      "loss_cost_eur_per_year": 170.0097277899416,
+      "loss_eur": 10507425.48,
+      "poisson_lower": 0.08073125075936,
+      "poisson_upper": 0.085289833369094,
+      "policies": 121365,
+      "severity_eur": 2048.630430883213,
+      "supported": true
+    },
+    {
+      "Area": "E",
+      "claims": 4847,
+      "exposure": 51055.372840032935,
+      "frequency": 0.094936139535924,
+      "loss_cost_eur_per_year": 201.08820049493107,
+      "loss_eur": 10266633.05,
+      "poisson_lower": 0.092282082598948,
+      "poisson_upper": 0.097647161160925,
+      "policies": 109707,
+      "severity_eur": 2118.1417474726636,
+      "supported": true
+    },
+    {
+      "Area": "F",
+      "claims": 608,
+      "exposure": 6489.251575716746,
+      "frequency": 0.093693393283623,
+      "loss_cost_eur_per_year": 141.59317284574743,
+      "loss_eur": 918833.72,
+      "poisson_lower": 0.086392997447527,
+      "poisson_upper": 0.101445892848252,
+      "policies": 14348,
+      "severity_eur": 1511.2396710526316,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

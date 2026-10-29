@@ -19,6 +19,15 @@ Das Ausführungswerkzeug verwendet genau den aufrufenden Python-Interpreter und 
 
 `freeze` schreibt eine feste Zuordnung anhand von Vertragsschlüsseln; ein anderer Seed ersetzt eine bereits festgelegte Aufteilung nicht stillschweigend. `oof-baseline` passt fünf Exponierungs-Intercepts ohne Evaluationsbeobachtungen an. Das Notebook selbst passt kein Modell an und erzeugt keine neue Zuordnung, sondern verifiziert die angegebenen lokalen Artefakte und ihre öffentlichen Nachweise.
 
+[03_development_eda.ipynb](03_development_eda.ipynb) liest anschließend die mit `python -m src.eda` berechneten Entwicklungsergebnisse. Es prüft die unveränderlichen lokalen Tabellen, die öffentlichen aggregierten JSON-Spiegel, alle Bild-Hashes und aktuelle Code-/Konfigurationsidentitäten. Die sechs Grafiken und unterstützten Gruppen unterscheiden marginale Muster, deskriptive BM-Standardisierung und nicht identifizierbare Mechanismen. Die [fünf Befunde](../docs/eda.md) enthalten Unsicherheit, Sensitivitäten und konkrete spätere Modellfragen.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.eda
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/03_development_eda.ipynb --output data/notebooks/03_development_eda.executed.ipynb
+```
+
+Keine Evaluationszeile wird exploriert; es entstehen keine Prämienvorhersagen oder GLM-/GAM-/Boosting-Fits. Die 500 Vertragsbootstrap-Ziehungen halten Anzahl, Exponierung und Betrag zusammen. Marginale Poisson-Referenzintervalle sind ausdrücklich annahmegebunden, keine Bänder einer geglätteten Kurve.
+
 Die vier ursprünglichen Notebooks liegen bytegetreu in [legacy/](legacy/). Ihre gespeicherten Ergebnisse, alten Datenpfade und Abhängigkeiten dokumentieren die frühere Analyse. Sie gehören nicht zum aktuellen ausführbaren Ablauf und belegen keine korrigierte Modellgüte. Der neue Datenstand ist von ihren Ergebnissen getrennt. Das Ausführungswerkzeug lehnt diese historischen Dateien ausdrücklich ab.
 
 Die Datenvorbereitung enthält keine Modellanpassung und keine Auswahl von Merkmalen, Glättung, Kappungen oder Ausschlüssen. Der neue OOF-Lauf belegt die Validierungsinfrastruktur anhand des Exponierungs-Basismodells; er enthält keinen GLM-/GAM-/Boosting-Vergleich. Inhaltliche Exploration und Auswahl erfolgen im Entwicklungsbestand gemäß dem vorab festgelegten Protokoll. Die vollständige frühere Datenexploration bleibt Teil der dokumentierten Analysegeschichte.

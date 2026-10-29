@@ -1,0 +1,37 @@
+{
+  "rows": [
+    {
+      "claim_amount_eur": 1172.0,
+      "quantile": 0.5
+    },
+    {
+      "claim_amount_eur": 1209.0525,
+      "quantile": 0.75
+    },
+    {
+      "claim_amount_eur": 2761.98,
+      "quantile": 0.9
+    },
+    {
+      "claim_amount_eur": 4717.93,
+      "quantile": 0.95
+    },
+    {
+      "claim_amount_eur": 15857.508999999976,
+      "quantile": 0.99
+    },
+    {
+      "claim_amount_eur": 31222.89999999998,
+      "quantile": 0.995
+    },
+    {
+      "claim_amount_eur": 139327.172900003,
+      "quantile": 0.999
+    },
+    {
+      "claim_amount_eur": 4075400.56,
+      "quantile": 1.0
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

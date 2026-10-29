@@ -24,3 +24,10 @@
 /tests/test_metrics.py text eol=lf
 /reports/s2/*.json text eol=lf
 /notebooks/02_validation_contracts.ipynb text eol=lf
+
+# Development-only descriptive analysis and reproducible evidence.
+/src/eda.py text eol=lf
+/tests/test_eda.py text eol=lf
+/docs/eda.md text eol=lf
+/reports/s3/*.json text eol=lf
+/notebooks/03_development_eda.ipynb text eol=lf

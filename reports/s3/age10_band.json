@@ -1,0 +1,83 @@
+{
+  "rows": [
+    {
+      "age10_band": "18–29",
+      "claims": 3395,
+      "exposure": 30659.89159368216,
+      "frequency": 0.110730985125191,
+      "loss_cost_eur_per_year": 417.95344027376024,
+      "loss_eur": 12814407.17,
+      "poisson_lower": 0.107037220942385,
+      "poisson_upper": 0.114519696932838,
+      "policies": 71221,
+      "severity_eur": 3774.4940117820324,
+      "supported": true
+    },
+    {
+      "age10_band": "30–39",
+      "claims": 4562,
+      "exposure": 65892.013741298,
+      "frequency": 0.06923449050914,
+      "loss_cost_eur_per_year": 135.48618130037045,
+      "loss_eur": 8927457.32,
+      "poisson_lower": 0.067239843036052,
+      "poisson_upper": 0.071273282703938,
+      "policies": 134877,
+      "severity_eur": 1956.917430951337,
+      "supported": true
+    },
+    {
+      "age10_band": "40–49",
+      "claims": 5239,
+      "exposure": 70140.93842503181,
+      "frequency": 0.074692470868487,
+      "loss_cost_eur_per_year": 141.3971673703837,
+      "loss_eur": 9917730.01,
+      "poisson_lower": 0.07268345136209,
+      "poisson_upper": 0.076742947172551,
+      "policies": 132614,
+      "severity_eur": 1893.0578373735445,
+      "supported": true
+    },
+    {
+      "age10_band": "50–59",
+      "claims": 4499,
+      "exposure": 63890.60608129351,
+      "frequency": 0.07041723777476,
+      "loss_cost_eur_per_year": 133.6233387602755,
+      "loss_eur": 8537276.1,
+      "poisson_lower": 0.068374463756143,
+      "poisson_upper": 0.072505540950044,
+      "policies": 113897,
+      "severity_eur": 1897.5941542565013,
+      "supported": true
+    },
+    {
+      "age10_band": "60–74",
+      "claims": 2591,
+      "exposure": 43709.75696683884,
+      "frequency": 0.05927738289567,
+      "loss_cost_eur_per_year": 119.06143824931847,
+      "loss_eur": 5204146.53,
+      "poisson_lower": 0.057016667508645,
+      "poisson_upper": 0.061604753983666,
+      "policies": 71962,
+      "severity_eur": 2008.547483597067,
+      "supported": true
+    },
+    {
+      "age10_band": "75+",
+      "claims": 780,
+      "exposure": 12587.612018863687,
+      "frequency": 0.061965684899654,
+      "loss_cost_eur_per_year": 165.22097415167573,
+      "loss_eur": 2079737.52,
+      "poisson_lower": 0.05769278597327,
+      "poisson_upper": 0.066471289837189,
+      "policies": 17821,
+      "severity_eur": 2666.3301538461537,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

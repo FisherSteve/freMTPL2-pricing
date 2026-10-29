@@ -1,0 +1,47 @@
+{
+  "rows": [
+    {
+      "claim_row_share": 4.7469856641e-05,
+      "loss_eur": 4075400.56,
+      "loss_share": 0.08583268294789,
+      "policies": 1,
+      "top_claim_rows": 1
+    },
+    {
+      "claim_row_share": 0.000237349283205,
+      "loss_eur": 7012743.61,
+      "loss_share": 0.147696549090127,
+      "policies": 5,
+      "top_claim_rows": 5
+    },
+    {
+      "claim_row_share": 0.00047469856641,
+      "loss_eur": 8467439.010000002,
+      "loss_share": 0.178334128688917,
+      "policies": 10,
+      "top_claim_rows": 10
+    },
+    {
+      "claim_row_share": 0.004746985664103,
+      "loss_eur": 15620794.770000001,
+      "loss_share": 0.328992133447483,
+      "policies": 100,
+      "top_claim_rows": 100
+    },
+    {
+      "claim_row_share": 0.010016139751258,
+      "loss_eur": 18060350.48,
+      "loss_share": 0.380372018371026,
+      "policies": 211,
+      "top_claim_rows": 211
+    },
+    {
+      "claim_row_share": 1.0,
+      "loss_eur": 47480754.65,
+      "loss_share": 1.0,
+      "policies": 19844,
+      "top_claim_rows": 21066
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

@@ -1,0 +1,86 @@
+{
+  "rows": [
+    {
+      "difference": 0.003112033883936,
+      "finite_draws": 500,
+      "left_age": "40–44",
+      "lower": -0.000860648179213,
+      "metric": "frequency",
+      "right_age": "35–39",
+      "upper": 0.007515030788541
+    },
+    {
+      "difference": 26.70076645340646,
+      "finite_draws": 500,
+      "left_age": "40–44",
+      "lower": -632.3464216128777,
+      "metric": "severity_eur",
+      "right_age": "35–39",
+      "upper": 873.2388091378235
+    },
+    {
+      "difference": 8.123839955242715,
+      "finite_draws": 500,
+      "left_age": "40–44",
+      "lower": -38.8910748098596,
+      "metric": "loss_cost_eur_per_year",
+      "right_age": "35–39",
+      "upper": 69.23758531505683
+    },
+    {
+      "difference": 0.004819326565007,
+      "finite_draws": 500,
+      "left_age": "45–49",
+      "lower": -2.1182338627e-05,
+      "metric": "frequency",
+      "right_age": "40–44",
+      "upper": 0.009022531170236
+    },
+    {
+      "difference": -239.88948970721867,
+      "finite_draws": 500,
+      "left_age": "45–49",
+      "lower": -987.4537574344903,
+      "metric": "severity_eur",
+      "right_age": "40–44",
+      "upper": 330.7747323970454
+    },
+    {
+      "difference": -8.774705637239833,
+      "finite_draws": 500,
+      "left_age": "45–49",
+      "lower": -64.70262059773981,
+      "metric": "loss_cost_eur_per_year",
+      "right_age": "40–44",
+      "upper": 33.08549283060975
+    },
+    {
+      "difference": -0.002018322701664,
+      "finite_draws": 500,
+      "left_age": "50–54",
+      "lower": -0.006093658017659,
+      "metric": "frequency",
+      "right_age": "45–49",
+      "upper": 0.002492285648018
+    },
+    {
+      "difference": 156.36351804899914,
+      "finite_draws": 500,
+      "left_age": "50–54",
+      "lower": -178.67032730822652,
+      "metric": "severity_eur",
+      "right_age": "45–49",
+      "upper": 470.4233922698601
+    },
+    {
+      "difference": 8.153137607180923,
+      "finite_draws": 500,
+      "left_age": "50–54",
+      "lower": -21.221091761953936,
+      "metric": "loss_cost_eur_per_year",
+      "right_age": "45–49",
+      "upper": 33.20943335513449
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

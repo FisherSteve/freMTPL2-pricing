@@ -1,0 +1,59 @@
+{
+  "rows": [
+    {
+      "age10_band": "30–39",
+      "all_age_frequency": 0.06923449050914,
+      "claims": 4356,
+      "excluded_claims": 206,
+      "excluded_exposure": 644.6047720637653,
+      "excluded_loss_eur": 543453.8600000003,
+      "excluded_policies": 1382,
+      "exposure": 65247.40896923423,
+      "frequency": 0.066761271731939,
+      "loss_cost_eur_per_year": 128.49557695008647,
+      "loss_eur": 8384003.46,
+      "lower": 0.054396607321236,
+      "policies": 133495,
+      "severity_eur": 1924.702355371901,
+      "standardized_frequency": 0.056383797921793,
+      "upper": 0.058413569097891
+    },
+    {
+      "age10_band": "40–49",
+      "all_age_frequency": 0.074692470868487,
+      "claims": 5135,
+      "excluded_claims": 104,
+      "excluded_exposure": 326.2237832173123,
+      "excluded_loss_eur": 171616.01999999955,
+      "excluded_policies": 671,
+      "exposure": 69814.7146418145,
+      "frequency": 0.073551829672945,
+      "loss_cost_eur_per_year": 139.59971103516776,
+      "loss_eur": 9746113.99,
+      "lower": 0.076821079607715,
+      "policies": 131943,
+      "severity_eur": 1897.9774079844208,
+      "standardized_frequency": 0.079100159782917,
+      "upper": 0.081334413052037
+    },
+    {
+      "age10_band": "50–59",
+      "all_age_frequency": 0.07041723777476,
+      "claims": 4413,
+      "excluded_claims": 86,
+      "excluded_exposure": 225.91190283704054,
+      "excluded_loss_eur": 138190.90000000224,
+      "excluded_policies": 485,
+      "exposure": 63664.69417845647,
+      "frequency": 0.069316283647418,
+      "loss_cost_eur_per_year": 131.92689148017882,
+      "loss_eur": 8399085.2,
+      "lower": 0.079658103036343,
+      "policies": 113412,
+      "severity_eur": 1903.259732608203,
+      "standardized_frequency": 0.082412948968879,
+      "upper": 0.085017437248964
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

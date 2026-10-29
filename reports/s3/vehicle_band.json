@@ -1,0 +1,83 @@
+{
+  "rows": [
+    {
+      "claims": 914,
+      "exposure": 13347.03149562093,
+      "frequency": 0.068479646601559,
+      "loss_cost_eur_per_year": 136.45777269631515,
+      "loss_eur": 1821306.19,
+      "poisson_lower": 0.06411150567455,
+      "poisson_upper": 0.073067054716111,
+      "policies": 46086,
+      "severity_eur": 1992.6763566739605,
+      "supported": true,
+      "vehicle_band": "0"
+    },
+    {
+      "claims": 5668,
+      "exposure": 82630.40718466952,
+      "frequency": 0.068594603283664,
+      "loss_cost_eur_per_year": 200.28806166975434,
+      "loss_eur": 16549884.09,
+      "poisson_lower": 0.066820333187005,
+      "poisson_upper": 0.070404057743395,
+      "policies": 142095,
+      "severity_eur": 2919.880749823571,
+      "supported": true,
+      "vehicle_band": "11–20"
+    },
+    {
+      "claims": 3655,
+      "exposure": 49892.60653117748,
+      "frequency": 0.073257347212678,
+      "loss_cost_eur_per_year": 164.04895853427433,
+      "loss_eur": 8184830.14,
+      "poisson_lower": 0.070901431568546,
+      "poisson_upper": 0.075671597703985,
+      "policies": 104149,
+      "severity_eur": 2239.351611491108,
+      "supported": true,
+      "vehicle_band": "1–2"
+    },
+    {
+      "claims": 170,
+      "exposure": 4100.601944756344,
+      "frequency": 0.041457328043603,
+      "loss_cost_eur_per_year": 50.21017957211987,
+      "loss_eur": 205891.96,
+      "poisson_lower": 0.035459457640309,
+      "poisson_upper": 0.048179139682019,
+      "policies": 6624,
+      "severity_eur": 1211.1291764705882,
+      "supported": true,
+      "vehicle_band": "21+"
+    },
+    {
+      "claims": 4262,
+      "exposure": 57572.15437832173,
+      "frequency": 0.074028843388303,
+      "loss_cost_eur_per_year": 144.59644492884567,
+      "loss_eur": 8324728.85,
+      "poisson_lower": 0.07182283756143,
+      "poisson_upper": 0.076285382054276,
+      "policies": 106044,
+      "severity_eur": 1953.244685593618,
+      "supported": true,
+      "vehicle_band": "3–5"
+    },
+    {
+      "claims": 6397,
+      "exposure": 79338.01729246201,
+      "frequency": 0.080629693283346,
+      "loss_cost_eur_per_year": 156.21909701009855,
+      "loss_eur": 12394113.42,
+      "poisson_lower": 0.078665804114014,
+      "poisson_upper": 0.082630217309776,
+      "policies": 137394,
+      "severity_eur": 1937.4884195716743,
+      "supported": true,
+      "vehicle_band": "6–10"
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

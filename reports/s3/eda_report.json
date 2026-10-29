@@ -1,0 +1,683 @@
+{
+  "age_100_policies": 2,
+  "age_heaping_counts": {
+    "0": 54862,
+    "1": 55634,
+    "2": 55903,
+    "3": 54596,
+    "4": 53765,
+    "5": 53547,
+    "6": 53629,
+    "7": 52929,
+    "8": 53462,
+    "9": 54065
+  },
+  "artifacts": {
+    "Area": {
+      "columns": {
+        "Area": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "Area.parquet",
+      "logical_csv_sha256": "8677097adb4514d0a26400d7ac7a68c1c4e8607a69c30d21b3859a1786901e15",
+      "rows": 6,
+      "sha256": "c985da70ad49af55ead33a458919cf52d5819253b111f3d9ccb19ca2a065a280"
+    },
+    "DrivAge": {
+      "columns": {
+        "DrivAge": "int64",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "DrivAge.parquet",
+      "logical_csv_sha256": "c78212fa654b2596d1e01a450140360e6317df0622f91af7ce8cbb0dd021066a",
+      "rows": 83,
+      "sha256": "e4b733437e927bf5da043825686e54bf07bf65d5cc23cf728562457a7c0f44cc"
+    },
+    "Region": {
+      "columns": {
+        "Region": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "Region.parquet",
+      "logical_csv_sha256": "94eebf63e353b53ac44060e11f9247ace56041fad9bf046ee8f1e6692c324aff",
+      "rows": 22,
+      "sha256": "f7e831c59596517187d0949951ea3f05d694eade16dbc7df4f6e01c44bbd2650"
+    },
+    "VehBrand": {
+      "columns": {
+        "VehBrand": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "VehBrand.parquet",
+      "logical_csv_sha256": "4dfa42273a9ee85ea403fa0881f4182a149ac294120a4c95a1e4b900620efc9f",
+      "rows": 11,
+      "sha256": "92c82f997967b57079207cbc560b7085098ef846e111c77dcd62c42a20c75522"
+    },
+    "VehGas": {
+      "columns": {
+        "VehGas": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "VehGas.parquet",
+      "logical_csv_sha256": "3ddea241a34b03006624d913c004bfaf830717fc0cd28dc0d6bc7ed95e2af250",
+      "rows": 2,
+      "sha256": "3ca536adfa732285375c911fb5de196dade5d97a01f1358f85bfc4bb18ab8106"
+    },
+    "age10_band": {
+      "columns": {
+        "age10_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age10_band.parquet",
+      "logical_csv_sha256": "85cd6460b48afc47daa157dbcaaab870d3acf3db52e54c9cd123b788f4c08870",
+      "rows": 6,
+      "sha256": "4e4b4ae184c2c5d296e6ab0d3c96682e44646eb4857418f241254ed509d191f3"
+    },
+    "age_b12_new": {
+      "columns": {
+        "age_band": "str",
+        "brand12": "str",
+        "brand_new": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age_b12_new.parquet",
+      "logical_csv_sha256": "77ce01533ca769cc665ef75919d0de51b56a18c94da8b9ddffd045bfbdb8c05f",
+      "rows": 44,
+      "sha256": "691ca4f9e55465cc3537612ddff2146257f6e2b18caf46cffbe40277fb268981"
+    },
+    "age_band": {
+      "columns": {
+        "age_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age_band.parquet",
+      "logical_csv_sha256": "2310173788a91b074f0d61f6e6ac06379ab235a3129ca2513c6b1fd676c95394",
+      "rows": 11,
+      "sha256": "e5d37262272f4ac155f02dd144fcd846512951d120fa2e54cf8bc26cb7ef06e2"
+    },
+    "age_bootstrap": {
+      "columns": {
+        "age_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "frequency_lower": "float64",
+        "frequency_upper": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_cost_eur_per_year_lower": "float64",
+        "loss_cost_eur_per_year_upper": "float64",
+        "loss_eur": "float64",
+        "policies": "int64",
+        "replicates": "int64",
+        "severity_eur": "float64",
+        "severity_eur_lower": "float64",
+        "severity_eur_upper": "float64",
+        "undefined_severity_draws": "int64"
+      },
+      "filename": "age_bootstrap.parquet",
+      "logical_csv_sha256": "7ddb7d43097a72bf963d286918ba6aaa0998f1b36232f4e5f945148c82949323",
+      "rows": 12,
+      "sha256": "b1be021b187fb458cc0de292b49ca79f76d5b404b53ce5fdce2696b147fe3e3c"
+    },
+    "age_composition": {
+      "columns": {
+        "age_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "exposure_share_within_age": "float64",
+        "feature": "str",
+        "frequency": "float64",
+        "level": "str",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age_composition.parquet",
+      "logical_csv_sha256": "1da917f3a6cc51eecb13d8bf3d54187b4cc9bcab439936cca4513452c0487d8b",
+      "rows": 616,
+      "sha256": "e0503b9f0b530465e3ece5cbbeace1372687ebbd9b849f46a6c66501bea42bab"
+    },
+    "age_contrasts": {
+      "columns": {
+        "difference": "float64",
+        "finite_draws": "int64",
+        "left_age": "str",
+        "lower": "float64",
+        "metric": "str",
+        "right_age": "str",
+        "upper": "float64"
+      },
+      "filename": "age_contrasts.parquet",
+      "logical_csv_sha256": "381afda230c2be018a2dda8918f7fcadabd856fa10689050c0128e52e02c4f1a",
+      "rows": 9,
+      "sha256": "a78cb7facb2265366793b8b20844bdf2560f79bac7733a7df904b1bc46a7b494"
+    },
+    "age_loss_sensitivity": {
+      "columns": {
+        "age_band": "str",
+        "amount_target": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age_loss_sensitivity.parquet",
+      "logical_csv_sha256": "16e1116d69c3accb457d0f07a914f1b934912b70e5d03a1bb6a78cd1905823cd",
+      "rows": 22,
+      "sha256": "50892e479889ba176e3554eb3c27e61fc330faebdc854938a47900a2e23bf0c1"
+    },
+    "age_sensitivity": {
+      "columns": {
+        "age_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "scenario": "str",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "age_sensitivity.parquet",
+      "logical_csv_sha256": "e1fcda6c407af6e8f13044bd6dd31c5b819ef72bf8064728e308922b4bdf7050",
+      "rows": 44,
+      "sha256": "ca9905ba7f15afbf05e3aee33d085cda92c26e3bc75ea2a370187e6fef01ea16"
+    },
+    "age_windows": {
+      "columns": {
+        "DrivAge": "int64",
+        "age_max": "int64",
+        "age_min": "int64",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "policies": "int64",
+        "severity_eur": "float64"
+      },
+      "filename": "age_windows.parquet",
+      "logical_csv_sha256": "dcfa19e5eb45c4fbf14b6b22cbf0fe3ff175e4617d7d09adad3bcfa88334c153",
+      "rows": 83,
+      "sha256": "b33cbf7b5b242186b9dd180f1284cf56a1c804d8739406e952accc016eb116e2"
+    },
+    "b12_new": {
+      "columns": {
+        "brand12": "str",
+        "brand_new": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "b12_new.parquet",
+      "logical_csv_sha256": "c82ab4bc967db4a3e99b972c75b0d75fa7fb6b56bec636177af0a3070dd93c8d",
+      "rows": 4,
+      "sha256": "0174bbb5c3c008e4ab385f0c8dcb6ca845ad8a929e927432853b4ac9cd3611e2"
+    },
+    "bm_band": {
+      "columns": {
+        "bm_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "bm_band.parquet",
+      "logical_csv_sha256": "212420d99d501073f43091c91e0bbe7a5e56ae201098928cee0abab743dfc6dc",
+      "rows": 4,
+      "sha256": "7fa569b0174d79296b31f4197cbd14bf7e142dd71e63231405f8a8bae8a597cf"
+    },
+    "bm_common_cells": {
+      "columns": {
+        "age10_band": "str",
+        "bm_band": "str",
+        "claims": "int64",
+        "common_support": "bool",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "reference_weight": "float64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "bm_common_cells.parquet",
+      "logical_csv_sha256": "58ae3e90d7e327929cb334a7e02964fb9dbdbd55bd4ba4f377ced2913e6a667f",
+      "rows": 12,
+      "sha256": "c78812c407b65c23a2b4c1874e4b55f8dd1ebebe2b9d874580088ecef078a3e0"
+    },
+    "bm_standardized": {
+      "columns": {
+        "age10_band": "str",
+        "all_age_frequency": "float64",
+        "claims": "int64",
+        "excluded_claims": "int64",
+        "excluded_exposure": "float64",
+        "excluded_loss_eur": "float64",
+        "excluded_policies": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "lower": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "standardized_frequency": "float64",
+        "upper": "float64"
+      },
+      "filename": "bm_standardized.parquet",
+      "logical_csv_sha256": "682fc80b518c99bb92ea25f70a59ddee868520a1a3366c8b9884634ec5c5bed1",
+      "rows": 3,
+      "sha256": "66e5f7fe87388d6f6f47d2fecd59c7d86f3f94978176be6a56fce9dc14db4b69"
+    },
+    "bm_standardized_contrasts": {
+      "columns": {
+        "difference": "float64",
+        "left_age": "str",
+        "lower": "float64",
+        "right_age": "str",
+        "upper": "float64"
+      },
+      "filename": "bm_standardized_contrasts.parquet",
+      "logical_csv_sha256": "b76927fc8bff38da8614e6289d77c4a300709138b1dc4c92a3afa64b58337be0",
+      "rows": 2,
+      "sha256": "e9fe54d2ecd08274f9f1be5dbe26b1ee4d2043ddf7d3d20ffb20146093663079"
+    },
+    "claim_quantiles": {
+      "columns": {
+        "claim_amount_eur": "float64",
+        "quantile": "float64"
+      },
+      "filename": "claim_quantiles.parquet",
+      "logical_csv_sha256": "b1272ff0c533b3d07d562d993e69f6f332458a1be1e2bf7927d9e24b83ebb11b",
+      "rows": 8,
+      "sha256": "3d14d2003494e616806dd3a3d9956fb188f20e20729140907c07b32fc1467651"
+    },
+    "density_band": {
+      "columns": {
+        "claims": "int64",
+        "density_band": "str",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "density_band.parquet",
+      "logical_csv_sha256": "b4b6c9d696aa2dfa7404075014469c6fe19d67f30d1ad533ff2deb3ecaf94ff7",
+      "rows": 5,
+      "sha256": "f2540a6bf04bb8216fb3e77b60faaa08552980b7e04999021a145e9a3bbbd806"
+    },
+    "exposure_band": {
+      "columns": {
+        "claims": "int64",
+        "exposure": "float64",
+        "exposure_band": "str",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "exposure_band.parquet",
+      "logical_csv_sha256": "4862d7608a69e28695ecb2ad22de9ba34f607a5bdae11802e28c98530aad9a56",
+      "rows": 6,
+      "sha256": "8ac51fac928f2a482ffb4a6b2a6da633e0037b8a154d952111aeb2f13f85b995"
+    },
+    "exposure_bm": {
+      "columns": {
+        "bm_band": "str",
+        "claims": "int64",
+        "exposure": "float64",
+        "exposure_band": "str",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool"
+      },
+      "filename": "exposure_bm.parquet",
+      "logical_csv_sha256": "56f162f39805ce7816e4ec54a14a07273f18a06d37824370985aaf58bd3cbc87",
+      "rows": 24,
+      "sha256": "356e560a3a185e2786b28431e159b11e2fec79efd9309d6a8c871dbe7b9c7a00"
+    },
+    "sensitivities": {
+      "columns": {
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "frequency_change_pct": "float64",
+        "kind": "str",
+        "loss_cost_change_pct": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "policies": "int64",
+        "removed_claims": "int64",
+        "removed_exposure": "float64",
+        "removed_loss_eur": "float64",
+        "removed_policies": "int64",
+        "scenario": "str",
+        "severity_eur": "float64"
+      },
+      "filename": "sensitivities.parquet",
+      "logical_csv_sha256": "4c67efb7fea1b352106493b59787a919d146b1b8e8aaaeea9c281a8bc325eb1d",
+      "rows": 10,
+      "sha256": "eaa3b1713c33e0abb92fd380d1ce661202e1d2491b186417ec94cf058de4d1b2"
+    },
+    "tail_concentration": {
+      "columns": {
+        "claim_row_share": "float64",
+        "loss_eur": "float64",
+        "loss_share": "float64",
+        "policies": "int64",
+        "top_claim_rows": "int64"
+      },
+      "filename": "tail_concentration.parquet",
+      "logical_csv_sha256": "0a43997757ebc30093845bc439ea7a94e505f610d6bdb34e7ca02a06c9af8db9",
+      "rows": 6,
+      "sha256": "a37d4a9cd71d954f995d9e7d3937ffd6bac2e2686fabe1ababfcdf55c69145e3"
+    },
+    "top_loss_age_support": {
+      "columns": {
+        "DrivAge": "int64",
+        "age_band": "str",
+        "top10_claim_rows": "int64",
+        "top10_loss_eur": "float64"
+      },
+      "filename": "top_loss_age_support.parquet",
+      "logical_csv_sha256": "6917c5ec1e2cdef06a50d08a7eb85c5af8fe2fb2c82110744f3b30f33b327ff0",
+      "rows": 10,
+      "sha256": "dbe3f4cd59054d75d3f6f639286127b3a12ad3fd759d4ecf7cc6fba81b8c4c26"
+    },
+    "vehicle_band": {
+      "columns": {
+        "claims": "int64",
+        "exposure": "float64",
+        "frequency": "float64",
+        "loss_cost_eur_per_year": "float64",
+        "loss_eur": "float64",
+        "poisson_lower": "float64",
+        "poisson_upper": "float64",
+        "policies": "int64",
+        "severity_eur": "float64",
+        "supported": "bool",
+        "vehicle_band": "str"
+      },
+      "filename": "vehicle_band.parquet",
+      "logical_csv_sha256": "c45a0a006466ae7f053fc6b88394f1a7e55c0137ad31c4ea4b0be4db764c578b",
+      "rows": 6,
+      "sha256": "04d2c72574305b717e17572a72fda23f42d01f16495cb87316bc44e12cda1bd9"
+    }
+  },
+  "development": {
+    "claims": 21066,
+    "exposure": 286880.818827008,
+    "frequency": 0.07343119029753958,
+    "loss_cost_eur_per_year": 165.50689880256988,
+    "loss_eur": 47480754.65,
+    "policies": 542392,
+    "severity_eur": 2253.904616443558
+  },
+  "development_claim_rows": 21066,
+  "evaluation_rows_analyzed": 0,
+  "exact_repeated_policy_amount_rows_retained": 195,
+  "figures": {
+    "alter_beobachtet.png": {
+      "sha256": "59b04a929c2fa9020bc2614dc4f193d013f1fe112d968e3f257c8d5fb604cd92"
+    },
+    "alter_robustheit.png": {
+      "sha256": "183782139e7427c8697d68f2e05568d847d975fd70fc329770375dcb33e4bff0"
+    },
+    "alter_sensitivitaet.png": {
+      "sha256": "6fde521e48be4864c926d3a5f2316a1437436fc35685263939a1aae88cad72f0"
+    },
+    "alter_zusammensetzung.png": {
+      "sha256": "35d4ccfc110e6db469c70055f998267d47e1c933d110b46d667bdd1f2a8127cb"
+    },
+    "portfolio_raten.png": {
+      "sha256": "11078476979f551acc0b7b7d4c012905ea4ba110221f904c92ea639b3654bb2e"
+    },
+    "pruefgruppen_verluste.png": {
+      "sha256": "ae81a9366d9aa3f1216827c6664e017f285557d9219012bda3d5cc9a426b6943"
+    }
+  },
+  "identity": {
+    "development_claim_sha256": "9f281c682015a4c548e37067b9e2eb13ed6aa72ae6782fd2c1c257493e5d7460",
+    "development_policy_sha256": "796451586efd6629db37fb234633d59b21fe5f1d2038b045a3e949e993cb6e17",
+    "eda_code_sha256": "61a05277e2402ef17348984f6907f8279913ac6fdabcbcad3d2c9294e4236f73",
+    "eda_config_sha256": "cd020a6824eb8d298e6fdec3926ec43fa840a567496cb7d8f43884eb923f5a02",
+    "preparation_id": "s1-cb931cb73e410280",
+    "software": {
+      "matplotlib": "3.11.2",
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "26.0.0",
+      "python": "3.12.14",
+      "scipy": "1.16.3"
+    },
+    "source_id": "cas-744e13a80283a07a",
+    "split_id": "s2split-fe11d414168572dd"
+  },
+  "max_driver_age": 100,
+  "max_vehicle_age": 100,
+  "models_fitted": 0,
+  "predictions": "Keine; beobachtete Verlustkosten sind kein vorhergesagter Tarif oder Marktpreis.",
+  "public_tables": {
+    "Area.json": {
+      "sha256": "2bd1a0938b049df5ec718339ced779d7eb94caa53b499a9bb4ba36d13b68d435"
+    },
+    "DrivAge.json": {
+      "sha256": "a367bf4dcddbf94fd9f13069de89e78f6188f31d52a538613b481609c76be1e2"
+    },
+    "Region.json": {
+      "sha256": "a71d5b8e09143ce44886fb1e27663166957b503b6beccfd2b27e23269f5c3865"
+    },
+    "VehBrand.json": {
+      "sha256": "5c70334687a756cf658800a66d3893f4be01b0cd2b338bc1de9b912686d0e29f"
+    },
+    "VehGas.json": {
+      "sha256": "48ccee45575089303af42eb254eb8ac4ff380940ceac1d9721adb295940cd890"
+    },
+    "age10_band.json": {
+      "sha256": "c062399837903deaa8c4d353ffe27f02ee292a3e2c6ad2e10e600b0905b0e382"
+    },
+    "age_b12_new.json": {
+      "sha256": "fa7e7eb714f29d78102a4c7e2e5fb030831ca50687a6e1a0c4f3f2f5cf0b0420"
+    },
+    "age_band.json": {
+      "sha256": "f3119e1745b59751a49150ed2aaa479da614a9ab5a88e29aba688c6c803e6718"
+    },
+    "age_bootstrap.json": {
+      "sha256": "fe7aa64be573221468526275a7bb0c170deb49a0dfede368bb4a75ddffb539d7"
+    },
+    "age_composition.json": {
+      "sha256": "de935058301fd25a4b95387b87063cc2ad742a1e66fced08f34356bac2d95202"
+    },
+    "age_contrasts.json": {
+      "sha256": "fd40dca7d21440465153421b2ecf33b6e831e89552183cf3a9569f749a7fc78a"
+    },
+    "age_loss_sensitivity.json": {
+      "sha256": "c68ddef040ecab99798ef4f1531d84bb3f51d3881620e7cc83c0de8c273416d2"
+    },
+    "age_sensitivity.json": {
+      "sha256": "2192e9c9b27884ebaf2c1ebf53b6fceae6f043a4c4b8fef28b447f70b37cb951"
+    },
+    "age_windows.json": {
+      "sha256": "fe35cef7658a81a2bd609bc9bc880341686db7732d92b484da0ab424f0fffedf"
+    },
+    "b12_new.json": {
+      "sha256": "501791bd9513e8d0e90ee81d21dc577cbd9f2cacae3ff9f142cae1f3670ff50d"
+    },
+    "bm_band.json": {
+      "sha256": "2282478bebc4baf83df691c00bfcd6f1adf724c2b3f7f9970cfabd341f1fb051"
+    },
+    "bm_common_cells.json": {
+      "sha256": "88949ec8e7fbb31baa730c66fe6acecdbdf55fadfcd743b592dfbea07229ad79"
+    },
+    "bm_standardized.json": {
+      "sha256": "49dcba807a48c07dcfd8cd56e2871e402b525142c7d39b77db9b01ea2ec32a8f"
+    },
+    "bm_standardized_contrasts.json": {
+      "sha256": "925ca193f569c7801ffd4bd12c67838ed3acc3d57cd67cd7c3c0929b29a87bb6"
+    },
+    "claim_quantiles.json": {
+      "sha256": "134ddd0db72323e85fc117e9db6479af1b1aeb2524a1f63c58132eacb732517f"
+    },
+    "density_band.json": {
+      "sha256": "d91e496b49f3368982497ad4c39d8df349a31d65fd5b83a4120009e52936a2ec"
+    },
+    "exposure_band.json": {
+      "sha256": "4c0fcc5a328204910db4647b5f9beffae1a488cfcb0c3f090b809d23746211ea"
+    },
+    "exposure_bm.json": {
+      "sha256": "69ad632b582425a62a623cdc6703d01facaafee20c99c8cb3a4c1934572cdefa"
+    },
+    "sensitivities.json": {
+      "sha256": "548d2893b879189f380cb59e98be2191869ee5f177e2576434692656cb697bba"
+    },
+    "tail_concentration.json": {
+      "sha256": "96c0cf3c792bdd079d4f0eb40843cdc4679d5ad77e0549360af2637e3698731a"
+    },
+    "top_loss_age_support.json": {
+      "sha256": "0796ac79c9dade084d9fbce5c840b37c08aff772fc9f9bb55619c75e7eb12f5f"
+    },
+    "vehicle_band.json": {
+      "sha256": "f41f180011187ac7713ae823c36da5babf5afa8ead63eaaf6391c0048c78dc8d"
+    }
+  },
+  "run_id": "s3eda-229183855b79411b",
+  "scope": "Nur Entwicklungsverträge des eingefrorenen S2-Splits und ihre verknüpften Schadenzeilen; keine neuen Evaluationsauswertungen.",
+  "supplied_reconstructed_count_differences": 0,
+  "target": "Erfasste positive Schadenzeilen; ungekappte Periodenanzahl und historische EUR, Exponierung in Vertragsjahren.",
+  "uncertainty": {
+    "bootstrap": {
+      "method": "Perzentilintervalle, punktweise; undefinierte Schadenhöhenziehungen zählen. Keine Modellneuanpassung, simultanen Bänder oder Auswahlunsicherheit. Unbekannte Haushaltsabhängigkeit und unbeobachtete Extremverluste nicht erfasst.",
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "replicates": 500,
+      "seed": 20261031,
+      "unit": "Ganze Vertragszeile einschließlich Exponierung, Anzahl und aggregiertem Betrag; innerhalb angegebener Alters-/BM-Gruppe mit Zurücklegen."
+    },
+    "poisson": "Punktweise zentrale 95%-Garwood-Referenzintervalle unter unabhängigen Poisson-Anzahlen bei fester Exponierung; keine Verteilungsgarantie, keine Bänder einer geglätteten Kurve."
+  },
+  "units": {
+    "exposure": "Vertragsjahre",
+    "frequency": "positive Schadenzeilen / Vertragsjahr",
+    "loss_cost_eur_per_year": "historische erfasste EUR / Vertragsjahr",
+    "severity_eur": "historische EUR / positive Schadenzeile"
+  },
+  "zero_claim_policies": 522548
+}

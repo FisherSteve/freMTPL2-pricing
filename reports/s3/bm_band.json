@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "bm_band": "101+",
+      "claims": 984,
+      "exposure": 2848.55677146493,
+      "frequency": 0.345438086352043,
+      "loss_cost_eur_per_year": 610.9737981823567,
+      "loss_eur": 1740393.55,
+      "poisson_lower": 0.32418904406372,
+      "poisson_upper": 0.367714105897566,
+      "policies": 6228,
+      "severity_eur": 1768.6926321138212,
+      "supported": true
+    },
+    {
+      "bm_band": "50",
+      "claims": 9267,
+      "exposure": 180187.45637847146,
+      "frequency": 0.051429773116589,
+      "loss_cost_eur_per_year": 98.45148661591027,
+      "loss_eur": 17739722.95,
+      "poisson_lower": 0.050387927521065,
+      "poisson_upper": 0.052487737875348,
+      "policies": 307364,
+      "severity_eur": 1914.2897323837271,
+      "supported": true
+    },
+    {
+      "bm_band": "51–75",
+      "claims": 6227,
+      "exposure": 67985.44794071412,
+      "frequency": 0.09159313042153,
+      "loss_cost_eur_per_year": 187.68812468702504,
+      "loss_eur": 12760061.23,
+      "poisson_lower": 0.089332145561903,
+      "poisson_upper": 0.093896870055089,
+      "policies": 140037,
+      "severity_eur": 2049.150671270275,
+      "supported": true
+    },
+    {
+      "bm_band": "76–100",
+      "claims": 4588,
+      "exposure": 35859.35773635751,
+      "frequency": 0.127944288175253,
+      "loss_cost_eur_per_year": 425.0097570639896,
+      "loss_eur": 15240576.92,
+      "poisson_lower": 0.124268593606731,
+      "poisson_upper": 0.131701098073137,
+      "policies": 88763,
+      "severity_eur": 3321.8345510026156,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

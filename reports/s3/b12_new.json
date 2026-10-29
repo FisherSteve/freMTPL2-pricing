@@ -1,0 +1,61 @@
+{
+  "rows": [
+    {
+      "brand12": "B12",
+      "brand_new": "VehAge=0",
+      "claims": 440,
+      "exposure": 7638.688401077925,
+      "frequency": 0.057601511790677,
+      "loss_cost_eur_per_year": 121.36770363210191,
+      "loss_eur": 927090.07,
+      "poisson_lower": 0.052344410439505,
+      "poisson_upper": 0.063243587349877,
+      "policies": 29607,
+      "severity_eur": 2107.022886363636,
+      "supported": true
+    },
+    {
+      "brand12": "B12",
+      "brand_new": "VehAge>0",
+      "claims": 2854,
+      "exposure": 44079.57614342391,
+      "frequency": 0.064746539093611,
+      "loss_cost_eur_per_year": 135.47336255162438,
+      "loss_eur": 5971608.4,
+      "poisson_lower": 0.062392693917501,
+      "poisson_upper": 0.067166460245235,
+      "policies": 103048,
+      "severity_eur": 2092.3645409950946,
+      "supported": true
+    },
+    {
+      "brand12": "andere Marken",
+      "brand_new": "VehAge=0",
+      "claims": 474,
+      "exposure": 5708.343094543005,
+      "frequency": 0.083036354358786,
+      "loss_cost_eur_per_year": 156.65073125244388,
+      "loss_eur": 894216.12,
+      "poisson_lower": 0.075728361237505,
+      "poisson_upper": 0.090859210590745,
+      "policies": 16479,
+      "severity_eur": 1886.5318987341773,
+      "supported": true
+    },
+    {
+      "brand12": "andere Marken",
+      "brand_new": "VehAge>0",
+      "claims": 17298,
+      "exposure": 229454.21118796317,
+      "frequency": 0.075387590013896,
+      "loss_cost_eur_per_year": 172.96627442365272,
+      "loss_eur": 39687840.06,
+      "poisson_lower": 0.074268283231362,
+      "poisson_upper": 0.076519543106199,
+      "policies": 393258,
+      "severity_eur": 2294.3600450919184,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}
