@@ -1,0 +1,183 @@
+{
+  "artifacts": {
+    "calibration": {
+      "columns": {
+        "actual_over_predicted": "float64",
+        "expected_claims": "float64",
+        "exposure_years": "float64",
+        "group": "int64",
+        "max_annual_rate": "float64",
+        "min_annual_rate": "float64",
+        "observed_annual_rate": "float64",
+        "observed_claims": "int64",
+        "policies": "int64",
+        "predicted_annual_rate": "float64"
+      },
+      "filename": "calibration.parquet",
+      "logical_csv_sha256": "ee5bd4b073fc65f6effe1b974c0d084b80317cc1d24981bec16590b09e7650f9",
+      "rows": 5,
+      "sha256": "3f2f8eed9b453f36084c2082500b8aea04d08ce3a25fb52ea00be19728455b63"
+    },
+    "concentration": {
+      "columns": {
+        "cumulative_claim_fraction": "float64",
+        "cumulative_exposure_fraction": "float64"
+      },
+      "filename": "concentration.parquet",
+      "logical_csv_sha256": "0b5f9fcee4f24b7d660d9e2ced3ffa4df4612a8db981de5ac9e3e9899885d02b",
+      "rows": 6,
+      "sha256": "35306a3bf5806c98fbefc4ecd93532f88aaf1311b925357962c2dc461d01ad3a"
+    },
+    "oof_predictions": {
+      "columns": {
+        "IDpol": "int64",
+        "annual_rate": "float64",
+        "expected_count": "float64",
+        "fold": "int64",
+        "model_id": "str",
+        "run_id": "str",
+        "split": "str"
+      },
+      "filename": "oof_predictions.parquet",
+      "logical_csv_sha256": "63167dbe44237803cff379aa853d4276bfb31a3dfee8cb672a1b576ce3e27465",
+      "rows": 542392,
+      "sha256": "0e1eab91e1b0b9b36d776a7bc2d19905e0f608dda3b0dc3ba6b0e914c07ab2e8"
+    }
+  },
+  "baseline_concentration_caveat": "Fünf getrennte Trainingsraten liefern echte OOF-Vorhersagen. Ihre gepoolte Konzentrationskurve kann durch die Falteneinteilung von null abweichen und ist kein Beleg für diskriminierende Exponierungsmerkmale.",
+  "evaluation_predictions": 0,
+  "evaluation_scores": 0,
+  "fold_diagnostics": [
+    {
+      "deviance_per_exposure": 0.4843768901767654,
+      "fold": 1,
+      "training_claims": 16772,
+      "training_exposure_years": 229457.06765551315,
+      "training_id_sha256": "c705865d529eb83827a3998947a5477120e0312d58b57e81695dad5051b1f0cc",
+      "training_policies": 433913,
+      "unknown_validation_categories": {
+        "Area": 0,
+        "Region": 0,
+        "VehBrand": 0,
+        "VehGas": 0
+      },
+      "validation_claims": 4294,
+      "validation_exposure_years": 57423.75117149488,
+      "validation_id_sha256": "dca9d4bce86fef3df884b1634e26fc61069644fcf63f234322a7f72730beb07f",
+      "validation_policies": 108479,
+      "warnings": []
+    },
+    {
+      "deviance_per_exposure": 0.4816161737398398,
+      "fold": 2,
+      "training_claims": 16848,
+      "training_exposure_years": 229771.12054719665,
+      "training_id_sha256": "c114096ffcc2fe047e7cc7cf34fa0132e736bcba3a16c4561c7ab999f163f44f",
+      "training_policies": 433913,
+      "unknown_validation_categories": {
+        "Area": 0,
+        "Region": 0,
+        "VehBrand": 0,
+        "VehGas": 0
+      },
+      "validation_claims": 4218,
+      "validation_exposure_years": 57109.69827981136,
+      "validation_id_sha256": "70501a2f37ab9757bfcc98765c62a50ce89a9ee8bd7a6d7648d1a4afe8374174",
+      "validation_policies": 108479,
+      "warnings": []
+    },
+    {
+      "deviance_per_exposure": 0.47068767223549,
+      "fold": 3,
+      "training_claims": 16892,
+      "training_exposure_years": 229219.82612096713,
+      "training_id_sha256": "829cc3bbace01bfa50b45e7d23dc7dab80df76d00b78ee99736a3da016fdd741",
+      "training_policies": 433914,
+      "unknown_validation_categories": {
+        "Area": 0,
+        "Region": 0,
+        "VehBrand": 0,
+        "VehGas": 0
+      },
+      "validation_claims": 4174,
+      "validation_exposure_years": 57660.992706040866,
+      "validation_id_sha256": "2a68cacc361c685152aa3aac217de300604039640e31366253374ac047924012",
+      "validation_policies": 108478,
+      "warnings": []
+    },
+    {
+      "deviance_per_exposure": 0.47914739915429283,
+      "fold": 4,
+      "training_claims": 16835,
+      "training_exposure_years": 229595.98695785613,
+      "training_id_sha256": "18c41ed484f851f66be1b97ad99a1a81538f6dd5925ba2eef698ca10e97db8eb",
+      "training_policies": 433914,
+      "unknown_validation_categories": {
+        "Area": 0,
+        "Region": 0,
+        "VehBrand": 0,
+        "VehGas": 0
+      },
+      "validation_claims": 4231,
+      "validation_exposure_years": 57284.83186915188,
+      "validation_id_sha256": "e02784392da44714d5a156e5d6b061b15635645e67fec812086798de1085c38b",
+      "validation_policies": 108478,
+      "warnings": []
+    },
+    {
+      "deviance_per_exposure": 0.4746923382964218,
+      "fold": 5,
+      "training_claims": 16917,
+      "training_exposure_years": 229479.27402649898,
+      "training_id_sha256": "47e5170c83d2f41b8f2576e34df62eabb46ca50b45f081762b4370cf73dca17c",
+      "training_policies": 433914,
+      "unknown_validation_categories": {
+        "Area": 0,
+        "Region": 0,
+        "VehBrand": 0,
+        "VehGas": 0
+      },
+      "validation_claims": 4149,
+      "validation_exposure_years": 57401.54480050903,
+      "validation_id_sha256": "50bcd242a6100ef3ef0e9694849cb4d047dd12417823497d4821cc091be45b08",
+      "validation_policies": 108478,
+      "warnings": []
+    }
+  ],
+  "identity": {
+    "metrics_sha256": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
+    "model_id": "exposure_intercept_v1",
+    "model_parameters": {},
+    "preparation_id": "s1-cb931cb73e410280",
+    "protocol_sha256": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+    "runner_sha256": "680557fa40bbe2115ba45db0148112de4cb0cfa5bda739b71a2c277796832932",
+    "software": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "python": "3.12.14",
+      "scikit-learn": "1.9.1"
+    },
+    "split_id": "s2split-fe11d414168572dd"
+  },
+  "model_id": "exposure_intercept_v1",
+  "protocol_sha256_at_split_freeze": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+  "run_id": "s2oof-743562bdcce0c506",
+  "scope": "Echte OOF-Vorhersagen des Exponierungs-Basismodells auf allen Entwicklungsverträgen; kein Modellvergleich und keine Evaluation.",
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd",
+  "summary": {
+    "actual_over_predicted": 0.9999938301096493,
+    "expected_claims": 21066.129975712065,
+    "exposure_years": 286880.818827008,
+    "mean_count_deviance": 0.25287239218786783,
+    "observed_annual_rate": 0.07343119029753958,
+    "observed_claims": 21066,
+    "poisson_deviance_per_exposure": 0.47809387572289525,
+    "policies": 542392,
+    "predicted_annual_rate": 0.0734316433627274
+  },
+  "units": {
+    "annual_rate": "claims per policy-year",
+    "expected_count": "claims per observed policy period"
+  }
+}

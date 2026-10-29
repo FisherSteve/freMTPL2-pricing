@@ -1,0 +1,70 @@
+{
+  "artifacts": {
+    "claim_membership": {
+      "columns": {
+        "IDpol": "int64",
+        "claim_row_id": "str",
+        "fold": "int64",
+        "split": "str"
+      },
+      "filename": "claim_membership.parquet",
+      "logical_csv_sha256": "b3796817fe61de18997b8ff332db9bfe39374634fc57d6821a41f3da4fdf49bf",
+      "rows": 26444,
+      "sha256": "0410b9050a956f2da59cf36745ba0090c574dfed8f60e8214c9595c8d9ed481c"
+    },
+    "policy_membership": {
+      "columns": {
+        "IDpol": "int64",
+        "fold": "int64",
+        "split": "str"
+      },
+      "filename": "policy_membership.parquet",
+      "logical_csv_sha256": "2eb3265d9fe6b54a1ad6719fe6f1b7e286ca32b07823080b6fe1bef4e0a6e9ab",
+      "rows": 677991,
+      "sha256": "907d387a9c8f19ff3286062b256608825b6e670f4af98d69722aefa55d8bda1c"
+    }
+  },
+  "development_fold_sizes": {
+    "1": 108479,
+    "2": 108479,
+    "3": 108478,
+    "4": 108478,
+    "5": 108478
+  },
+  "evaluation_outcomes_used_for_split_assignment": false,
+  "grouping_limits": "IDpol verbindet Vertragszeile und Schadenzeilen. Keine verlässlichen Haushalts-, Fahrergruppen- oder Kalenderkennungen vorhanden; ID-Reihenfolge wird nicht als Zeitachse interpretiert. Keine Aussage über zeitliche oder neue Haushalte betreffende Generalisierung.",
+  "historically_unseen": false,
+  "history": "Die historische Analyse explorierte den ganzen Datenstand und verwendete Fold 5 zur Entwicklung. Auch Quellenwahl und Zielabgleich erfolgten retrospektiv über den vollständigen Datenstand. Die neue Aufteilung hebt diese Vorgeschichte nicht auf: keine externe oder buchstäblich nie gesehene Validierung. Ab dieser Festlegung bleiben Evaluationsbeobachtungen aus neuer Exploration, Auswahl, Vorverarbeitung und Frühstopp ausgeschlossen.",
+  "identity": {
+    "policy_universe_sha256": "bf5d610fabbd9895e873def80ec75378bfecf46d25f16154ed8cbe67927fd2c3",
+    "recipe": {
+      "algorithm": "sorted-ID-PCG64-permutation-evaluation-first-ceil-round-robin-development-v1",
+      "development_folds": 5,
+      "evaluation_fold_code": 0,
+      "evaluation_fraction": 0.2,
+      "grouping_unit": "IDpol",
+      "seed": 20261029,
+      "stratification": "none; no outcome or exposure is used to assign membership"
+    },
+    "source_id": "cas-744e13a80283a07a"
+  },
+  "membership_sizes": {
+    "development": 542392,
+    "evaluation": 135599
+  },
+  "preparation_id_at_freeze": "s1-cb931cb73e410280",
+  "prepared_claim_sha256": "87cefc51a39fa6329342fa8125ddf45ea821076c2c16af9fa150fba4ab9c463a",
+  "prepared_policy_sha256": "217a72eb2418a98a19ab57c081744356fc13f0a4e4ef3c6a3f208c9f2c9212c1",
+  "protocol_sha256_at_freeze": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+  "software_at_freeze": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "python": "3.12.14"
+  },
+  "split_code_sha256_at_freeze": "680557fa40bbe2115ba45db0148112de4cb0cfa5bda739b71a2c277796832932",
+  "split_id": "s2split-fe11d414168572dd",
+  "units": {
+    "fold": "1..5 development; 0 evaluation",
+    "split": "policy-level membership inherited by all linked claim rows"
+  }
+}
