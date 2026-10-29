@@ -1,0 +1,31 @@
+{
+  "rows": [
+    {
+      "VehGas": "Diesel",
+      "claims": 10747,
+      "exposure": 136531.61164308706,
+      "frequency": 0.078714371497307,
+      "loss_cost_eur_per_year": 161.8502737502759,
+      "loss_eur": 22097678.72,
+      "poisson_lower": 0.07723313044273,
+      "poisson_upper": 0.080216880492213,
+      "policies": 265718,
+      "severity_eur": 2056.1718358611706,
+      "supported": true
+    },
+    {
+      "VehGas": "Regular",
+      "claims": 10319,
+      "exposure": 150349.20718392095,
+      "frequency": 0.068633551139228,
+      "loss_cost_eur_per_year": 168.82746776941158,
+      "loss_eur": 25383075.93,
+      "poisson_lower": 0.067315624929371,
+      "poisson_upper": 0.0699707919816,
+      "policies": 276674,
+      "severity_eur": 2459.838737280744,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

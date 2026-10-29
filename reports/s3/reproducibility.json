@@ -1,0 +1,63 @@
+{
+  "baseline_commit": "1f0344ab50a196bb995cf87404237898a30405ab",
+  "checks": {
+    "evaluation_rows_analyzed": 0,
+    "fresh_kernel_code_cells": 6,
+    "immutable_local_tables_byte_identical": true,
+    "independent_review": "Entwicklungssummen, BM-Gewichte/Standardisierung, B12, Exponierung, obere Schäden und alle sechs Abbildungen unabhängig geprüft.",
+    "new_eda_tests": 16,
+    "notebook_cell_errors": 0,
+    "pip_check": "No broken requirements found.",
+    "portfolio_models_fitted": 0,
+    "repeated_public_files_byte_identical": 34,
+    "source_notebook_output_free": true,
+    "unit_tests_passed": 82
+  },
+  "commands_executed": [
+    ".venv/Scripts/python.exe -m unittest tests.test_eda -v",
+    ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+    ".venv/Scripts/python.exe -m pip check",
+    ".venv/Scripts/python.exe -m src.eda",
+    ".venv/Scripts/python.exe -m src.eda --report-dir data/s3/repeat",
+    ".venv/Scripts/python.exe scripts/execute_notebook.py notebooks/03_development_eda.ipynb --output data/notebooks/03_development_eda.executed.ipynb",
+    "git diff --check"
+  ],
+  "files_sha256": {
+    "config/eda_protocol.json": "cd020a6824eb8d298e6fdec3926ec43fa840a567496cb7d8f43884eb923f5a02",
+    "docs/eda.md": "c6390a19b2441d01c61acc2b26d829f82c98605fc2a35f7ac298b673db2f7610",
+    "notebooks/03_development_eda.ipynb": "381b8c4a2b67e92cfc2edd6dbdd232b593672c0b6dfa5ab82e4411192bb7e593",
+    "reports/s3/eda_report.json": "e31a303409f7a2c4e92628d486cacd83e571c445af1fb2f4ad33ff01b8c07cb4",
+    "scripts/execute_notebook.py": "a2387a919ae3f7b25396612074f409ed1c2affb76b0a164d6e9d6e1690eb5ec0",
+    "src/eda.py": "61a05277e2402ef17348984f6907f8279913ac6fdabcbcad3d2c9294e4236f73",
+    "tests/test_eda.py": "e48ef307f6b1f345b6a98b36a14d3ac21beed07f22ab6f3d161fbad219d1e029"
+  },
+  "limitations": [
+    "Historische vollständige Datenexploration offengelegt; neue EDA nur Entwicklung.",
+    "Punktweise explorative Intervalle; keine simultanen oder kausalen Aussagen.",
+    "500 Vertragsziehungen; keine unbekannte Haushaltsabhängigkeit oder unbeobachteten Extremverluste.",
+    "BM-Standardisierung nur bei gemeinsamer Unterstützung und festen Referenzgewichten; keine volle Adjustierung.",
+    "Keine Prämienvorhersagen; modellgestützte Profile und Frequenz-Schadenhöhenzerlegung folgen S4/S5."
+  ],
+  "local_executed_notebook": {
+    "path": "data/notebooks/03_development_eda.executed.ipynb",
+    "sha256": "7610a380123a592e3f59e79d2eefcb00b39bd9ae7aa4cbfaa141632230539bde"
+  },
+  "merged_base_commit": "c0a60c1326180588ac7a98977552276f9077db35",
+  "notebook_startup_warnings": [
+    "Windows Proactor/add_reader: zusätzlicher Tornado-Selector-Thread",
+    "Lokaler Jupyter-Kernel verwendet TCP ohne Transportverschlüsselung"
+  ],
+  "platform_verified": "Windows x64 / CPython 3.12.14; keine Linux-/macOS-Ausführung behauptet",
+  "preparation_id": "s1-cb931cb73e410280",
+  "run_id": "s3eda-229183855b79411b",
+  "software": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "pyarrow": "26.0.0",
+    "python": "3.12.14",
+    "scipy": "1.16.3"
+  },
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd"
+}

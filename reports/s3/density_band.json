@@ -1,0 +1,70 @@
+{
+  "rows": [
+    {
+      "claims": 608,
+      "density_band": "10000+",
+      "exposure": 6489.251575716746,
+      "frequency": 0.093693393283623,
+      "loss_cost_eur_per_year": 141.59317284574743,
+      "loss_eur": 918833.72,
+      "poisson_lower": 0.086392997447527,
+      "poisson_upper": 0.101445892848252,
+      "policies": 14348,
+      "severity_eur": 1511.2396710526316,
+      "supported": true
+    },
+    {
+      "claims": 5692,
+      "density_band": "100–499",
+      "exposure": 83725.54889886967,
+      "frequency": 0.067984027275536,
+      "loss_cost_eur_per_year": 143.0877583671683,
+      "loss_eur": 11980101.11,
+      "poisson_lower": 0.066229237492962,
+      "poisson_upper": 0.069773540877995,
+      "policies": 153732,
+      "severity_eur": 2104.7261261419535,
+      "supported": true
+    },
+    {
+      "claims": 4790,
+      "density_band": "1–99",
+      "exposure": 83802.4569511191,
+      "frequency": 0.057158228699595,
+      "loss_cost_eur_per_year": 164.76559032217745,
+      "loss_eur": 13807761.29,
+      "poisson_lower": 0.055550887485962,
+      "poisson_upper": 0.058800275775708,
+      "policies": 143229,
+      "severity_eur": 2882.6223987473904,
+      "supported": true
+    },
+    {
+      "claims": 4847,
+      "density_band": "2000–9999",
+      "exposure": 51055.372840032935,
+      "frequency": 0.094936139535924,
+      "loss_cost_eur_per_year": 201.08820049493107,
+      "loss_eur": 10266633.05,
+      "poisson_lower": 0.092282082598948,
+      "poisson_upper": 0.097647161160925,
+      "policies": 109707,
+      "severity_eur": 2118.1417474726636,
+      "supported": true
+    },
+    {
+      "claims": 5129,
+      "density_band": "500–1999",
+      "exposure": 61808.188561269555,
+      "frequency": 0.082982532240298,
+      "loss_cost_eur_per_year": 170.00054077922286,
+      "loss_eur": 10507425.48,
+      "poisson_lower": 0.080726888192137,
+      "poisson_upper": 0.085285224464513,
+      "policies": 121376,
+      "severity_eur": 2048.630430883213,
+      "supported": true
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

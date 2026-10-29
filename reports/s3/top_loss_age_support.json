@@ -1,0 +1,65 @@
+{
+  "rows": [
+    {
+      "DrivAge": 19,
+      "age_band": "18–24",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 4075400.56
+    },
+    {
+      "DrivAge": 20,
+      "age_band": "18–24",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 1403057.4
+    },
+    {
+      "DrivAge": 21,
+      "age_band": "18–24",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 307096.42
+    },
+    {
+      "DrivAge": 27,
+      "age_band": "25–29",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 276643.0
+    },
+    {
+      "DrivAge": 36,
+      "age_band": "35–39",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 369131.88
+    },
+    {
+      "DrivAge": 40,
+      "age_band": "40–44",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 774411.5
+    },
+    {
+      "DrivAge": 46,
+      "age_band": "45–49",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 301635.49
+    },
+    {
+      "DrivAge": 57,
+      "age_band": "55–59",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 390742.27
+    },
+    {
+      "DrivAge": 61,
+      "age_band": "60–64",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 281897.49
+    },
+    {
+      "DrivAge": 78,
+      "age_band": "75+",
+      "top10_claim_rows": 1,
+      "top10_loss_eur": 287423.0
+    }
+  ],
+  "run_id": "s3eda-229183855b79411b"
+}

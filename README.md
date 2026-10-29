@@ -4,7 +4,7 @@ Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio
 
 **Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Aktueller Stand: Datenaufbereitung und Messgrößen geprüft, Vertragsaufteilung festgelegt und echte OOF-Vorhersagen des Exponierungs-Basismodells erzeugt. Der GLM-/GAM-/Boosting-Vergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
+**Aktueller Stand: Datenaufbereitung, Messgrößen und echte OOF-Vorhersagen des Exponierungs-Basismodells sind geprüft. Die neue Entwicklungs-EDA untersucht Alter, Bonus-Malus, Exponierung und Verlustkonzentration. Der GLM-/GAM-/Boosting-Vergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
 ## Was bisher verifiziert ist
 
@@ -94,11 +94,30 @@ Der primäre Frequenzscore ist `sum d(N, Exposure * annual_rate) / sum Exposure`
 
 Die ursprüngliche Exploration des gesamten Datenstands und die retrospektive Quellenwahl bleiben offengelegt. Die neue Evaluation ist keine externe oder buchstäblich nie gesehene Validierung. Ab ihrer Festlegung bleibt sie aus neuer Exploration, Vorverarbeitung und Auswahl ausgeschlossen. Vorhersagen und Scores zur Modellwahl entstehen ausschließlich in der Entwicklung. OOF-Werte, die zur Auswahl dienen, sind Selektionsschätzungen; sie bewerten nicht unverzerrt das gesamte abgestimmte Verfahren.
 
+## Was die Entwicklungs-EDA zeigt
+
+Die [fünf dokumentierten Befunde](docs/eda.md) beziehen sich ausschließlich auf die 542.392 Entwicklungsverträge des festgelegten Splits. Die Evaluation bleibt aus neuer Exploration und Auswahl ausgeschlossen.
+
+- Die beobachtete Frequenz ist bei jungen Fahrern hoch und steigt nach einem Rückgang im mittleren Alter erneut an. Schadenhöhe und jährliche Verlustkosten verlaufen anders. Das spricht für flexible Altersverläufe und eine getrennte Schadenhöhenanalyse.
+- Eine gemeinsame unterstützte Bonus-Malus-Mischung verstärkt den deskriptiven Altersunterschied. Das ist keine vollständige Adjustierung oder kausale Alterswirkung; Fahrzeug-, Kraftstoff- und geografischer Mix bleiben gemeinsam zu prüfen.
+- B12 weist auch bei getrennt betrachteten Fahrzeugen mit Alter null bzw. höherem Alter niedrigere marginale Frequenzen auf. Die unbekannte Markenklasse bleibt erhalten und wird gemeinsam mit dem Fahrzeugmix modelliert.
+- Kurze Exponierungen tragen überproportional viele Schäden je Vertragsjahr. Das begründet eine Prüfung der Exponierungsannahme und des Risikomixes; Beendigungsprozesse sind in den Daten nicht beobachtet.
+- Die größte Schadenzeile trägt 8,58 % des Entwicklungsverlusts; rund 1 % der Zeilen tragen 38,04 %. Eine Kappung bei 25.000 EUR je Zeile entfernt 27,86 % des Betrags und ändert das Ziel. Der Primärbestand bleibt ungekappt.
+
+[Gruppen, Unsicherheit, alternative Erklärungen und Modellierungsfolgen](docs/eda.md), [berechneter Nachweis mit Laufkennung und Prüfsummen](reports/s3/eda_report.json), [ausführbares Notebook](notebooks/03_development_eda.ipynb). Alle 27 Tabellen sind als aggregierte JSON-Dateien öffentlich lesbar; vollständige Vertragstabellen bleiben lokal. Die Altersintervalle verwenden 500 ganze Vertragsziehungen, während die übrigen Merkmalsgrafiken ausdrücklich Poisson-Referenzintervalle zeigen. Beides ersetzt keine Prüfung unbekannter Abhängigkeit oder unbeobachteter Extremverluste.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.eda
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/03_development_eda.ipynb --output data/notebooks/03_development_eda.executed.ipynb
+```
+
+Das Notebook verifiziert lokale Tabellen, öffentliche Spiegel und Bild-Hashes; der EDA-Befehl berechnet sie aus der geprüften Quelle und der bestehenden Vertragszuordnung. Es werden keine Portfoliomodelle angepasst oder Evaluationsscores erzeugt.
+
 ## Die Modellierungsstudie
 
 Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein substanzielles aktuarielles Poisson-GLM, ein penalisiertes Poisson-Spline-GAM und ein Histogramm-Boosting-Modell als Vergleich. GPU-Experimente sind optional.
 
-Vor der Auswahl von Modelltermen untersucht die Analyse Alter, Bonus-Malus und Portfoliozusammensetzung. Insbesondere ist ein vermeintlicher Anstieg im mittleren Alter zunächst eine zu prüfende Frage: Marginale Raten, adjustierte Zusammenhänge und plausible Mechanismen werden unterschieden. Die vorhandenen Variablen können eine Erklärung durch Haushaltszusammensetzung oder weitere Fahrer nicht belegen.
+Die Entwicklungs-EDA begründet flexible Alters-/Bonus-Malus-Terme und gemeinsame Kompositions- und Exponierungsdiagnostik. Eine Alter-BM-Interaktion ist eine offene Vergleichsfrage, kein bereits gewählter Gewinner. Vollständigere adjustierte Profile folgen mit den Modellen; marginale Raten, deskriptive BM-Standardisierung und plausible Mechanismen bleiben getrennt. Fahrleistung, konkrete Nutzung und Gründe für das Ende einer Beobachtungsperiode sind nicht gemessen.
 
 Das [Validierungsprotokoll](config/validation_protocol.json) begrenzt den späteren Vergleich auf höchstens sechs GLM-, sechs GAM- und vier Histogramm-Boosting-Konfigurationen auf gemeinsamen Entwicklungsfalten. Konkrete Kodierungen und Terme werden aus der Entwicklungs-EDA begründet und vor Anpassung registriert. Gelernte Vorverarbeitung wird je Trainingsfalte angepasst; unbekannte Validierungskategorien müssen ausdrücklich behandelt werden. Für Boosting sind feste Iterationszahl und deaktivierter Frühstopp vorgesehen. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden getrennt behandelt.
 
