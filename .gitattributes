@@ -5,3 +5,14 @@
 /tests/test_s0_sources.py text eol=lf
 /reports/s0/*.json text eol=lf
 /reports/s0/environment-windows-py312.txt text eol=lf
+
+# Permanent preparation code/configuration and reproducible evidence.
+/src/data.py text eol=lf
+/config/*.json text eol=lf
+/tests/test_data.py text eol=lf
+/scripts/check_environment.py text eol=lf
+/scripts/execute_notebook.py text eol=lf
+/requirements*.txt text eol=lf
+/reports/s1/*.json text eol=lf
+/reports/s1/*.txt text eol=lf
+/notebooks/01_data_preparation.ipynb text eol=lf

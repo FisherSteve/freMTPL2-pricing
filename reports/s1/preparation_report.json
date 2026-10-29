@@ -1,0 +1,906 @@
+{
+  "analysis_tables": {
+    "claims": {
+      "columns": {
+        "ClaimAmount": "float64",
+        "IDpol": "int64",
+        "claim_row_id": "str"
+      },
+      "filename": "claims.parquet",
+      "logical_csv_sha256": "fbd68078b3ec0edb0df0e249337109bb7413c025972e51f1d4af8f93bb106eed",
+      "rows": 26444,
+      "sha256": "87cefc51a39fa6329342fa8125ddf45ea821076c2c16af9fa150fba4ab9c463a"
+    },
+    "policies": {
+      "columns": {
+        "Area": "str",
+        "BonusMalus": "int64",
+        "ClaimNb": "int64",
+        "Density": "int64",
+        "DrivAge": "int64",
+        "Exposure": "float64",
+        "IDpol": "int64",
+        "Region": "str",
+        "VehAge": "int64",
+        "VehBrand": "str",
+        "VehGas": "str",
+        "VehPower": "int64",
+        "recorded_loss_eur": "float64",
+        "recorded_positive_count": "int64"
+      },
+      "filename": "policies.parquet",
+      "logical_csv_sha256": "3a96c731b56a1e51c709b4caa62f1d499e9a9b69ac1871c4e34e11eca8c77c40",
+      "rows": 677991,
+      "sha256": "217a72eb2418a98a19ab57c081744356fc13f0a4e4ef3c6a3f208c9f2c9212c1"
+    }
+  },
+  "contract": {
+    "category_levels": {
+      "Area": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "Region": [
+        "Alsace",
+        "Aquitaine",
+        "Auvergne",
+        "Basse-Normandie",
+        "Bourgogne",
+        "Bretagne",
+        "Centre",
+        "Champagne-Ardenne",
+        "Corse",
+        "Franche-Comte",
+        "Haute-Normandie",
+        "Ile-de-France",
+        "Languedoc-Roussillon",
+        "Limousin",
+        "Lorraine",
+        "Midi-Pyrenees",
+        "Nord-Pas-de-Calais",
+        "Pays-de-la-Loire",
+        "Picardie",
+        "Poitou-Charentes",
+        "Provence-Alpes-Cotes-D'Azur",
+        "Rhone-Alpes"
+      ],
+      "VehBrand": [
+        "B1",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "VehGas": [
+        "Diesel",
+        "Regular"
+      ]
+    },
+    "category_semantics": {
+      "Area": "Ordinale Bezeichnung A (ländlich) bis F (städtisches Zentrum), keine Annahme gleicher Abstände",
+      "Region": "Historische französische Regionen (1970–2015), Originalbezeichnungen; keine Umkodierung",
+      "VehBrand": "Anonymisierte Markenklassen; B12 ohne bekannte Markenbedeutung",
+      "VehGas": "Diesel oder Regular, Originalbezeichnungen",
+      "VehPower": "Geordnete Leistungswerte; keine unbelegte metrische Einheit"
+    },
+    "contract_version": 1,
+    "integer_domains": {
+      "BonusMalus": [
+        50,
+        350
+      ],
+      "ClaimNb": [
+        0,
+        2147483647
+      ],
+      "Density": [
+        1,
+        2147483647
+      ],
+      "DrivAge": [
+        18,
+        2147483647
+      ],
+      "VehAge": [
+        0,
+        2147483647
+      ],
+      "VehPower": [
+        1,
+        2147483647
+      ]
+    },
+    "rules": [
+      "Exakte positive int64-Vertragsschlüssel vor Umwandlung prüfen; wissenschaftliche Schreibweise exakt parsen, niemals runden.",
+      "Eindeutige Vertragszeilen; wiederholte und exakt gleiche Schadenzeilen erhalten.",
+      "Nullwerte, nichtendliche Werte, ungültige Kategorien, nichtpositive Exponierungen/Schadenbeträge und nichtganzzahlige Anzahlen führen zu Fehlern.",
+      "Keine Obergrenze für positive Exponierung oder Schadenbetrag; Extremwerte prüfen und ungekürzt erhalten.",
+      "Mitgelieferte und rekonstruierte Anzahl getrennt halten; Abweichungen oder verwaiste Schadenzeilen stoppen die Vorbereitung.",
+      "Alle Verträge bleiben erhalten; keine Schadenzeile, Exponierung oder EUR ausgeschlossen.",
+      "Keine Kappung, kein Ausreißerfilter und keine gelernte Transformation; keine Aufteilung oder Modellanpassung.",
+      "Kategorien sind ein festgelegtes Quellschema; empirische Encoder und deren unbekannte Kategorien erst innerhalb der Trainingsgrenzen festlegen.",
+      "Alter und Bonus-Malus sind Quellmerkmale, keine bestätigten kausalen Mechanismen."
+    ],
+    "source": "CASdatasets 1.2-1, commit 227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+    "support_notes": [
+      "Integer-Obergrenze 2^31-1 ist eine technische Schema-Grenze, keine beobachtete sinnvolle Altersgrenze. Extreme Alter werden nicht automatisch als fehlerhaft korrigiert.",
+      "BonusMalus 50..350 und DrivAge mindestens 18 folgen der Anbieterbeschreibung; dokumentierte 11 statt tatsächlicher 12 Frequenzspalten sowie die Schaden-ID-Beschreibung sind Quelleninkonsistenzen.",
+      "Exponierungen über eins, Alter 100 und große Schäden werden als Prüfgruppen ausgewiesen; ihre Entstehung ist mit diesen Variablen ungeklärt."
+    ],
+    "target": "Erfasste Schadenzeilen mit positivem Betrag je Vertragsperiode; keine Gleichsetzung mit allen gemeldeten Schäden.",
+    "units": {
+      "ClaimAmount": "Erfasste historische EUR je positiver Schadenzeile",
+      "ClaimNb": "Mitgelieferte Anzahl je Vertragsperiode",
+      "Exposure": "Vertragsjahre",
+      "IDpol": "Quellschlüssel des Vertrags; kein Haushalts- oder Zeitindikator",
+      "claim_row_id": "Technische Zeilenherkunft: SHA-256 der Rohdatei und nullbasierte Quellposition; keine echte Schaden-ID",
+      "recorded_loss_eur": "Summe erfasster EUR je Vertragsperiode, einschließlich Null bei schadenfreien Verträgen",
+      "recorded_positive_count": "Anzahl verknüpfter positiver Schadenzeilen je Vertragsperiode"
+    },
+    "validation_boundary": "Nur deterministische Quellprüfung, Zielabgleich und Auswirkungsbuchhaltung über den vollständigen Datenstand. Explorative Entscheidungen erst im Entwicklungsdatensatz nach dem separaten Validierungsprotokoll."
+  },
+  "identity": {
+    "code_sha256": "76cc5561b3e9da720d3972a9e72d94b9a08b9c5ab2f3020d069657e6ff6f071d",
+    "contract_sha256": "d8d063735887614a4638b563b41a100b289bf42dccca3aee3e1d47ea291400e0",
+    "software": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "26.0.0",
+      "pyreadr": "0.5.8",
+      "python": "3.12.14"
+    },
+    "source_id": "cas-744e13a80283a07a",
+    "source_manifest_sha256": "4b11ac2858138a96b323df066693b9aaef45f35f7485704e69cfe5e9f85a1585"
+  },
+  "identity_scope": "Source ID: CAS raw hashes. Preparation ID: source, manifest, contract, code and software. Output hashes: exact files and declared-order CSV content.",
+  "impact_audit": {
+    "claim_amount_quantiles_eur": {
+      "0": 1.0,
+      "0.5": 1172.0,
+      "0.9": 2767.604,
+      "0.95": 4765.093499999995,
+      "0.99": 16451.223999999962,
+      "0.999": 152223.24082000018,
+      "1": 4075400.56
+    },
+    "extreme_age_support": {
+      "DrivAge": [
+        {
+          "age": 91,
+          "exposure_years": 95.5127397260274,
+          "policies": 121,
+          "recorded_loss_eur": 4901.1,
+          "recorded_positive_claims": 8,
+          "supplied_claims": 8
+        },
+        {
+          "age": 92,
+          "exposure_years": 55.795464480874315,
+          "policies": 66,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 93,
+          "exposure_years": 45.89,
+          "policies": 55,
+          "recorded_loss_eur": 75.98,
+          "recorded_positive_claims": 1,
+          "supplied_claims": 1
+        },
+        {
+          "age": 94,
+          "exposure_years": 23.67,
+          "policies": 32,
+          "recorded_loss_eur": 487.84,
+          "recorded_positive_claims": 1,
+          "supplied_claims": 1
+        },
+        {
+          "age": 95,
+          "exposure_years": 17.97,
+          "policies": 24,
+          "recorded_loss_eur": 1878.17,
+          "recorded_positive_claims": 2,
+          "supplied_claims": 2
+        },
+        {
+          "age": 96,
+          "exposure_years": 13.25,
+          "policies": 15,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 97,
+          "exposure_years": 8.6,
+          "policies": 10,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 98,
+          "exposure_years": 4.15,
+          "policies": 5,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 99,
+          "exposure_years": 49.37000000000001,
+          "policies": 70,
+          "recorded_loss_eur": 4378.65,
+          "recorded_positive_claims": 4,
+          "supplied_claims": 4
+        },
+        {
+          "age": 100,
+          "exposure_years": 1.73,
+          "policies": 3,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        }
+      ],
+      "VehAge": [
+        {
+          "age": 41,
+          "exposure_years": 7.0,
+          "policies": 8,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 42,
+          "exposure_years": 8.559999999999999,
+          "policies": 13,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 43,
+          "exposure_years": 10.48,
+          "policies": 15,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 44,
+          "exposure_years": 11.59,
+          "policies": 15,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 45,
+          "exposure_years": 10.65,
+          "policies": 12,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 46,
+          "exposure_years": 13.63,
+          "policies": 19,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 47,
+          "exposure_years": 13.16,
+          "policies": 14,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 48,
+          "exposure_years": 11.18,
+          "policies": 17,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 49,
+          "exposure_years": 8.31,
+          "policies": 12,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 50,
+          "exposure_years": 5.752732240437158,
+          "policies": 8,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 51,
+          "exposure_years": 4.0,
+          "policies": 4,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 52,
+          "exposure_years": 3.41,
+          "policies": 6,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 53,
+          "exposure_years": 0.63,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 54,
+          "exposure_years": 1.22,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 55,
+          "exposure_years": 0.16,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 59,
+          "exposure_years": 1.15,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 60,
+          "exposure_years": 0.1,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 62,
+          "exposure_years": 0.75,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 63,
+          "exposure_years": 1.0,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 64,
+          "exposure_years": 0.7,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 65,
+          "exposure_years": 0.99,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 66,
+          "exposure_years": 0.99,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 68,
+          "exposure_years": 0.76,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 69,
+          "exposure_years": 1.23,
+          "policies": 4,
+          "recorded_loss_eur": 434.07,
+          "recorded_positive_claims": 1,
+          "supplied_claims": 1
+        },
+        {
+          "age": 70,
+          "exposure_years": 0.38,
+          "policies": 3,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 71,
+          "exposure_years": 0.22,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 76,
+          "exposure_years": 0.13,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 78,
+          "exposure_years": 1.0,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 79,
+          "exposure_years": 1.0,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 80,
+          "exposure_years": 1.62,
+          "policies": 3,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 81,
+          "exposure_years": 1.3599999999999999,
+          "policies": 3,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 82,
+          "exposure_years": 1.0,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 83,
+          "exposure_years": 0.54,
+          "policies": 2,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 84,
+          "exposure_years": 1.0,
+          "policies": 1,
+          "recorded_loss_eur": 2864.38,
+          "recorded_positive_claims": 1,
+          "supplied_claims": 1
+        },
+        {
+          "age": 85,
+          "exposure_years": 0.97,
+          "policies": 1,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        },
+        {
+          "age": 99,
+          "exposure_years": 12.745464480874316,
+          "policies": 23,
+          "recorded_loss_eur": 1128.12,
+          "recorded_positive_claims": 1,
+          "supplied_claims": 1
+        },
+        {
+          "age": 100,
+          "exposure_years": 15.150000000000002,
+          "policies": 25,
+          "recorded_loss_eur": 0.0,
+          "recorded_positive_claims": 0,
+          "supplied_claims": 0
+        }
+      ]
+    },
+    "hypothetical_claim_amount_caps_eur": {
+      "100000": {
+        "claim_rows": 41,
+        "policies": 41,
+        "recorded_loss_eur": 14707020.45,
+        "remaining_loss_eur": 49302196.05,
+        "removed_loss_eur": 10607020.45
+      },
+      "1000000": {
+        "claim_rows": 3,
+        "policies": 3,
+        "recorded_loss_eur": 6779630.5600000005,
+        "remaining_loss_eur": 56129585.94,
+        "removed_loss_eur": 3779630.56
+      },
+      "25000": {
+        "claim_rows": 177,
+        "policies": 177,
+        "recorded_loss_eur": 21013178.15,
+        "remaining_loss_eur": 43321038.35,
+        "removed_loss_eur": 16588178.149999999
+      }
+    },
+    "hypothetical_count_cap_four": {
+      "loss_allocation": "Nicht definiert: keine willkürliche Auswahl zu entfernender Schadenzeilen.",
+      "remaining_counts": 26405,
+      "removed_counts": 39
+    },
+    "hypothetical_exposure_cap_one": {
+      "remaining_policy_years": 358343.49546298373,
+      "removed_policy_years": 139.34000000000003,
+      "unchanged_claims": 26444,
+      "unchanged_loss_eur": 59909216.5
+    },
+    "interpretation": "Überlappende Prüfgruppen, keine Ausschlüsse oder Kappungen; Ursachen ungeklärt.",
+    "policy_flags": {
+      "bonus_malus_above_150": {
+        "exposure_years": 95.12819672131147,
+        "policies": 209,
+        "recorded_loss_eur": 132676.41000000003,
+        "recorded_positive_claims": 54,
+        "supplied_claims": 54
+      },
+      "brand_B12": {
+        "exposure_years": 64807.39871846695,
+        "policies": 166022,
+        "recorded_loss_eur": 8747094.58,
+        "recorded_positive_claims": 4200,
+        "supplied_claims": 4200
+      },
+      "brand_B12_new_vehicle": {
+        "exposure_years": 9560.637042443297,
+        "policies": 37069,
+        "recorded_loss_eur": 1139446.3900000001,
+        "recorded_positive_claims": 578,
+        "supplied_claims": 578
+      },
+      "count_above_four": {
+        "exposure_years": 2.3800000000000003,
+        "policies": 8,
+        "recorded_loss_eur": 167225.7,
+        "recorded_positive_claims": 71,
+        "supplied_claims": 71
+      },
+      "driver_age_100": {
+        "exposure_years": 1.73,
+        "policies": 3,
+        "recorded_loss_eur": 0.0,
+        "recorded_positive_claims": 0,
+        "supplied_claims": 0
+      },
+      "driver_age_above_90": {
+        "exposure_years": 315.9382042069017,
+        "policies": 401,
+        "recorded_loss_eur": 11721.740000000002,
+        "recorded_positive_claims": 16,
+        "supplied_claims": 16
+      },
+      "exposure_above_one": {
+        "exposure_years": 1363.34,
+        "policies": 1224,
+        "recorded_loss_eur": 87927.38,
+        "recorded_positive_claims": 54,
+        "supplied_claims": 54
+      },
+      "exposure_below_one_month": {
+        "exposure_years": 6317.415462983756,
+        "policies": 114792,
+        "recorded_loss_eur": 3464224.14,
+        "recorded_positive_claims": 1043,
+        "supplied_claims": 1043
+      },
+      "vehicle_age_100": {
+        "exposure_years": 15.150000000000002,
+        "policies": 25,
+        "recorded_loss_eur": 0.0,
+        "recorded_positive_claims": 0,
+        "supplied_claims": 0
+      },
+      "vehicle_age_above_40": {
+        "exposure_years": 154.51819672131148,
+        "policies": 230,
+        "recorded_loss_eur": 4426.57,
+        "recorded_positive_claims": 3,
+        "supplied_claims": 3
+      }
+    },
+    "ranges": {
+      "BonusMalus": {
+        "max": 230.0,
+        "min": 50.0
+      },
+      "ClaimNb": {
+        "max": 16.0,
+        "min": 0.0
+      },
+      "Density": {
+        "max": 27000.0,
+        "min": 1.0
+      },
+      "DrivAge": {
+        "max": 100.0,
+        "min": 18.0
+      },
+      "Exposure": {
+        "max": 2.01,
+        "min": 0.00273224043715847
+      },
+      "VehAge": {
+        "max": 100.0,
+        "min": 0.0
+      }
+    },
+    "top_claim_loss_shares": {
+      "1": 0.06802627038195366,
+      "10": 0.15843920459216823,
+      "100": 0.30834363173485996
+    }
+  },
+  "preparation_id": "s1-cb931cb73e410280",
+  "raw_parsed_schema": {
+    "cas_freq": {
+      "columns": {
+        "Area": "category",
+        "BonusMalus": "int32",
+        "ClaimNb": "float64",
+        "Density": "int32",
+        "DrivAge": "int32",
+        "Exposure": "float64",
+        "IDpol": "category",
+        "Region": "category",
+        "VehAge": "int32",
+        "VehBrand": "category",
+        "VehGas": "category",
+        "VehPower": "int32"
+      },
+      "rows": 677991
+    },
+    "cas_sev": {
+      "columns": {
+        "ClaimAmount": "float64",
+        "IDpol": "category"
+      },
+      "rows": 26444
+    }
+  },
+  "reconciliation": {
+    "anti_joins": {
+      "claim_rows_without_policy": {
+        "claim_rows": 0,
+        "policies": 0,
+        "recorded_loss_eur": 0.0
+      },
+      "orphan_policy_ids": [],
+      "policy_without_claim_rows": {
+        "exposure_years": 341204.90720188635,
+        "policies": 653047,
+        "recorded_loss_eur": 0.0,
+        "recorded_positive_claims": 0,
+        "supplied_claims": 0
+      }
+    },
+    "count_cross_table": [
+      {
+        "derived": 0,
+        "policies": 653047,
+        "supplied": 0
+      },
+      {
+        "derived": 1,
+        "policies": 23571,
+        "supplied": 1
+      },
+      {
+        "derived": 2,
+        "policies": 1298,
+        "supplied": 2
+      },
+      {
+        "derived": 3,
+        "policies": 62,
+        "supplied": 3
+      },
+      {
+        "derived": 4,
+        "policies": 5,
+        "supplied": 4
+      },
+      {
+        "derived": 5,
+        "policies": 2,
+        "supplied": 5
+      },
+      {
+        "derived": 6,
+        "policies": 1,
+        "supplied": 6
+      },
+      {
+        "derived": 8,
+        "policies": 1,
+        "supplied": 8
+      },
+      {
+        "derived": 9,
+        "policies": 1,
+        "supplied": 9
+      },
+      {
+        "derived": 11,
+        "policies": 2,
+        "supplied": 11
+      },
+      {
+        "derived": 16,
+        "policies": 1,
+        "supplied": 16
+      }
+    ],
+    "exact_repeat_claim_rows_beyond_first_retained": 235,
+    "excluded": {
+      "claim_rows": 0,
+      "exposure_years": 0.0,
+      "policies": 0,
+      "recorded_loss_eur": 0.0
+    },
+    "exclusion_reason": "Keine Ausschlüsse; Vertragszeilen ohne Schaden bleiben erhalten.",
+    "raw": {
+      "claim_policy_ids": 24944,
+      "claim_rows": 26444,
+      "policy_rows": 677991,
+      "recorded_loss_eur": 59909216.5
+    },
+    "repeat_claim_policy_rows_beyond_first": 1500,
+    "retained": {
+      "exposure_years": 358482.8354629838,
+      "policies": 677991,
+      "recorded_loss_eur": 59909216.5,
+      "recorded_positive_claims": 26444,
+      "supplied_claims": 26444
+    },
+    "supplied_vs_derived_mismatch": {
+      "exposure_years": 0.0,
+      "policies": 0,
+      "recorded_loss_eur": 0.0,
+      "recorded_positive_claims": 0,
+      "supplied_claims": 0
+    }
+  },
+  "source": {
+    "citation": "Dutang and Charpentier (2026), CASdatasets: Insurance datasets, version 1.2-1, DOI 10.57745/P0KHAG",
+    "commit": "227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+    "declared_terms": "GPL (>= 2)",
+    "files": {
+      "cas_freq": {
+        "bytes": 9282770,
+        "filename": "freMTPL2freq.rda",
+        "md5": "b67f5cf5849b5744b2ce1bc945e4dcc6",
+        "object": "freMTPL2freq",
+        "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2freq.rda",
+        "retrieved_utc": "2026-10-28T22:01:51.458784+00:00",
+        "sha256": "82c8598513d9fa78226b6c7d271a9940eca4b8083e9e32320a75d377bdfe15a3",
+        "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2freq.rda"
+      },
+      "cas_sev": {
+        "bytes": 267650,
+        "filename": "freMTPL2sev.rda",
+        "md5": "b1451983f587a51f612abf5e12863f06",
+        "object": "freMTPL2sev",
+        "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2sev.rda",
+        "retrieved_utc": "2026-10-28T22:01:51.760167+00:00",
+        "sha256": "78e6e5016ae046603b37e88ff8ad8ca327f5d59f827c1f75d140388de09b14b3",
+        "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/data/freMTPL2sev.rda"
+      }
+    },
+    "provider_metadata": {
+      "CITATION": {
+        "bytes": 1090,
+        "md5": "55243229db071c5d73d4dc0aa36c1a43",
+        "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/inst/CITATION",
+        "retrieved_utc": "2026-10-28T22:01:49.266247+00:00",
+        "sha256": "f710958bb5ba416fbab0c7e19ab5e8b3f65b69ec521f54a7ed9f779f0b3fafe9",
+        "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/inst/CITATION"
+      },
+      "DESCRIPTION": {
+        "bytes": 1522,
+        "md5": "ac5a4de286f6f01600605aa839f5bbe4",
+        "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION",
+        "retrieved_utc": "2026-10-28T22:01:49.028536+00:00",
+        "sha256": "88e551b4459f159a7c11e67007242624594a597bf9032ad2fa978468348a7b08",
+        "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION"
+      },
+      "cas_commit.json": {
+        "bytes": 5251,
+        "md5": "8b277d370be1bff4a70ca161c5637429",
+        "resolved_url": "https://api.github.com/repos/dutangc/CASdatasets/commits/227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+        "retrieved_utc": "2026-10-28T22:01:48.737119+00:00",
+        "sha256": "5333da1c09c06e1805bb1ab6df66b4c149a0cf6a4913fbfbe114bfd6fdea4ab3",
+        "url": "https://api.github.com/repos/dutangc/CASdatasets/commits/227fb56b8734bdb7c0327a41180e01d2ddaeaf26"
+      },
+      "freMTPL.Rd": {
+        "bytes": 5472,
+        "md5": "0c8a7ed4d9d26df04447633249170550",
+        "resolved_url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd",
+        "retrieved_utc": "2026-10-28T22:01:49.504057+00:00",
+        "sha256": "069aa7574904c882287c919354d69d2357ffcdfe3ea5d219bfad6343a19ed4c3",
+        "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd"
+      },
+      "openml_41214.json": {
+        "bytes": 1197,
+        "md5": "c5cc350b5c16058e2490279ddeae906e",
+        "resolved_url": "https://www.openml.org/api/v1/json/data/41214",
+        "retrieved_utc": "2026-10-28T22:01:52.000233+00:00",
+        "sha256": "dffa9cf15df1a0b38b981b33525e60d10a34f696a27d83c17cc10c5cb2b1a297",
+        "url": "https://www.openml.org/api/v1/json/data/41214"
+      },
+      "openml_41215.json": {
+        "bytes": 883,
+        "md5": "e736553dd4135d80ebd0351b33207de5",
+        "resolved_url": "https://www.openml.org/api/v1/json/data/41215",
+        "retrieved_utc": "2026-10-28T22:01:52.189579+00:00",
+        "sha256": "9ecd020483b14f115c62622ab61f261d6ab38e862fc5cf0ee616aaa9f74cce46",
+        "url": "https://www.openml.org/api/v1/json/data/41215"
+      }
+    },
+    "version": "1.2-1"
+  },
+  "source_id": "cas-744e13a80283a07a"
+}

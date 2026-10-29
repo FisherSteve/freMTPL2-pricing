@@ -1,0 +1,70 @@
+{
+  "checks": {
+    "active_notebook": [
+      {
+        "error_outputs": 0,
+        "executed_code_cells": 6,
+        "local_output": "data/notebooks/01_data_preparation.executed.ipynb",
+        "preparation_id": "s1-cb931cb73e410280",
+        "sha256": "08d1f77d540aa1d5d2bb1ee4e79dbdbe0de0ac8dce9d2ac01d044cf2d316ce67"
+      },
+      {
+        "error_outputs": 0,
+        "executed_code_cells": 6,
+        "local_output": "data/notebooks/01_data_preparation.from-notebooks.executed.ipynb",
+        "preparation_id": "s1-cb931cb73e410280",
+        "sha256": "66b08b7af844c71e115af6bf10a048820d3b5c173ba6834bdb02580a2aedd5c5"
+      }
+    ],
+    "dependencies": {
+      "command": "python -m pip check",
+      "result": "No broken requirements found"
+    },
+    "environment_fixtures": "reports/s1/environment-windows-py312.json",
+    "fresh_pinned_download_and_cached_report_bytes": "identical",
+    "legacy_notebooks": {
+      "01_eda_preprocessing.ipynb": {
+        "original_git_blob": "e2531712ceb87fb177eb22c7ae80d1438bb5c48b",
+        "preserved_git_content": true,
+        "working_bytes_sha256": "72cbf2eaef4582a03e985e77f32c9b541b8573eb0f6c2d9db0c934bd52af37ed"
+      },
+      "02_eda_overview.ipynb": {
+        "original_git_blob": "cf5f89fc874d973795fa141e4c35f0927d4636cc",
+        "preserved_git_content": true,
+        "working_bytes_sha256": "82f70ea61b000ba78e9929e93b16ada91b009793494cfa6ae0df86395f71a5a7"
+      },
+      "03_glm_gam.ipynb": {
+        "original_git_blob": "31f65c610420d22b547811b30134353f43c25b12",
+        "preserved_git_content": true,
+        "working_bytes_sha256": "22852655a14c572fb64809f284b09f0a814e4afe1a9de820b047c4cb9491b87d"
+      },
+      "04_severity_pure_premium.ipynb": {
+        "original_git_blob": "b34d5ef4d3f81a3c1d803d8285f4cd6975c06a57",
+        "preserved_git_content": true,
+        "working_bytes_sha256": "f51db2f5baf4cfa6467a009a1e52822fb59bbe856aba87a7af186413771d4f4b"
+      }
+    },
+    "preparation_from_notebooks_working_directory": "identical",
+    "s0_prerequisite_report_sha256": "3dd88b7e0b4c6dff4500d4bf822407b5b5cf2d1d07da0b24c7f3eeef68991486",
+    "unittest": {
+      "command": "python -m unittest discover -s tests -v",
+      "failed": 0,
+      "passed": 38
+    }
+  },
+  "limitations": [
+    "Only Windows x64 execution verified; no Linux/macOS runtime claim.",
+    "Fresh Jupyter kernels needed execution outside the restricted automation sandbox; both working directories passed there.",
+    "Jupyter startup emitted a Windows pyzmq Proactor selector-thread warning and local TCP transport warning; notebook cells had no errors.",
+    "Small model API fixtures validate package compatibility only; no portfolio models, splits or predictions were produced.",
+    "The observed pyGAM UBRE deprecation is documented in the environment evidence; UBRE is not validated as a model-selection criterion."
+  ],
+  "notebook_runner_sha256": "a2387a919ae3f7b25396612074f409ed1c2affb76b0a164d6e9d6e1690eb5ec0",
+  "notebook_source_sha256": "3827b872d1edd4a7519197d3d7b0cdf05c9ea1f2e6530d3581d6cc58028d3ddd",
+  "preparation_id": "s1-cb931cb73e410280",
+  "preparation_report_sha256": "6078de2a06c2f7e15ea376c2598bb1bd6067f80e96da2c468ec298f736564e66",
+  "requirements_lock_sha256": "11c6e45da9e3efddcdd7e3ad4654e356dc30210d97b7144434880d8a367f98b5",
+  "requirements_sha256": "45393941449c151d7e2dc0244a72aea572b98a2943258498f2b3b99018899f66",
+  "source_id": "cas-744e13a80283a07a",
+  "verified_platform": "Windows x64 / CPython 3.12.14"
+}
