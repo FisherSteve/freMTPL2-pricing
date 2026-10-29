@@ -4,7 +4,7 @@ Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio
 
 **Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Aktueller Stand: Datenquelle und Zielgröße geprüft; der korrigierte Modellvergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
+**Aktueller Stand: Datenquelle, Zielgröße und reproduzierbare Datenaufbereitung geprüft; der korrigierte Modellvergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
 ## Was bisher verifiziert ist
 
@@ -27,23 +27,54 @@ Die primäre Analyse verwendet ungekappte Anzahlen, Exponierungen und Schadenbet
 
 Dies sind Ergebnisse des Quellenabgleichs, keine Schätzungen der Modellgüte. Der [berechnete Vergleich](reports/s0/source_comparison.json) und das [Quellenmanifest mit Prüfsummen](reports/s0/source_manifest.json) dokumentieren die Ergebnisse und die verwendeten Dateien, Lauf `s0-2a902c26d6f96e7a`.
 
-## Quellenvergleich reproduzieren
+## Datenaufbereitung reproduzieren
 
-Benötigt wird **64-Bit-Python 3.12**. Die folgende kleine Umgebung ist ausschließlich für den Quellenvergleich vorgesehen. Die alte `requirements.txt` im Projektstamm und die bisherigen Notebooks bilden noch keinen unterstützten, durchgängig ausführbaren Ablauf.
+Benötigt wird **64-Bit-Python 3.12**. Die [direkten Abhängigkeiten](requirements.txt) und die [vollständig aufgelösten Paketversionen](requirements.lock.txt) ersetzen die frühere, widersprüchliche Umgebung. Die Lockdatei beschreibt die geprüfte Windows-x64-Umgebung; sie ist keine behauptete plattformübergreifende Binärgarantie.
 
 ```powershell
 # Im Projektstamm (Windows PowerShell)
-py -3.12 -m venv .venv-s0
-.\.venv-s0\Scripts\python.exe -m pip install -r scripts/requirements-s0.txt
-.\.venv-s0\Scripts\python.exe scripts/s0_compare_sources.py --download
-.\.venv-s0\Scripts\python.exe -m unittest discover -s tests -v
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe scripts/check_environment.py
+.\.venv\Scripts\python.exe -m src.data --download
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/01_data_preparation.ipynb --output data/notebooks/01_data_preparation.executed.ipynb
 ```
 
-Unter Linux/macOS wird die Umgebung mit `python3.12 -m venv .venv-s0` erstellt. Für dieselben Befehle dient anschließend `.venv-s0/bin/python` als Interpreter. Die Pakete wurden unter Windows x64 mit CPython 3.12.14 geprüft; die [aufgelösten Paketversionen](reports/s0/environment-windows-py312.txt) sind dokumentiert.
+Unter Linux/macOS wird die Umgebung mit `python3.12 -m venv .venv` angelegt und mit `.venv/bin/python -m pip install -r requirements.txt` installiert. Für alle weiteren Befehle dient `.venv/bin/python` als Interpreter. Die tatsächliche Paketauflösung ist dort zusätzlich aufzuzeichnen und zu prüfen; ein Linux-/macOS-Lauf wird bislang nicht behauptet. Interaktives JupyterLab und GPU-Pakete sind optional. Der Notebook-Aufruf benötigt kein JupyterLab und startet einen frischen Kernel mit genau dem aufrufenden Python-Interpreter.
 
-`--download` lädt ausschließlich fehlende Dateien und prüft die festgelegten SHA-256-Prüfsummen sowie die vom OpenML-Anbieter angegebenen MD5-Prüfsummen. Rohdateien bleiben im von Git ignorierten Verzeichnis `data/s0/raw/`. Ein erneuter Aufruf ohne `--download` verwendet ausschließlich diese zwischengespeicherten Dateien. `--output data/s0/recheck.json` schreibt einen gesonderten Vergleich zur Reproduzierbarkeitsprüfung. Das Prüfskript schätzt kein Modell, kappt keine Beobachtungen und exportiert keine Analysetabellen.
+Die Kompatibilitätsprüfung passt kleine künstliche GLM-, GAM- und Boosting-Beispiele an, keine Portfoliomodelle. Sie dokumentiert eine beobachtete DeprecationWarning in der UBRE-Zusammenfassung von pyGAM 0.12.0 unter Python 3.12. Diese Zusammenfassung ist hier nicht als Auswahlkriterium validiert; der spätere Modellvergleich benötigt das eigene geprüfte Scoring.
 
-Manifest und Vergleichsskript werden mit UTF-8-Kodierung und LF-Zeilenenden versioniert; auch die JSON-Ausgabe wird ausdrücklich mit LF geschrieben. Die Felder `manifest_sha256` und `script_sha256` beziehen sich auf die exakten Dateibytes. Abweichende Zeilenenden in diesen beiden Dateien führen zu einem Fehler, bevor ein Ergebnis gespeichert wird. Die Prüfsummen der heruntergeladenen Rohdateien werden weiterhin bytegetreu ohne Textnormalisierung berechnet.
+**Ein Befehl für Download und Vorbereitung:** `python -m src.data --download` lädt ausschließlich fehlende CAS-Rohdateien vom festgelegten Commit. Jede Datei wird vor dem Lesen gegen Größe, SHA-256 und den archivierten MD5 geprüft. Der lokale Cache liegt unter `data/raw/cas-<Quellcommit>/`. Vorhandene abweichende Dateien werden weder ersetzt noch stillschweigend korrigiert; der Lauf bricht mit einer Fehlermeldung ab. Rohdaten und vollständige Analysetabellen bleiben von Git ausgeschlossen.
+
+Die Vorbereitung prüft Schema, Kategorien, exakte ganzzahlige Schlüssel, eindeutige Vertragszeilen, Nullwerte, Endlichkeit, positive Exponierung/Dichte/Schadenbeträge und ganzzahlige Anzahlen. Wissenschaftliche ID-Schreibweisen werden exakt interpretiert und nie gerundet. Region- und Markenbezeichnungen bleiben erhalten. Verwaiste Schadenzeilen oder Unterschiede zwischen mitgelieferter und rekonstruierter Anzahl stoppen den Lauf mit einer Bilanz zur Untersuchung.
+
+Die beiden Tabellen `policies.parquet` und `claims.parquet` entstehen unter `data/prepared/<Vorbereitungskennung>/`, zusammen mit `manifest.json`. Die Vertragsdaten enthalten ursprüngliche Merkmale, `ClaimNb`, `recorded_positive_count` und `recorded_loss_eur`; die Schadenzeilen enthalten `IDpol`, `ClaimAmount` und die technische Zeilenherkunft `claim_row_id`. Diese Kennung ist keine echte Schaden-ID und kein Modellmerkmal. Ein späterer Schadenhöhenlauf verknüpft die Tabellen anhand `IDpol` innerhalb der festgelegten Vertragsaufteilung.
+
+Der [berechnete Vorbereitungsnachweis](reports/s1/preparation_report.json) dokumentiert Quellstand, Rohdatei- und Code-Hashes, Paketversionen, Schema, Einheiten, beide Anti-Joins, Anzahlabgleich, erhaltene und ausgeschlossene Summen sowie Prüfgruppen. Die Vorbereitungskennung umfasst Quelle, Manifest, Konfiguration, Code und Software; zusätzliche Hashes kennzeichnen die exakten Parquet-Dateien und ihren Inhalt in deklarierter Spalten-/Zeilenreihenfolge. Keine dieser Kennungen ist eine Modell- oder Validierungskennung. Unterschiedliche Vorbereitungsversionen erhalten eigene Verzeichnisse.
+
+Ein Wiederholungslauf arbeitet ohne Netzwerk und prüft dieselben Tabellen erneut:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.data --report data/s1/preparation_recheck.json
+```
+
+Alle relativen CLI-Datenpfade beziehen sich auf den Projektstamm. Das [aktive Notebook](notebooks/01_data_preparation.ipynb) ruft dieselben wiederverwendbaren Funktionen auf und prüft die Tabellen vor der Anzeige. Die vier ursprünglichen Notebooks sind unverändert unter [notebooks/legacy/](notebooks/legacy/) erhalten und gehören nicht zum unterstützten Ablauf.
+
+### Datenprüfung statt automatischer Kappung
+
+Die primäre Datenbasis schließt keine Vertrags- oder Schadenzeile aus und verändert weder Exponierung, Anzahl noch Betrag. Der Nachweis quantifiziert Exponierungen über einem Jahr, kurze Exponierungen, extreme Alter, hohe Anzahlen, B12 und große Schäden sowie die Auswirkungen hypothetischer Kappungen. Überlappende Prüfgruppen dürfen nicht zu einer Ausschlusssumme addiert werden.
+
+Eine Exponierungskappung verändert den Nenner einer Jahresrate; eine Anzahlkappung verändert die Zielgröße und unterbricht die Übereinstimmung mit den unveränderten Schadenzeilen. Eine Betragkappung verändert den erwarteten Schadenaufwand. Für entfernte Anzahlen wird daher kein willkürlicher Eurobetrag zugeordnet. Die Ursachen ungewöhnlicher Exponierungen und Alterswerte sind nicht geklärt. Ihre Erhaltung ist eine explizite Modellierungsentscheidung; sie bestätigt nicht die inhaltliche Richtigkeit jedes Quellwerts.
+
+Die Vorbereitung schätzt keine Encoder, Modelle oder Glättungen. Sie erstellt keine Evaluationsaufteilung und keine Vorhersagen. Ihre vollständige Datenbuchhaltung ist keine Erlaubnis, spätere Evaluationsbeobachtungen zur Modell- oder Merkmalswahl zu verwenden.
+
+### Historischen Quellenvergleich wiederholen
+
+Der gesonderte Vergleich von CAS und OpenML bleibt mit `python scripts/s0_compare_sources.py --download` ausführbar. Er schreibt Rohdateien nach `data/s0/raw/` und den Vergleich nach `reports/s0/source_comparison.json`; `--output data/s0/recheck.json` erstellt eine getrennte Wiederholung. Er verändert keine Analysetabellen und ist für den täglichen CAS-Aufbau nicht erforderlich. Die kleine frühere Vergleichsumgebung bleibt in `scripts/requirements-s0.txt` dokumentiert.
+
+Code, Konfiguration und Nachweise werden mit UTF-8/LF versioniert. Provenienz-Hashes beziehen sich auf die exakten Dateibytes; abweichende Zeilenenden in den identifizierten Quelldateien führen vor der Speicherung zu einem Fehler. Rohdatei-Prüfsummen werden bytegetreu ohne Textnormalisierung berechnet.
 
 ## Die Modellierungsstudie
 
@@ -51,7 +82,7 @@ Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein
 
 Vor der Auswahl von Modelltermen untersucht die Analyse Alter, Bonus-Malus und Portfoliozusammensetzung. Insbesondere ist ein vermeintlicher Anstieg im mittleren Alter zunächst eine zu prüfende Frage: Marginale Raten, adjustierte Zusammenhänge und plausible Mechanismen werden unterschieden. Die vorhandenen Variablen können eine Erklärung durch Haushaltszusammensetzung oder weitere Fahrer nicht belegen.
 
-Die Validierung verwendet Aufteilungen auf Vertragsebene, die für verknüpfte Schäden übernommen werden, tatsächliche Out-of-Fold-Vorhersagen im Entwicklungsdatensatz, ausschließlich auf Trainingsdaten geschätzte Vorverarbeitung und ein gesondert festgelegtes Evaluationsprotokoll. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden ausdrücklich unterschieden. Die frühere Exploration des gesamten Datensatzes wird offengelegt; eine neue Zufallsaufteilung macht diese Vorgeschichte nicht rückgängig.
+Für die Validierung sind Aufteilungen auf Vertragsebene vorgesehen, die für verknüpfte Schäden übernommen werden, tatsächliche Out-of-Fold-Vorhersagen im Entwicklungsdatensatz, ausschließlich auf Trainingsdaten geschätzte Vorverarbeitung und ein gesondert festgelegtes Evaluationsprotokoll. Diese Schritte sind noch nicht umgesetzt. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden ausdrücklich unterschieden. Die frühere Exploration des gesamten Datensatzes wird offengelegt; eine neue Zufallsaufteilung macht diese Vorgeschichte nicht rückgängig.
 
 Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evaluiert. Ein erfolgloses Schadenhöhenmodell, ein dem GLM unterlegenes GAM oder ein geringer Zusatznutzen des Boostings sind zulässige Ergebnisse. Ein marktfähiger Tarif oder eine Übertragbarkeit auf Deutschland werden nicht behauptet.
 
@@ -59,9 +90,12 @@ Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evalui
 
 - [Berechneter Quellenvergleich](reports/s0/source_comparison.json): Schemata, Kategorien, Vertragsabgleich sowie Anzahl-, Exponierungs- und Schadenssummen.
 - [Quellenmanifest](reports/s0/source_manifest.json): Datenstand, Bezugsadressen, Abrufzeitpunkte, Prüfsummen, Quellenangaben und deklarierte Nutzungsbedingungen.
-- [Paketversionen der geprüften Umgebung](reports/s0/environment-windows-py312.txt): tatsächlich aufgelöste Abhängigkeiten des Quellenvergleichs.
+- [Vorbereitungsnachweis](reports/s1/preparation_report.json) und [Datenvertrag](config/data_contract.json): Zielgröße, Einheiten, Verknüpfung, Prüfgruppen und Tabellenidentität.
+- [Paketversionen der geprüften Projektumgebung](reports/s1/environment-windows-py312.json) und [Lockdatei](requirements.lock.txt): tatsächlich aufgelöste Abhängigkeiten.
+- [Reproduzierbarkeitsnachweis](reports/s1/reproducibility.json): ausgeführte Prüfungen, Wiederholung aus frischem Download und Cache sowie Notebook- und Tabellenkennungen.
+- [Paketversionen des historischen Quellenvergleichs](reports/s0/environment-windows-py312.txt): frühere gesonderte Vergleichsumgebung.
 
-`notebooks/`, `src/`, `figures/` und `reports/figs/` enthalten die historische Analyse. Ihre gespeicherten Kennzahlen und Abbildungen müssen durch den korrigierten Ablauf ersetzt werden. Die abschließende Darstellung der Studie soll eine kleine mathematische Ausarbeitung und eine 10–15-minütige Präsentation für Vorstellungsgespräche umfassen.
+`notebooks/legacy/`, `src/metrics.py`, `src/features_glm.py`, `figures/` und `reports/figs/` enthalten die historische Analyse. Ihre gespeicherten Kennzahlen und Abbildungen müssen durch den korrigierten Ablauf ersetzt werden. `src/data.py` und `notebooks/01_data_preparation.ipynb` bilden die neue Datenaufbereitung. Die abschließende Darstellung der Studie soll eine kleine mathematische Ausarbeitung und eine 10–15-minütige Präsentation für Vorstellungsgespräche umfassen.
 
 ## Quelle, Kontext und Nutzungsbedingungen
 

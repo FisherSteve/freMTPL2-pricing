@@ -1,0 +1,115 @@
+{
+  "category_levels": {
+    "Area": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "Region": [
+      "Alsace",
+      "Aquitaine",
+      "Auvergne",
+      "Basse-Normandie",
+      "Bourgogne",
+      "Bretagne",
+      "Centre",
+      "Champagne-Ardenne",
+      "Corse",
+      "Franche-Comte",
+      "Haute-Normandie",
+      "Ile-de-France",
+      "Languedoc-Roussillon",
+      "Limousin",
+      "Lorraine",
+      "Midi-Pyrenees",
+      "Nord-Pas-de-Calais",
+      "Pays-de-la-Loire",
+      "Picardie",
+      "Poitou-Charentes",
+      "Provence-Alpes-Cotes-D'Azur",
+      "Rhone-Alpes"
+    ],
+    "VehBrand": [
+      "B1",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6"
+    ],
+    "VehGas": [
+      "Diesel",
+      "Regular"
+    ]
+  },
+  "category_semantics": {
+    "Area": "Ordinale Bezeichnung A (ländlich) bis F (städtisches Zentrum), keine Annahme gleicher Abstände",
+    "Region": "Historische französische Regionen (1970–2015), Originalbezeichnungen; keine Umkodierung",
+    "VehBrand": "Anonymisierte Markenklassen; B12 ohne bekannte Markenbedeutung",
+    "VehGas": "Diesel oder Regular, Originalbezeichnungen",
+    "VehPower": "Geordnete Leistungswerte; keine unbelegte metrische Einheit"
+  },
+  "contract_version": 1,
+  "integer_domains": {
+    "BonusMalus": [
+      50,
+      350
+    ],
+    "ClaimNb": [
+      0,
+      2147483647
+    ],
+    "Density": [
+      1,
+      2147483647
+    ],
+    "DrivAge": [
+      18,
+      2147483647
+    ],
+    "VehAge": [
+      0,
+      2147483647
+    ],
+    "VehPower": [
+      1,
+      2147483647
+    ]
+  },
+  "rules": [
+    "Exakte positive int64-Vertragsschlüssel vor Umwandlung prüfen; wissenschaftliche Schreibweise exakt parsen, niemals runden.",
+    "Eindeutige Vertragszeilen; wiederholte und exakt gleiche Schadenzeilen erhalten.",
+    "Nullwerte, nichtendliche Werte, ungültige Kategorien, nichtpositive Exponierungen/Schadenbeträge und nichtganzzahlige Anzahlen führen zu Fehlern.",
+    "Keine Obergrenze für positive Exponierung oder Schadenbetrag; Extremwerte prüfen und ungekürzt erhalten.",
+    "Mitgelieferte und rekonstruierte Anzahl getrennt halten; Abweichungen oder verwaiste Schadenzeilen stoppen die Vorbereitung.",
+    "Alle Verträge bleiben erhalten; keine Schadenzeile, Exponierung oder EUR ausgeschlossen.",
+    "Keine Kappung, kein Ausreißerfilter und keine gelernte Transformation; keine Aufteilung oder Modellanpassung.",
+    "Kategorien sind ein festgelegtes Quellschema; empirische Encoder und deren unbekannte Kategorien erst innerhalb der Trainingsgrenzen festlegen.",
+    "Alter und Bonus-Malus sind Quellmerkmale, keine bestätigten kausalen Mechanismen."
+  ],
+  "source": "CASdatasets 1.2-1, commit 227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+  "support_notes": [
+    "Integer-Obergrenze 2^31-1 ist eine technische Schema-Grenze, keine beobachtete sinnvolle Altersgrenze. Extreme Alter werden nicht automatisch als fehlerhaft korrigiert.",
+    "BonusMalus 50..350 und DrivAge mindestens 18 folgen der Anbieterbeschreibung; dokumentierte 11 statt tatsächlicher 12 Frequenzspalten sowie die Schaden-ID-Beschreibung sind Quelleninkonsistenzen.",
+    "Exponierungen über eins, Alter 100 und große Schäden werden als Prüfgruppen ausgewiesen; ihre Entstehung ist mit diesen Variablen ungeklärt."
+  ],
+  "target": "Erfasste Schadenzeilen mit positivem Betrag je Vertragsperiode; keine Gleichsetzung mit allen gemeldeten Schäden.",
+  "units": {
+    "ClaimAmount": "Erfasste historische EUR je positiver Schadenzeile",
+    "ClaimNb": "Mitgelieferte Anzahl je Vertragsperiode",
+    "Exposure": "Vertragsjahre",
+    "IDpol": "Quellschlüssel des Vertrags; kein Haushalts- oder Zeitindikator",
+    "claim_row_id": "Technische Zeilenherkunft: SHA-256 der Rohdatei und nullbasierte Quellposition; keine echte Schaden-ID",
+    "recorded_loss_eur": "Summe erfasster EUR je Vertragsperiode, einschließlich Null bei schadenfreien Verträgen",
+    "recorded_positive_count": "Anzahl verknüpfter positiver Schadenzeilen je Vertragsperiode"
+  },
+  "validation_boundary": "Nur deterministische Quellprüfung, Zielabgleich und Auswirkungsbuchhaltung über den vollständigen Datenstand. Explorative Entscheidungen erst im Entwicklungsdatensatz nach dem separaten Validierungsprotokoll."
+}
