@@ -1,0 +1,548 @@
+{
+  "baseline_commit": "0df188b461aa3987a465672407c0debafd64f07d",
+  "bounded_actual_refit_checks": {
+    "gam_b10_l1": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_equal": true,
+      "fold": 1,
+      "maximum_absolute_rate_difference": 0.0,
+      "path": "data/s4/repeat-gam_b10_l1.json",
+      "sha256": "2c846aa780e5cef00512d173687c321a5b8eaa55ea801b0701fcdc6f5510e4dd"
+    },
+    "glm_additive_a0": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_equal": true,
+      "fold": 1,
+      "maximum_absolute_rate_difference": 0.0,
+      "path": "data/s4/repeat-glm_additive_a0.json",
+      "sha256": "dd3c9c3575a142102b7117ca703799160653f7647e8d1d16898fc3ba2e07f625"
+    },
+    "hgb_l15": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_equal": true,
+      "fold": 1,
+      "maximum_absolute_rate_difference": 0.0,
+      "path": "data/s4/repeat-hgb_l15.json",
+      "sha256": "f4323e534e9a7de0089a69c3fe366d5f09169adbb8f551ee782fb8a2136cf0c9"
+    },
+    "hgb_l31": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_equal": true,
+      "fold": 1,
+      "maximum_absolute_rate_difference": 0.0,
+      "path": "data/s4/repeat-hgb_l31.json",
+      "sha256": "32b37ab2c77517612d50233d62fce2f15864507f86e3335fa68b4c578548af96"
+    }
+  },
+  "checks": {
+    "actual_oof_fits": 50,
+    "all_four_figures_visually_reviewed": true,
+    "development_refits": 3,
+    "evaluation_predictions": 0,
+    "evaluation_scores": 0,
+    "fit_warnings": 0,
+    "fresh_kernel_code_cells": 6,
+    "independent_model_reference_checks": "GLM against statsmodels count likelihood with exposure offset; GAM gradient, independent optimum, centering, transformed penalty, scaling and explicit observation-space EDF; substantive own-fold isolation.",
+    "independent_numeric_review": "All 10 keyed scores against SciPy xlogy and sklearn weighted-rate deviance; A/P; 50 fold training/validation hashes and totals; pooled weighting; segment conservation; tied-block Gini; all 500 paired bootstrap draws; source/split/code/artifact hashes verified.",
+    "new_statistical_contract_tests": 26,
+    "notebook_cell_errors": 0,
+    "pip_check": "No broken requirements found.",
+    "predictions_per_candidate": 542392,
+    "primary_public_files_byte_identical_on_repeat": 15,
+    "registered_candidates": 10,
+    "source_notebook_output_free": true,
+    "unit_tests_passed": 108,
+    "unknown_held_fold_factor_levels": 0
+  },
+  "commands_executed": [
+    ".venv/Scripts/python.exe -m unittest tests.test_frequency_models -v",
+    ".venv/Scripts/python.exe -m unittest tests.test_frequency_diagnostics -v",
+    ".venv/Scripts/python.exe -m unittest tests.test_frequency tests.test_frequency_models tests.test_frequency_diagnostics -q",
+    ".venv/Scripts/python.exe -m unittest discover -s tests -q",
+    ".venv/Scripts/python.exe -m pip check",
+    ".venv/Scripts/python.exe -m src.frequency",
+    ".venv/Scripts/python.exe -m src.frequency --report-dir data/s4/repeat",
+    ".venv/Scripts/python.exe scripts/check_frequency_interaction.py --run-id s4freq-4b7f4f42e310c304",
+    ".venv/Scripts/python.exe scripts/check_frequency_interaction.py",
+    ".venv/Scripts/python.exe data/s4/repeat_family_fit.py glm_additive_a0",
+    ".venv/Scripts/python.exe data/s4/repeat_family_fit.py gam_b10_l1",
+    ".venv/Scripts/python.exe data/s4/repeat_family_fit.py hgb_l31",
+    ".venv/Scripts/python.exe data/s4/repeat_family_fit.py hgb_l15",
+    ".venv/Scripts/python.exe -m data.s4.independent_scores",
+    ".venv/Scripts/python.exe scripts/execute_notebook.py notebooks/04_frequency_models.ipynb --output data/notebooks/04_frequency_models.executed.ipynb",
+    "git diff --check"
+  ],
+  "files_sha256": {
+    ".gitattributes": "bd880778053a1de88226ce1d156686731672bea7dacc729593d7f2e973eb0680",
+    "README.md": "906539e62b20a30b9c289a4524eb53ec9dbf1e45f2b7d6aa5555aaaac64c438c",
+    "config/frequency_protocol.json": "6f521356ca8b199b086fa3d8f3dbbd94679dd054c1473aed7b7ee4121b665674",
+    "docs/frequenzmodelle.md": "42c1a6fcd3769c749bff062db853d68cb8645ac6cb694295d37dd9d03049cff4",
+    "notebooks/04_frequency_models.ipynb": "feb670704cd5fe82068280dfc29e3beb3d2a36970b91a508b6709f4cde5c42f8",
+    "notebooks/README.md": "f5eef0eb79c8ccb449fc3f4aa0d4af8fb4e898c262f41ced138717f384c8f753",
+    "reports/s4/calibration.json": "54c7f3fa0e4cefab4bfca8946ef57f5bdbd9e645a6b9c357a17abbcd01add4a8",
+    "reports/s4/concentration.json": "e39486b1e4ba41a844d05b139b66e2b14d32189900e19661e17ae6debe28bece",
+    "reports/s4/development_decision.json": "425505c946ad0e6b2334b279bfa8f577d51570d39ec9b9ac29bcdb4dea0ca9b0",
+    "reports/s4/effects.json": "f08405ea54db02d58d937ad0e99cd847e792ec9ab9d80e9b579b0b7028f3cb89",
+    "reports/s4/figures/kalibrierung_standardisierung.png": "9f1b0b9d4d745bff4f4ce9791858f72f6ed58436e17a21d3e0702c1d3f23b96e",
+    "reports/s4/figures/konzentration.png": "e4f60efe6e1ea9f1af710da83aae8716d6fa117dd33a8839d6dbed02a0c108ba",
+    "reports/s4/figures/modellvergleich.png": "8bc0d278ea39c04e455336a1ff9ccf24334f0b87fb1dbaa16834ceb96f7ec58d",
+    "reports/s4/figures/relativitaeten.png": "c4ce744aaf800d5aad418d349f42cd09a01be647a86704027f99a9a934b915fd",
+    "reports/s4/folds.json": "7dd022bfd6f47b7a6b71efd7be539628f90866925a264c60edf5b8280214ef3f",
+    "reports/s4/frequency_report.json": "e3ee93a6540cf36cd8acb954649f4f9a0795d1b95bec8a0aa6e37d03cb3b2e2a",
+    "reports/s4/interaction_check.json": "3ae5937b7b7267f942e9fc1b4efc78e2e6d4b77a780f99767d76259d6293318c",
+    "reports/s4/paired_bootstrap.json": "35cb4498f28b5c489f88e00a2850d581990f3ef3404054bdaac7e8d3fc7ffec9",
+    "reports/s4/scores.json": "b35d05c0069c049d3580a3437df3a2880152f9625ab42b36f800ede106c01e76",
+    "reports/s4/segments.json": "7740ed30c0a04e400129c8b603264e088afc970ec07555bffcd8e4ff58c6d6fc",
+    "reports/s4/standardization_cells.json": "a49f6e6ee36639ad1faac11afe5160c57ddb025cbef2e563638bdab17d3ffffe",
+    "reports/s4/standardized_age.json": "4ed514a993f9117c1ab96ca0132123a4862e573954979e0680bd26e1f70a880c",
+    "requirements.lock.txt": "11c6e45da9e3efddcdd7e3ad4654e356dc30210d97b7144434880d8a367f98b5",
+    "requirements.txt": "357b64a6aeca708b66c9cb5e5a40215e65ebe77bf9a3586eb6a4bd627ed7be0f",
+    "scripts/check_frequency_interaction.py": "9608a5244876baaec49176e68b95d911e94cc8d4723dc0f3959567ca1876a197",
+    "src/frequency.py": "1fdc196a6a0fefa497e34b74fa8123f879c64f794e1236de85711dc2aa152bab",
+    "src/frequency_diagnostics.py": "fa13a86029a4bd4311b25838919fe489be7b76eb621f3de5d8d3e14dde2b6fa8",
+    "src/frequency_models.py": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
+    "tests/test_frequency.py": "5844b84faf0126b30b6876ce448afb571f9dfb7b06d78355abd1ba4b74bca4ca",
+    "tests/test_frequency_diagnostics.py": "47de54c4f5c1c21c864b9f0a86b0e6dd23f75971d0a7bea4fb354380380724d0",
+    "tests/test_frequency_models.py": "52c8e040de67f477e5db87d5be8a81b388a44b3ac6b80ef35c9c6fea613d4344"
+  },
+  "fold_runtime": {
+    "models": {
+      "gam_b10_l1": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 13.30348740000045
+          },
+          {
+            "fold": 2,
+            "seconds": 13.215461100000539
+          },
+          {
+            "fold": 3,
+            "seconds": 13.435697400000208
+          },
+          {
+            "fold": 4,
+            "seconds": 14.180899699999827
+          },
+          {
+            "fold": 5,
+            "seconds": 13.359234399999877
+          }
+        ],
+        "sha256": "b1758ebf2390360c5741fcfe12d5e52947c4dfdcdeaf3b60b59ceda5948b7aac"
+      },
+      "gam_b10_l10": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 13.447726100000182
+          },
+          {
+            "fold": 2,
+            "seconds": 13.71106409999993
+          },
+          {
+            "fold": 3,
+            "seconds": 13.949373800000103
+          },
+          {
+            "fold": 4,
+            "seconds": 13.397403199999644
+          },
+          {
+            "fold": 5,
+            "seconds": 13.389924400000382
+          }
+        ],
+        "sha256": "e808db42370e1cd5ea3c6616a40f498d7d279ddbe823648faac434a789130116"
+      },
+      "gam_b20_l1": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 14.427654999999504
+          },
+          {
+            "fold": 2,
+            "seconds": 15.096887499999866
+          },
+          {
+            "fold": 3,
+            "seconds": 15.541053700000703
+          },
+          {
+            "fold": 4,
+            "seconds": 16.259564400000272
+          },
+          {
+            "fold": 5,
+            "seconds": 14.959925199999816
+          }
+        ],
+        "sha256": "64258a7a24657493762c8f695aa13ca2ad26cc9481ab396ab2beb2279dffffa8"
+      },
+      "gam_b20_l10": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 14.589815300000737
+          },
+          {
+            "fold": 2,
+            "seconds": 14.603763000000072
+          },
+          {
+            "fold": 3,
+            "seconds": 15.630351799999517
+          },
+          {
+            "fold": 4,
+            "seconds": 16.44321730000047
+          },
+          {
+            "fold": 5,
+            "seconds": 14.913290399999823
+          }
+        ],
+        "sha256": "eddec25a4d983963f9b1f6d6a6549f10dbba48e5640e837b70544c3738676628"
+      },
+      "glm_additive_a0": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 13.16558029999942
+          },
+          {
+            "fold": 2,
+            "seconds": 12.738139799999772
+          },
+          {
+            "fold": 3,
+            "seconds": 13.087934600000153
+          },
+          {
+            "fold": 4,
+            "seconds": 13.18923470000027
+          },
+          {
+            "fold": 5,
+            "seconds": 13.349554299999909
+          }
+        ],
+        "sha256": "3625d3250feec3d1570ce2f2fc88f96d5775774d20841f4a5db2baf0091f512f"
+      },
+      "glm_additive_a0001": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 12.70787560000008
+          },
+          {
+            "fold": 2,
+            "seconds": 13.030834299999697
+          },
+          {
+            "fold": 3,
+            "seconds": 12.404277800000273
+          },
+          {
+            "fold": 4,
+            "seconds": 12.363605699999425
+          },
+          {
+            "fold": 5,
+            "seconds": 12.3541553999994
+          }
+        ],
+        "sha256": "25e9afaa47596777a013b4851ff0c1d595c34688f685d12955cd8f83297d79c2"
+      },
+      "glm_age_bm_a0001": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 12.826258299999608
+          },
+          {
+            "fold": 2,
+            "seconds": 13.520000900000014
+          },
+          {
+            "fold": 3,
+            "seconds": 13.296897599999284
+          },
+          {
+            "fold": 4,
+            "seconds": 13.254623199999514
+          },
+          {
+            "fold": 5,
+            "seconds": 13.244893999999476
+          }
+        ],
+        "sha256": "174cff83e71dba04dfd746f0ca5be0bc6fa6fd9a3f548b0dac30298e72d9d6d4"
+      },
+      "hgb_l15": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 14.408335400000396
+          },
+          {
+            "fold": 2,
+            "seconds": 13.794656899999609
+          },
+          {
+            "fold": 3,
+            "seconds": 13.773846900000535
+          },
+          {
+            "fold": 4,
+            "seconds": 14.3196396000003
+          },
+          {
+            "fold": 5,
+            "seconds": 14.40543979999984
+          }
+        ],
+        "sha256": "06585f290540adb235651b189aa8f6a589a935d57b631d87a1d531347e76b696"
+      },
+      "hgb_l31": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 14.739397000000281
+          },
+          {
+            "fold": 2,
+            "seconds": 14.855630699999892
+          },
+          {
+            "fold": 3,
+            "seconds": 15.134737800000039
+          },
+          {
+            "fold": 4,
+            "seconds": 14.96589480000057
+          },
+          {
+            "fold": 5,
+            "seconds": 15.200609299999996
+          }
+        ],
+        "sha256": "c1b84aaa28227b23e2e53625b6cb897f277a8758a7b80d612d5420c3cfc9fe4c"
+      },
+      "intercept": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 10.16993950000051
+          },
+          {
+            "fold": 2,
+            "seconds": 10.05352000000039
+          },
+          {
+            "fold": 3,
+            "seconds": 10.139738100000613
+          },
+          {
+            "fold": 4,
+            "seconds": 10.085443400000258
+          },
+          {
+            "fold": 5,
+            "seconds": 10.086026900000434
+          }
+        ],
+        "sha256": "73ca487c67517d2656ee705ddd1da47c26214edc09456ec9f2e38557b8963077"
+      }
+    },
+    "scope": "Elapsed per fold includes fit, prediction and contract/metadata calculation; not a pure optimizer timing or full command wall time. Runtime is excluded from deterministic result manifests."
+  },
+  "independent_score_check": {
+    "local_path": "data/s4/independent_scores.json",
+    "result": {
+      "checks": [
+        "all input/output hashes",
+        "exact common keyed OOF membership and period units",
+        "scipy.special.xlogy count-score and sklearn rate-score identity",
+        "independent tied-block Gini",
+        "all train/validation fold IDs and train totals",
+        "pooled exposure-weighted fold scores",
+        "all segment aggregate conservation",
+        "all500 paired bootstrap draws and bounds",
+        "numerical minimum selection"
+      ],
+      "evaluation_outcomes_aggregated": 0,
+      "models_verified": 10,
+      "predictions_per_model": 542392,
+      "results": {
+        "gam_b10_l1": {
+          "A/P": 1.0000402315778396,
+          "deviance": 0.4548440768894886,
+          "fold_deviances": [
+            0.46284603218713544,
+            0.4590807437117889,
+            0.4455838998440642,
+            0.4548253531350217,
+            0.45194461719358464
+          ],
+          "gini": 0.2958857079317059,
+          "independent_gini_error": 5.482281295599023e-13
+        },
+        "gam_b10_l10": {
+          "A/P": 1.0000070192942945,
+          "deviance": 0.45558763524606755,
+          "fold_deviances": [
+            0.4635424189660026,
+            0.45999030156018506,
+            0.4458940701107549,
+            0.45591577090173024,
+            0.4526594026755187
+          ],
+          "gini": 0.29287177207680415,
+          "independent_gini_error": 5.220268661787486e-13
+        },
+        "gam_b20_l1": {
+          "A/P": 1.0000640521224233,
+          "deviance": 0.4546566905706458,
+          "fold_deviances": [
+            0.46274605172702316,
+            0.45882962473739747,
+            0.4457232115056052,
+            0.45437150167972995,
+            0.4516709485474203
+          ],
+          "gini": 0.29548171482812524,
+          "independent_gini_error": 5.477840403500522e-13
+        },
+        "gam_b20_l10": {
+          "A/P": 1.000029763373881,
+          "deviance": 0.4546369177325562,
+          "fold_deviances": [
+            0.46263004493580445,
+            0.45882824219320567,
+            0.4455821792113324,
+            0.45445336975037787,
+            0.45174952338817864
+          ],
+          "gini": 0.2960225664437295,
+          "independent_gini_error": 5.520028878436278e-13
+        },
+        "glm_additive_a0": {
+          "A/P": 1.000003480209406,
+          "deviance": 0.4574467188060039,
+          "fold_deviances": [
+            0.4659566978330877,
+            0.4616865637044909,
+            0.4483572227083096,
+            0.45702748850814706,
+            0.45426411672885275
+          ],
+          "gini": 0.2816009410871789,
+          "independent_gini_error": 4.871658632055187e-13
+        },
+        "glm_additive_a0001": {
+          "A/P": 0.9999378318790375,
+          "deviance": 0.4575922175876358,
+          "fold_deviances": [
+            0.46576750510702647,
+            0.4616849840442078,
+            0.44907235144751256,
+            0.45716707959831604,
+            0.45432445821314654
+          ],
+          "gini": 0.2816628205254328,
+          "independent_gini_error": 4.838351941316432e-13
+        },
+        "glm_age_bm_a0001": {
+          "A/P": 0.9999741666126969,
+          "deviance": 0.4571226140123115,
+          "fold_deviances": [
+            0.4653398632982044,
+            0.46083513280565863,
+            0.44861027433247375,
+            0.4566511014243331,
+            0.45422991083657793
+          ],
+          "gini": 0.2849801211833225,
+          "independent_gini_error": 4.549693954913892e-13
+        },
+        "hgb_l15": {
+          "A/P": 0.9996321063289391,
+          "deviance": 0.44674893111327585,
+          "fold_deviances": [
+            0.45138149958647106,
+            0.4492343443690015,
+            0.44011436024642253,
+            0.44620447754491477,
+            0.4468496986637097
+          ],
+          "gini": 0.3246125239791242,
+          "independent_gini_error": 6.681322162194192e-13
+        },
+        "hgb_l31": {
+          "A/P": 1.0002481784562516,
+          "deviance": 0.4470025341008145,
+          "fold_deviances": [
+            0.4513482505090922,
+            0.44970191903829343,
+            0.44068693468401565,
+            0.4458334141704928,
+            0.4474803639855969
+          ],
+          "gini": 0.3224164635394544,
+          "independent_gini_error": 6.541434061091422e-13
+        },
+        "intercept": {
+          "A/P": 0.9999938301096493,
+          "deviance": 0.47809387572289525,
+          "fold_deviances": [
+            0.4843768901767654,
+            0.4816161737398398,
+            0.47068767223549,
+            0.47914739915429283,
+            0.4746923382964218
+          ],
+          "gini": -0.007048562045129048,
+          "independent_gini_error": 9.234835118832052e-13
+        }
+      },
+      "run_id": "s4freq-4b7f4f42e310c304"
+    },
+    "sha256": "2fec2b67e3bdce67d0f4b3894b36d9007230bc95998f54790d0aad8bbc65f028"
+  },
+  "limitations": [
+    "Development selection estimates; evaluation remains closed for the joint frequency/severity/loss-cost gate.",
+    "Poor duration-group calibration remains despite near-unit aggregate A/P.",
+    "Fixed-prediction policy bootstrap omits refitting/selection/unknown household dependence.",
+    "Age standardization uses coarse common support and model-dependent point predictions, without causal identification or confidence bands.",
+    "Sparse extreme spline ranges require positive penalty; no unsupported tail-effect inference."
+  ],
+  "local_executed_notebook": {
+    "path": "data/notebooks/04_frequency_models.executed.ipynb",
+    "sha256": "32713cbcdfb9e3b6c876418a6a63be3de40c531671c4aa602d83b1901870ce2d"
+  },
+  "merged_base_commit": "4ca494577a0873cba650612c3977125827352fb1",
+  "notebook_execution_notes": [
+    "Restricted-sandbox kernel startup stalled and was interrupted; successful fresh-kernel execution used the established outside-sandbox local startup path.",
+    "Known external Windows Proactor/add_reader and local TCP kernel startup warnings; no notebook cell errors."
+  ],
+  "platform_verified": "Windows x64 / CPython 3.12.14; no Linux or macOS execution claimed",
+  "preparation_id": "s1-cb931cb73e410280",
+  "run_id": "s4freq-4b7f4f42e310c304",
+  "software": {
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "pyarrow": "26.0.0",
+    "python": "3.12.14",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.16.3",
+    "threadpoolctl": "3.7.0"
+  },
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd"
+}

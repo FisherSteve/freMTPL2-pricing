@@ -1,0 +1,21 @@
+{
+  "empirical_minimum_used": true,
+  "evaluation_released": false,
+  "family_winners": {
+    "gam": "gam_b20_l10",
+    "glm": "glm_age_bm_a0001",
+    "histogram_poisson": "hgb_l15"
+  },
+  "next_gate": "S5: Schadenhöhe und reine Risikoprämie; gemeinsame Evaluation erst nach gesperrter Entwicklungsentscheidung.",
+  "rationale": "Gemeinsame OOF-Deviance bestimmt empirisches Minimum. Falten, Segmentkalibrierung, bedingte Bootstrap-Differenzen und Rechenaufwand sind zusammen zu lesen; verbleibende Exponierungsabweichungen begrenzen jede Tarifaussage.",
+  "rule": "Minimum der gepoolten OOF-Exponierungsdeviance; innerhalb 0,5 Prozent kann ein stabileres einfacheres Modell vorgezogen werden. Diagnostik, Falten und feste Vorhersageunsicherheit begründen die Entscheidung vor Evaluation.",
+  "run_id": "s4freq-4b7f4f42e310c304",
+  "selected_configuration": {
+    "family": "histogram_poisson",
+    "l2_regularization": 1.0,
+    "max_leaf_nodes": 15,
+    "model_id": "hgb_l15"
+  },
+  "selected_frequency_model": "hgb_l15",
+  "selected_refit_sha256": "8925dfadce571247da430fc01b1052d9c08dd766a04ac80711ae0bde565059cd"
+}

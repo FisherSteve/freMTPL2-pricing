@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "scope": "Entwicklungs-OOF und anschließende Entwicklungsrefits; gemeinsame Evaluation mit Schadenhöhe bleibt geschlossen.",
+  "selection_rule": "Minimum der gepoolten OOF-Exponierungsdeviance; innerhalb 0,5 Prozent kann ein stabileres einfacheres Modell vorgezogen werden. Diagnostik, Falten und feste Vorhersageunsicherheit begründen die Entscheidung vor Evaluation.",
+  "configurations": [
+    {"model_id": "intercept", "family": "intercept"},
+    {"model_id": "glm_additive_a0", "family": "glm", "encoding": "additive", "alpha": 0.0},
+    {"model_id": "glm_additive_a0001", "family": "glm", "encoding": "additive", "alpha": 0.0001},
+    {"model_id": "glm_age_bm_a0001", "family": "glm", "encoding": "age_bm_interaction", "alpha": 0.0001},
+    {"model_id": "gam_b10_l1", "family": "gam", "n_splines": 10, "lam": 1.0},
+    {"model_id": "gam_b10_l10", "family": "gam", "n_splines": 10, "lam": 10.0},
+    {"model_id": "gam_b20_l1", "family": "gam", "n_splines": 20, "lam": 1.0},
+    {"model_id": "gam_b20_l10", "family": "gam", "n_splines": 20, "lam": 10.0},
+    {"model_id": "hgb_l15", "family": "histogram_poisson", "max_leaf_nodes": 15, "l2_regularization": 1.0},
+    {"model_id": "hgb_l31", "family": "histogram_poisson", "max_leaf_nodes": 31, "l2_regularization": 1.0}
+  ],
+  "glm_specification": {
+    "age_edges": [25, 35, 45, 55, 65, 75],
+    "vehicle_edges": [1, 6, 11, 21],
+    "bm_edges": [51, 76, 101, 151],
+    "factors": ["VehPower", "VehBrand", "VehGas", "Area", "Region"],
+    "continuous": "log(Density), mit Trainings-Exponierungsgewichten zentriert und skaliert",
+    "identification": "Trainingskategorien mit Referenzkodierung; ergebnisfreie Rangprüfung/Entfernung redundanter Spalten; unbekannte Faktoren als Referenz, Anzahl dokumentiert",
+    "interaction": "Produkte nichtreferenter Alters- und BM-Gruppen; prüft eine durch die EDA offene Interaktionsfrage",
+    "objective": "sklearn PoissonRegressor: halbe gewichtete mittlere Ratendeviance plus alpha/2 * Summe Koeffizientenquadrate; Intercept unbestraft. Ohne Strafe gleiches Optimum wie Anzahl-Poisson mit log(Exposure)-Offset. Strafe nicht mit GAM-lambda gleichsetzen."
+  },
+  "gam_specification": {
+    "smooths": ["DrivAge", "VehAge", "BonusMalus", "logDensity"],
+    "factors": ["VehPower", "VehBrand", "VehGas", "Area", "Region"],
+    "basis": "Kubische uniforme B-Splines zwischen Trainingsminimum und -maximum; konstante Randfortsetzung. Trainings-exponierungszentrierte reduzierte Basen, keine zusätzliche lineare Kopie derselben Variable.",
+    "objective": "Summe Exposure*(exp(eta)-rate*eta) + lambda/2 * Summe quadrierter zweiter Differenzen der vollen Splinekoeffizienten; identisch transformierte Strafe in reduzierter Basis; Faktor- und Intercepteffekte unbestraft",
+    "edf": "trace((X' diag(Exposure*rate_hat) X + P)^-1 X' diag(Exposure*rate_hat) X), konditional auf feste Glättungsparameter",
+    "inference": "Keine pyGAM-p-Werte, UBRE-Auswahl oder ungeprüften Konfidenzbänder. Eigene kleine P-Spline-Implementierung mit unabhängigen Referenztests; keine behauptete Gleichheit zu pyGAM-Strafparametern."
+  },
+  "histogram_poisson": {"learning_rate": 0.05, "max_iter": 300, "early_stopping": false, "random_state": 20261029, "min_samples_leaf": 20, "categorical": "Trainingsweise native Kategorien; unbekannt als fehlend; logDensity statt Density"},
+  "rationale": "S3 begründet flexible Alter-, Fahrzeugalter-, BM- und Dichteverläufe, Beibehaltung B12 und gemeinsame Fahrzeug/Kraftstoff/Geografie-Adjustierung. Grobe GLM-Interaktion prüft Alter-BM-Heterogenität. Keine Exponierung als Tarifmerkmal: Vertragsdauer kann durch nicht beobachtete Beendigung bestimmt sein; Exponierungsgruppen bleiben explizite Diagnostik.",
+  "age_standardization": {"age_reference_range": [30, 60], "age_band_edges": [30, 40, 50, 60], "set_ages": [35, 45, 55], "strata": ["bm_support_band", "vehicle_support_band", "VehGas", "Region"], "bm_edges": [50, 51, 76, 101, 351], "vehicle_edges": [0, 1, 11, 2147483648], "minimum_exposure_years_each_age_band": 100, "reference_weights": "Exposure / retained reference total Exposure; identical empirical covariates for each assigned age", "scope": "development refit predictions; descriptive model standardization, no causal estimand; coarse joint support not full continuous overlap", "empty_support": "return empty profile and exact support report; no adaptive expansion"},
+  "bootstrap": {"replicates": 500, "seed": 20261030, "percentiles": [2.5, 97.5], "unit": "whole policy; shared indices for every fixed OOF prediction; sampled exposure denominator", "limits": "Bedingte Stichprobenstabilität, keine Refitting-, Auswahl- oder Haushaltsunsicherheit"},
+  "compute": {"threads": 2, "gpu": false},
+  "failure_policy": "Kein stilles Erweitern der Suche. Gescheiterte Fits speichern; numerische Reparaturen und deren Grund getrennt dokumentieren. Vor erster Portfolioanpassung diese vollständige Spezifikation mit Hash registrieren."
+}

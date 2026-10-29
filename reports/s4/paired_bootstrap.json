@@ -1,0 +1,102 @@
+[
+  {
+    "deviance_difference": 0.008095145776213,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.006354258500345,
+    "model_id": "gam_b10_l1",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.009937272732397
+  },
+  {
+    "deviance_difference": 0.008838704132792,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.007125489948217,
+    "model_id": "gam_b10_l10",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.010659402626886
+  },
+  {
+    "deviance_difference": 0.00790775945737,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.006224450880636,
+    "model_id": "gam_b20_l1",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.009662484468597
+  },
+  {
+    "deviance_difference": 0.00788798661928,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.006183036694549,
+    "model_id": "gam_b20_l10",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.009646516106839
+  },
+  {
+    "deviance_difference": 0.010697787692728,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.008972196174178,
+    "model_id": "glm_additive_a0",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.012641149951207
+  },
+  {
+    "deviance_difference": 0.010843286474361,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.009113645087357,
+    "model_id": "glm_additive_a0001",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.012801573149111
+  },
+  {
+    "deviance_difference": 0.010373682899035,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.008623538917391,
+    "model_id": "glm_age_bm_a0001",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.012337715190784
+  },
+  {
+    "deviance_difference": 0.0,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.0,
+    "model_id": "hgb_l15",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.0
+  },
+  {
+    "deviance_difference": 0.000253602987539,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": -3.3975239559e-05,
+    "model_id": "hgb_l31",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.000562140365192
+  },
+  {
+    "deviance_difference": 0.031344944609619,
+    "estimand": "fixed OOF predictions; paired policy resampling; candidate minus reference",
+    "lower": 0.029287885289026,
+    "model_id": "intercept",
+    "reference_model": "hgb_l15",
+    "replicates": 500,
+    "seed": 20261030,
+    "upper": 0.033396682373478
+  }
+]

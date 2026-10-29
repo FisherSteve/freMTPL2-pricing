@@ -31,3 +31,13 @@
 /docs/eda.md text eol=lf
 /reports/s3/*.json text eol=lf
 /notebooks/03_development_eda.ipynb text eol=lf
+
+# Frequency comparison: exact source/configuration and evidence bytes.
+/src/frequency*.py text eol=lf
+/tests/test_frequency*.py text eol=lf
+/docs/frequenzmodelle.md text eol=lf
+/reports/s4/*.json text eol=lf
+/notebooks/04_frequency_models.ipynb text eol=lf
+/scripts/check_frequency_interaction.py text eol=lf
+/README.md text eol=lf
+/notebooks/README.md text eol=lf
