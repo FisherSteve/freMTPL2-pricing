@@ -1,0 +1,98 @@
+{
+  "bootstrap": {
+    "limits": "Stichprobenstabilität bei festen OOF-Vorhersagen. Keine Refitting-, Auswahl- oder unbekannte Haushaltsunsicherheit; kein Hypothesentest nach Auswahl.",
+    "percentiles": [
+      2.5,
+      97.5
+    ],
+    "replicates": 500,
+    "rng": "NumPy Generator(PCG64)",
+    "sampling": "Ganze, nach IDpol sortierte Vertragszeilen mit Zurücklegen; pro Ziehung dieselben Indizes für beide Modelle und den gezogenen Exponierungsnenner. Je Referenz wird derselbe RNG-Seed neu initialisiert.",
+    "seed": 20261030
+  },
+  "calculation": "d(N,mu)=2*(scipy.special.xlogy(N,N)-scipy.special.xlogy(N,mu)-N+mu). Differenz Kandidat minus Referenz, summiert und durch dieselbe Exponierung geteilt. Negative Werte begünstigen die Interaktion.",
+  "conclusion": "Die bedingten Intervalle liefern gerichtete Evidenz für eine Devianceverbesserung. Gegenüber dem unbestraften additiven GLM beträgt die relative Verbesserung 0,071 Prozent; 4 von fünf Falten verbessern sich. Gegenüber dem gleich bestraften additiven GLM verbessern sich 5 von fünf Falten. Der praktische Nutzen ist klein; eine Notwendigkeit der Interaktion oder eine kausale Alterswirkung ist nicht belegt.",
+  "contrasts": [
+    {
+      "candidate": "glm_age_bm_a0001",
+      "conditional_percentile_95_lower": -0.0005194118441061624,
+      "conditional_percentile_95_upper": -9.881473700634357e-05,
+      "deviance_difference": -0.000324104793692382,
+      "fold_deviance_differences": {
+        "1": -0.0006168345348832823,
+        "2": -0.0008514308988323388,
+        "3": 0.00025305162416416866,
+        "4": -0.00037638708381405097,
+        "5": -3.420589227486175e-05
+      },
+      "reference": "glm_additive_a0",
+      "relative_deviance_reduction": 0.0007085082925905298
+    },
+    {
+      "candidate": "glm_age_bm_a0001",
+      "conditional_percentile_95_lower": -0.0006448900414589917,
+      "conditional_percentile_95_upper": -0.0002811888838918,
+      "deviance_difference": -0.0004696035753242584,
+      "fold_deviance_differences": {
+        "1": -0.0004276418088220774,
+        "2": -0.0008498512385492453,
+        "3": -0.00046207711503877015,
+        "4": -0.0005159781739829495,
+        "5": -9.454737656856793e-05
+      },
+      "reference": "glm_additive_a0001",
+      "relative_deviance_reduction": 0.0010262490428704074
+    }
+  ],
+  "development_policies": 542392,
+  "evaluation_outcomes_aggregated": 0,
+  "exposure_years": 286880.818827008,
+  "input_sha256": {
+    "oof_predictions": {
+      "glm_additive_a0": "442d87b8464aa612e631b6eb778a506eaddaa3e3bbc3b1fa21761d8757beac87",
+      "glm_additive_a0001": "7bb383f088d62c4b382cbfabc7759dff902c678cd60d33bc3d3043c271d6eda8",
+      "glm_age_bm_a0001": "fa5003491eb6a301b7b597f72186bdc70b39639338742abdefbb8515892a58b9"
+    },
+    "policies": "217a72eb2418a98a19ab57c081744356fc13f0a4e4ef3c6a3f208c9f2c9212c1",
+    "policy_membership": "907d387a9c8f19ff3286062b256608825b6e670f4af98d69722aefa55d8bda1c"
+  },
+  "models": {
+    "glm_additive_a0": {
+      "poisson_deviance_per_exposure": 0.4574467188060039,
+      "retained_parameters_by_fold": {
+        "1": 64,
+        "2": 64,
+        "3": 64,
+        "4": 64,
+        "5": 64
+      }
+    },
+    "glm_additive_a0001": {
+      "poisson_deviance_per_exposure": 0.4575922175876358,
+      "retained_parameters_by_fold": {
+        "1": 64,
+        "2": 64,
+        "3": 64,
+        "4": 64,
+        "5": 64
+      }
+    },
+    "glm_age_bm_a0001": {
+      "poisson_deviance_per_exposure": 0.4571226140123115,
+      "retained_parameters_by_fold": {
+        "1": 88,
+        "2": 88,
+        "3": 88,
+        "4": 88,
+        "5": 88
+      }
+    }
+  },
+  "observed_claims": 21066,
+  "preparation_id": "s1-cb931cb73e410280",
+  "producer_sha256": "9608a5244876baaec49176e68b95d911e94cc8d4723dc0f3959567ca1876a197",
+  "run_id": "s4freq-4b7f4f42e310c304",
+  "scope": "Ausschließlich Entwicklungsverträge und gespeicherte OOF-Vorhersagen; keine zusätzliche Modellanpassung oder Evaluation.",
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd"
+}

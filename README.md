@@ -4,7 +4,7 @@ Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio
 
 **Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Aktueller Stand: Datenaufbereitung, Messgrößen und echte OOF-Vorhersagen des Exponierungs-Basismodells sind geprüft. Die neue Entwicklungs-EDA untersucht Alter, Bonus-Malus, Exponierung und Verlustkonzentration. Der GLM-/GAM-/Boosting-Vergleich steht noch aus.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
+**Aktueller Stand: Datenaufbereitung, Entwicklungs-EDA und der OOF-Frequenzvergleich von GLM, GAM und Histogramm-Poisson mit fünf Entwicklungsfalten sind geprüft. Das ausgewählte Boosting-Modell reduziert die Deviance gegenüber dem Intercept um 6,56 %. Schadenhöhe, reine Risikoprämie und gemeinsame Evaluation folgen.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
 ## Was bisher verifiziert ist
 
@@ -115,15 +115,30 @@ Das Notebook verifiziert lokale Tabellen, öffentliche Spiegel und Bild-Hashes; 
 
 ## Die Modellierungsstudie
 
-Geplant sind ein ausschließlich auf der Exponierung beruhendes Basismodell, ein substanzielles aktuarielles Poisson-GLM, ein penalisiertes Poisson-Spline-GAM und ein Histogramm-Boosting-Modell als Vergleich. GPU-Experimente sind optional.
+Der registrierte Vergleich umfasst zehn Konfigurationen einschließlich Basismodell und **50 echte Faltenfits** auf jeweils denselben 542.392 Entwicklungsverträgen. Alle neun Merkmale sind prospektiv; gelernte Kodierungen, Skalierung und Splines werden ausschließlich innerhalb der Trainingsfalte angepasst. Der Quellstand und die ungekappte positive-Schadenzeilen-Zielgröße bleiben unverändert.
 
-Die Entwicklungs-EDA begründet flexible Alters-/Bonus-Malus-Terme und gemeinsame Kompositions- und Exponierungsdiagnostik. Eine Alter-BM-Interaktion ist eine offene Vergleichsfrage, kein bereits gewählter Gewinner. Vollständigere adjustierte Profile folgen mit den Modellen; marginale Raten, deskriptive BM-Standardisierung und plausible Mechanismen bleiben getrennt. Fahrleistung, konkrete Nutzung und Gründe für das Ende einer Beobachtungsperiode sind nicht gemessen.
+| Kandidat | OOF-Deviance je Vertragsjahr | Reduktion zum Intercept | A/P |
+|---|---:|---:|---:|
+| Exponierungs-Intercept | 0,478094 | 0,00 % | 1,0000 |
+| GLM, numerisches Familienminimum | 0,457123 | 4,39 % | 1,0000 |
+| GAM, numerisches Familienminimum | 0,454637 | 4,91 % | 1,0000 |
+| Histogramm-Poisson, 15 Blätter | 0,446749 | 6,56 % | 0,9996 |
 
-Das [Validierungsprotokoll](config/validation_protocol.json) begrenzt den späteren Vergleich auf höchstens sechs GLM-, sechs GAM- und vier Histogramm-Boosting-Konfigurationen auf gemeinsamen Entwicklungsfalten. Konkrete Kodierungen und Terme werden aus der Entwicklungs-EDA begründet und vor Anpassung registriert. Gelernte Vorverarbeitung wird je Trainingsfalte angepasst; unbekannte Validierungskategorien müssen ausdrücklich behandelt werden. Für Boosting sind feste Iterationszahl und deaktivierter Frühstopp vorgesehen. Jahresraten, erwartete Schadenanzahlen je Periode, Schadenhöhe, jährliche reine Risikoprämie und Kosten je Periode werden getrennt behandelt.
+Ausgewählt wird `hgb_l15`: gegenüber dem besten GAM senkt es die Deviance in allen fünf Falten. Die gepaarte 500-Vertragsbootstrap-Auswertung bei festen OOF-Vorhersagen stützt den Unterschied; sie enthält keine Refitting- oder Auswahlunsicherheit. Die Einstellung mit 31 Blättern verbessert den Score nicht. GLM und GAM bleiben substantielle interpretierbare Kandidaten. Die Alters-BM-Interaktion liefert gegenüber dem einfachen additiven GLM lediglich etwa 0,071 % Gewinn bei 24 zusätzlichen Parametern; ihre praktische Notwendigkeit ist damit nicht belegt.
 
-Geplant sind Faltenstabilität und 500 gepaarte Bootstrap-Ziehungen auf Vertragszeilen bei festen Vorhersagen. Solche Intervalle enthalten weder erneutes Fitten noch Modellwahlunsicherheit. Die vorab festgelegte Toleranz von 0,5 % relativer Deviance für praktisch ähnliche Kandidaten ist kein Signifikanztest. Diese späteren Vergleiche wurden noch nicht ausgeführt; es ist kein Modellgewinner festgelegt.
+**Gute Aggregatkalibrierung genügt nicht:** Beim ausgewählten Modell beträgt A/P für 7 Tage bis unter 0,1 Vertragsjahre etwa 1,79, für mindestens ein Jahr etwa 0,83. Diese OOF-Abweichungen bleiben nach der Modellierung des beobachteten Merkmalsmixes bestehen. Die Diagnose kann Fehlanpassung, unbeobachtete Nutzung und Beendigungsprozesse nicht trennen. Dies begrenzt eine Tarifanwendung und wird nicht durch den besseren Gesamtscore aufgehoben.
 
-Die Erweiterung um Schadenhöhe und reine Risikoprämie wird vollständig evaluiert. Ein erfolgloses Schadenhöhenmodell, ein dem GLM unterlegenes GAM oder ein geringer Zusatznutzen des Boostings sind zulässige Ergebnisse. Ein marktfähiger Tarif oder eine Übertragbarkeit auf Deutschland werden nicht behauptet.
+Unter gemeinsam unterstütztem Merkmalsmix bleibt eine höhere modellierte Jahresfrequenz bei gesetztem Alter 45 gegenüber 35 sichtbar; bis 55 sinkt sie wieder. Die Referenz umfasst 291.234 Verträge und 81,73 % der Exponierung der 30- bis 59-Jährigen. Das ist ein deskriptiver adjustierter Modellvergleich mit ausgewiesener grober Unterstützung, keine kausale Alterswirkung.
+
+[Vollständige Methodik, Auswahl und Grenzen](docs/frequenzmodelle.md), [berechnete Kennzahlen aller Einstellungen](reports/s4/scores.json), [gesperrte Entwicklungsentscheidung](reports/s4/development_decision.json), [Laufnachweis mit Prüfsummen](reports/s4/frequency_report.json) und [ausführbares Notebook](notebooks/04_frequency_models.ipynb), Lauf `s4freq-4b7f4f42e310c304`.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.frequency
+.\.venv\Scripts\python.exe scripts/check_frequency_interaction.py
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/04_frequency_models.ipynb --output data/notebooks/04_frequency_models.executed.ipynb
+```
+
+Die gemeinsame Evaluation mit Schadenhöhe und reiner Risikoprämie bleibt geschlossen. Als nächster Schritt werden Schadenhöhe und erwarteter Schadenaufwand unabhängig geprüft; ein marktfähiger Tarif und eine Übertragbarkeit auf Deutschland werden nicht behauptet. GPU-Experimente bleiben optional.
 
 ## Daten und Reproduzierbarkeit
 

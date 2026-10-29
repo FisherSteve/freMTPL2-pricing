@@ -1,0 +1,2426 @@
+[
+  {
+    "cumulative_claim_fraction": 0.0,
+    "cumulative_exposure_fraction": 0.0,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.009843267472602,
+    "cumulative_exposure_fraction": 0.01,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.019686534945204,
+    "cumulative_exposure_fraction": 0.02,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.029529802417806,
+    "cumulative_exposure_fraction": 0.03,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.039373069890408,
+    "cumulative_exposure_fraction": 0.04,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.04921633736301,
+    "cumulative_exposure_fraction": 0.05,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.059059604835611,
+    "cumulative_exposure_fraction": 0.06,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.068902872308213,
+    "cumulative_exposure_fraction": 0.07,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.078746139780815,
+    "cumulative_exposure_fraction": 0.08,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.088589407253417,
+    "cumulative_exposure_fraction": 0.09,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.098432674726019,
+    "cumulative_exposure_fraction": 0.1,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.108275942198621,
+    "cumulative_exposure_fraction": 0.11,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.118119209671223,
+    "cumulative_exposure_fraction": 0.12,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.127962477143825,
+    "cumulative_exposure_fraction": 0.13,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.137805744616427,
+    "cumulative_exposure_fraction": 0.14,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.147649012089028,
+    "cumulative_exposure_fraction": 0.15,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.15749227956163,
+    "cumulative_exposure_fraction": 0.16,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.167335547034232,
+    "cumulative_exposure_fraction": 0.17,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.177178814506834,
+    "cumulative_exposure_fraction": 0.18,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.187022081979436,
+    "cumulative_exposure_fraction": 0.19,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.196865349452038,
+    "cumulative_exposure_fraction": 0.2,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.206723240434055,
+    "cumulative_exposure_fraction": 0.21,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.216581261948626,
+    "cumulative_exposure_fraction": 0.22,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.226439283463197,
+    "cumulative_exposure_fraction": 0.23,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.236297304977767,
+    "cumulative_exposure_fraction": 0.24,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.246155326492338,
+    "cumulative_exposure_fraction": 0.25,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.256013348006908,
+    "cumulative_exposure_fraction": 0.26,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.265871369521479,
+    "cumulative_exposure_fraction": 0.27,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.275729391036049,
+    "cumulative_exposure_fraction": 0.28,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.28558741255062,
+    "cumulative_exposure_fraction": 0.29,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.29544543406519,
+    "cumulative_exposure_fraction": 0.3,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.305303455579761,
+    "cumulative_exposure_fraction": 0.31,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.315161477094331,
+    "cumulative_exposure_fraction": 0.32,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.325019498608902,
+    "cumulative_exposure_fraction": 0.33,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.334877520123472,
+    "cumulative_exposure_fraction": 0.34,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.344735541638043,
+    "cumulative_exposure_fraction": 0.35,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.354593563152614,
+    "cumulative_exposure_fraction": 0.36,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.364451584667184,
+    "cumulative_exposure_fraction": 0.37,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.374309606181755,
+    "cumulative_exposure_fraction": 0.38,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.384167627696325,
+    "cumulative_exposure_fraction": 0.39,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.394025649210896,
+    "cumulative_exposure_fraction": 0.4,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.404062118299062,
+    "cumulative_exposure_fraction": 0.41,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.414120222756628,
+    "cumulative_exposure_fraction": 0.42,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.424178327214195,
+    "cumulative_exposure_fraction": 0.43,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.434236431671762,
+    "cumulative_exposure_fraction": 0.44,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.444294536129329,
+    "cumulative_exposure_fraction": 0.45,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.454352640586896,
+    "cumulative_exposure_fraction": 0.46,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.464410745044463,
+    "cumulative_exposure_fraction": 0.47,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.47446884950203,
+    "cumulative_exposure_fraction": 0.48,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.484526953959596,
+    "cumulative_exposure_fraction": 0.49,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.494585058417163,
+    "cumulative_exposure_fraction": 0.5,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.50464316287473,
+    "cumulative_exposure_fraction": 0.51,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.514701267332297,
+    "cumulative_exposure_fraction": 0.52,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.524759371789864,
+    "cumulative_exposure_fraction": 0.53,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.534817476247431,
+    "cumulative_exposure_fraction": 0.54,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.544875580704998,
+    "cumulative_exposure_fraction": 0.55,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.554933685162565,
+    "cumulative_exposure_fraction": 0.56,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.564991789620132,
+    "cumulative_exposure_fraction": 0.57,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.575049894077698,
+    "cumulative_exposure_fraction": 0.58,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.585107998535265,
+    "cumulative_exposure_fraction": 0.59,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.595166102992832,
+    "cumulative_exposure_fraction": 0.6,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.605224359636349,
+    "cumulative_exposure_fraction": 0.61,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.615282618636378,
+    "cumulative_exposure_fraction": 0.62,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.625340877636406,
+    "cumulative_exposure_fraction": 0.63,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.635399136636435,
+    "cumulative_exposure_fraction": 0.64,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.645457395636464,
+    "cumulative_exposure_fraction": 0.65,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.655515654636492,
+    "cumulative_exposure_fraction": 0.66,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.665573913636521,
+    "cumulative_exposure_fraction": 0.67,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.67563217263655,
+    "cumulative_exposure_fraction": 0.68,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.685690431636579,
+    "cumulative_exposure_fraction": 0.69,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.695748690636608,
+    "cumulative_exposure_fraction": 0.7,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.705806949636636,
+    "cumulative_exposure_fraction": 0.71,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.715865208636665,
+    "cumulative_exposure_fraction": 0.72,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.725923467636694,
+    "cumulative_exposure_fraction": 0.73,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.735981726636722,
+    "cumulative_exposure_fraction": 0.74,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.746039985636751,
+    "cumulative_exposure_fraction": 0.75,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.75609824463678,
+    "cumulative_exposure_fraction": 0.76,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.766156503636809,
+    "cumulative_exposure_fraction": 0.77,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.776214762636837,
+    "cumulative_exposure_fraction": 0.78,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.786273021636866,
+    "cumulative_exposure_fraction": 0.79,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.79633335533494,
+    "cumulative_exposure_fraction": 0.8,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.806516687568193,
+    "cumulative_exposure_fraction": 0.81,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.816700019801446,
+    "cumulative_exposure_fraction": 0.82,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.826883352034699,
+    "cumulative_exposure_fraction": 0.83,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.837066684267952,
+    "cumulative_exposure_fraction": 0.84,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.847250016501205,
+    "cumulative_exposure_fraction": 0.85,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.857433348734458,
+    "cumulative_exposure_fraction": 0.86,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.867616680967711,
+    "cumulative_exposure_fraction": 0.87,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.877800013200964,
+    "cumulative_exposure_fraction": 0.88,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.887983345434217,
+    "cumulative_exposure_fraction": 0.89,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.89816667766747,
+    "cumulative_exposure_fraction": 0.9,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.908350009900723,
+    "cumulative_exposure_fraction": 0.91,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.918533342133976,
+    "cumulative_exposure_fraction": 0.92,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.928716674367229,
+    "cumulative_exposure_fraction": 0.93,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.938900006600482,
+    "cumulative_exposure_fraction": 0.94,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.949083338833735,
+    "cumulative_exposure_fraction": 0.95,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.959266671066988,
+    "cumulative_exposure_fraction": 0.96,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.969450003300241,
+    "cumulative_exposure_fraction": 0.97,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.979633335533494,
+    "cumulative_exposure_fraction": 0.98,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.989816667766747,
+    "cumulative_exposure_fraction": 0.99,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 1.0,
+    "cumulative_exposure_fraction": 1.0,
+    "exact_raw_gini": -0.007048562044206,
+    "model_id": "intercept"
+  },
+  {
+    "cumulative_claim_fraction": 0.0,
+    "cumulative_exposure_fraction": 0.0,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.045879754506898,
+    "cumulative_exposure_fraction": 0.01,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.072201651951011,
+    "cumulative_exposure_fraction": 0.02,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.094844773568784,
+    "cumulative_exposure_fraction": 0.03,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.116870787050223,
+    "cumulative_exposure_fraction": 0.04,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.13785246368556,
+    "cumulative_exposure_fraction": 0.05,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.156603057058768,
+    "cumulative_exposure_fraction": 0.06,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.175907713292912,
+    "cumulative_exposure_fraction": 0.07,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.196097977784107,
+    "cumulative_exposure_fraction": 0.08,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.214943510870597,
+    "cumulative_exposure_fraction": 0.09,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.232459887971138,
+    "cumulative_exposure_fraction": 0.1,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.24845840966496,
+    "cumulative_exposure_fraction": 0.11,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.266828064179246,
+    "cumulative_exposure_fraction": 0.12,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.284534320706352,
+    "cumulative_exposure_fraction": 0.13,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.30199850484108,
+    "cumulative_exposure_fraction": 0.14,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.31847526820469,
+    "cumulative_exposure_fraction": 0.15,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.334757429032564,
+    "cumulative_exposure_fraction": 0.16,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.349045855881515,
+    "cumulative_exposure_fraction": 0.17,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.364805848286338,
+    "cumulative_exposure_fraction": 0.18,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.379094275135289,
+    "cumulative_exposure_fraction": 0.19,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.392053545998291,
+    "cumulative_exposure_fraction": 0.2,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.405202696287857,
+    "cumulative_exposure_fraction": 0.21,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.419443653280167,
+    "cumulative_exposure_fraction": 0.22,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.43154846672363,
+    "cumulative_exposure_fraction": 0.23,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.444745086869838,
+    "cumulative_exposure_fraction": 0.24,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.45632773189025,
+    "cumulative_exposure_fraction": 0.25,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.468385075477072,
+    "cumulative_exposure_fraction": 0.26,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.478923383651381,
+    "cumulative_exposure_fraction": 0.27,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.490126269818665,
+    "cumulative_exposure_fraction": 0.28,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.501281686129308,
+    "cumulative_exposure_fraction": 0.29,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.511677584733694,
+    "cumulative_exposure_fraction": 0.3,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.521361435488465,
+    "cumulative_exposure_fraction": 0.31,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.531187695813159,
+    "cumulative_exposure_fraction": 0.32,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.541178019198739,
+    "cumulative_exposure_fraction": 0.33,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.551837083452008,
+    "cumulative_exposure_fraction": 0.34,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.561434215719297,
+    "cumulative_exposure_fraction": 0.35,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.570635146681857,
+    "cumulative_exposure_fraction": 0.36,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.579796829013576,
+    "cumulative_exposure_fraction": 0.37,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.589575619481629,
+    "cumulative_exposure_fraction": 0.38,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.599164530523118,
+    "cumulative_exposure_fraction": 0.39,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.607756574575145,
+    "cumulative_exposure_fraction": 0.4,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.617155606190069,
+    "cumulative_exposure_fraction": 0.41,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.625415361245609,
+    "cumulative_exposure_fraction": 0.42,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.634102345010918,
+    "cumulative_exposure_fraction": 0.43,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.64198234121333,
+    "cumulative_exposure_fraction": 0.44,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.649624988132536,
+    "cumulative_exposure_fraction": 0.45,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.658596791037691,
+    "cumulative_exposure_fraction": 0.46,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.666951485806513,
+    "cumulative_exposure_fraction": 0.47,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.674309313585873,
+    "cumulative_exposure_fraction": 0.48,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.681951960505079,
+    "cumulative_exposure_fraction": 0.49,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.690828823696952,
+    "cumulative_exposure_fraction": 0.5,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.698946169182569,
+    "cumulative_exposure_fraction": 0.51,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.706731225671698,
+    "cumulative_exposure_fraction": 0.52,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.713566885028007,
+    "cumulative_exposure_fraction": 0.53,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.72106712237729,
+    "cumulative_exposure_fraction": 0.54,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.728709769296497,
+    "cumulative_exposure_fraction": 0.55,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.736542295642267,
+    "cumulative_exposure_fraction": 0.56,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.74446976170132,
+    "cumulative_exposure_fraction": 0.57,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.75182758948068,
+    "cumulative_exposure_fraction": 0.58,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.758236020127219,
+    "cumulative_exposure_fraction": 0.59,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.766021076616349,
+    "cumulative_exposure_fraction": 0.6,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.772429507262888,
+    "cumulative_exposure_fraction": 0.61,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.779217696762556,
+    "cumulative_exposure_fraction": 0.62,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.787287572391531,
+    "cumulative_exposure_fraction": 0.63,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.794882749454097,
+    "cumulative_exposure_fraction": 0.64,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.802288047090098,
+    "cumulative_exposure_fraction": 0.65,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.809550935156176,
+    "cumulative_exposure_fraction": 0.66,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.816908762935536,
+    "cumulative_exposure_fraction": 0.67,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.825595746700845,
+    "cumulative_exposure_fraction": 0.68,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.832526345770436,
+    "cumulative_exposure_fraction": 0.69,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.838211656128841,
+    "cumulative_exposure_fraction": 0.7,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.845485616633438,
+    "cumulative_exposure_fraction": 0.71,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.85108705971708,
+    "cumulative_exposure_fraction": 0.72,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.857353080793696,
+    "cumulative_exposure_fraction": 0.73,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.864473559289851,
+    "cumulative_exposure_fraction": 0.74,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.870122472230134,
+    "cumulative_exposure_fraction": 0.75,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.876341023450109,
+    "cumulative_exposure_fraction": 0.76,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.882512104813444,
+    "cumulative_exposure_fraction": 0.77,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.888730656033419,
+    "cumulative_exposure_fraction": 0.78,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.895186556536599,
+    "cumulative_exposure_fraction": 0.79,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.90211715560619,
+    "cumulative_exposure_fraction": 0.8,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.907766068546473,
+    "cumulative_exposure_fraction": 0.81,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.913747270483243,
+    "cumulative_exposure_fraction": 0.82,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.918968954713757,
+    "cumulative_exposure_fraction": 0.83,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.925234975790373,
+    "cumulative_exposure_fraction": 0.84,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.931168707870502,
+    "cumulative_exposure_fraction": 0.85,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.936865090667426,
+    "cumulative_exposure_fraction": 0.86,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.941422196904965,
+    "cumulative_exposure_fraction": 0.87,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.945694484002658,
+    "cumulative_exposure_fraction": 0.88,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.950916168233172,
+    "cumulative_exposure_fraction": 0.89,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.955663153897275,
+    "cumulative_exposure_fraction": 0.9,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.960410139561378,
+    "cumulative_exposure_fraction": 0.91,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.965800915378515,
+    "cumulative_exposure_fraction": 0.92,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.969999050602867,
+    "cumulative_exposure_fraction": 0.93,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.974651096553688,
+    "cumulative_exposure_fraction": 0.94,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.97930314250451,
+    "cumulative_exposure_fraction": 0.95,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.984145067881895,
+    "cumulative_exposure_fraction": 0.96,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.989651571252255,
+    "cumulative_exposure_fraction": 0.97,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.993354220070255,
+    "cumulative_exposure_fraction": 0.98,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.997056868888256,
+    "cumulative_exposure_fraction": 0.99,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 1.0,
+    "cumulative_exposure_fraction": 1.0,
+    "exact_raw_gini": 0.284980121183777,
+    "model_id": "glm_age_bm_a0001"
+  },
+  {
+    "cumulative_claim_fraction": 0.0,
+    "cumulative_exposure_fraction": 0.0,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.049036361910187,
+    "cumulative_exposure_fraction": 0.01,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.078894901737397,
+    "cumulative_exposure_fraction": 0.02,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.104196335327067,
+    "cumulative_exposure_fraction": 0.03,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.130162346909712,
+    "cumulative_exposure_fraction": 0.04,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.152330769961075,
+    "cumulative_exposure_fraction": 0.05,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.174214373872591,
+    "cumulative_exposure_fraction": 0.06,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.19576568878762,
+    "cumulative_exposure_fraction": 0.07,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.21508592044052,
+    "cumulative_exposure_fraction": 0.08,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.233978923383651,
+    "cumulative_exposure_fraction": 0.09,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.252824456470141,
+    "cumulative_exposure_fraction": 0.1,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.270245893857401,
+    "cumulative_exposure_fraction": 0.11,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.287952150384506,
+    "cumulative_exposure_fraction": 0.12,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.304329250925662,
+    "cumulative_exposure_fraction": 0.13,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.319282255767588,
+    "cumulative_exposure_fraction": 0.14,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.334899838602487,
+    "cumulative_exposure_fraction": 0.15,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.3501851324409,
+    "cumulative_exposure_fraction": 0.16,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.364188740150005,
+    "cumulative_exposure_fraction": 0.17,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.37823981771575,
+    "cumulative_exposure_fraction": 0.18,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.390439570872496,
+    "cumulative_exposure_fraction": 0.19,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.404443178581601,
+    "cumulative_exposure_fraction": 0.2,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.416263172885218,
+    "cumulative_exposure_fraction": 0.21,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.42969714231463,
+    "cumulative_exposure_fraction": 0.22,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.441441465683918,
+    "cumulative_exposure_fraction": 0.23,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.452245324219121,
+    "cumulative_exposure_fraction": 0.24,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.463400740529764,
+    "cumulative_exposure_fraction": 0.25,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.474128928130637,
+    "cumulative_exposure_fraction": 0.26,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.485901452577613,
+    "cumulative_exposure_fraction": 0.27,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.497199278458179,
+    "cumulative_exposure_fraction": 0.28,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.507974935915694,
+    "cumulative_exposure_fraction": 0.29,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.518513244090003,
+    "cumulative_exposure_fraction": 0.3,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.528671793411184,
+    "cumulative_exposure_fraction": 0.31,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.538355644165955,
+    "cumulative_exposure_fraction": 0.32,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.547517326497674,
+    "cumulative_exposure_fraction": 0.33,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.55606190069306,
+    "cumulative_exposure_fraction": 0.34,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.565888161017754,
+    "cumulative_exposure_fraction": 0.35,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.575714421342448,
+    "cumulative_exposure_fraction": 0.36,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.585303332383936,
+    "cumulative_exposure_fraction": 0.37,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.593515617582835,
+    "cumulative_exposure_fraction": 0.38,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.60158549321181,
+    "cumulative_exposure_fraction": 0.39,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.610082597550555,
+    "cumulative_exposure_fraction": 0.4,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.619291749738916,
+    "cumulative_exposure_fraction": 0.41,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.626507167948353,
+    "cumulative_exposure_fraction": 0.42,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.635051742143739,
+    "cumulative_exposure_fraction": 0.43,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.643548846482484,
+    "cumulative_exposure_fraction": 0.44,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.651476312541536,
+    "cumulative_exposure_fraction": 0.45,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.659261369030666,
+    "cumulative_exposure_fraction": 0.46,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.669182569068641,
+    "cumulative_exposure_fraction": 0.47,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.677537263837463,
+    "cumulative_exposure_fraction": 0.48,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.686034368176208,
+    "cumulative_exposure_fraction": 0.49,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.694009304091902,
+    "cumulative_exposure_fraction": 0.5,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.700797493591569,
+    "cumulative_exposure_fraction": 0.51,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.708867369220545,
+    "cumulative_exposure_fraction": 0.52,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.715703028576854,
+    "cumulative_exposure_fraction": 0.53,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.723155796069496,
+    "cumulative_exposure_fraction": 0.54,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.730988322415266,
+    "cumulative_exposure_fraction": 0.55,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.738725909047755,
+    "cumulative_exposure_fraction": 0.56,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.745893857400551,
+    "cumulative_exposure_fraction": 0.57,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.753489034463116,
+    "cumulative_exposure_fraction": 0.58,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.759992404822937,
+    "cumulative_exposure_fraction": 0.59,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.766495775182759,
+    "cumulative_exposure_fraction": 0.6,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.775515047944555,
+    "cumulative_exposure_fraction": 0.61,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.782493116870787,
+    "cumulative_exposure_fraction": 0.62,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.790230703503275,
+    "cumulative_exposure_fraction": 0.63,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.79708650290154,
+    "cumulative_exposure_fraction": 0.64,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.805278648058483,
+    "cumulative_exposure_fraction": 0.65,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.812161777271433,
+    "cumulative_exposure_fraction": 0.66,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.818997436627741,
+    "cumulative_exposure_fraction": 0.67,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.826165384980537,
+    "cumulative_exposure_fraction": 0.68,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.832763695053641,
+    "cumulative_exposure_fraction": 0.69,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.840026583119719,
+    "cumulative_exposure_fraction": 0.7,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.846767302762746,
+    "cumulative_exposure_fraction": 0.71,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.853602962119054,
+    "cumulative_exposure_fraction": 0.72,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.860951233276946,
+    "cumulative_exposure_fraction": 0.73,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.867748979398082,
+    "cumulative_exposure_fraction": 0.74,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.874442229184468,
+    "cumulative_exposure_fraction": 0.75,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.880850659831007,
+    "cumulative_exposure_fraction": 0.76,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.88692680148106,
+    "cumulative_exposure_fraction": 0.77,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.893145352701035,
+    "cumulative_exposure_fraction": 0.78,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.89841450678819,
+    "cumulative_exposure_fraction": 0.79,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.90349378144878,
+    "cumulative_exposure_fraction": 0.8,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.908952814962499,
+    "cumulative_exposure_fraction": 0.81,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.914791607329346,
+    "cumulative_exposure_fraction": 0.82,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.920393050412988,
+    "cumulative_exposure_fraction": 0.83,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.925140036077091,
+    "cumulative_exposure_fraction": 0.84,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.930504129877528,
+    "cumulative_exposure_fraction": 0.85,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.935868223677964,
+    "cumulative_exposure_fraction": 0.86,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.941137377765119,
+    "cumulative_exposure_fraction": 0.87,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.947355928985094,
+    "cumulative_exposure_fraction": 0.88,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.95267255292889,
+    "cumulative_exposure_fraction": 0.89,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.957941707016045,
+    "cumulative_exposure_fraction": 0.9,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.962593752966866,
+    "cumulative_exposure_fraction": 0.91,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.96781543719738,
+    "cumulative_exposure_fraction": 0.92,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.971992784581791,
+    "cumulative_exposure_fraction": 0.93,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.976929649672458,
+    "cumulative_exposure_fraction": 0.94,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.98115446691351,
+    "cumulative_exposure_fraction": 0.95,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.984999525301434,
+    "cumulative_exposure_fraction": 0.96,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.989936390392101,
+    "cumulative_exposure_fraction": 0.97,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.993496629640178,
+    "cumulative_exposure_fraction": 0.98,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.997531567454666,
+    "cumulative_exposure_fraction": 0.99,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 1.0,
+    "cumulative_exposure_fraction": 1.0,
+    "exact_raw_gini": 0.296022566444282,
+    "model_id": "gam_b20_l10"
+  },
+  {
+    "cumulative_claim_fraction": 0.0,
+    "cumulative_exposure_fraction": 0.0,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.057865755245419,
+    "cumulative_exposure_fraction": 0.01,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.100731035792272,
+    "cumulative_exposure_fraction": 0.02,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.133580176587867,
+    "cumulative_exposure_fraction": 0.03,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.163533656128358,
+    "cumulative_exposure_fraction": 0.04,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.18703123516567,
+    "cumulative_exposure_fraction": 0.05,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.20853726614219,
+    "cumulative_exposure_fraction": 0.06,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.229943985569164,
+    "cumulative_exposure_fraction": 0.07,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.250213614354885,
+    "cumulative_exposure_fraction": 0.08,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.268157220165195,
+    "cumulative_exposure_fraction": 0.09,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.287857210671224,
+    "cumulative_exposure_fraction": 0.1,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.305753346624893,
+    "cumulative_exposure_fraction": 0.11,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.321893097882844,
+    "cumulative_exposure_fraction": 0.12,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.334567549606,
+    "cumulative_exposure_fraction": 0.13,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.34880850659831,
+    "cumulative_exposure_fraction": 0.14,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.360438621475363,
+    "cumulative_exposure_fraction": 0.15,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.373777651191493,
+    "cumulative_exposure_fraction": 0.16,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.387591379474034,
+    "cumulative_exposure_fraction": 0.17,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.401172125166055,
+    "cumulative_exposure_fraction": 0.18,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.414316908762936,
+    "cumulative_exposure_fraction": 0.19,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.425472325073578,
+    "cumulative_exposure_fraction": 0.2,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.437339789233837,
+    "cumulative_exposure_fraction": 0.21,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.449098888917386,
+    "cumulative_exposure_fraction": 0.22,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.459460742428558,
+    "cumulative_exposure_fraction": 0.23,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.470995917592329,
+    "cumulative_exposure_fraction": 0.24,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.481913984619766,
+    "cumulative_exposure_fraction": 0.25,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.49401879806323,
+    "cumulative_exposure_fraction": 0.26,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.504177347384411,
+    "cumulative_exposure_fraction": 0.27,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.516051681274996,
+    "cumulative_exposure_fraction": 0.28,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.525443843159594,
+    "cumulative_exposure_fraction": 0.29,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.534035887211621,
+    "cumulative_exposure_fraction": 0.3,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.544241906389443,
+    "cumulative_exposure_fraction": 0.31,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.554115636570778,
+    "cumulative_exposure_fraction": 0.32,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.5643216557486,
+    "cumulative_exposure_fraction": 0.33,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.57400550650337,
+    "cumulative_exposure_fraction": 0.34,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.582502610842115,
+    "cumulative_exposure_fraction": 0.35,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.591332004177347,
+    "cumulative_exposure_fraction": 0.36,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.599971518086015,
+    "cumulative_exposure_fraction": 0.37,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.608705971707966,
+    "cumulative_exposure_fraction": 0.38,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.618057533466249,
+    "cumulative_exposure_fraction": 0.39,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.627124276084686,
+    "cumulative_exposure_fraction": 0.4,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.636380898129688,
+    "cumulative_exposure_fraction": 0.41,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.644213424475458,
+    "cumulative_exposure_fraction": 0.42,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.652188360391152,
+    "cumulative_exposure_fraction": 0.43,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.65992594702364,
+    "cumulative_exposure_fraction": 0.44,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.667378714516282,
+    "cumulative_exposure_fraction": 0.45,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.67506883129213,
+    "cumulative_exposure_fraction": 0.46,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.682569068641413,
+    "cumulative_exposure_fraction": 0.47,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.690496534700465,
+    "cumulative_exposure_fraction": 0.48,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.698424000759518,
+    "cumulative_exposure_fraction": 0.49,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.706873635241622,
+    "cumulative_exposure_fraction": 0.5,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.715465679293649,
+    "cumulative_exposure_fraction": 0.51,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.72287097692965,
+    "cumulative_exposure_fraction": 0.52,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.731035792271907,
+    "cumulative_exposure_fraction": 0.53,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.738820848761037,
+    "cumulative_exposure_fraction": 0.54,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.74541915883414,
+    "cumulative_exposure_fraction": 0.55,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.752254818190449,
+    "cumulative_exposure_fraction": 0.56,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.758378429697142,
+    "cumulative_exposure_fraction": 0.57,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.766021076616349,
+    "cumulative_exposure_fraction": 0.58,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.773283964682427,
+    "cumulative_exposure_fraction": 0.59,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.780262033608658,
+    "cumulative_exposure_fraction": 0.6,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.786860343681762,
+    "cumulative_exposure_fraction": 0.61,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.793268774328302,
+    "cumulative_exposure_fraction": 0.62,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.80053166239438,
+    "cumulative_exposure_fraction": 0.63,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.807652140890534,
+    "cumulative_exposure_fraction": 0.64,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.814250450963638,
+    "cumulative_exposure_fraction": 0.65,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.821181050033229,
+    "cumulative_exposure_fraction": 0.66,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.828871166809076,
+    "cumulative_exposure_fraction": 0.67,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.836039115161872,
+    "cumulative_exposure_fraction": 0.68,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.843159593658027,
+    "cumulative_exposure_fraction": 0.69,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.849805373587772,
+    "cumulative_exposure_fraction": 0.7,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.856308743947593,
+    "cumulative_exposure_fraction": 0.71,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.861577898034748,
+    "cumulative_exposure_fraction": 0.72,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.868318617677775,
+    "cumulative_exposure_fraction": 0.73,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.874037895405891,
+    "cumulative_exposure_fraction": 0.74,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.880138611981392,
+    "cumulative_exposure_fraction": 0.75,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.886262223488085,
+    "cumulative_exposure_fraction": 0.76,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.890866799582265,
+    "cumulative_exposure_fraction": 0.77,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.895851134529574,
+    "cumulative_exposure_fraction": 0.78,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.902449444602677,
+    "cumulative_exposure_fraction": 0.79,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.907671128833191,
+    "cumulative_exposure_fraction": 0.8,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.913035222633628,
+    "cumulative_exposure_fraction": 0.81,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.918874015000475,
+    "cumulative_exposure_fraction": 0.82,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.923526060951296,
+    "cumulative_exposure_fraction": 0.83,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.929174973891579,
+    "cumulative_exposure_fraction": 0.84,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.935251115541631,
+    "cumulative_exposure_fraction": 0.85,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.940567739485427,
+    "cumulative_exposure_fraction": 0.86,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.946596411278838,
+    "cumulative_exposure_fraction": 0.87,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.951818095509352,
+    "cumulative_exposure_fraction": 0.88,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.957514478306276,
+    "cumulative_exposure_fraction": 0.89,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.96140700655084,
+    "cumulative_exposure_fraction": 0.9,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.966248931928226,
+    "cumulative_exposure_fraction": 0.91,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.97014146017279,
+    "cumulative_exposure_fraction": 0.92,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.974888445836894,
+    "cumulative_exposure_fraction": 0.93,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.979540491787715,
+    "cumulative_exposure_fraction": 0.94,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.98348048988892,
+    "cumulative_exposure_fraction": 0.95,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.98713566885028,
+    "cumulative_exposure_fraction": 0.96,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.990553498528434,
+    "cumulative_exposure_fraction": 0.97,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.993733978923384,
+    "cumulative_exposure_fraction": 0.98,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 0.997579037311307,
+    "cumulative_exposure_fraction": 0.99,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  },
+  {
+    "cumulative_claim_fraction": 1.0,
+    "cumulative_exposure_fraction": 1.0,
+    "exact_raw_gini": 0.324612523979792,
+    "model_id": "hgb_l15"
+  }
+]

@@ -28,6 +28,15 @@ Das Ausführungswerkzeug verwendet genau den aufrufenden Python-Interpreter und 
 
 Keine Evaluationszeile wird exploriert; es entstehen keine Prämienvorhersagen oder GLM-/GAM-/Boosting-Fits. Die 500 Vertragsbootstrap-Ziehungen halten Anzahl, Exponierung und Betrag zusammen. Marginale Poisson-Referenzintervalle sind ausdrücklich annahmegebunden, keine Bänder einer geglätteten Kurve.
 
+[04_frequency_models.ipynb](04_frequency_models.ipynb) prüft den registrierten GLM-/GAM-/Histogramm-Poisson-Vergleich. Es liest gespeicherte echte OOF-Vorhersagen, Aggregat-/Segmentkalibrierung, Faltenstabilität, gepaarte Vertragsziehungen und unterstützte standardisierte Altersprofile. Die Tabellen unterscheiden Jahresraten und erwartete Periodenanzahlen. Modellrefits dienen der Erklärung; ihre Profile sind keine OOF-Gütemaße oder kausalen Wirkungen. Die Evaluation bleibt geschlossen.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.frequency
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/04_frequency_models.ipynb --output data/notebooks/04_frequency_models.executed.ipynb
+```
+
+Der erste Modellaufruf registriert die Spezifikation vor allen Portfoliofits und berechnet fünf Fits je Einstellung. Wiederholungen prüfen die unveränderlichen Vorhersageartefakte und berechnen Diagnostik erneut; sie passen vorhandene Modelle nicht nochmals an. Code- oder Konfigurationsänderungen erzeugen andere Laufkennungen. Die [Methodik und Grenzen](../docs/frequenzmodelle.md) erläutern Strafen, Identifizierung, Unterstützung und Unsicherheit.
+
 Die vier ursprünglichen Notebooks liegen bytegetreu in [legacy/](legacy/). Ihre gespeicherten Ergebnisse, alten Datenpfade und Abhängigkeiten dokumentieren die frühere Analyse. Sie gehören nicht zum aktuellen ausführbaren Ablauf und belegen keine korrigierte Modellgüte. Der neue Datenstand ist von ihren Ergebnissen getrennt. Das Ausführungswerkzeug lehnt diese historischen Dateien ausdrücklich ab.
 
-Die Datenvorbereitung enthält keine Modellanpassung und keine Auswahl von Merkmalen, Glättung, Kappungen oder Ausschlüssen. Der neue OOF-Lauf belegt die Validierungsinfrastruktur anhand des Exponierungs-Basismodells; er enthält keinen GLM-/GAM-/Boosting-Vergleich. Inhaltliche Exploration und Auswahl erfolgen im Entwicklungsbestand gemäß dem vorab festgelegten Protokoll. Die vollständige frühere Datenexploration bleibt Teil der dokumentierten Analysegeschichte.
+Die Datenvorbereitung enthält keine Modellanpassung und keine Auswahl von Merkmalen, Glättung, Kappungen oder Ausschlüssen. Das zweite Notebook belegt die Validierungsinfrastruktur anhand des Exponierungs-Basismodells; der substantielle Vergleich folgt im vierten Notebook. Inhaltliche Exploration und Auswahl erfolgen im Entwicklungsbestand gemäß dem vorab festgelegten Protokoll. Die vollständige frühere Datenexploration bleibt Teil der dokumentierten Analysegeschichte.
