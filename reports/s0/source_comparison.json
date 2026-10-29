@@ -523,8 +523,8 @@
     "ClaimNb": "claims per policy period",
     "Exposure": "policy-years"
   },
-  "identity_scope": "run_id identifies raw-source hashes; script, manifest and software identify the comparison procedure",
-  "manifest_sha256": "8831b945331395bdf0097f516c4b8cedc52e4a9c418c5dafc76b9e1340def5ce",
+  "identity_scope": "run_id identifies raw-source hashes; script and manifest SHA-256 identify exact UTF-8/LF file bytes; software identifies the runtime",
+  "manifest_sha256": "4b11ac2858138a96b323df066693b9aaef45f35f7485704e69cfe5e9f85a1585",
   "normalization": [
     "IDs validated as exact positive integers, including scientific notation; no rounding",
     "R factor labels retained as strings; row names discarded",
@@ -827,7 +827,7 @@
     }
   },
   "run_id": "s0-2a902c26d6f96e7a",
-  "script_sha256": "e7fde1c01b6fe01159a1e78bcd485462dc7451b156a1ddf5429211607aa22a30",
+  "script_sha256": "bd73430d1c365be17fa9a7a01e94636828067c3b581a0cd81898ea448db47c04",
   "software": {
     "numpy": "2.3.5",
     "pandas": "3.0.1",

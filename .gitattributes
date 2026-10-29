@@ -1,0 +1,7 @@
+# Stable bytes for the audit's code and provenance artifacts on every checkout.
+/.gitattributes text eol=lf
+/scripts/s0_compare_sources.py text eol=lf
+/scripts/requirements-s0.txt text eol=lf
+/tests/test_s0_sources.py text eol=lf
+/reports/s0/*.json text eol=lf
+/reports/s0/environment-windows-py312.txt text eol=lf
