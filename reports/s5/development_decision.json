@@ -1,0 +1,55 @@
+{
+  "decision_id": "s5decision-df9a82872ec16be6",
+  "development_manifest_sha256": "18ed2f4cfad250b8d1c4bd1e4a0d3431ba1c624f7b1859074c39aa93ca115285",
+  "evaluation_power": 1.5,
+  "evaluation_used_for_selection": false,
+  "frequency_intercept_annual_rate": 0.07343119029753958,
+  "frequency_refits": {
+    "gam_b20_l10": "3e7940aa74c1f6e98b4472419811785139fe8dd7f4e88ed05e6586a93ff98077",
+    "glm_age_bm_a0001": "c9e672e1335489c761b4c41b2a8a3e46c697eab440706f0c8c53779a21f85eaf",
+    "hgb_l15": "8925dfadce571247da430fc01b1052d9c08dd766a04ac80711ae0bde565059cd"
+  },
+  "frequency_selected_model_id": "hgb_l15",
+  "identity": {
+    "code_sha256": {
+      "config/eda_protocol.json": "cd020a6824eb8d298e6fdec3926ec43fa840a567496cb7d8f43884eb923f5a02",
+      "config/validation_protocol.json": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+      "scripts/verify_severity_inputs.py": "130a2bb08fd8c40a0df53616aa7162866e4e356f0f2a0ff590706ad9bfcf523e",
+      "src/data.py": "76cc5561b3e9da720d3972a9e72d94b9a08b9c5ab2f3020d069657e6ff6f071d",
+      "src/eda.py": "61a05277e2402ef17348984f6907f8279913ac6fdabcbcad3d2c9294e4236f73",
+      "src/frequency_models.py": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
+      "src/metrics.py": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
+      "src/severity.py": "b1650b327c50efa9b55c8f2617dcddf15bb24f31d75fb1de6643654b02154b4a",
+      "src/severity_diagnostics.py": "569a0edc0dfeb7a7328076edfd7b4e47ced6785425d80fc5e447b4250ebefe6e",
+      "src/severity_models.py": "48f8b34173fa3f7942eb2ee4b1fc0cc595e1626ccae81e6577449d1aee1b56a0",
+      "src/validation.py": "680557fa40bbe2115ba45db0148112de4cb0cfa5bda739b71a2c277796832932"
+    },
+    "configuration_sha256": "e5700649e5048299982c74c5d1cc9367df0d35f7631a17e50efab6f81479d69b",
+    "frequency_decision_sha256": "ba15a22cc75896a0fab5edf962710bffd06f8bd6933b197613264a73880bbe9e",
+    "frequency_run_id": "s4freq-737bcb82931ca813",
+    "input_snapshot_sha256": "9e54256a3d3879ad47c8381f5c691404d21ec49c69db2a63eae31499fb80fc4c",
+    "preparation_id": "s1-6b71086d8adc0e3c",
+    "software": {
+      "joblib": "1.6.0",
+      "matplotlib": "3.11.2",
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "26.0.0",
+      "python": "3.12.10",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.16.3",
+      "threadpoolctl": "3.7.0"
+    },
+    "source_id": "cas-744e13a80283a07a",
+    "split_id": "s2split-fe11d414168572dd"
+  },
+  "run_id": "s5sev-2c4bc0d8ad1fd1c1",
+  "selected_pp_model_id": "pp_hgb_mean",
+  "selected_severity_model_id": "severity_mean",
+  "selection_rule": "Primär kleinste Entwicklungs-OOF-Verlustdeviance unter pp_hgb_mean/gamma/log_smear bei derselben eingefrorenen Frequenz. Liegt die konstante Schadenhöhe innerhalb 0,5 Prozent des Minimums, diese einfachere Variante vorziehen. Claim-Gamma-Deviance, Verlustkalibrierung, gepaarte Falten/Bootstrap-Stabilität und Tails zusätzlich dokumentieren; keine erzwungene Verbesserung. pp_intercept_mean ist gesonderte Gesamtbasis, kein Kandidat für eine neue Frequenzauswahl.",
+  "severity_refits": {
+    "severity_gamma": "45de8ec108bb2537b2a16a07d88e437802a7de2217aa294ae899e2b107667a84",
+    "severity_log_smear": "1afa86b6af687e936f10263e99d3a48d8ce2ab54f6515cb3ca01d75c51f471d3",
+    "severity_mean": "fd7a1ce607c65981a9db977acb49c75d08bfe9a1efe3a98ce249798c0afb2776"
+  }
+}

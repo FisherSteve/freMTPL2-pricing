@@ -41,3 +41,12 @@
 /scripts/check_frequency_interaction.py text eol=lf
 /README.md text eol=lf
 /notebooks/README.md text eol=lf
+
+# Claim severity and joint loss-cost evaluation.
+/src/severity*.py text eol=lf
+/tests/test_severity*.py text eol=lf
+/scripts/verify_severity_inputs.py text eol=lf
+/docs/schadenhoehe_risikopraemie.md text eol=lf
+/reports/s5/*.json text eol=lf
+/reports/s5/figures/*.json text eol=lf
+/notebooks/05_severity_pure_premium.ipynb text eol=lf

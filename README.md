@@ -4,7 +4,7 @@ Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio
 
 **Forschungsfrage:** Wie viel der Vorhersagestruktur erfassen ein interpretierbares Poisson-GLM und ein Spline-GAM, und welchen zusätzlichen Nutzen liefert ein Histogramm-Boosting-Modell als Vergleich? Eine gesonderte Analyse von Schadenhöhe und reiner Risikoprämie untersucht die Auswirkungen auf den erwarteten Schadenaufwand.
 
-**Aktueller Stand: Datenaufbereitung, Entwicklungs-EDA und der OOF-Frequenzvergleich von GLM, GAM und Histogramm-Poisson mit fünf Entwicklungsfalten sind geprüft. Das ausgewählte Boosting-Modell reduziert die Deviance gegenüber dem Intercept um 6,56 %. Schadenhöhe, reine Risikoprämie und gemeinsame Evaluation folgen.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
+**Aktueller Stand: Frequenz-, Schadenhöhen- und Risikoprämienvergleich sind auf gemeinsamen festgelegten Entwicklungs- und Evaluationsverträgen berechnet. Vor der Evaluation gewählt wurden HGB-Frequenz und konstante mittlere Schadenhöhe. Die Verlustdeviance sinkt gegenüber der vollständigen Interceptbasis um 9,80 %, während erhebliche Segmentabweichungen und Tail-Unsicherheit bleiben.** Frühere Leistungskennzahlen und Schlussfolgerungen sind historische, nicht verifizierte Ergebnisse und werden hier nicht als bestätigte Befunde dargestellt.
 
 ## Was bisher verifiziert ist
 
@@ -138,7 +138,36 @@ Unter gemeinsam unterstütztem Merkmalsmix bleibt eine höhere modellierte Jahre
 .\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/04_frequency_models.ipynb --output data/notebooks/04_frequency_models.executed.ipynb
 ```
 
-Die gemeinsame Evaluation mit Schadenhöhe und reiner Risikoprämie bleibt geschlossen. Als nächster Schritt werden Schadenhöhe und erwarteter Schadenaufwand unabhängig geprüft; ein marktfähiger Tarif und eine Übertragbarkeit auf Deutschland werden nicht behauptet. GPU-Experimente bleiben optional.
+Die Frequenzentscheidung wurde vor der gemeinsamen Evaluation festgelegt. Die anschließende Schadenhöhen- und Verlustbewertung wird im folgenden Abschnitt dokumentiert; die Auswahl bleibt unverändert. Ein marktfähiger Tarif und eine Übertragbarkeit auf Deutschland werden nicht behauptet. GPU-Experimente bleiben optional.
+
+## Schadenhöhe und reine Risikoprämie
+
+Der begrenzte Vergleich verwendet einzelne positive Schadenzeilen mit Gewicht eins: arithmetisches Trainingsschadenmittel, Gamma-GLM mit Log-Link und Log-OLS mit ausschließlich im Training geschätztem Smearing. Alle späteren Verträge erhalten dieselbe prospektive Vorhersageregel, auch die Verträge ohne Schaden. Die Jahresrisikoprämie ist Frequenz × Schadenhöhe; Periodenkosten sind Exponierung × Jahresrisikoprämie.
+
+Die Entwicklungs-OOF-Auswahl bevorzugt die konstante Schadenhöhe. Nach gesperrter Entscheidung wurden alle Varianten gemeinsam auf **135.599 Evaluationsverträgen mit 5.378 Schadenzeilen** bewertet, einschließlich 130.499 Verträgen ohne Verlust. Das ist nach offengelegter historischer Exploration keine externe oder buchstäblich nie zuvor gesehene Validierung.
+
+| Produkt | Entwicklung: Verlustdeviance | Evaluation: Verlustdeviance | Evaluation: Verlust-A/P |
+|---|---:|---:|---:|
+| Interceptfrequenz × Schadenmittel | 87,233849 | 88,917790 | 1,0488 |
+| HGB × Schadenmittel (vorab gewählt) | 79,194844 | 80,206534 | 1,0481 |
+| HGB × Gamma | 80,386955 | 80,063797 | 1,0807 |
+| HGB × Log-Smearing | 79,370343 | 80,026128 | 1,0308 |
+
+Der gemeinsame Verlustscore ist die exponierungsgewichtete Jahresraten-Tweedie-Deviance mit vorab festgelegter Power 1,5. Gamma und Log-Smearing schneiden auf dem Evaluations-Verlustscore leicht besser ab als die vorab gewählte Konstante; die bedingten gepaarten Intervalle der Unterschiede enthalten null. Die Auswahl wird deshalb nicht nach Einsicht geändert. Für die Schaden-Gamma-Deviance ist das Gamma-Modell in der Evaluation besser als die Konstante; auch dieses Ergebnis bleibt sichtbar.
+
+Das gewählte Produkt prognostiziert **165,60 EUR je Vertragsjahr**, beobachtet werden **173,58 EUR**, A/P **1,048**. Gute Gesamtwerte reichen nicht: Verlust-A/P liegt beispielsweise bei 3,057 für sieben Tage bis unter 0,1 Jahre und 0,607 ab einem Jahr. Schwere Schäden beeinflussen erwartete Summen stark; der zusätzliche Entwicklungsrefit ohne den größten Verlustvertrag verändert die Portfoliovorhersage um etwa 6–9 %. Primär werden keine Beträge gekappt oder Zeilen entfernt.
+
+[Methodik, vollständige Ergebnisse und Grenzen](docs/schadenhoehe_risikopraemie.md), [Entwicklungsentscheidung](reports/s5/development_decision.json), [Evaluationsergebnisse](reports/s5/evaluation_report.json), [Notebook](notebooks/05_severity_pure_premium.ipynb) und [Reproduzierbarkeitsnachweis](reports/s5/reproducibility.json). Lauf `s5sev-2c4bc0d8ad1fd1c1`.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verify_severity_inputs.py
+.\.venv\Scripts\python.exe -m src.severity develop
+.\.venv\Scripts\python.exe -m src.severity evaluate
+.\.venv\Scripts\python.exe -m src.severity_figures
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/05_severity_pure_premium.ipynb --output data/notebooks/05_severity_pure_premium.executed.ipynb
+```
+
+Die neue Eingangsprüfung dokumentiert den überprüften Wiederholungslauf mit CPython 3.12.10 und unveränderten numerischen Frequenzvorhersagen. Historische Herkunftsnachweise bleiben ihrem damaligen Lauf zugeordnet. Bootstrap-Intervalle verwenden ganze Verträge bei festen Vorhersagen; sie enthalten keine neue Anpassung, Modellwahl- oder unbekannte Haushaltsunsicherheit. Die integrierte Reproduktion des gesamten Ablaufs folgt als nächster Arbeitsschritt.
 
 ## Daten und Reproduzierbarkeit
 

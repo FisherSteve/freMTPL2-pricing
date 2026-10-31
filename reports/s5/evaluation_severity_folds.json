@@ -1,0 +1,44 @@
+[
+  {
+    "claim_actual_over_predicted": 1.051771671618181,
+    "claim_mae_eur": 2301.45875034823,
+    "claim_rmse_eur": 19582.472157413184,
+    "claims": 5378,
+    "fold": 0,
+    "mean_gamma_deviance": 1.733921081843607,
+    "model_id": "severity_gamma",
+    "observed_claim_mean_eur": 2310.9821216065457,
+    "observed_loss_eur": 12428461.850000001,
+    "predicted_claim_mean_eur": 2197.227957329401,
+    "predicted_total_for_observed_claims_eur": 11816691.954517517,
+    "split": "evaluation"
+  },
+  {
+    "claim_actual_over_predicted": 1.003220851395165,
+    "claim_mae_eur": 2365.791811160376,
+    "claim_rmse_eur": 19593.039779440285,
+    "claims": 5378,
+    "fold": 0,
+    "mean_gamma_deviance": 1.808366590548326,
+    "model_id": "severity_log_smear",
+    "observed_claim_mean_eur": 2310.9821216065457,
+    "observed_loss_eur": 12428461.850000001,
+    "predicted_claim_mean_eur": 2303.5626885074157,
+    "predicted_total_for_observed_claims_eur": 12388560.138792882,
+    "split": "evaluation"
+  },
+  {
+    "claim_actual_over_predicted": 1.025323833469515,
+    "claim_mae_eur": 2320.91194159234,
+    "claim_rmse_eur": 19592.821403538375,
+    "claims": 5378,
+    "fold": 0,
+    "mean_gamma_deviance": 1.806203602183787,
+    "model_id": "severity_mean",
+    "observed_claim_mean_eur": 2310.9821216065457,
+    "observed_loss_eur": 12428461.850000001,
+    "predicted_claim_mean_eur": 2253.904616443558,
+    "predicted_total_for_observed_claims_eur": 12121499.027233455,
+    "split": "evaluation"
+  }
+]

@@ -1,0 +1,257 @@
+{
+  "baseline_commit": "d8a4773c3ef89d4ddde52b4febd22e024d476d4a",
+  "bounded_actual_refit_checks": {
+    "severity_gamma": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_match": true,
+      "fold": 1,
+      "local_path": "data/s5checks/repeat-severity_gamma.json",
+      "maximum_absolute_prediction_difference": 0.0,
+      "sha256": "7b3bdd2d7c4716badd06011bdf4c6787d27be6634d845352c1b50541211649de",
+      "training_claim_rows": 16772,
+      "validation_policies": 108479
+    },
+    "severity_log_smear": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_match": true,
+      "fold": 1,
+      "local_path": "data/s5checks/repeat-severity_log_smear.json",
+      "maximum_absolute_prediction_difference": 0.0,
+      "sha256": "eb131bdb50e8b32849dbc14c879d0cd6f26084e0977587949f382c4f80ef2f55",
+      "training_claim_rows": 16772,
+      "validation_policies": 108479
+    },
+    "severity_mean": {
+      "exact_float_array_match": true,
+      "fit_diagnostics_match": true,
+      "fold": 1,
+      "local_path": "data/s5checks/repeat-severity_mean.json",
+      "maximum_absolute_prediction_difference": 0.0,
+      "sha256": "05a172bce38eb1ffab6491a9bc4a5454abc1d4cd8b8cc21a96771f5200c8abff",
+      "training_claim_rows": 16772,
+      "validation_policies": 108479
+    }
+  },
+  "checks": {
+    "development_full_refits": 3,
+    "development_influence_refits": 3,
+    "development_oof_fits": 15,
+    "development_positive_claim_rows": 21066,
+    "development_predictions_per_severity_model": 542392,
+    "evaluation_positive_claim_rows": 5378,
+    "evaluation_predictions_per_model": 135599,
+    "evaluation_zero_loss_policies": 130499,
+    "exclusions_in_primary_analysis": 0,
+    "figure_files_and_manifest_byte_identical_on_repeat": 5,
+    "fit_warnings": 0,
+    "four_figures_visually_reviewed": true,
+    "frequency_models_refitted_for_s5": 0,
+    "fresh_kernel_code_cells": 7,
+    "independent_actual_fold_one_refits": 3,
+    "independent_development_checks": "15 training-only fold designs/claim-key hashes, coefficients, five training claim means, smearing, 3 keyed all-policy prediction sets, unit-claim Gamma and annual-rate Tweedie scores, all 500 policy bootstrap draws, reconciliation, refit hashes and locked decision verified before evaluation release.",
+    "independent_evaluation_checks": "All frozen evaluation IDs/folds and claim memberships, 3 severity/4 frequency/4 premium sets, refit predictions without fitting, Gamma/Poisson/annual-weighted and separate period-Tweedie scores, A/P and 500 paired policy bootstrap draws independently recovered.",
+    "independent_model_checks": "Statsmodels Gamma with explicit log link; independent likelihood gradient/optimum; expected-Fisher leverage; log-OLS and training smearing; own-fold isolation and unknown categories.",
+    "new_statistical_contract_tests": 32,
+    "notebook_cell_errors": 0,
+    "pip_check": "No broken requirements found.",
+    "preexisting_environment_directory_preserved": true,
+    "preexisting_tracked_files_preserved": 37,
+    "primary_report_files_byte_identical_on_repeat": 22,
+    "selection_changed_after_evaluation": false,
+    "source_notebook_output_free": true,
+    "unit_tests_passed": 140
+  },
+  "commands_executed": [
+    ".venv/Scripts/python.exe -m unittest discover -s tests -q",
+    ".venv/Scripts/python.exe -m unittest tests.test_severity tests.test_severity_models tests.test_severity_diagnostics -q",
+    ".venv-fremtpl2/Scripts/python.exe -u -m unittest tests.test_severity_models -v",
+    ".venv-fremtpl2/Scripts/python.exe -m unittest tests.test_severity_diagnostics -v",
+    ".venv/Scripts/python.exe -m pip check",
+    ".venv/Scripts/python.exe scripts/verify_severity_inputs.py --compare-historical-cache",
+    ".venv/Scripts/python.exe -m src.severity develop",
+    ".venv/Scripts/python.exe -m data.s5.independent_development_audit",
+    ".venv/Scripts/python.exe -m src.severity evaluate",
+    ".venv/Scripts/python.exe -m data.s5.independent_evaluation_audit",
+    ".venv/Scripts/python.exe -m src.severity develop --report-dir data/s5/repeat",
+    ".venv/Scripts/python.exe -m src.severity evaluate --report-dir data/s5/repeat",
+    ".venv/Scripts/python.exe -m src.severity_figures",
+    ".venv/Scripts/python.exe -m src.severity_figures --output data/s5/figure-repeat",
+    ".venv/Scripts/python.exe scripts/execute_notebook.py notebooks/05_severity_pure_premium.ipynb --output data/notebooks/05_severity_pure_premium.executed.ipynb",
+    "git diff --check"
+  ],
+  "decision_id": "s5decision-df9a82872ec16be6",
+  "execution_notes": [
+    "Fresh local Jupyter kernel used the established outside-sandbox startup path; known external Windows Proactor/add_reader and local TCP startup warnings; no notebook-cell errors.",
+    "Earlier S1-S4 report/notebook replay changes remain local and uncommitted; current bridge preserves their scientific lineage without rewriting historical execution claims."
+  ],
+  "files_sha256": {
+    ".gitattributes": "671b61b27aadd2402eaf981e22ef817e88ef9b3df9fdf488fb9880cae542e133",
+    "README.md": "606c73723a235d8e2f3edcd0291e1059d7c68e38523b9d6f6f5437cb57ee819a",
+    "config/severity_protocol.json": "e5700649e5048299982c74c5d1cc9367df0d35f7631a17e50efab6f81479d69b",
+    "docs/schadenhoehe_risikopraemie.md": "db3a6180bc3f692ac1ccbbb89d2e1f0c9e6c29db682239051f9da0b058fe205e",
+    "notebooks/05_severity_pure_premium.ipynb": "52c841ff6176d084780197f26428c8a1ed6965403454af020c8b70f3a1d1363b",
+    "notebooks/README.md": "a6fc4ef51ea0ab673022ecd220ec25f7e9c8fcb998e8a326564b83c27877581a",
+    "reports/s5/development_bootstrap.json": "21a4d743492b3476d040472483f2eab622c6edcda241f30cd03165dc8642bcf1",
+    "reports/s5/development_decision.json": "4852a36e9e974236c78843827883bdc2e11d033e8ebfb99c5775b27d2853eae6",
+    "reports/s5/development_loss_components.json": "be63e3e4e8551036f3974eda2aebfc60623c284831afb4262f0cb1c38c88ec83",
+    "reports/s5/development_loss_folds.json": "8f38a87ffc746ad3e31407fe1743b30b7bf6706f1436189c80a287176414743b",
+    "reports/s5/development_loss_scores.json": "9b1c9fc8c9df84e18a70d2601eecfa3dd08162c8a7c2715b4731c8a2c85abc9d",
+    "reports/s5/development_loss_segments.json": "5a7cd1219de6407b2a53ddaa1ac749dccbbfc456959ddda5d189057364b12982",
+    "reports/s5/development_report.json": "18ed2f4cfad250b8d1c4bd1e4a0d3431ba1c624f7b1859074c39aa93ca115285",
+    "reports/s5/development_severity_folds.json": "6953ef5065e7c3b587ab5d90175f7bc73d56a29ef7e0beb2cf632b4717cc68ed",
+    "reports/s5/development_severity_scores.json": "a6fcfae4bfae53f20d1d94c82b43372cb4bd3ddad6d4b2e5592c29d9a1cae8f9",
+    "reports/s5/development_severity_segments.json": "83e279e9d8a7dcee01d2ec4ba00cc242f1c29ea9b98e5aa801268591356050e8",
+    "reports/s5/evaluation_bootstrap.json": "9fef0ccdb813aee57e56cda94bcc552bee616e6e25a3bdb43034665a1116b2b3",
+    "reports/s5/evaluation_frequency_calibration.json": "3695dd46cc5ead84aa36da6b7db3729f81aff30aeda1c9a25daf42e90b10a4ae",
+    "reports/s5/evaluation_frequency_scores.json": "59d42a32bc2ffada43a49aace12e5042dc21579d1413ad02f6f75a7e2608a18b",
+    "reports/s5/evaluation_loss_components.json": "1eb5b97886ef3334fadb4b08fce7639d5e06b8d08aa1524759c6d98e4453ec3c",
+    "reports/s5/evaluation_loss_folds.json": "6a80254fb88c7f9e2456eb8d230440184f9f68c0c5209682535eb968faaadf0a",
+    "reports/s5/evaluation_loss_scores.json": "b4d24d590299951733eb2f5c073fa1ed29363a8a1edae654d618e9324769ea11",
+    "reports/s5/evaluation_loss_segments.json": "2c3cdef1b91b422e2c55220279c43159957048ddcced04ce93c7a36d5506a381",
+    "reports/s5/evaluation_release.json": "9e9a1d9fcd24e2c3df8367499142fe72a9dac222dd07a059da00c254e88dbae0",
+    "reports/s5/evaluation_report.json": "a4d6a5b787dbb1f22d0145bb71ebc0fb845002eb40920a82819d8e26ad2d52c0",
+    "reports/s5/evaluation_severity_folds.json": "edcc2d6981cda9aa1f0e601ef25f2f063b64a92727091c3b9245c70606b66eaf",
+    "reports/s5/evaluation_severity_scores.json": "6a664b29b7045f1536f12cf613f9f2bc3e449a15dc632e6f640cb55efa7c281a",
+    "reports/s5/evaluation_severity_segments.json": "e55bfc4a66beeae59a445692093ddb8365cd17f947dfe7ef69aca80fbd723d1d",
+    "reports/s5/figures/alter_zerlegung.png": "cd4d60f4b51931fdc6970775d0841687e97b54fa71d29e96bac04d94d79f7023",
+    "reports/s5/figures/manifest.json": "69667b33bcdf316148fdd0db408d8c13b91b754268ca63220406ad185e4c16e4",
+    "reports/s5/figures/risikopraemie_kalibrierung.png": "ed016e625ed9e824bb5338d23ea08ced799d1e7ecc5f4f1c1fae65b6daea4933",
+    "reports/s5/figures/schadenhoehe_vergleich.png": "09fe8d6e803d5017ed5d708122ff72fb7c9edc90dbf089b6fff6902b1476a8e1",
+    "reports/s5/figures/tail_einfluss.png": "edfc4f8b7f7af9cddaafacd5506cffeef936cb6e40729587723de621d1de53a5",
+    "reports/s5/input_snapshot.json": "9e54256a3d3879ad47c8381f5c691404d21ec49c69db2a63eae31499fb80fc4c",
+    "scripts/verify_severity_inputs.py": "130a2bb08fd8c40a0df53616aa7162866e4e356f0f2a0ff590706ad9bfcf523e",
+    "src/severity.py": "b1650b327c50efa9b55c8f2617dcddf15bb24f31d75fb1de6643654b02154b4a",
+    "src/severity_diagnostics.py": "569a0edc0dfeb7a7328076edfd7b4e47ced6785425d80fc5e447b4250ebefe6e",
+    "src/severity_figures.py": "40091b151156a4935d9baa4c569e28ad94b4966fc9cc1949a542779c6af42f12",
+    "src/severity_models.py": "48f8b34173fa3f7942eb2ee4b1fc0cc595e1626ccae81e6577449d1aee1b56a0",
+    "tests/test_severity.py": "a01a318d8cada4fad247e9472b226a86d9420f64cf5a6771f508fdfed3925b16",
+    "tests/test_severity_diagnostics.py": "3a26942e4a8724f046f1e939d15fe6b52eefcceaf9dfa2de0894d57f6a8440c7",
+    "tests/test_severity_models.py": "48491856a2e745c276fbc79568c923692c6bbf8a7a082b8e19ff9f4afd3f14a4"
+  },
+  "frequency_run_id": "s4freq-737bcb82931ca813",
+  "independent_checks": {
+    "independent_development_audit": {
+      "local_path": "data/s5/independent_development_audit.json",
+      "sha256": "29198303fd85ab5a002959893686f456ee6eff47432988e6a18d87d1864e128d"
+    },
+    "independent_evaluation_audit": {
+      "local_path": "data/s5/independent_evaluation_audit.json",
+      "sha256": "37010cb0793612085559e28a71eb3eb9e8230ce207246ba269963d7b8132dbd7"
+    },
+    "prerequisite_audit": {
+      "local_path": "data/s5/prerequisite_audit.json",
+      "sha256": "557c0cb28042f52c76d0e716b6f9568b022ae2e44ffa4cf4a338c86722023529"
+    }
+  },
+  "limitations": [
+    "Constant severity was selected before evaluation; lower alternative evaluation scores do not trigger reselection.",
+    "Substantial age, duration and other segment loss miscalibration prevents a claim of a directly usable tariff.",
+    "Fixed-prediction policy bootstrap omits refitting/selection/unknown households and unseen extreme losses.",
+    "Global training smearing is not established as conditionally unbiased; it remains a comparison candidate.",
+    "Historical full-data exploration is disclosed; evaluation is not external or literally historically unseen.",
+    "Complete fresh-clone integration and public consistency audit remain the next sprint."
+  ],
+  "local_executed_notebook": {
+    "path": "data/notebooks/05_severity_pure_premium.executed.ipynb",
+    "sha256": "d6d9392a8b2fb3560c499969b135b731c0e0883802fc9df85b514eb7e8f95a39"
+  },
+  "merged_base_commit": "a8252fe6aa2dedf3c52c3a584c8b23ffe7f12718",
+  "platform_verified": "Windows x64 / CPython 3.12.10 with all 63 locked distributions verified; Linux/macOS not executed.",
+  "preparation_id": "s1-6b71086d8adc0e3c",
+  "run_id": "s5sev-2c4bc0d8ad1fd1c1",
+  "scope": "Claim severity and all-policy annual loss-cost comparison; locked joint evaluation; no post-evaluation reselection.",
+  "software": {
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "pyarrow": "26.0.0",
+    "python": "3.12.10",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.16.3",
+    "statsmodels": "0.15.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd",
+  "timing": {
+    "models": {
+      "severity_gamma": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 0.7580738999999994
+          },
+          {
+            "fold": 2,
+            "seconds": 0.7679357000001801
+          },
+          {
+            "fold": 3,
+            "seconds": 0.8037005999999565
+          },
+          {
+            "fold": 4,
+            "seconds": 0.8061835999999403
+          },
+          {
+            "fold": 5,
+            "seconds": 0.7326271000001725
+          }
+        ],
+        "sha256": "c3f679020703e56da803374f3008b4638e1fb3db460f3c03e636a0f8844b4e77"
+      },
+      "severity_log_smear": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 0.8001447999999982
+          },
+          {
+            "fold": 2,
+            "seconds": 0.7529221999998299
+          },
+          {
+            "fold": 3,
+            "seconds": 0.8170471000000816
+          },
+          {
+            "fold": 4,
+            "seconds": 0.7782939000001079
+          },
+          {
+            "fold": 5,
+            "seconds": 0.7713750999998865
+          }
+        ],
+        "sha256": "771dfcfc20fd1e2e38de0fc5472f06095872bc1cc88cb9cd62c59702be223c04"
+      },
+      "severity_mean": {
+        "folds": [
+          {
+            "fold": 1,
+            "seconds": 0.3664372999999159
+          },
+          {
+            "fold": 2,
+            "seconds": 0.37819119999994655
+          },
+          {
+            "fold": 3,
+            "seconds": 0.33425160000001597
+          },
+          {
+            "fold": 4,
+            "seconds": 0.37650810000013735
+          },
+          {
+            "fold": 5,
+            "seconds": 0.33949840000013864
+          }
+        ],
+        "sha256": "b6610b149e09847cf1863c91605dac3d48c0e5b4805d8bcf89809dfad1f6fa44"
+      }
+    },
+    "scope": "Recorded per OOF fold: fitting, prediction and contract metadata; not a complete wall-clock or pure optimizer benchmark. Independent refit timings are in the local repeat records."
+  }
+}

@@ -28,7 +28,7 @@ Das Ausführungswerkzeug verwendet genau den aufrufenden Python-Interpreter und 
 
 Keine Evaluationszeile wird exploriert; es entstehen keine Prämienvorhersagen oder GLM-/GAM-/Boosting-Fits. Die 500 Vertragsbootstrap-Ziehungen halten Anzahl, Exponierung und Betrag zusammen. Marginale Poisson-Referenzintervalle sind ausdrücklich annahmegebunden, keine Bänder einer geglätteten Kurve.
 
-[04_frequency_models.ipynb](04_frequency_models.ipynb) prüft den registrierten GLM-/GAM-/Histogramm-Poisson-Vergleich. Es liest gespeicherte echte OOF-Vorhersagen, Aggregat-/Segmentkalibrierung, Faltenstabilität, gepaarte Vertragsziehungen und unterstützte standardisierte Altersprofile. Die Tabellen unterscheiden Jahresraten und erwartete Periodenanzahlen. Modellrefits dienen der Erklärung; ihre Profile sind keine OOF-Gütemaße oder kausalen Wirkungen. Die Evaluation bleibt geschlossen.
+[04_frequency_models.ipynb](04_frequency_models.ipynb) prüft den registrierten GLM-/GAM-/Histogramm-Poisson-Vergleich im Entwicklungsbestand. Es liest gespeicherte echte OOF-Vorhersagen, Aggregat-/Segmentkalibrierung, Faltenstabilität, gepaarte Vertragsziehungen und unterstützte standardisierte Altersprofile. Die Tabellen unterscheiden Jahresraten und erwartete Periodenanzahlen. Modellrefits dienen der Erklärung; ihre Profile sind keine OOF-Gütemaße oder kausalen Wirkungen. Dieses Notebook öffnet die Evaluation nicht; deren spätere gemeinsame Bewertung steht im fünften Notebook.
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.frequency
@@ -36,6 +36,18 @@ Keine Evaluationszeile wird exploriert; es entstehen keine Prämienvorhersagen o
 ```
 
 Der erste Modellaufruf registriert die Spezifikation vor allen Portfoliofits und berechnet fünf Fits je Einstellung. Wiederholungen prüfen die unveränderlichen Vorhersageartefakte und berechnen Diagnostik erneut; sie passen vorhandene Modelle nicht nochmals an. Code- oder Konfigurationsänderungen erzeugen andere Laufkennungen. Die [Methodik und Grenzen](../docs/frequenzmodelle.md) erläutern Strafen, Identifizierung, Unterstützung und Unsicherheit.
+
+[05_severity_pure_premium.ipynb](05_severity_pure_premium.ipynb) prüft anschließend den Schadenhöhenvergleich und die gemeinsame Evaluation. Es zeigt echte Entwicklungs-OOF-Ergebnisse, die davor gesperrte Entscheidung, gehaltene Schaden- und Verlustscores, A/P, ganze Vertragsbootstrap-Ziehungen, Segmentkalibrierung und Tail-/Smearing-Diagnostik. Alle Evaluationsverträge einschließlich der Nullverlustverträge erhalten dieselbe prospektive Vorhersageregel. Das Notebook überprüft lokale Modell- und Vorhersagehashes sowie Entscheidung, Freigabe und vier Abbildungen; es passt kein Modell an und wählt nach der Evaluation nichts neu aus.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verify_severity_inputs.py
+.\.venv\Scripts\python.exe -m src.severity develop
+.\.venv\Scripts\python.exe -m src.severity evaluate
+.\.venv\Scripts\python.exe -m src.severity_figures
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/05_severity_pure_premium.ipynb --output data/notebooks/05_severity_pure_premium.executed.ipynb
+```
+
+Vor dem zweiten Modellbefehl müssen Entwicklungsentscheidung und Refits feststehen. Die feste Tweedie-Power 1,5 und der exponierungsgewichtete Jahresratenscore werden nicht aus der Evaluation ausgewählt. Der getrennte Periodenscore hat eine andere Exponierungsskalierung. [Schadenhöhe, Produktannahme, Ergebnisse und Grenzen](../docs/schadenhoehe_risikopraemie.md) erläutern, warum die unverändert gewählte konstante Schadenhöhe trotz kleinerer einzelner Evaluationsscores anderer Modelle beibehalten wird und weshalb die Verlustkalibrierung keinen unmittelbar verwendbaren Tarif begründet.
 
 Die vier ursprünglichen Notebooks liegen bytegetreu in [legacy/](legacy/). Ihre gespeicherten Ergebnisse, alten Datenpfade und Abhängigkeiten dokumentieren die frühere Analyse. Sie gehören nicht zum aktuellen ausführbaren Ablauf und belegen keine korrigierte Modellgüte. Der neue Datenstand ist von ihren Ergebnissen getrennt. Das Ausführungswerkzeug lehnt diese historischen Dateien ausdrücklich ab.
 
