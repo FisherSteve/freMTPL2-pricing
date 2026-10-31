@@ -1,0 +1,78 @@
+{
+  "additional_commands_executed": [
+    "python -m pip install -r requirements.lock.txt (separate fresh environment)",
+    "python scripts/reproduce.py --fresh (isolated clone)",
+    "python scripts/verify_reproduction.py --run-root data/s6/fresh-main",
+    "python scripts/build_results.py --check (published-reference snapshot)",
+    "python -m unittest discover -s tests -q (existing environment)",
+    "git diff --check"
+  ],
+  "checks": {
+    "byte_identical_current_figures": 14,
+    "complete_fresh_commands": 19,
+    "exact_complete_keyed_prediction_tables": 15,
+    "exact_scientific_aggregate_tables": 54,
+    "executed_notebook_code_cells": 32,
+    "fresh_kernel_notebooks": 5,
+    "independent_numerical_verification": "Direct NumPy/Pandas algebra: whole-portfolio reconciliation, ten frequency scores/50 fold memberships, 15 severity training memberships, three claim-Gamma and four annual/period-Tweedie/A/P comparisons in both phases, all-policy products, evaluation keys and zero primary exclusions.",
+    "independent_public_consistency": "36 README numerical/identity assertions, links, figure manifests and selected actual plots independently inspected; all14 reproduced graphics byte-identical to the previously visually checked originals. No unresolved high/critical validity objection.",
+    "locked_selection_preserved": true,
+    "new_reporting_tests": 3,
+    "notebook_cell_errors": 0,
+    "report_tampering_mutations": 4,
+    "test_suite": "143 tests passed in existing and freshly installed environments"
+  },
+  "decision_id": "s5decision-df9a82872ec16be6",
+  "files_sha256": {
+    ".gitattributes": "c96d3cf09ce2d9ac43318df72241ac462b31bb9a967905c650894897dec3d10b",
+    "README.md": "4f214aebc3557dabfb6fc670eb2d7fa81fee625ee57222df15fb9bd534f952a0",
+    "docs/eda.md": "4b05a779e48d5a061a5c0a0671b62efaf7698af341c5f7a43de477f28b0304f2",
+    "docs/ergebnisse.md": "92f028360d33307bd715b971def553bfd0a35e0d338dbdbfd69333d1ca4a58e4",
+    "docs/frequenzmodelle.md": "9e87e8ea16324cbd401c09876b572afe027ccd7d3d76b6f998dd1ed5228f5750",
+    "docs/reproduktion.md": "1de7e69da13fc8102166e59f116794121fef8e5c99eadd48be54bb9e5d608999",
+    "docs/schadenhoehe_risikopraemie.md": "09fa219180e74a23987540e378f6419661def421d5dddd4ea4e96f9a9d806abc",
+    "docs/validierung.md": "9d4690ec77983132c601892406d93ce68036ab66d7e3e117e671d9f8b6dd3909",
+    "figures/README.md": "2fe02ed2ee11da6f119d12dbf44d2ec9c65b4936556a8d5c08ac44c93971dfeb",
+    "reports/figs/README.md": "8960cd70215ce5ea68d855b769902fcad0da13b928716f62b9456520e59050e7",
+    "reports/s6/reproduction.json": "c3ce1fb8b6a9a2950b0e73df5e72db08e3deb8faf0c61a350af12c8a9e25e0d3",
+    "reports/s6/results.json": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
+    "scripts/build_results.py": "8f2d39bd4f2ec6ca74505b7dee18acd07d8a138335931c739f143f0366d60659",
+    "scripts/reproduce.py": "499740875c3dfaf5f6d898f6f8d5667bd8b012fba0da5de9675cd485f40dbbb9",
+    "scripts/verify_reproduction.py": "75b204e017443b39d2c60a2d1a5a97effd656006597c51aa592bf9446f6ccc03",
+    "tests/test_reporting.py": "9f6a74b9a4f92dad919815df9e6510cee97cf14cb89996ed087df8247bf0306d"
+  },
+  "frequency_run_id": "s4freq-737bcb82931ca813",
+  "independent_check_records": {
+    "data/s6/review/independent_validity.json": "3122e0bd9e829170286594494ce76718ad23343001d5f243dde5dbcc44cf965b",
+    "data/s6/review/readme_consistency.json": "51ee666f30b63316c6edbbcc49660bcc5bf6f5e0e8d3695c5139db3177ed45f3",
+    "data/s6/review/reproduction_contract_review.json": "90b73560763aa08a84d1e5e1503fa9e6791cc3928d0b311370f769ddc121d008",
+    "data/s6/review/result_summary_contract.json": "33a9bcdc97e0ba39bdff9c97839562d9a66115d4acfa95ab8845a3bd4d440bff"
+  },
+  "limitations": [
+    "Only Windows x64 / CPython3.12.10 executed; no cross-platform claim.",
+    "Fixed-prediction intervals omit refitting, selection, unknown households and unseen extreme losses.",
+    "Historical full-data exploration remains; this is not external or temporal validation.",
+    "Strong duration/age loss miscalibration prevents a directly usable tariff claim.",
+    "Final saved-output publication of regular active notebooks remains the later final presentation gate."
+  ],
+  "lock_verification": {
+    "locked_distributions": 63,
+    "mismatches": {},
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "measured_workflow": {
+    "sampled_peak_tree_rss_bytes": 2625806336,
+    "sampling_seconds": 0.2,
+    "scope": "Wall time includes each child process. RSS is the maximum sampled sum over its process tree at 0.2-second intervals, not exact peak or unique physical memory; shared pages may be counted twice. Installation and this monitor are excluded.",
+    "wall_seconds": 1685.5709318999998
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "preparation_id": "s1-6b71086d8adc0e3c",
+  "python": "3.12.10",
+  "reference_commit": "53018083970c9b1e6def77f7783518b9703ca6f0",
+  "scope": "Vollständige Reproduktion des festgelegten Frequenz-/Schadenhöhen-/Risikoprämienvergleichs; keine neue Auswahl oder neue Modellfamilie.",
+  "severity_run_id": "s5sev-2c4bc0d8ad1fd1c1",
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd"
+}

@@ -58,7 +58,7 @@ Die Splitkennung umfasst Quellidentität, sortierte Schlüsselmenge und Aufteilu
 
 In jedem der fünf Entwicklungsläufe wird auf vier Falten trainiert und ausschließlich die ausgelassene Falte vorhergesagt. Jeder Entwicklungsvertrag erhält genau eine zu ihm passende Out-of-Fold-Vorhersage. Gelernte Vorverarbeitung wird zusammen mit dem Schätzer für jede Trainingsfalte neu geklont und angepasst. Dies folgt dem Grundsatz der [ausschließlich auf Trainingsdaten angepassten Vorverarbeitung](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage). Unbekannte Validierungskategorien müssen ausdrücklich behandelt und dokumentiert werden, beispielsweise mit `OneHotEncoder(handle_unknown="ignore")`.
 
-Der aktuelle reale Lauf passt ausschließlich das Exponierungs-Basismodell an:
+Das Exponierungs-Basismodell liefert die Referenz für den anschließend berechneten [Frequenzvergleich](frequenzmodelle.md):
 
 $$
 \widehat r_{-k}=\frac{\sum_{i\in\mathcal D\setminus\mathcal F_k}N_i}{\sum_{i\in\mathcal D\setminus\mathcal F_k}e_i}.
@@ -70,7 +70,7 @@ Der Gesamtscore wird aus allen OOF-Beobachtungen berechnet. Gleichwertig ist das
 
 Vorhersagen enthalten `IDpol`, Split, Falte, Modell- und Laufkennung, Jahresrate und erwartete Periodenanzahl. Ihre Manifeste nennen Quelle, Vorbereitung, Split, Protokoll, Code und Software. Modelle werden anhand von Schlüsseln zusammengeführt, niemals allein anhand ihrer Zeilenposition oder einer wiederverwendeten Variablen wie `test_pred`.
 
-## Vorab begrenzter späterer Vergleich
+## Vorab begrenzter Modellvergleich
 
 Die inhaltlichen Merkmale und Terme werden nach der Entwicklungs-EDA begründet und vor dem jeweiligen Fit registriert. Das Protokoll setzt dafür eine Obergrenze:
 
@@ -79,7 +79,7 @@ Die inhaltlichen Merkmale und Terme werden nach der Entwicklungs-EDA begründet 
 | Exponierungs-Basismodell | Eine Konfiguration; Rate aus Trainingssummen |
 | Poisson-GLM | Höchstens zwei explizite Kodierungen und drei Regularisierungsstufen, insgesamt höchstens sechs Konfigurationen |
 | Penalisiertes Poisson-GAM | Basisgrößen 10/20 und Glättungsstrafen 0,1/1/10, insgesamt höchstens sechs Konfigurationen |
-| Histogramm-Poisson-Boosting | Blattzahl 15/31 und L2-Strafe 0/1, insgesamt vier Konfigurationen; Lernrate 0,05, 300 Iterationen, `early_stopping=False` |
+| Histogramm-Poisson-Boosting | `max_leaf_nodes=15/31` und L2-Strafe 0/1, insgesamt vier Konfigurationen; Lernrate 0,05, 300 Iterationen, `early_stopping=False` |
 
 Alle Kandidaten verwenden dieselben fünf Entwicklungsfalten. Strafparameter verschiedener Bibliotheken sind ohne Prüfung ihrer Zielfunktionen und Skalierung nicht gleichzusetzen. Konvergenzprobleme und begrenzte Reparaturen werden dokumentiert; sie eröffnen keine unbegrenzte Suche. Die [Boosting-API](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html) besitzt automatische Frühstoppregeln; die ausdrückliche Deaktivierung vermeidet hier eine zusätzliche implizite Validierungsaufteilung.
 
@@ -87,11 +87,11 @@ Primär zählt die OOF-Deviance, ergänzt durch Aggregat- und Segmentkalibrierun
 
 OOF-Werte, die zur Auswahl verwendet werden, sind Selektionsschätzungen. Sie bewerten nicht unverzerrt das gesamte abgestimmte Verfahren. Die [scikit-learn-Darstellung zu verschachtelter Validierung](https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html) erläutert diese Unterscheidung; eine verschachtelte Validierung wird hier nicht behauptet.
 
-## Stabilität und spätere Evaluation
+## Stabilität und gemeinsame Evaluation
 
-Geplant sind gepaarte Differenzen der Faltenscores sowie 500 gepaarte Bootstrap-Ziehungen von Entwicklungsvertragszeilen mit Seed `20261030`. In jeder Ziehung werden dieselben Vertragsindizes für alle Kandidaten verwendet und die Deviance-Differenz durch die gezogene Exponierung normalisiert. Die 2,5-/97,5-Perzentile beschreiben Stichprobenstabilität **bei festen Vorhersagen**. Sie enthalten weder erneutes Fitten noch die Unsicherheit der Modellwahl und beheben keine unbeobachtete Haushaltsabhängigkeit. Die fünf Fits mit überlappenden Trainingsmengen sind keine unabhängigen Wiederholungen für einen naiven Standardfehler. Diese Vergleichs- und Bootstrap-Auswertungen sind vorab geplant, noch nicht als empirische Ergebnisse ausgeführt.
+Der Frequenzvergleich berechnet gepaarte Differenzen der Faltenscores sowie 500 gepaarte Bootstrap-Ziehungen von Entwicklungsvertragszeilen mit Seed `20261030`. In jeder Ziehung werden dieselben Vertragsindizes für alle Kandidaten verwendet und die Deviance-Differenz durch die gezogene Exponierung normalisiert. Die 2,5-/97,5-Perzentile beschreiben Stichprobenstabilität **bei festen Vorhersagen**. Sie enthalten weder erneutes Fitten noch die Unsicherheit der Modellwahl und beheben keine unbeobachtete Haushaltsabhängigkeit. Die fünf Fits mit überlappenden Trainingsmengen sind keine unabhängigen Wiederholungen für einen naiven Standardfehler. Die [Frequenzergebnisse](../reports/s4/paired_bootstrap.json) und die [gemeinsame Verlustbewertung](schadenhoehe_risikopraemie.md) dokumentieren die ausgeführten Berechnungen; deren Bootstrap verwendet den gesondert festgelegten Seed `20261101`.
 
-Die Evaluation wird erst nach dokumentierter Entwicklungsentscheidung und festgehaltener Modellkonfiguration für Frequenz und spätere Schadenhöhe geöffnet. Der aktuelle Ablauf erzeugt keine Evaluationsvorhersagen und keine Evaluationsscores. Ihre Ergebnisse dürfen nicht zur nachträglichen Abstimmung zurückgeführt werden. Für ein mögliches späteres Experiment mit synthetischen Trainingsdaten ist keine weitere unabhängige Reserve festgelegt; ohne neue Reserve oder unabhängige Daten bleibt es eine explorative Entwicklungsanalyse.
+Die gemeinsame Evaluation wurde nach der [festgehaltenen Entwicklungsentscheidung](../reports/s5/development_decision.json) für Frequenz und Schadenhöhe geöffnet. [Vorhersagebewertung und Verlustkalibrierung](../reports/s5/evaluation_report.json) sind berechnet; Merkmale, Modelle, Smearing und Scoring-Power bleiben unverändert. Der gesonderte Basismodellbefehl und das zweite Notebook verwenden weiterhin ausschließlich Entwicklungsergebnisse. Für ein mögliches späteres Experiment mit synthetischen Trainingsdaten ist keine weitere unabhängige Reserve festgelegt; ohne neue Reserve oder unabhängige Daten bleibt es eine explorative Entwicklungsanalyse.
 
 ## Ausführen und nachprüfen
 
