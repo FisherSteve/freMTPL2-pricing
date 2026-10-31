@@ -1,0 +1,54 @@
+[
+  {
+    "actual_over_predicted": 1.022857127248479,
+    "expected_claims": 5257.8213092839305,
+    "exposure_years": 71602.01663597574,
+    "mean_count_deviance": 0.255633284926039,
+    "model_id": "intercept",
+    "observed_annual_rate": 0.075109616358178,
+    "observed_claims": 5378,
+    "poisson_deviance_per_exposure": 0.484115105010459,
+    "policies": 135599,
+    "predicted_annual_rate": 0.07343119029754,
+    "raw_frequency_gini": 0.0
+  },
+  {
+    "actual_over_predicted": 1.021532269661088,
+    "expected_claims": 5264.64034443498,
+    "exposure_years": 71602.01663597574,
+    "mean_count_deviance": 0.241717584923646,
+    "model_id": "gam_b20_l10",
+    "observed_annual_rate": 0.075109616358178,
+    "observed_claims": 5378,
+    "poisson_deviance_per_exposure": 0.457761727085117,
+    "policies": 135599,
+    "predicted_annual_rate": 0.073526425536314,
+    "raw_frequency_gini": 0.308811503620426
+  },
+  {
+    "actual_over_predicted": 1.023410742046515,
+    "expected_claims": 5254.977086956906,
+    "exposure_years": 71602.01663597574,
+    "mean_count_deviance": 0.243492694710466,
+    "model_id": "glm_age_bm_a0001",
+    "observed_annual_rate": 0.075109616358178,
+    "observed_claims": 5378,
+    "poisson_deviance_per_exposure": 0.461123407709375,
+    "policies": 135599,
+    "predicted_annual_rate": 0.073391467640823,
+    "raw_frequency_gini": 0.296144880008073
+  },
+  {
+    "actual_over_predicted": 1.022262260726867,
+    "expected_claims": 5260.880897800181,
+    "exposure_years": 71602.01663597574,
+    "mean_count_deviance": 0.238551323672624,
+    "model_id": "hgb_l15",
+    "observed_annual_rate": 0.075109616358178,
+    "observed_claims": 5378,
+    "poisson_deviance_per_exposure": 0.451765501286616,
+    "policies": 135599,
+    "predicted_annual_rate": 0.07347392077721,
+    "raw_frequency_gini": 0.332911381043301
+  }
+]

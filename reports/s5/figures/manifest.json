@@ -1,0 +1,45 @@
+{
+  "decision_id": "s5decision-df9a82872ec16be6",
+  "figures": {
+    "alter_zerlegung": {
+      "filename": "alter_zerlegung.png",
+      "sha256": "cd4d60f4b51931fdc6970775d0841687e97b54fa71d29e96bac04d94d79f7023"
+    },
+    "risikopraemie_kalibrierung": {
+      "filename": "risikopraemie_kalibrierung.png",
+      "sha256": "ed016e625ed9e824bb5338d23ea08ced799d1e7ecc5f4f1c1fae65b6daea4933"
+    },
+    "schadenhoehe_vergleich": {
+      "filename": "schadenhoehe_vergleich.png",
+      "sha256": "09fe8d6e803d5017ed5d708122ff72fb7c9edc90dbf089b6fff6902b1476a8e1"
+    },
+    "tail_einfluss": {
+      "filename": "tail_einfluss.png",
+      "sha256": "edfc4f8b7f7af9cddaafacd5506cffeef936cb6e40729587723de621d1de53a5"
+    }
+  },
+  "input_sha256": {
+    "reports/s5/development_bootstrap.json": "21a4d743492b3476d040472483f2eab622c6edcda241f30cd03165dc8642bcf1",
+    "reports/s5/development_decision.json": "4852a36e9e974236c78843827883bdc2e11d033e8ebfb99c5775b27d2853eae6",
+    "reports/s5/development_loss_scores.json": "9b1c9fc8c9df84e18a70d2601eecfa3dd08162c8a7c2715b4731c8a2c85abc9d",
+    "reports/s5/development_report.json": "18ed2f4cfad250b8d1c4bd1e4a0d3431ba1c624f7b1859074c39aa93ca115285",
+    "reports/s5/development_severity_scores.json": "a6fcfae4bfae53f20d1d94c82b43372cb4bd3ddad6d4b2e5592c29d9a1cae8f9",
+    "reports/s5/evaluation_bootstrap.json": "9fef0ccdb813aee57e56cda94bcc552bee616e6e25a3bdb43034665a1116b2b3",
+    "reports/s5/evaluation_loss_components.json": "1eb5b97886ef3334fadb4b08fce7639d5e06b8d08aa1524759c6d98e4453ec3c",
+    "reports/s5/evaluation_loss_scores.json": "b4d24d590299951733eb2f5c073fa1ed29363a8a1edae654d618e9324769ea11",
+    "reports/s5/evaluation_loss_segments.json": "2c3cdef1b91b422e2c55220279c43159957048ddcced04ce93c7a36d5506a381",
+    "reports/s5/evaluation_release.json": "9e9a1d9fcd24e2c3df8367499142fe72a9dac222dd07a059da00c254e88dbae0",
+    "reports/s5/evaluation_report.json": "a4d6a5b787dbb1f22d0145bb71ebc0fb845002eb40920a82819d8e26ad2d52c0",
+    "reports/s5/evaluation_severity_scores.json": "6a664b29b7045f1536f12cf613f9f2bc3e449a15dc632e6f640cb55efa7c281a"
+  },
+  "run_id": "s5sev-2c4bc0d8ad1fd1c1",
+  "scope": "Verified released aggregate evidence; fixed-prediction bootstrap intervals; no fitting, reselection, capping or causal claims",
+  "software": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1"
+  },
+  "source_sha256": {
+    "src/severity_figures.py": "40091b151156a4935d9baa4c569e28ad94b4966fc9cc1949a542779c6af42f12"
+  }
+}
