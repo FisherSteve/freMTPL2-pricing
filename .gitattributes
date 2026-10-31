@@ -50,3 +50,15 @@
 /reports/s5/*.json text eol=lf
 /reports/s5/figures/*.json text eol=lf
 /notebooks/05_severity_pure_premium.ipynb text eol=lf
+
+# Integrated reproduction and generated public results.
+/scripts/reproduce.py text eol=lf
+/scripts/build_results.py text eol=lf
+/scripts/verify_reproduction.py text eol=lf
+/tests/test_reporting.py text eol=lf
+/docs/validierung.md text eol=lf
+/docs/reproduktion.md text eol=lf
+/docs/ergebnisse.md text eol=lf
+/reports/s6/*.json text eol=lf
+/figures/README.md text eol=lf
+/reports/figs/README.md text eol=lf

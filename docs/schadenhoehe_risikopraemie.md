@@ -107,7 +107,7 @@ Die konstante Schadenhöhe ist in der Entwicklung sowohl auf dem Schaden- als au
 | HGB × Gamma | 80,386955 | 80,063797 | 1,0807 |
 | HGB × Log-Smearing | 79,370343 | 80,026128 | 1,0308 |
 
-Alle Produkte erhalten dieselben 135,599 Evaluationsverträge einschließlich 130,499 Verträgen ohne Verlust. Ihre 5,378 positiven Schadenzeilen werden vollständig erhalten. Keine Vertrags- oder Schadenzeile und kein Eurobetrag wird in der Hauptanalyse ausgeschlossen. Die Evaluation enthält 71.602,016636 Vertragsjahre und 12.428.461,85 EUR beobachtete Verluste.
+Alle Produkte erhalten dieselben 135.599 Evaluationsverträge einschließlich 130.499 Verträgen ohne Verlust. Ihre 5.378 positiven Schadenzeilen werden vollständig erhalten. Keine Vertrags- oder Schadenzeile und kein Eurobetrag wird in der Hauptanalyse ausgeschlossen. Die Evaluation enthält 71.602,016636 Vertragsjahre und 12.428.461,85 EUR beobachtete Verluste.
 
 Das vorab gewählte Produkt prognostiziert 11.857.523,74 EUR Periodenverlust, entsprechend **165,60 EUR je Vertragsjahr**. Beobachtet werden **173,58 EUR je Vertragsjahr**. Verlust-A/P ist 1,048150. Der bedingte 95%-Vertragsbootstrap-Bereich für A/P beträgt ungefähr [0,849; 1,287]. Er ist breit und enthält keine unbekannte Tail- oder Auswahlunsicherheit.
 

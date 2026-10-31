@@ -1,0 +1,155 @@
+{
+  "decision_id": "s5decision-df9a82872ec16be6",
+  "development_frequency": [
+    {
+      "actual_over_predicted": 0.999993830109649,
+      "expected_claims": 21066.129975712065,
+      "exposure_years": 286880.818827008,
+      "family": "intercept",
+      "mean_count_deviance": 0.252872392187868,
+      "model_id": "intercept",
+      "observed_annual_rate": 0.07343119029754,
+      "observed_claims": 21066,
+      "pearson_mean_quadratic": 1.850681808069772,
+      "poisson_deviance_per_exposure": 0.478093875722895,
+      "policies": 542392,
+      "predicted_annual_rate": 0.073431643362727,
+      "raw_frequency_gini": -0.007048562044206,
+      "relative_deviance_reduction_vs_intercept": 0.0
+    },
+    {
+      "actual_over_predicted": 0.999974166612697,
+      "expected_claims": 21066.544220195978,
+      "exposure_years": 286880.818827008,
+      "family": "glm",
+      "mean_count_deviance": 0.241780317210052,
+      "model_id": "glm_age_bm_a0001",
+      "observed_annual_rate": 0.07343119029754,
+      "observed_claims": 21066,
+      "pearson_mean_quadratic": 1.877869998938538,
+      "poisson_deviance_per_exposure": 0.457122614012312,
+      "policies": 542392,
+      "predicted_annual_rate": 0.073433087322925,
+      "raw_frequency_gini": 0.284980121183777,
+      "relative_deviance_reduction_vs_intercept": 0.043864317815982
+    },
+    {
+      "actual_over_predicted": 1.000029763373881,
+      "expected_claims": 21065.37302342676,
+      "exposure_years": 286880.818827008,
+      "family": "gam",
+      "mean_count_deviance": 0.240465588039836,
+      "model_id": "gam_b20_l10",
+      "observed_annual_rate": 0.07343119029754,
+      "observed_claims": 21066,
+      "pearson_mean_quadratic": 1.907324330519989,
+      "poisson_deviance_per_exposure": 0.454636917732556,
+      "policies": 542392,
+      "predicted_annual_rate": 0.073429004802616,
+      "raw_frequency_gini": 0.296022566444282,
+      "relative_deviance_reduction_vs_intercept": 0.049063498156866
+    },
+    {
+      "actual_over_predicted": 0.999632106328939,
+      "expected_claims": 21073.75290031753,
+      "exposure_years": 286880.818827008,
+      "family": "histogram_poisson",
+      "mean_count_deviance": 0.236293490995198,
+      "model_id": "hgb_l15",
+      "observed_annual_rate": 0.07343119029754,
+      "observed_claims": 21066,
+      "pearson_mean_quadratic": 1.698770810513941,
+      "poisson_deviance_per_exposure": 0.446748931113276,
+      "policies": 542392,
+      "predicted_annual_rate": 0.073458215109966,
+      "raw_frequency_gini": 0.324612523979792,
+      "relative_deviance_reduction_vs_intercept": 0.065562321964959
+    }
+  ],
+  "evidence_sha256": {
+    "reports/s0/source_manifest.json": "4b11ac2858138a96b323df066693b9aaef45f35f7485704e69cfe5e9f85a1585",
+    "reports/s4/frequency_report.json": "e3ee93a6540cf36cd8acb954649f4f9a0795d1b95bec8a0aa6e37d03cb3b2e2a",
+    "reports/s4/scores.json": "b35d05c0069c049d3580a3437df3a2880152f9625ab42b36f800ede106c01e76",
+    "reports/s5/development_decision.json": "4852a36e9e974236c78843827883bdc2e11d033e8ebfb99c5775b27d2853eae6",
+    "reports/s5/development_loss_scores.json": "9b1c9fc8c9df84e18a70d2601eecfa3dd08162c8a7c2715b4731c8a2c85abc9d",
+    "reports/s5/development_report.json": "18ed2f4cfad250b8d1c4bd1e4a0d3431ba1c624f7b1859074c39aa93ca115285",
+    "reports/s5/evaluation_frequency_scores.json": "59d42a32bc2ffada43a49aace12e5042dc21579d1413ad02f6f75a7e2608a18b",
+    "reports/s5/evaluation_loss_scores.json": "b4d24d590299951733eb2f5c073fa1ed29363a8a1edae654d618e9324769ea11",
+    "reports/s5/evaluation_release.json": "9e9a1d9fcd24e2c3df8367499142fe72a9dac222dd07a059da00c254e88dbae0",
+    "reports/s5/evaluation_report.json": "a4d6a5b787dbb1f22d0145bb71ebc0fb845002eb40920a82819d8e26ad2d52c0",
+    "reports/s5/reproducibility.json": "8c3a9d07edcf7ee3f6357a9d2ee1f53ee6fbaa393b4c0fa156ce7a625b2c4d83"
+  },
+  "frequency_input_run_id": "s4freq-737bcb82931ca813",
+  "limits": [
+    "Keine neue Auswahl nach Evaluation.",
+    "Historische Datenexploration; keine externe oder zeitliche Validierung.",
+    "Feste-Vorhersage-Intervalle enthalten keine Refitting- oder Auswahlunsicherheit.",
+    "Dauer- und Alterskalibrierung sowie Extremschäden begrenzen die Tarifanwendung."
+  ],
+  "loss_comparison": [
+    {
+      "development_deviance": 87.2338489500029,
+      "evaluation_actual_over_predicted": 1.048759790802026,
+      "evaluation_deviance": 88.9177895266274,
+      "model_id": "pp_intercept_mean"
+    },
+    {
+      "development_deviance": 79.19484353652985,
+      "evaluation_actual_over_predicted": 1.048149859979683,
+      "evaluation_deviance": 80.20653433938185,
+      "model_id": "pp_hgb_mean"
+    },
+    {
+      "development_deviance": 80.38695461151528,
+      "evaluation_actual_over_predicted": 1.080685819331324,
+      "evaluation_deviance": 80.06379749805345,
+      "model_id": "pp_hgb_gamma"
+    },
+    {
+      "development_deviance": 79.37034338830786,
+      "evaluation_actual_over_predicted": 1.030833750496656,
+      "evaluation_deviance": 80.026128496857,
+      "model_id": "pp_hgb_log_smear"
+    }
+  ],
+  "preparation_id": "s1-6b71086d8adc0e3c",
+  "relative_loss_deviance_reduction": 0.09796976773288857,
+  "selected_evaluation": {
+    "actual_over_predicted": 1.048149859979683,
+    "expected_claims": 5260.880897800181,
+    "expected_loss_eur": 11857523.742111562,
+    "exposure_weighted_mean_annual_frequency": 0.07347392077721,
+    "exposure_weighted_mean_severity_eur": 2253.9046164435586,
+    "exposure_years": 71602.01663597574,
+    "frequency_model_id": "hgb_l15",
+    "loss_mae_period_eur": 166.49313467002497,
+    "loss_rmse_period_eur": 3930.993382666742,
+    "mean_period_tweedie_deviance": 63.70188098879851,
+    "model_id": "pp_hgb_mean",
+    "observed_annual_loss_cost": 173.57698056447532,
+    "observed_claims": 5378,
+    "observed_loss_eur": 12428461.85,
+    "policies": 135599,
+    "predicted_annual_loss_cost": 165.60320922796276,
+    "predicted_claim_weighted_mean_severity_eur": 2253.904616443559,
+    "product_of_exposure_weighted_component_means": 165.60320922796276,
+    "run_id": "s5sev-2c4bc0d8ad1fd1c1",
+    "severity_model_id": "severity_mean",
+    "split": "evaluation",
+    "tweedie_deviance_per_exposure": 80.20653433938185,
+    "tweedie_power": 1.5,
+    "zero_loss_policies": 130499
+  },
+  "selected_model_id": "pp_hgb_mean",
+  "severity_run_id": "s5sev-2c4bc0d8ad1fd1c1",
+  "source_commit": "227fb56b8734bdb7c0327a41180e01d2ddaeaf26",
+  "source_id": "cas-744e13a80283a07a",
+  "source_version": "1.2-1",
+  "split_id": "s2split-fe11d414168572dd",
+  "units": {
+    "annual_loss_cost": "Historische EUR je Vertragsjahr",
+    "frequency_deviance": "Poisson-Deviance je Vertragsjahr",
+    "loss_deviance": "Exponierungsgewichtete Jahresraten-Tweedie-Deviance, Power 1,5",
+    "period_loss": "Historische EUR je Vertragsperiode"
+  }
+}
