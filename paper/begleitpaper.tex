@@ -37,10 +37,10 @@
 {\small freMTPL2-Portfolio \quad Stand: 1. November 2026}
 \end{center}
 \begin{abstract}
-\noindent Die Studie verbindet den Abgleich eines historischen Kfz-Haftpflichtbestands mit exponierungsabhängigen Frequenzmodellen und einer separaten Schadenhöhe. Sie erklärt, welche Mittelwertannahmen die verwendeten Zielfunktionen und ihr Produkt tragen. Im begrenzten Entwicklungsvergleich liefert Histogramm-Poisson-Boosting die beste Frequenzvorhersage. Die vor der Evaluation gewählte Kombination mit dem arithmetischen Trainingsschadenmittel reduziert dort die Verlustdeviance gegenüber der Interceptbasis um \EvalGain\,\%. Komplexere Schadenhöhen sind damit nicht allgemein widerlegt. Ein späterer explorativer Zwei-Merkmale-Vergleich bevorzugt Alter und Bonus-Malus im Punktergebnis; die Trennung von reduziertem GLM und GAM bleibt unsicher. Dauerabhängige Fehlkalibrierung, große Schäden und fehlende Nutzungsinformationen verhindern eine unmittelbare Tarifempfehlung.
+\noindent Die Studie verbindet den Abgleich eines historischen Kfz-Haftpflichtbestands mit exponierungsabhängigen Frequenzmodellen und einer separaten Schadenhöhe. Im begrenzten Entwicklungsvergleich liefert Histogramm-Poisson-Boosting die beste Frequenzvorhersage. Die vor der Evaluation gewählte Kombination mit dem arithmetischen Trainingsschadenmittel reduziert dort die Verlustdeviance gegenüber der Interceptbasis um \EvalGain\,\%. Komplexere Schadenhöhen sind damit nicht allgemein widerlegt. Ein explorativer Zwei-Merkmale-Vergleich bevorzugt Alter und Bonus-Malus im Punktergebnis; die Trennung von reduziertem GLM und GAM bleibt unsicher. Ein anschließender CTGAN-Pilot verschlechtert die reale OOF-Frequenzdeviance gegenüber real-only und Bootstrap-Kontrollen. Dauerabhängige Fehlkalibrierung, große Schäden und fehlende Nutzungsinformationen verhindern eine unmittelbare Tarifempfehlung.
 \end{abstract}
 \section{Fragestellung, Daten und Beitrag}
-Gesucht ist der erwartete erfasste Schadenaufwand eines Vertrags mit vorab verfügbaren Merkmalen. Wie viel Vorhersagestruktur erfassen gruppierte GLMs und additive Splines, was ergänzt ein flexibler Baumvergleich, und verbessert eine variable Schadenhöhe das gemeinsame Verlustziel? Der Beitrag liegt im konsistenten Daten- und Validierungsbezug dieser Fragen, nicht in einer neuen Modellklasse.
+Gesucht ist der erwartete erfasste Schadenaufwand eines Vertrags mit vorab verfügbaren Merkmalen. Wie viel Vorhersagestruktur erfassen GLMs, additive Splines und Boosting, und verbessert eine variable Schadenhöhe das Verlustziel? Ein ergänzender Pilot prüft synthetische Trainingsverträge bei begrenztem realem Trainingsbudget. Der Beitrag liegt im konsistenten Daten- und Validierungsbezug, nicht in einer neuen Modellklasse.
 
 Die Daten stammen aus \emph{CASdatasets} 1.2-1, festgelegt auf Commit \code{227fb56b8734} (vollständige Kennung in \cite{cas}). Der Anbieter beschreibt einen unbekannten privaten französischen Versicherer und ungefähr 2011--2013; teilweise beruhen Beträge auf festen IRSA-IDA-Regulierungen. Die unmittelbar untersuchte Population ist dieser historische Bestand, nicht der französische Gesamtmarkt. Die EUR-Beträge bezeichnen den dokumentierten Bewertungsstand ohne heutige Inflationsanpassung.
 
@@ -313,9 +313,11 @@ CTGAN \cite{ctgan} kombiniert komponentenspezifische Normalisierung numerischer 
 
 \begin{center}\AugmentationTable\end{center}
 \evidence{reports/o2/report.json; reports/o2/segments.json; config/augmentation_protocol.json}
-\AugmentationConclusion{} Die gewöhnlichen Bootstrap-Kontrollen, gepaarten Verlustdifferenzen, konditionalen Intervalle und fünf Fold-Ergebnisse stehen im vollständigen Bericht. A/P misst Anzahlkalibrierung. Eine Zeilenratio ist kein Exponierungsanteil.
+Alle sechs CTGAN-Varianten liegen über beiden Kontrollen; gegenüber real-only steigt $D_N$ um \AugmentationMinLoss--\AugmentationMaxLoss\,\%. $\Delta_{\rm CT-Boot}$ ist CTGAN minus passende Bootstrap-Kontrolle, A/P die Anzahlkalibrierung. \AugmentationConclusion{} Die Kernmodellwahl bleibt unverändert.
 
-Jeder Generator und jede gelernte Transformation sieht ausschließlich das jeweilige Trainingssubset. Reale Kennungen und Schadenbeträge fehlen im Generatoreingang. Die Antwort bleibt $N/e$, gewichtet mit $e$; kombinierte Gewichte werden global auf die reale Trainings-Exponierung normiert. Da die GLM-Likelihood schon durch die Gewichtssumme normiert ist, verändert diese Skalierung die relative Ridge-Strafe nicht. Neue Zeilen werden nicht als unabhängige zusätzliche Testpolicen behandelt.
+Jeder Generator und jede gelernte Transformation sieht ausschließlich das jeweilige Trainingssubset. Reale Kennungen und Schadenbeträge fehlen im Generatoreingang. Die Antwort bleibt $N/e$, gewichtet mit $e$; kombinierte Gewichte werden global auf die reale Trainings-Exponierung normiert. Bei der bereits normierten GLM-Likelihood ändert dies die relative Ridge-Strafe nicht. Eine Zeilenratio ist kein Exponierungsanteil. Herleitung und Intervallformel stehen in Anhang~\ref{app:augmentation}.
+
+Die nachträglich ergänzte Supportdiagnostik findet in den vollständigen akzeptierten synthetischen Samples bei \AugmentationSupportMin--\AugmentationSupportMax\,\% der Zeilen Dichten außerhalb des für dieselbe Area beobachteten Trainingsbereichs. Das zeigt eine Schwäche der gemeinsamen Verteilung, beweist aber keine physische Unmöglichkeit und erklärt den Vorhersageverlust nicht isoliert. Die Diagnose änderte weder Zeilenauswahl noch Fits oder Entscheidung.
 
 Der CPU-Analyselauf benötigte \AugmentationSeconds{} Sekunden ohne Installation und nachgelagerte Prüfung. Diese nach der Kern-Evaluation begonnene Untersuchung besitzt keinen frischen Bestätigungsbestand. Die Evaluation wird nicht erneut ausgewertet. Der Befund betrifft dieses Trainingsbudget und diese Kodierung; er ist weder ein allgemeines Urteil über CTGAN noch ein Datenschutz-, Kausalitäts- oder Schadenhöhenresultat. Die konditionalen Policenintervalle erfassen keine Refit- oder Generatorunsicherheit.
 
@@ -370,4 +372,33 @@ Die frühere und die integrierte Reproduktion besitzen teilweise unterschiedlich
 Aus dem Repositorywurzelverzeichnis erzeugt \code{python scripts/build_paper.py --compile} die Zahlenquellen und kompiliert mit pdfLaTeX, BibTeX und zwei weiteren pdfLaTeX-Durchläufen. \code{python scripts/build_paper.py --check} prüft die Aktualität der generierten Eingaben ohne Fits. LaTeX-Quelle, Bibliografie, generierte Tabellen und finales PDF liegen gemeinsam unter \code{paper/}; temporäre TeX-Dateien bleiben in \code{paper/build/}. Erforderliche TeX-Pakete und die geprüfte Umgebung beschreibt die dortige README.
 
 Das Projekt enthält keine gemeinsame prospektive Prüfung von Modellwahl, Tarifgestaltung und Markttransfer. Die vorgestellten Mittelwertmodelle lassen sich mathematisch begründen und auf dem historischen Bestand vergleichen. Ihre verbleibenden Kalibrierungs- und Informationslücken sind eigenständige Ergebnisse dieser angewandten Studie.
+
+\clearpage
+\section{Augmentiertes Trainingsziel und gepaarte Intervalle}\label{app:augmentation}
+\subsection*{Weshalb mehr Zeilen allein keinen Informationsgewinn belegen}
+Seien $R$ die realen Trainingsverträge eines Folds und $A$ die zusätzlich erzeugten oder per gewöhnlichem Bootstrap gezogenen Zeilen. $T=R\sqcup A$ bezeichnet ihre indizierte Verkettung; mehrfach gezogene Zeilen bleiben mehrfach enthalten. Für $E_R=\sum_{i\in R}e_i$ und $E_T=\sum_{i\in T}e_i$ setzt der Code $w_i=(E_R/E_T)e_i$. Somit ist $\sum_Tw_i=E_R$, aber im normierten GLM-Ziel kürzt sich die globale Skalierung:
+\begin{equation}
+ \frac{\sum_{i\in T}w_i\{\exp\eta_i-(N_i/e_i)\eta_i\}}{\sum_{i\in T}w_i}
+ +\frac{\alpha}{2}\|b\|^2
+ =\frac{\sum_{i\in T}(e_i\exp\eta_i-N_i\eta_i)}{E_T}
+ +\frac{\alpha}{2}\|b\|^2.
+\end{equation}
+Die Strafe mit $\alpha=10^{-4}$ wird durch diese globale Normierung nicht künstlich abgeschwächt. Eine vollständige identische Vervielfachung aller Zeilen lässt das normierte Ziel unverändert, sofern Design und Vorverarbeitung gleich bleiben; die hier verwendete exponierungsgewichtete Vorverarbeitung besitzt diese Invarianz. Eine zusätzliche Bootstrap-Stichprobe ändert dagegen relative Gewichte zufällig. Ihre Kontrolle hilft, einen CTGAN-Effekt von bloßer stochastischer Umgewichtung zu unterscheiden. Sie erzeugt ebenso wenig neue unabhängige Schadenerfahrung wie der Generator.
+
+\subsection*{Welche Streuung die O2-Intervalle beschreiben}
+Für die $n$ realen OOF-Verträge seien die beiden Ratenprognosen festgehalten und
+\begin{equation}
+ z_i=d(N_i,e_i\widehat r_i^{\rm neu})-d(N_i,e_i\widehat r_i^{\rm ref}),
+ \qquad \widehat\Delta=\frac{\sum_i z_i}{\sum_i e_i}.
+\end{equation}
+Für unabhängige, identisch verteilte Auswertungsbeiträge mit $0<\E[e]<\infty$ und endlichen zweiten Momenten von $z$ und $e$ liefert die Delta-Methode für das Verhältnis der Mittelwerte den Einflussbeitrag $(z-\Delta e)/\E[e]$. Mit $u_i=z_i-\widehat\Delta e_i$ und $\overline u=0$ lautet der tatsächlich verwendete Standardfehler
+\begin{equation}
+ \widehat{\operatorname{SE}}(\widehat\Delta)
+ =\frac{\sqrt{n\,s_u^2}}{\sum_i e_i},\qquad
+ s_u^2=\frac1{n-1}\sum_i(u_i-\overline u)^2.
+\end{equation}
+Ausgegeben wird $\widehat\Delta\pm\Phi^{-1}(0{,}975)\widehat{\operatorname{SE}}$, wobei $\Phi$ die Standardnormalverteilungsfunktion bezeichnet. Dies ist das asymptotische Intervall der implementierten gepaarten Verhältnisstatistik, kein Bootstrapintervall und keine Bestätigung aller nötigen Stichprobenannahmen.
+
+Die realen OOF-Prognosen stammen aus überlappenden Trainingsmengen; das Festhalten dieser Prognosen erfasst weder deren Abhängigkeit durch erneutes Training noch Generatorstreuung oder unbekannte Haushaltsabhängigkeit. Daher sind die Intervalle eine bedingte Streuungsdiagnose. Die drei Seeds und fünf Folds werden zusätzlich separat betrachtet; sie sind keine unabhängigen Portfolios. Die Entscheidung beruht auf der vorab festgelegten Konsistenz- und Kalibrierungsregel, nicht auf einer nachträglichen Suche nach einem signifikanten Einzelresultat.
+\evidence{src/augmentation.py: augmented_training, paired_difference; reports/o2/report.json; reports/o2/joint_support.json}
 \end{document}
