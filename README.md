@@ -12,6 +12,7 @@ Der Vergleich verwendet dieselben Vertragsaufteilungen, prospektive Merkmale und
 |---|---|
 | [Entwicklungs-EDA](docs/eda.md) | Alter, Bonus-Malus, Bestandsmix, kurze Exponierungen und große Schäden |
 | [Frequenzmodelle](docs/frequenzmodelle.md) | Substantieller GLM-/GAM-Vergleich mit einem begrenzten Boosting-Benchmark |
+| [Synthetische Trainingsverträge](docs/synthetische_trainingsdaten.md) | Exploratives CTGAN-Experiment mit begrenzter Trainingsmenge, Bootstrap-Kontrollen und realen OOF-Verträgen |
 | [Schadenhöhe und Risikoprämie](docs/schadenhoehe_risikopraemie.md) | Gamma-GLM, Log-Smearing, konstantes Schadenmittel und gemeinsame Evaluation |
 | [Berechnete Kernergebnisse](docs/ergebnisse.md) | Automatisch erzeugte Tabelle und [kleines Ergebnis-JSON](reports/s6/results.json) für weitere Darstellungen |
 | [Messgrößen und Validierung](docs/validierung.md) | Exponierung, Schlüsselzuordnung, Auswahlgrenzen und Unsicherheit |

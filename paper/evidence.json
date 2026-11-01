@@ -3,6 +3,9 @@
   "s6a_run": "s6af633eebaf65aa470",
   "sources_sha256": {
     "reports/s6/results.json": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
+    "reports/o2/report.json": "7b8dcb418ece0b8d7453196c1ea7eef6f0f4b5801e926e633010925eecc213eb",
+    "reports/o2/sources.json": "5d9af0f35611a04a447a8657bc00dd38bdaa512788a06e0d42510da8c9a466c0",
+    "config/augmentation_protocol.json": "d6ef4bc506d6a3ba3e6acc350f6a03965e343c913ea297f95653f424659d7265",
     "reports/s6a/scores.json": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d",
     "reports/s6a/release.json": "4e1833eaf7ccf044978458fa5b1fd68ae97a34c34c4ca42414b6518f87a31f56",
     "config/frequency_protocol.json": "6f521356ca8b199b086fa3d8f3dbbd94679dd054c1473aed7b7ee4121b665674",
@@ -27,12 +30,13 @@
     "reports/s6a/costs.json": "0157c8cac2d436872370a78c2e8db8a6b38a9f8f246b0e981459040a8222a14b",
     "reports/s5/evaluation_loss_segments.json": "2c3cdef1b91b422e2c55220279c43159957048ddcced04ce93c7a36d5506a381",
     "reports/s5/evaluation_severity_scores.json": "6a664b29b7045f1536f12cf613f9f2bc3e449a15dc632e6f640cb55efa7c281a",
-    "paper/sources.json": "cdc25732c590dfb9bef1f683190a664487be01ca878175654a8aad05d32e2f8d",
+    "paper/sources.json": "5d18c65a912b3841484ca0775f92bd6bf928365ec53e70912f98a9cc84c5bf1d",
     "src/frequency_models.py": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
     "src/severity_models.py": "48f8b34173fa3f7942eb2ee4b1fc0cc595e1626ccae81e6577449d1aee1b56a0",
     "src/interpretation.py": "5bebde8c9a5a3ff0d2d956bfe48de19ba8e082adab7f1ac7f8250a6143b7e8ae",
     "src/metrics.py": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
     "src/severity.py": "b1650b327c50efa9b55c8f2617dcddf15bb24f31d75fb1de6643654b02154b4a",
+    "src/augmentation.py": "0a9678a9c0baa349ea4d1d1e647140c5a8da4f55f7fa3aad25f7f9856bb29081",
     "requirements.lock.txt": "11c6e45da9e3efddcdd7e3ad4654e356dc30210d97b7144434880d8a367f98b5"
   },
   "versioned_inputs": {
@@ -40,6 +44,18 @@
     "reports/s3/tail_concentration.json": "a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
   },
   "numeric_macros": {
+    "AugmentationBaseline": {
+      "value": 0.46438556950014975,
+      "origin": "reports/o2/report.json:scores.real",
+      "digits": 6,
+      "latex": "0{,}464386"
+    },
+    "AugmentationSeconds": {
+      "value": 1614.5020637000016,
+      "origin": "reports/o2/report.json:seconds",
+      "digits": 1,
+      "latex": "1\\,614{,}5"
+    },
     "ReducedScore": {
       "value": 82.02785598518176,
       "origin": "reports/s6a/scores.json:two_BonusMalus_gam",
@@ -167,6 +183,7 @@
     "ReducedTable": "reports/s6a/scores.json",
     "GeoTable": "reports/s6a/geo.json",
     "AgeTable": "reports/s6a/existing_age_profiles.json",
-    "StandardTable": "reports/s6a/standardized_{without,with}_duration.json"
+    "StandardTable": "reports/s6a/standardized_{without,with}_duration.json",
+    "AugmentationTable": "reports/o2/report.json:scores.ctgan"
   }
 }

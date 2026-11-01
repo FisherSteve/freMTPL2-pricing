@@ -1,0 +1,42 @@
+{
+  "accessed": "2026-11-01",
+  "algorithm": {
+    "authors": [
+      "Lei Xu",
+      "Maria Skoularidou",
+      "Alfredo Cuesta-Infante",
+      "Kalyan Veeramachaneni"
+    ],
+    "read_scope": "Main text pages 1-9: method, objectives, benchmark design, results, ablations and conclusion. No claim of reproducing original benchmark.",
+    "title": "Modeling Tabular Data using Conditional GAN",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/254ed7d2de3b23ab10936522dd547b78-Paper.pdf",
+    "year": 2019
+  },
+  "implementation": {
+    "installed_files_sha256": {
+      "data_sampler.py": "a47f9839f2a1b1cf98db2c2bc3ac8ae478dbcf524d776d2eabc161de9bc416dd",
+      "data_transformer.py": "9e0aa6f35efa6cf19741396b0b14868afcaa39bd77127f107ebbe4c819b54386",
+      "synthesizers/base.py": "43a8cbf176f3706359ebb3513846ad64f534bb24f9fed1b1ca37a3479e0aeecb",
+      "synthesizers/ctgan.py": "92e1b206536a0958af532f168d0b21e283aaeab4485cc3082e2d15c28074b3f9"
+    },
+    "local_adapter": "src/augmentation.py:restore_natural_sampling corrects logarithmic sampling probabilities after fitting, with saved before/after arrays and regression tests.",
+    "read_scope": "Pinned constructor, fit loop/objectives, sampler training and original-conditional methods, continuous/discrete encoders and inverse transformation. Actual code verified against declared sampling behavior.",
+    "repository": "https://github.com/sdv-dev/CTGAN",
+    "tag": "v0.11.1",
+    "wheel": {
+      "archive_info": {
+        "hash": "sha256=e52b25a3f83c678ec910358608c9ade694e15377438bcd69c44bea521c7f7942",
+        "hashes": {
+          "sha256": "e52b25a3f83c678ec910358608c9ade694e15377438bcd69c44bea521c7f7942"
+        }
+      },
+      "url": "https://files.pythonhosted.org/packages/b7/a7/b2323fff20b408ac8aba3c8981509131aa14b3aa566fa577fca86b395e8e/ctgan-0.11.1-py3-none-any.whl"
+    }
+  },
+  "literature_comparison": {
+    "read_scope": "Publisher abstract and bibliographic metadata only; no TabDDPM fit or full-paper review claimed.",
+    "title": "TabDDPM: Modelling Tabular Data with Diffusion Models",
+    "url": "https://proceedings.mlr.press/v202/kotelnikov23a.html",
+    "year": 2023
+  }
+}

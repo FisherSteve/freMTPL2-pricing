@@ -77,6 +77,12 @@
       "doi": "10.1136/jech.2004.029496",
       "checked": "Originaler Methodenartikel: kausaler Vergleich, definierte Intervention, Austauschbarkeit, Positivität und Konsistenz.",
       "limit": "Methodische Referenz, keine Identifikation eines Effekts im vorliegenden Portfolio."
+    },
+    {
+      "bibkey": "ctgan",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/254ed7d2de3b23ab10936522dd547b78-Paper.pdf",
+      "checked": "Originalarbeit: Haupttext Seiten 1-9, Normalisierung, Bedingungen, WGAN-GP, Benchmarkdesign und Grenzen. Gepinnte Implementierung 0.11.1 und tatsächliche Samplingwahrscheinlichkeiten zusätzlich lokal gelesen; Details in reports/o2/sources.json.",
+      "limit": "Kein Nachbau des Originalbenchmarks. Begrenzter 30-Epochen-Pilot mit expliziter Samplingkorrektur und ausschließlich Entwicklungsdaten."
     }
   ],
   "additional_implementation_reference": {

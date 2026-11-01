@@ -1,5 +1,7 @@
 # Die Studie vollständig nachrechnen
 
+Der zusätzliche [CTGAN-Pilot](synthetische_trainingsdaten.md) verwendet eine eigene, festgelegte Umgebung und die bestehenden Entwicklungsfolds. Seine begrenzten Trainingssubsets, Generatoren und Bootstrap-Kontrollen gehören zu einem gesonderten explorativen Experiment. Der unten gemessene vollständige Kernlauf enthält dieses spätere Experiment nicht. Das [siebte Notebook](../notebooks/07_synthetic_augmentation.ipynb) zeigt dessen gespeicherte reale OOF-Ergebnisse ohne neue Fits.
+
 Der unterstützte Ablauf beginnt mit den Rohdateien vom festgelegten CASdatasets-Commit und endet mit aggregierten Ergebnissen, Abbildungen und fünf ausgeführten Notebooks. Die einzelnen Rechenschritte sind dieselben Funktionen, die auch die Notebooks verwenden. Es gibt keine versteckten Notebookvariablen zwischen den Schritten.
 
 ## Umgebung und vollständiger Ablauf

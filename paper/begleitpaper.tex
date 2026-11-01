@@ -306,6 +306,20 @@ Die ONISR-Zahlen zur schweren Verletzung sind Schätzungen aus der ONISR-/Univer
 Vor Tarifverwendung fehlen insbesondere Unfallort, Fahrleistung, Nutzung, tatsächlicher Fahrer, Beendigungsgründe sowie Unfall-, Melde- und Regulierungszeitpunkte. Für Deutschland sind zusätzlich ein aktueller Zielbestand, vergleichbare Deckung und Bewertung sowie zeitliche externe Validierung erforderlich. Französischer Bonus-Malus ist keine direkt übertragbare SF-Klasse. Die Risikoprämie enthält keine belegten Kosten-, Kapital- oder Marktzuschläge; eine Szenariorechnung im Anhang ersetzt weder Profitabilitätsnachweis noch deutschen Markttarif.
 
 \clearpage
+\section{Explorative Ergänzung: synthetische Trainingsverträge}
+Können generierte Verträge bei begrenzter realer Trainingsmenge die Frequenzprognose verbessern? Der CTGAN-Pilot verwendet die bestehenden fünf Entwicklungsfolds, je ein festes zufälliges Subset von 20.000 realen Trainingsverträgen aus den übrigen Folds und drei Generatorseeds. Zusätzliche synthetische Zeilen im Verhältnis 0,25 und 1 werden mit real-only und zusätzlichen gewöhnlichen Bootstrap-Zeilen gleicher Anzahl verglichen. Der festgelegte Poisson-GLM mit Alters-BM-Interaktion und $\alpha=10^{-4}$ wird auf sämtlichen realen OOF-Verträgen beurteilt. Seine begrenzte real-only-Basis erreicht $D_N=\AugmentationBaseline$; sie ist kein Ersatz für den vollständigen S4-Fit.
+
+CTGAN \cite{ctgan} kombiniert komponentenspezifische Normalisierung numerischer Werte, kategoriale Bedingungen, logarithmisch gewichtetes Trainingssampling, einen WGAN-Critic mit Gradientenstrafe und eine zusätzliche bedingte Kreuzentropie im Generatorverlust. Hier werden Alter, Bonus-Malus und Anzahl diskret gelernt; Exposure und Density bleiben kontinuierlich. Die kleinere Architektur mit 128 Einheiten je Schicht und 30 Epochen begrenzt den Rechenaufwand, ohne eine Konvergenz des Generators zu belegen. Beim verwendeten Release 0.11.1 stellt ein expliziter Adapter nach dem Fit die tatsächlich logarithmischen Samplingwahrscheinlichkeiten auf empirische Trainingshäufigkeiten zurück. Weder dieser Schritt noch die nachfolgende Ablehnung ungültiger Zeilen garantiert korrekte gemeinsame Prävalenzen.
+
+\begin{center}\AugmentationTable\end{center}
+\evidence{reports/o2/report.json; reports/o2/segments.json; config/augmentation_protocol.json}
+\AugmentationConclusion{} Die gewöhnlichen Bootstrap-Kontrollen, gepaarten Verlustdifferenzen, konditionalen Intervalle und fünf Fold-Ergebnisse stehen im vollständigen Bericht. A/P misst Anzahlkalibrierung. Eine Zeilenratio ist kein Exponierungsanteil.
+
+Jeder Generator und jede gelernte Transformation sieht ausschließlich das jeweilige Trainingssubset. Reale Kennungen und Schadenbeträge fehlen im Generatoreingang. Die Antwort bleibt $N/e$, gewichtet mit $e$; kombinierte Gewichte werden global auf die reale Trainings-Exponierung normiert. Da die GLM-Likelihood schon durch die Gewichtssumme normiert ist, verändert diese Skalierung die relative Ridge-Strafe nicht. Neue Zeilen werden nicht als unabhängige zusätzliche Testpolicen behandelt.
+
+Der CPU-Analyselauf benötigte \AugmentationSeconds{} Sekunden ohne Installation und nachgelagerte Prüfung. Diese nach der Kern-Evaluation begonnene Untersuchung besitzt keinen frischen Bestätigungsbestand. Die Evaluation wird nicht erneut ausgewertet. Der Befund betrifft dieses Trainingsbudget und diese Kodierung; er ist weder ein allgemeines Urteil über CTGAN noch ein Datenschutz-, Kausalitäts- oder Schadenhöhenresultat. Die konditionalen Policenintervalle erfassen keine Refit- oder Generatorunsicherheit.
+
+\clearpage
 \begingroup\raggedright
 \bibliographystyle{plain}
 \bibliography{literatur}
@@ -347,7 +361,8 @@ Schadenhöhe & \code{src/severity_models.py}: \code{GammaSeverity}, \code{LogSme
 Messgrößen & \code{src/metrics.py}, \code{src/severity.py}; Jahresratenverlust, Periodenverlust, A/P und schlüsselbasierte Ausrichtung bleiben getrennt.\\[5pt]
 Vollständiger Vergleich & \code{reports/s6/results.json}; ursprüngliche Schadenhöhenregel \code{s5sev-2c4bc0d8ad1fd1c1}, Entscheidung \code{s5decision-df9a82872ec16be6}.\\[5pt]
 Reduzierter Vergleich & \code{src/interpretation.py}: \code{TwoFeaturePoisson}; aktueller Lauf \code{s6af633eebaf65aa470}. \code{reports/s6a/release.json} verbindet Quellstand und Ergebnisnachweise.\\[5pt]
-Geografie und Mechanismen & \code{reports/s6a/geo.json}, Standardisierungen und zugehörige Intervalle; \code{docs/aktuarische_einordnung.md} und \code{reports/s6a/sources.json}.\\\bottomrule
+Geografie und Mechanismen & \code{reports/s6a/geo.json}, Standardisierungen und zugehörige Intervalle; \code{docs/aktuarische_einordnung.md} und \code{reports/s6a/sources.json}.\\[5pt]
+Synthetische Verträge & \code{src/augmentation.py}; \code{config/augmentation_protocol.json}; Ergebnisse und Quellen unter \code{reports/o2/}.\\\bottomrule
 \end{tabularx}
 \end{center}
 Die frühere und die integrierte Reproduktion besitzen teilweise unterschiedliche Laufkennungen, ohne verschiedene empirische Vergleiche zu bezeichnen. Maßgeblich sind deshalb die expliziten Ergebnisdateien und ihre Hashes. Die S6a-Ergänzung verwendet bestehende Frequenzfits und änderte weder ausgewählte Regel noch wissenschaftliche Werte. Interne Ablaufaufzeichnungen sind keine Literaturquelle des Papers.
