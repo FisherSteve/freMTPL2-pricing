@@ -1,0 +1,29 @@
+[
+  {
+    "geo":"AB",
+    "policies":134869,
+    "exposure_years":80155.459919155633543,
+    "recorded_positive_count":0.059581242713146,
+    "recorded_loss_eur":177.146994656243578,
+    "glm_age_bm_a0001":0.058487946630074,
+    "gam_b20_l10":0.058332516729718
+  },
+  {
+    "geo":"CD",
+    "policies":254976,
+    "exposure_years":137820.153485290822573,
+    "recorded_positive_count":0.0717638865362,
+    "recorded_loss_eur":149.129296748693491,
+    "glm_age_bm_a0001":0.071835292440216,
+    "gam_b20_l10":0.07160255957749
+  },
+  {
+    "geo":"EF",
+    "policies":111767,
+    "exposure_years":53390.589523167902371,
+    "recorded_positive_count":0.086469313361369,
+    "recorded_loss_eur":177.82833677324075,
+    "glm_age_bm_a0001":0.084735284737206,
+    "gam_b20_l10":0.084092616364502
+  }
+]

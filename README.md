@@ -72,6 +72,8 @@ Die feste schlüsselbasierte Aufteilung verwendet 80 % Entwicklung mit fünf Fal
 
 ## Vollständig ausführen
 
+Die [aktuarische Einordnung](docs/aktuarische_einordnung.md) ergänzt einen Entwicklungs-OOF-Vergleich von vier Zwei-Merkmale-Paaren, Geografie-/Alters-/Dauerdiagnostik, Mechanismushypothesen und Kostenszenarien. Im registrierten Kreis liegt Fahreralter plus Bonus-Malus vorn; das beste reduzierte Punktergebnis hat 3,58 % mehr Jahresraten-Tweedie-Deviance als die vollständige Entwicklungs-OOF-Regel. Zwischen den beiden BM-Spezifikationen ist der Unterschied im bedingten Intervall nicht eindeutig getrennt. Das [sechste Notebook](notebooks/06_actuarial_interpretation.ipynb) zeigt berechnete Tabellen und Abbildungen. Dieser explorative Vergleich ändert die bereits evaluierte vollständige Modellregel nicht.
+
 Geprüft wird Windows x64 mit CPython 3.12 und den [festgelegten Paketversionen](requirements.lock.txt). In einem separaten frischen Clone:
 
 ```powershell
@@ -81,7 +83,16 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe scripts/build_results.py --check
 ```
 
-Der letzte Workflow lädt die festgelegten CAS-Dateien herunter, prüft sie vor dem Lesen und führt Vorbereitung, Aufteilung, EDA, sämtliche Modelle, Evaluation, Abbildungen und alle fünf [aktiven Notebooks](notebooks/README.md) in frischen Kerneln aus. Rohdaten, Modelle, Vorhersagen und ausgeführte Notebookkopien liegen unter `data/` und bleiben lokal. Die Ausführung schreibt aktuelle aggregierte Berichte in diesem Clone. `--fresh` verlangt leere Analysecaches und löscht nichts. Ein erneuter Download des historischen OpenML-Vergleichs ist dafür nicht erforderlich.
+Der letzte Workflow lädt die festgelegten CAS-Dateien herunter, prüft sie vor dem Lesen und führt Vorbereitung, Aufteilung, EDA, sämtliche Modelle, Evaluation, Abbildungen und die fünf [Kernnotebooks](notebooks/README.md) in frischen Kerneln aus. Rohdaten, Modelle, Vorhersagen und ausgeführte Notebookkopien liegen unter `data/` und bleiben lokal. Die Ausführung schreibt aktuelle aggregierte Berichte in diesem Clone. `--fresh` verlangt leere Analysecaches und löscht nichts. Ein erneuter Download des historischen OpenML-Vergleichs ist dafür nicht erforderlich.
+
+Der ergänzende Zwei-Merkmale-Vergleich und das sechste Notebook folgen auf diesen Kernablauf:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.interpretation
+.\.venv\Scripts\python.exe scripts/s6a_diagnostics.py
+.\.venv\Scripts\python.exe scripts/verify_interpretation.py
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/06_actuarial_interpretation.ipynb --output data/notebooks/06_actuarial_interpretation.executed.ipynb
+```
 
 Linux/macOS sind noch nicht ausgeführt. Dort ist die direkte [Abhängigkeitsliste](requirements.txt) der Ausgangspunkt; Paketauflösung und Ergebnisse müssen gesondert geprüft werden. Der [Reproduktionsnachweis](docs/reproduktion.md) beschreibt die tatsächlich geprüfte Plattform und die Grenzen der Bytegleichheit zwischen Softwareständen.
 

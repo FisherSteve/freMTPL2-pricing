@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "reports/s3/age_contrasts.json": "a242182d917abbc2da78cdc0d0546aff8aa583afca87db3281bc094966d43fc4",
+    "reports/s4/standardized_age.json": "4ed514a993f9117c1ab96ca0132123a4862e573954979e0680bd26e1f70a880c"
+  },
+  "result_manifest_sha256": "f3957da7abe73a0a285ad7be22f70c7a8a46aa7ca647e54f83a60596076b5ac6",
+  "run_id": "s6af8e1bc99500e7ac6",
+  "script_sha256": "1aaf3a416bf5b49b4fda96c0c790a62beca3b2723d597a356180e93452d03760",
+  "source_id": "cas-744e13a80283a07a",
+  "split_id": "s2split-fe11d414168572dd",
+  "tables_sha256": {
+    "common_geo_age_with_duration": "8a10b591087975daa4b08bdfd4cc5644305f18a7ac4cc9be9bcfe688e86f24f7",
+    "common_geo_age_without_duration": "1378edaded027a037bbc6bb39e5710e5d7117a777120b21c38b6bbe80568c32c",
+    "common_geo_with_duration": "677c2ba1cb91d4f19f0f4c04959900a03ff42b1fc9862df21c7c4c3f26d2f9c9",
+    "common_geo_without_duration": "53fd0a6bceee0584f21082778493958baaabf842627c487b0d252cdfe098b7e7",
+    "existing_age_contrasts": "d9feb0367f1fe208b358d9538d69225a0ca5d5837fd72aaf58ba3586acb1389c",
+    "existing_age_profiles": "c66199a688daebe91c490ae7048ea462192d5e8739d150013f44f72760f4487a",
+    "geography_calibration": "6b64acd5672ea8d5a67b70ecf093044671f7eaf69464eea28fd739ab2ca6c339"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "scope": "Explorativer Entwicklungsvergleich nach geöffneter S5-Evaluation; keine Änderung der gesperrten S5-Entscheidung.",
+  "pairs": ["Area", "Density", "Region", "BonusMalus"],
+  "families": ["glm", "gam"],
+  "source_features": "Jeweils genau DrivAge und das zweite Merkmal; log(Density), Dummies und Splines zählen zu ihrem Ursprungsmerkmal.",
+  "glm": {"age_breaks": [25, 35, 45, 55, 65, 75], "bm_breaks": [51, 76, 101, 151], "density": "linearer log(Density), trainingsweise exponierungsgewichtet standardisiert", "alpha": 0.0},
+  "gam": {"n_knots": 8, "degree": 3, "knots": "uniform zwischen Trainingsminimum und -maximum", "extrapolation": "constant, Anzahl außerhalb Trainingsbereich berichten", "alpha": 0.0001, "penalty": "Ridge auf nichtkonstante zentrierte B-Spline- und Faktor-Koeffizienten im gewichteten mittleren Poisson-Ziel; keine Gleichsetzung mit der Differenzenstrafe des S4-GAM"},
+  "severity": {"source_features": [], "rule": "Arithmetischer Mittelwert sämtlicher positiver Schadenzeilen der Trainingsverträge je Fold; keine Exponierungsgewichte auf Schadenzeilen; identisch für Nullschadenverträge."},
+  "fit_budget": {"frequency_oof": 40, "severity_fold_means": 5, "new_full_development_refits": 0, "hyperparameter_search": 0},
+  "criterion": {"primary": "Exponierungsgewichtete Jahresraten-Tweedie-Deviance power=1.5", "full_reference": "pp_hgb_mean aus unveränderten S5-Entwicklungs-OOF-Vorhersagen", "recommendation": "Minimum im registrierten Kreis; Kandidaten innerhalb 0.5 Prozent des niedrigsten Scores als praktisch nah benennen. Faltenrang, gepaarte bedingte Intervalle, Kalibrierung und Einfachheit ergänzen; keine Behauptung global bester Paare oder bestätigender Auswahl."},
+  "groups": {"age_edges": [25, 35, 50, 65], "density_edges": [100, 1000, 5000], "geo": {"AB": ["A", "B"], "CD": ["C", "D"], "EF": ["E", "F"]}, "bm_edges": [51, 76, 101], "vehicle_edges": [1, 11], "duration_edges": [0.25, 0.75], "tail_thresholds_eur": [10000, 100000], "supported_exposure_years": 500, "supported_claims": 100},
+  "common_support": {"strata": ["age", "bm", "vehicle", "VehGas"], "duration_variant": "zusätzlich duration", "minimum_exposure_each_geo": 100, "minimum_claims_each_geo": 10, "reference": "Gepoolte Exponierungsgewichte ausschließlich der behaltenen Zellen; AB/CD/EF in jeder Zelle; beobachtete Area-Density-Paare bleiben gemeinsam.", "profile_models": ["glm_age_bm_a0001", "gam_b20_l10"], "limits": "Grobe gemeinsame Unterstützung, kein Beleg kontinuierlicher Positivität oder kausaler Identifikation; gespeicherte Entwicklungsrefits liefern adjustierte Assoziationen, keine OOF-Gütescores."},
+  "bootstrap": {"replicates": 500, "seed": 20261031, "unit": "Ganze Entwicklungsverträge inklusive Nullschäden; gemeinsame Ziehungen aller festen Vorhersagen und aller Schadenzeilen eines Vertrags; gezogener Exponierungsnenner", "limits": "Bedingt auf Fits und feste Unterstützung; keine erneute Anpassung, Paar-/Schwellenauswahl oder unbekannte Haushaltsabhängigkeit."},
+  "cost": {"fixed_eur_per_year": 50, "fraction_final_premium": 0.15, "other_loads": 0, "taxes": 0},
+  "compute": {"threads": 2, "gpu": false}
+}
