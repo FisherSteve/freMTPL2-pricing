@@ -2,7 +2,9 @@
 
 [PDF lesen](begleitpaper.pdf) · [LaTeX-Quelle](begleitpaper.tex) · [Bibliografie](literatur.bib)
 
-**Von der Exposition zum Schadenbedarf** erklärt die tatsächlich verwendeten Frequenz- und Schadenhöhenmodelle, ihre Annahmen und die Ergebnisse des historischen französischen Kfz-Portfolios. Der Haupttext umfasst elf Seiten; hinzu kommen Literatur und zwei kurze technische Anhänge. Entwicklungs-OOF, Evaluation und der spätere explorative Zwei-Merkmale-Vergleich bleiben getrennt.
+**Von der Exposition zum Schadenbedarf** erklärt die tatsächlich verwendeten Frequenz- und Schadenhöhenmodelle, ihre Annahmen und die Ergebnisse des historischen französischen Kfz-Portfolios. Zum Haupttext kommen Literatur und zwei kurze technische Anhänge. Entwicklungs-OOF, Evaluation und die späteren explorativen Zwei-Merkmale- und CTGAN-Vergleiche bleiben getrennt.
+
+Die CTGAN-Ergänzung untersucht zusätzliche synthetische Trainingsverträge bei jeweils 20.000 realen Trainingsverträgen je Fold. Drei Seeds, zwei Ratios und gewöhnliche Bootstrap-Kontrollen werden ausschließlich auf realen OOF-Verträgen verglichen. [Auswertung und vollständige Nachweise](../docs/synthetische_trainingsdaten.md) erläutern auch die explizite Samplingkorrektur im gepinnten Release und die begrenzte Aussagekraft dieses Pilots.
 
 Die Herleitungen behandeln Offset und exponierungsgewichtete Rate, Verlustnormierung und Strafen, Mittelwertkonsistenz mit Momentbedingungen, Trainingsbalance, Spline-Identifizierung und effektive Freiheitsgrade, Schadenzeilengewichte, Log-Smearing, das Frequenz-Schadenhöhen-Produkt sowie Kappung und Kosten. Die ONISR-/Cerema-Evidenz wird inhaltlich mit den beobachteten geografischen und Altersbefunden verglichen.
 

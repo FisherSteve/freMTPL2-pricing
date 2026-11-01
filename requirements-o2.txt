@@ -1,0 +1,5 @@
+# Optional CPU experiment, isolated from the core environment.
+-r requirements.lock.txt
+ctgan==0.11.1
+torch==2.9.0
+rdt==1.19.0

@@ -80,3 +80,12 @@
 /paper/*.md text eol=lf
 /paper/.gitignore text eol=lf
 /paper/*.pdf binary
+
+# Optional synthetic-data pilot: portable code and result identities.
+/src/augmentation.py text eol=lf
+/tests/test_augmentation.py text eol=lf
+/scripts/*augmentation*.py text eol=lf
+/config/augmentation_protocol.json text eol=lf
+/docs/synthetische_trainingsdaten.md text eol=lf
+/reports/o2/*.json text eol=lf
+/notebooks/07_synthetic_augmentation.ipynb text eol=lf

@@ -1,0 +1,1223 @@
+{
+  "interpretation": "Area-density ranges are empirical training-subset support, not a proof of physical impossibility. Near copies require identical nine discrete values and max training-range-scaled distance <=0.001 in logDensity/Exposure; this is an operational diagnostic, not a privacy guarantee.",
+  "post_registration_diagnostic": true,
+  "rows": [
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 3763,
+          "synthetic_rows": 4159,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2174,
+          "synthetic_rows": 2350,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3899,
+          "synthetic_rows": 5762,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2397,
+          "synthetic_rows": 3431,
+          "training_density_max": 1993.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3266,
+          "synthetic_rows": 3926,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 356,
+          "synthetic_rows": 372,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.010356411470957505,
+        "0.5": 0.31813863108905643,
+        "0.99": 0.6516141373910244,
+        "1": 0.6754738616669608
+      },
+      "exact_discrete_signature_in_training_rows": 39,
+      "fold": 1,
+      "input_sha256": {
+        "synthetic.parquet": "03f8c9a06be4ec18f0d4d1c91283a0e0f38f7c8d47dfe328b2a4ffef6b519812",
+        "training.parquet": "59bc4995b82d374402fdbe963cad1a9e80be170ab45cbf0182a37ffefd55608c"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.79275,
+      "outside_training_Area_density_range": 15855,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 188,
+          "synthetic_exposure": 2986.751876377172,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.967
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 698,
+          "synthetic_exposure": 11747.244351475869,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9687
+        }
+      ],
+      "seed": 17,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2200,
+          "synthetic_rows": 2264,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2068,
+          "synthetic_rows": 2153,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4698,
+          "synthetic_rows": 7773,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2532,
+          "synthetic_rows": 3556,
+          "training_density_max": 1993.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2766,
+          "synthetic_rows": 3569,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 661,
+          "synthetic_rows": 685,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.03484952994313667,
+        "0.5": 0.3606038947198053,
+        "0.99": 0.6716197302380873,
+        "1": 0.6718068527614407
+      },
+      "exact_discrete_signature_in_training_rows": 48,
+      "fold": 1,
+      "input_sha256": {
+        "synthetic.parquet": "7641907ba3ed298a96af2c7c45fabada8eaca5fdc8be437c84f82c61ed8eff9d",
+        "training.parquet": "59bc4995b82d374402fdbe963cad1a9e80be170ab45cbf0182a37ffefd55608c"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.74625,
+      "outside_training_Area_density_range": 14925,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 407,
+          "synthetic_exposure": 3294.8424267340315,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.925
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 1553,
+          "synthetic_exposure": 13119.925314551194,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.92815
+        }
+      ],
+      "seed": 29,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 3538,
+          "synthetic_rows": 3775,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2987,
+          "synthetic_rows": 3183,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3140,
+          "synthetic_rows": 4510,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2438,
+          "synthetic_rows": 3363,
+          "training_density_max": 1993.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3303,
+          "synthetic_rows": 4471,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 673,
+          "synthetic_rows": 698,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.03509917100870208,
+        "0.5": 0.3583185650883382,
+        "0.99": 0.691775606561371,
+        "1": 0.7335048995697101
+      },
+      "exact_discrete_signature_in_training_rows": 59,
+      "fold": 1,
+      "input_sha256": {
+        "synthetic.parquet": "e1b6bdbe64bac4db56470801d2b76495fcdadcac4ccfea4e43bb1755e1356690",
+        "training.parquet": "59bc4995b82d374402fdbe963cad1a9e80be170ab45cbf0182a37ffefd55608c"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.80395,
+      "outside_training_Area_density_range": 16079,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 280,
+          "synthetic_exposure": 2102.7042934070296,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.954
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10568.03013773486,
+          "synthetic_claims": 1013,
+          "synthetic_exposure": 8573.948243544683,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.95635
+        }
+      ],
+      "seed": 43,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2036,
+          "synthetic_rows": 2104,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 1894,
+          "synthetic_rows": 1971,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4851,
+          "synthetic_rows": 6983,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2339,
+          "synthetic_rows": 3617,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3570,
+          "synthetic_rows": 4776,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 532,
+          "synthetic_rows": 549,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.041561908888108456,
+        "0.5": 0.27308370489761036,
+        "0.99": 0.5757462927679221,
+        "1": 0.6096332397977535
+      },
+      "exact_discrete_signature_in_training_rows": 49,
+      "fold": 2,
+      "input_sha256": {
+        "synthetic.parquet": "b1e22cf6970d71ed014c2148e9c3adcc436a263f4d811a27afc7c286b8bf2a24",
+        "training.parquet": "9254a18d3591d8945f38e18f7680b197088abb800895722bf5ba6aa04ca681c9"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.7611,
+      "outside_training_Area_density_range": 15222,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 420,
+          "synthetic_exposure": 2998.6735598673977,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9168
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 1741,
+          "synthetic_exposure": 11975.375952730821,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.91525
+        }
+      ],
+      "seed": 17,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 3170,
+          "synthetic_rows": 3403,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2291,
+          "synthetic_rows": 2444,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3078,
+          "synthetic_rows": 4896,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 3190,
+          "synthetic_rows": 4319,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3337,
+          "synthetic_rows": 4213,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 694,
+          "synthetic_rows": 725,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.01279845760159104,
+        "0.5": 0.31575261456374715,
+        "0.99": 0.5331748561545206,
+        "1": 0.5366460357215821
+      },
+      "exact_discrete_signature_in_training_rows": 38,
+      "fold": 2,
+      "input_sha256": {
+        "synthetic.parquet": "3e54d2218d90fe6327f3f0d694ee4fe8d755954eb5114c01e58b66b2d8625fa6",
+        "training.parquet": "9254a18d3591d8945f38e18f7680b197088abb800895722bf5ba6aa04ca681c9"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.788,
+      "outside_training_Area_density_range": 15760,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 504,
+          "synthetic_exposure": 3454.969105012461,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9052
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 1971,
+          "synthetic_exposure": 13727.91535515865,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9052
+        }
+      ],
+      "seed": 29,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 4406,
+          "synthetic_rows": 4639,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2364,
+          "synthetic_rows": 2497,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3036,
+          "synthetic_rows": 4223,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 3060,
+          "synthetic_rows": 4478,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2506,
+          "synthetic_rows": 3422,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 703,
+          "synthetic_rows": 741,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.03422952433242821,
+        "0.5": 0.35826430176848656,
+        "0.99": 0.6550070705352374,
+        "1": 0.7537898086282596
+      },
+      "exact_discrete_signature_in_training_rows": 63,
+      "fold": 2,
+      "input_sha256": {
+        "synthetic.parquet": "443f7566b3c25262c5b77943d7f6ec0fcb06b486ba4f2ad1802eafe37f3a0546",
+        "training.parquet": "9254a18d3591d8945f38e18f7680b197088abb800895722bf5ba6aa04ca681c9"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.80375,
+      "outside_training_Area_density_range": 16075,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 237,
+          "synthetic_exposure": 2928.1764302101255,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9556
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10590.778996930909,
+          "synthetic_claims": 992,
+          "synthetic_exposure": 11651.619837366457,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.95305
+        }
+      ],
+      "seed": 43,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 3010,
+          "synthetic_rows": 3182,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2182,
+          "synthetic_rows": 2340,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4480,
+          "synthetic_rows": 6468,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2612,
+          "synthetic_rows": 4011,
+          "training_density_max": 1982.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2696,
+          "synthetic_rows": 3380,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 599,
+          "synthetic_rows": 619,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.010706143513509514,
+        "0.5": 0.2917030327775527,
+        "0.99": 0.5954916303716948,
+        "1": 0.6367958514719398
+      },
+      "exact_discrete_signature_in_training_rows": 47,
+      "fold": 3,
+      "input_sha256": {
+        "synthetic.parquet": "6f5eda39e2e0499bc847b138a64a14367121826351640eab5886a40ef58533f0",
+        "training.parquet": "077d8707d7c7d06b51f79d6d43cea9e38a60f78c9eb95797974498224754a4ee"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.77895,
+      "outside_training_Area_density_range": 15579,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 153,
+          "synthetic_exposure": 2524.9557185651156,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9716
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 715,
+          "synthetic_exposure": 10162.982217908931,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.96775
+        }
+      ],
+      "seed": 17,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 3830,
+          "synthetic_rows": 4003,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 1812,
+          "synthetic_rows": 1920,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4190,
+          "synthetic_rows": 7306,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2582,
+          "synthetic_rows": 3267,
+          "training_density_max": 1982.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2198,
+          "synthetic_rows": 3059,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 435,
+          "synthetic_rows": 445,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.04110877292257481,
+        "0.5": 0.30375588261019826,
+        "0.99": 0.5332559164976453,
+        "1": 0.5368784083152235
+      },
+      "exact_discrete_signature_in_training_rows": 43,
+      "fold": 3,
+      "input_sha256": {
+        "synthetic.parquet": "849cc120501d3aff43ab09367d11a7b153baf7b497bf66a5460467a42cf44e44",
+        "training.parquet": "077d8707d7c7d06b51f79d6d43cea9e38a60f78c9eb95797974498224754a4ee"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.75235,
+      "outside_training_Area_density_range": 15047,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 376,
+          "synthetic_exposure": 2590.5567497139773,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9324
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 1406,
+          "synthetic_exposure": 10283.923167437808,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.93625
+        }
+      ],
+      "seed": 29,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 1891,
+          "synthetic_rows": 1977,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2136,
+          "synthetic_rows": 2257,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4715,
+          "synthetic_rows": 7102,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 1980,
+          "synthetic_rows": 2896,
+          "training_density_max": 1982.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3860,
+          "synthetic_rows": 5329,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 427,
+          "synthetic_rows": 439,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.009097989246830473,
+        "0.5": 0.2776705111303197,
+        "0.99": 0.5255931434939497,
+        "1": 0.5346751607656626
+      },
+      "exact_discrete_signature_in_training_rows": 32,
+      "fold": 3,
+      "input_sha256": {
+        "synthetic.parquet": "8f26faa0b6fdaa92b73ab9af10962b7068c0ee433f8253d88f70b8815944cc25",
+        "training.parquet": "077d8707d7c7d06b51f79d6d43cea9e38a60f78c9eb95797974498224754a4ee"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.75045,
+      "outside_training_Area_density_range": 15009,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 424,
+          "synthetic_exposure": 2393.2655385284443,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9208
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10540.848242383412,
+          "synthetic_claims": 1589,
+          "synthetic_exposure": 9628.75069408762,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9259
+        }
+      ],
+      "seed": 43,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2055,
+          "synthetic_rows": 2140,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2143,
+          "synthetic_rows": 2221,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4382,
+          "synthetic_rows": 6961,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2643,
+          "synthetic_rows": 4022,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3330,
+          "synthetic_rows": 4256,
+          "training_density_max": 9850.0,
+          "training_density_min": 2007.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 382,
+          "synthetic_rows": 400,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.03616107382732192,
+        "0.5": 0.306366773248692,
+        "0.99": 0.6349151447639193,
+        "1": 0.6578146666491571
+      },
+      "exact_discrete_signature_in_training_rows": 50,
+      "fold": 4,
+      "input_sha256": {
+        "synthetic.parquet": "217613c823e39b76ab0d37461b1f4baf24f3a13a4d50c7f325dcb95124a748cb",
+        "training.parquet": "d5703591351e5907ea35ccb7b03098c2dc2cbe109c28bec9482b65996c0b0c82"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.74675,
+      "outside_training_Area_density_range": 14935,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 209,
+          "synthetic_exposure": 2523.01449041609,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9596
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 951,
+          "synthetic_exposure": 10198.761500555567,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9543
+        }
+      ],
+      "seed": 17,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2250,
+          "synthetic_rows": 2446,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 1513,
+          "synthetic_rows": 1647,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3363,
+          "synthetic_rows": 5040,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 4885,
+          "synthetic_rows": 6428,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2998,
+          "synthetic_rows": 3750,
+          "training_density_max": 9850.0,
+          "training_density_min": 2007.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 671,
+          "synthetic_rows": 689,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.00860307448133657,
+        "0.5": 0.34527646002992757,
+        "0.99": 0.567757046857687,
+        "1": 0.570495749910573
+      },
+      "exact_discrete_signature_in_training_rows": 33,
+      "fold": 4,
+      "input_sha256": {
+        "synthetic.parquet": "888d332b4873b74834d4259b40eaacb44bab22600d5477d8aa0801442fe39ac0",
+        "training.parquet": "d5703591351e5907ea35ccb7b03098c2dc2cbe109c28bec9482b65996c0b0c82"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.784,
+      "outside_training_Area_density_range": 15680,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 207,
+          "synthetic_exposure": 2652.0250107034008,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9612
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 943,
+          "synthetic_exposure": 10634.180331424066,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.95545
+        }
+      ],
+      "seed": 29,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2541,
+          "synthetic_rows": 2634,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 1902,
+          "synthetic_rows": 2032,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3600,
+          "synthetic_rows": 7199,
+          "training_density_max": 499.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2307,
+          "synthetic_rows": 2867,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3928,
+          "synthetic_rows": 4783,
+          "training_density_max": 9850.0,
+          "training_density_min": 2007.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 476,
+          "synthetic_rows": 485,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.058474095203676524,
+        "0.5": 0.26738372488530915,
+        "0.99": 0.5719470656999944,
+        "1": 0.5754794454326382
+      },
+      "exact_discrete_signature_in_training_rows": 31,
+      "fold": 4,
+      "input_sha256": {
+        "synthetic.parquet": "4584d213bbcc2073f3682b8d106558d0e6316e8ad2e18a9e76836bcdf4cf64a7",
+        "training.parquet": "d5703591351e5907ea35ccb7b03098c2dc2cbe109c28bec9482b65996c0b0c82"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.7377,
+      "outside_training_Area_density_range": 14754,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 442,
+          "synthetic_exposure": 2814.5363440808533,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.915
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10594.383046635226,
+          "synthetic_claims": 1729,
+          "synthetic_exposure": 11247.32524594784,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9163
+        }
+      ],
+      "seed": 43,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2206,
+          "synthetic_rows": 2441,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2806,
+          "synthetic_rows": 3108,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 4838,
+          "synthetic_rows": 7495,
+          "training_density_max": 498.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 2682,
+          "synthetic_rows": 3582,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 2296,
+          "synthetic_rows": 2781,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 573,
+          "synthetic_rows": 593,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.0418589137260036,
+        "0.5": 0.3340814240768855,
+        "0.99": 0.6396491518432736,
+        "1": 0.6488068366481173
+      },
+      "exact_discrete_signature_in_training_rows": 63,
+      "fold": 5,
+      "input_sha256": {
+        "synthetic.parquet": "3497ba86b027a1822ceb40a0e4bd2e7846360e169fabd0dc21d04b5a9fda6d1a",
+        "training.parquet": "09e63a693bc6e5d7e4081d3d521b544267ef7dbcfa6068149f0e9e545bb53ee3"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.77005,
+      "outside_training_Area_density_range": 15401,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 202,
+          "synthetic_exposure": 2446.63742185149,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.9626
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 817,
+          "synthetic_exposure": 9808.030907538745,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9619
+        }
+      ],
+      "seed": 17,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2892,
+          "synthetic_rows": 3036,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2133,
+          "synthetic_rows": 2305,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 2246,
+          "synthetic_rows": 3871,
+          "training_density_max": 498.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 4526,
+          "synthetic_rows": 5648,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3418,
+          "synthetic_rows": 4550,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 578,
+          "synthetic_rows": 590,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.04613464908004228,
+        "0.5": 0.3544227462191199,
+        "0.99": 0.6335525649743132,
+        "1": 0.6428152889843567
+      },
+      "exact_discrete_signature_in_training_rows": 48,
+      "fold": 5,
+      "input_sha256": {
+        "synthetic.parquet": "8b7394a2e8e6fbc47b60c455135da985553c534bfbf178e4bb1ea053f0546c3c",
+        "training.parquet": "09e63a693bc6e5d7e4081d3d521b544267ef7dbcfa6068149f0e9e545bb53ee3"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.78965,
+      "outside_training_Area_density_range": 15793,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 295,
+          "synthetic_exposure": 2876.32792679116,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.944
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 1164,
+          "synthetic_exposure": 11518.688731390353,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.9453
+        }
+      ],
+      "seed": 29,
+      "synthetic_rows": 20000
+    },
+    {
+      "by_area": [
+        {
+          "Area": "A",
+          "outside_conditional_range": 2199,
+          "synthetic_rows": 2351,
+          "training_density_max": 50.0,
+          "training_density_min": 2.0
+        },
+        {
+          "Area": "B",
+          "outside_conditional_range": 2375,
+          "synthetic_rows": 2561,
+          "training_density_max": 100.0,
+          "training_density_min": 50.0
+        },
+        {
+          "Area": "C",
+          "outside_conditional_range": 3460,
+          "synthetic_rows": 4797,
+          "training_density_max": 498.0,
+          "training_density_min": 100.0
+        },
+        {
+          "Area": "D",
+          "outside_conditional_range": 3434,
+          "synthetic_rows": 4897,
+          "training_density_max": 1986.0,
+          "training_density_min": 500.0
+        },
+        {
+          "Area": "E",
+          "outside_conditional_range": 3759,
+          "synthetic_rows": 4898,
+          "training_density_max": 9850.0,
+          "training_density_min": 2001.0
+        },
+        {
+          "Area": "F",
+          "outside_conditional_range": 468,
+          "synthetic_rows": 496,
+          "training_density_max": 27000.0,
+          "training_density_min": 10008.0
+        }
+      ],
+      "continuous_distance_quantiles_on_matched_signatures": {
+        "0": 0.07381482038026066,
+        "0.5": 0.22998622365914148,
+        "0.99": 0.6217842689496069,
+        "1": 0.6239656239208822
+      },
+      "exact_discrete_signature_in_training_rows": 44,
+      "fold": 5,
+      "input_sha256": {
+        "synthetic.parquet": "af6780a91eb0762fbb46fdc3453090f4f5e75aee5fad416649b2732fc4629349",
+        "training.parquet": "09e63a693bc6e5d7e4081d3d521b544267ef7dbcfa6068149f0e9e545bb53ee3"
+      },
+      "near_training_copies_at_tolerance_0_001": 0,
+      "outside_training_Area_density_fraction": 0.78475,
+      "outside_training_Area_density_range": 15695,
+      "ratio_summaries": [
+        {
+          "ratio": 0.25,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 251,
+          "synthetic_exposure": 2333.364348995472,
+          "synthetic_rows": 5000,
+          "synthetic_zero_fraction": 0.952
+        },
+        {
+          "ratio": 1.0,
+          "real_exposure": 10504.288401826483,
+          "synthetic_claims": 1054,
+          "synthetic_exposure": 9414.26904584175,
+          "synthetic_rows": 20000,
+          "synthetic_zero_fraction": 0.95035
+        }
+      ],
+      "seed": 43,
+      "synthetic_rows": 20000
+    }
+  ],
+  "run_id": "o2-b71e81d7f2c7a4fe",
+  "scope": "Additional explanatory diagnostics only; no row exclusion, refit, tuning or revised decision"
+}

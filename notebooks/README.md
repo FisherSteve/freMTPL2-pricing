@@ -1,5 +1,7 @@
 # Ausführbare Analyse und historische Notebooks
 
+[07_synthetic_augmentation.ipynb](07_synthetic_augmentation.ipynb) zeigt den optionalen CTGAN-Pilot mit gespeicherten Ergebnissen und einer Abbildung. Es liest ausschließlich vorhandene aggregierte Entwicklungsresultate; ein Notebookaufruf trainiert keine Generatoren oder Modelle. Die [Auswertung](../docs/synthetische_trainingsdaten.md) erklärt die begrenzte Trainingsmenge, Kontrollen, Samplingkorrektur und Unsicherheit. Die optionale Umgebung und die vollständigen Befehle stehen dort gesondert, da der Pilot nicht zum ursprünglichen Kernvergleich gehört.
+
 [01_data_preparation.ipynb](01_data_preparation.ipynb) ist der aktuelle Einstieg. Nach dem dokumentierten Download ruft es ausschließlich `src.data.prepare()` und `load_prepared()` auf. Es zeigt Quelle, Einheiten, Verknüpfung, erhaltene Daten und hypothetische Kappungsauswirkungen mit einem frischen Kernel. Relative Datenpfade beziehen sich auf den Projektstamm.
 
 ```powershell
