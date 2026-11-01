@@ -1,0 +1,358 @@
+\documentclass[11pt,a4paper]{article}
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[margin=24mm,top=22mm,bottom=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{xcolor}
+\usepackage[unicode,colorlinks=true,linkcolor=teal!55!black,citecolor=teal!55!black,urlcolor=teal!55!black,breaklinks=true]{hyperref}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small freMTPL2: Exposition und Schadenbedarf}
+\fancyhead[R]{\small Mathematisch-statistische Begleitstudie}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\evidence}[1]{\par{\footnotesize\textit{Ergebnisquelle:} \nolinkurl{#1}.}\par}
+\newtheorem{proposition}{Aussage}
+\input{generated}
+\hypersetup{pdftitle={Von der Exposition zum Schadenbedarf},pdfauthor={freMTPL2-Portfolio},pdfsubject={Angewandte versicherungsmathematische Modellierungsstudie}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Von der Exposition zum Schadenbedarf\par}
+\vspace{5pt}
+{\large Interpretierbare Modelle und Grenzen eines französischen Kfz-Portfolios\par}
+\vspace{5pt}
+{\small freMTPL2-Portfolio \quad Stand: 1. November 2026}
+\end{center}
+\begin{abstract}
+\noindent Die Studie verbindet den Abgleich eines historischen Kfz-Haftpflichtbestands mit exponierungsabhängigen Frequenzmodellen und einer separaten Schadenhöhe. Sie erklärt, welche Mittelwertannahmen die verwendeten Zielfunktionen und ihr Produkt tragen. Im begrenzten Entwicklungsvergleich liefert Histogramm-Poisson-Boosting die beste Frequenzvorhersage. Die vor der Evaluation gewählte Kombination mit dem arithmetischen Trainingsschadenmittel reduziert dort die Verlustdeviance gegenüber der Interceptbasis um \EvalGain\,\%. Komplexere Schadenhöhen sind damit nicht allgemein widerlegt. Ein späterer explorativer Zwei-Merkmale-Vergleich bevorzugt Alter und Bonus-Malus im Punktergebnis; die Trennung von reduziertem GLM und GAM bleibt unsicher. Dauerabhängige Fehlkalibrierung, große Schäden und fehlende Nutzungsinformationen verhindern eine unmittelbare Tarifempfehlung.
+\end{abstract}
+\section{Fragestellung, Daten und Beitrag}
+Gesucht ist der erwartete erfasste Schadenaufwand eines Vertrags mit vorab verfügbaren Merkmalen. Wie viel Vorhersagestruktur erfassen gruppierte GLMs und additive Splines, was ergänzt ein flexibler Baumvergleich, und verbessert eine variable Schadenhöhe das gemeinsame Verlustziel? Der Beitrag liegt im konsistenten Daten- und Validierungsbezug dieser Fragen, nicht in einer neuen Modellklasse.
+
+Die Daten stammen aus \emph{CASdatasets} 1.2-1, festgelegt auf Commit \code{227fb56b8734} (vollständige Kennung in \cite{cas}). Der Anbieter beschreibt einen unbekannten privaten französischen Versicherer und ungefähr 2011--2013; teilweise beruhen Beträge auf festen IRSA-IDA-Regulierungen. Die unmittelbar untersuchte Population ist dieser historische Bestand, nicht der französische Gesamtmarkt. Die EUR-Beträge bezeichnen den dokumentierten Bewertungsstand ohne heutige Inflationsanpassung.
+
+Verknüpft werden 677\,991 Vertragszeilen mit 26\,444 positiven Schadenzeilen und 59\,909\,216,50 EUR. Das Jahresvolumen beträgt 358\,482,835463 Vertragsjahre. Die rekonstruierte Zeilenanzahl stimmt im CAS-Stand mit der mitgelieferten Anzahl überein. Beides bleibt getrennt gespeichert: Übereinstimmung beweist keine vollständige Erfassung aller Meldungen oder wirtschaftlichen Verluste.
+
+Der historische OpenML-Vergleich enthält 678\,013 Verträge und 195 nicht zuordenbare Schadenzeilen über 788\,714,18 EUR. Bei 9\,095 gemeinsamen Verträgen weicht die mitgelieferte Anzahl ab. Das motiviert die explizite Quellenwahl; die Ursache der Differenzen ist nicht geklärt. Keine Zeile wird in der Hauptanalyse ausgeschlossen, Anzahl, Exponierung und Betrag bleiben ungekappt.
+
+Die Zerlegung Frequenz mal Schadenhöhe folgt dem scikit-learn-Versicherungsbeispiel \cite{example}. Anders als eine bloße Übernahme des Beispiels verwendet diese Studie ein abgeglichenes Zeilenziel, ganze Vertragsfalten, trainingsweise Verarbeitung und dokumentierte Großschaden- und Unterstützungsdiagnostik. Ein direkter Tweedie-Regressor ist kein Kandidat.
+\evidence{reports/s0/source_comparison.json; reports/s6/results.json}
+
+\clearpage
+\section{Exploration: Alter, Zusammensetzung und Unsicherheit}
+Die Entwicklung umfasst 542\,392 Verträge mit 286\,880,818827 Vertragsjahren, 21\,066 Schadenzeilen und 47\,480\,754,65 EUR. Raten werden aus Summen gebildet: Anzahl durch Exponierung und Verlust durch Exponierung. Ein Mittel der individuellen Raten würde kurze Verträge anders gewichten. Das Schadenmittel ist dagegen Verlust durch Anzahl positiver Zeilen.
+
+Deskriptiv sinkt die hohe Frequenz junger eingetragener Fahrer zunächst und steigt im mittleren Alter erneut. Eine gemeinsame Bonus-Malus-Mischung lässt den mittleren Altersunterschied nicht verschwinden. Alter, Bonus-Malus, Fahrzeuge und Wohnumfeld sind jedoch gemeinsam verteilt. Ein Altersbin ist daher keine isolierte Alterswirkung. Die Analyse setzt weder einen exakten Gipfel noch eine Familiengeschichte voraus.
+
+Ein weitergehender Vergleich setzt in identischen Referenzverträgen das Alter auf 35, 45 oder 55 und lässt die übrigen Merkmale unverändert. Referenz sind 30- bis unter 60-Jährige in gemeinsamen Bonus-Malus-, Fahrzeugalter-, Kraftstoff- und Regionszellen. Jede der drei Altersdekaden muss pro Zelle mindestens 100 Vertragsjahre beitragen. Es bleiben \AgePolicies\ Verträge mit \AgeExposure\ Vertragsjahren. Die Entwicklungsrefits liefern:
+\begin{center}\AgeTable\end{center}
+Die Werte sind Jahresraten aus modellbasierter Standardisierung, keine OOF-Gütescores. Der erneute Anstieg bleibt bei gleichem beobachtetem Referenzmix sichtbar; seine Stärke hängt vom Modell ab. Drei gesetzte Alter lokalisieren keinen Gipfel. Grobe Zellunterstützung garantiert außerdem keine Unterstützung jeder exakten Kombination von Marke, Leistung und Dichte. Ohne Unsicherheitsbänder dieser Refits sind kleine Kurvenunterschiede nicht als gesichert zu lesen. Vorliegende Intervalle benachbarter mittlerer Altersgruppen sind breit.
+
+Die Zusammensetzung ist auch geografisch relevant: Area und log-Dichte beschreiben stark überlappende Wohnumfelder. Bonus-Malus kann Schadenhistorie und Erfahrung widerspiegeln; sein Prognosewert identifiziert keinen Verhaltenseffekt. B12 und Fahrzeugalter null kennzeichnen weitere unterschiedliche Teilbestände. Solche Muster begründen gemeinsame Adjustierung und Sensitivitäten, keine nachträgliche Aussortierung vermeintlich störender Gruppen.
+
+Für die Verlustkurve ist die Tail-Konstellation entscheidend. Der größte Entwicklungsschaden beträgt \LargestClaim\ EUR und trägt \LargestShare\,\% der gesamten Verlustsumme. Schadenhöhe und Jahresverlust sind deshalb viel unsicherer als eine glatte Altersfrequenzkurve vermuten lässt. Kurze Verträge zeigen ebenfalls auffällige Jahresraten; fehlende Beendigungs- und Nutzungsinformationen verhindern die Trennung von Dauer, Fahrleistung und Selektion. Diese Befunde bestimmen die späteren Interpretationsgrenzen.
+\evidence{reports/s3/eda_report.json; reports/s3/tail_concentration.json; reports/s6a/existing_age_profiles.json; reports/s6a/existing_age_contrasts.json}
+
+\clearpage
+\section{Poisson-Frequenz: vom Offset zur gewichteten Rate}
+Für Vertrag $i$ seien $x_i$ die prospektiven Merkmale, $e_i>0$ die Exponierung in Jahren und $N_i\geq0$ die ganzzahlige Anzahl positiver Schadenzeilen. Das Arbeitsmodell lautet
+\begin{equation}
+ N_i\mid x_i,e_i\sim\operatorname{Poisson}(\mu_i),\qquad
+ \mu_i=e_i r(x_i),\quad r(x_i)=\exp(\eta_i)>0.
+\end{equation}
+Der lineare Prädiktor für die Anzahl ist $\log e_i+\eta_i$: Der Offset hat fest den Koeffizienten eins. Er ist kein zu schätzender Dauerterm. Für eine Produktlikelihood wird bedingte Unabhängigkeit der Verträge vorausgesetzt. Als Arbeitsverlust kann dieselbe Summe auch ohne vollständige Poisson-Verteilungsannahme verwendet werden; unbekannte Abhängigkeit bleibt für Inferenz relevant.
+
+Die negative Log-Likelihood ist
+\begin{align}
+ -\ell(\eta)&=\sum_i\{e_i\exp(\eta_i)-N_i\eta_i\}
+              +\sum_i\{\log(N_i!)-N_i\log e_i\} \\
+            &=L(\eta)+C(N,e).
+\end{align}
+Bei $y_i=N_i/e_i$ ist $L=\sum_i e_i\{\exp(\eta_i)-y_i\eta_i\}$. Die gewichtete Ratenanpassung minimiert somit dieselben parameterabhängigen Terme wie die Anzahl mit Offset. Gebrochene $y_i$ sind dabei keine behaupteten Poisson-Zählbeobachtungen. Entscheidend ist die Zielfunktion \cite{glm}.
+
+\subsection*{Normierung und Strafe}
+Mit $E_+=\sum_i e_i$ und nichtkonstanten Koeffizienten $b$ minimiert das implementierte GLM
+\begin{equation}\label{eq:ridge}
+ \frac{L(\beta)}{E_+}+\frac{\alpha}{2}\|b\|^2.
+\end{equation}
+Das entspricht auf Summenskala $L+(E_+\alpha/2)\|b\|^2$. Bei Wechsel der Verlustnormierung muss deshalb auch die Strafe wechseln. Das volle Spline-GAM minimiert dagegen $L+\beta^TP\beta/2$ mit zweiter Differenzenstrafe. Weder die Zahlenwerte noch die Matrizen dieser Strafen sind austauschbar. Der gesonderte reduzierte Vergleich verwendet wiederum Ridge, siehe Abschnitt~\ref{sec:reduced}.
+
+\subsection*{Was der Intercept tatsächlich garantiert}
+Ist $\eta_i=\beta_0+z_i^Tb$, der Intercept frei und unbestraft, und existiert ein endliches stationäres Optimum, so gilt
+\begin{equation}
+ \frac{\partial L}{\partial\beta_0}=\sum_i(e_i\widehat r_i-N_i)=0
+ \quad\Longrightarrow\quad \sum_iN_i=\sum_ie_i\widehat r_i.
+\end{equation}
+Eine Strafe nur auf $b$ ändert diese Gleichung nicht. Numerische Toleranz kann eine kleine Restabweichung erzeugen. Ein bestrafter, fixierter oder beschränkter Intercept, ein nicht erreichtes Optimum oder lauter Nullschäden können die Aussage verhindern. Bei lauter Nullen liegt das Optimum erst bei $\beta_0\to-\infty$; die Implementierung verlangt eine positive Trainingsanzahlsumme.
+
+Die Balance gilt im jeweiligen Training, nicht automatisch in gehaltenen Daten, Segmenten oder gepoolten OOF-Vorhersagen. Boosting erhält daraus keine allgemeine exakte Balancegarantie. Für jedes Modell werden endliche positive Raten und endliche positive Produkte $e_i\widehat r_i$ geprüft; fehlerhafte Vorhersagen werden nicht still gekappt.
+
+\clearpage
+\section{Deviance und Mittelwertkonsistenz}
+Für $n\geq0$, $\mu>0$ definiere
+\begin{equation}
+ d(n,\mu)=2\{n\log(n/\mu)-n+\mu\},\qquad 0\log(0/\mu)=0.
+\end{equation}
+Insbesondere ist $d(0,\mu)=2\mu$. Durch Einsetzen folgt für jedes $e,r>0$:
+\begin{align}
+ d(n,er)&=2\{n\log((n/e)/r)-n+er\}\\
+        &=e\,d(n/e,r).\label{eq:identity}
+\end{align}
+Rechts wird dieselbe nichtnegative Verlustfunktion auf nichtnegative Raten angewendet. Der Hauptscore der Frequenzanalyse ist daher
+\begin{equation}
+ D_N=\frac{\sum_i d(N_i,e_i\widehat r_i)}{\sum_i e_i}
+     =\frac{\sum_i e_i d(N_i/e_i,\widehat r_i)}{\sum_i e_i}.
+\end{equation}
+Eine weitere Exponierungsgewichtung der bereits modellierten Anzahlen würde ein anderes Kriterium erzeugen. Die alternativ ausgewiesene mittlere Anzahldeviance teilt durch die Vertragszahl statt durch Vertragsjahre. Keiner dieser Scores ist eine Schadenwahrscheinlichkeit oder eine Prozentangabe.
+
+\begin{proposition}[Bedingter Mittelwert als optimale Punktprognose]
+Fixiere $x,e$ mit $e>0$. Für eine nichtnegative Zufallsvariable $N$ gelte $m=\E[N\mid x,e]\in(0,\infty)$. Für jede endliche positive Anzahlprognose $a$ ist die erwartete \emph{Scoredifferenz} zu $m$ wohldefiniert und
+\begin{equation}\label{eq:consistency}
+ \E[d(N,a)-d(N,m)\mid x,e]
+ =2\{m\log(m/a)-m+a\}\geq0,
+\end{equation}
+mit Gleichheit genau für $a=m$. Damit ist die optimale Jahresrate $m/e$.
+\end{proposition}
+\begin{proof}
+Die Terme $N\log N$ heben sich in der Differenz punktweise auf. Es bleibt $2\{N\log(m/a)+a-m\}$, integrierbar wegen des endlichen ersten Moments. Erwartungsbildung liefert die rechte Seite. Mit $t=a/m>0$ ist sie $2m(t-1-\log t)$, strikt positiv für $t\neq1$.
+\end{proof}
+Will man statt Differenzen die einzelnen erwarteten Deviances vergleichen, genügt zusätzlich $\E[N\log_+N\mid x,e]<\infty$ mit $\log_+n=\max(\log n,0)$ und Nullkonvention. Ein endliches erstes Moment allein garantiert diesen erwarteten Score nicht. Sonst können beide erwarteten Deviances unendlich sein, obwohl die Differenz integrierbar bleibt. Diese Präzisierung entspricht dem allgemeinen Gedanken mittelwertkonsistenter Scores \cite{gneiting}.
+
+Für $m=0$ folgt aus $N\geq0$, dass $N=0$ fast sicher bedingt auf $x,e$. Dann ist der erwartete Score $2a$ und besitzt unter strikt positiven Prognosen nur das Infimum null bei $a\downarrow0$. Die Randprognose null ist für Nullbeobachtungen sinnvoll, aber mit positiven Beobachtungen unvereinbar. Die Log-Link-Modelle bleiben strikt positiv.
+
+Mittelwertkonsistenz setzt keine Poisson-Verteilung der gesamten Beobachtung voraus. Auch ein Poisson-Verlust kann einen Mittelwert unter Überdispersion beurteilen. Die im Projekt erhöhten OOF-Pearson-Abweichungen diagnostizieren verbleibende Heterogenität oder Fehlanpassung, liefern jedoch weder allein einen Verteilungstest noch eine In-Sample-Dispersionsschätzung.
+
+\clearpage
+\section{GLM und die tatsächlich verwendeten Spline-GAMs}
+Das GLM kodiert Fahreralter, Fahrzeugalter und Bonus-Malus in feste Gruppen, log-Dichte linear und Leistung, Marke, Kraftstoff, Area und Region als Referenzfaktoren. Zwei additive Einstellungen verwenden $\alpha=0$ oder $10^{-4}$. Eine dritte ergänzt Produkte nichtreferenter Alters- und BM-Gruppen bei $\alpha=10^{-4}$. Ergebnisfrei redundante Designspalten werden nach Rangprüfung entfernt. Die Kodierung erzeugt einfache stückweise konstante Relativitäten, kann aber feine Verläufe übersehen.
+
+Für das volle GAM ist
+\begin{equation}
+ \eta_i=\beta_0+z_i^T\gamma+\sum_j f_j(x_{ij}),\qquad
+ f_j(t)=B_j(t)\theta_j.
+\end{equation}
+Kubische B-Splines beschreiben Alter, Fahrzeugalter, Bonus-Malus und log-Dichte. Die Faktoren bleiben unbestraft. Knoten sind uniform zwischen Trainingsminimum und -maximum; außerhalb wird konstant fortgesetzt. Ungekappte Extremwerte können die Auflösung im dichten Wertebereich verringern. Die Auswahl umfasst zehn oder zwanzig Basisfunktionen je glattem Term sowie $\lambda=1$ oder $10$.
+
+\subsection*{Identifizierung und Differenzenstrafe}
+Da die volle Basis zu eins summiert, konkurriert ihr konstanter Anteil mit dem Intercept. Die Implementierung entfernt die letzte Basisfunktion und zentriert die übrigen Spalten mit Trainings-Exponierungsgewichten. Dies entspricht der vollen Parametrisierung mit letzter Koeffiziente null; ein gemeinsamer Koeffizientenshift wird in den Intercept aufgenommen. Somit gilt $\sum_i e_if_j(x_{ij})=0$. Referenzfaktoren vermeiden eine weitere konstante Mehrdeutigkeit \cite{wood}.
+
+Mit $D_2$ als Matrix zweiter Koeffizientendifferenzen lautet die volle Strafe
+\begin{equation}
+ \frac{\lambda}{2}\sum_j\|D_2\theta_j\|^2.
+\end{equation}
+In der reduzierten Basis wird $D_2$ ohne letzte Spalte verwendet. Ein konstanter Shift wird von $D_2$ annulliert. Dies ist eine diskrete P-Spline-Differenzenstrafe \cite{eilers}, nicht exakt das Integral einer quadrierten Ableitung. Newton-Schritte mit Schrittweitenprüfung minimieren die Summen-Poisson-Zielfunktion. Für die eindeutige penalisiert angepasste Lösung ist eine positiv definite penaliserte Hesse-Matrix maßgeblich; der unpenalisierte Designrang allein genügt nicht.
+
+Mit Design $X$, $H=X^T\operatorname{diag}(e_i\widehat r_i)X$ und Strafmatrix $P$ berechnet der Code die lokalen effektiven Freiheitsgrade
+\begin{equation}
+ \operatorname{EDF}=\operatorname{tr}\{(H+P)^{-1}H\}.
+\end{equation}
+Dies ist bedingt auf feste Basis und feste Glättung. Die Glättung wird im begrenzten OOF-Vergleich gewählt; keine UBRE-/REML-Auswahl oder GAM-p-Wert-Inferenz wird behauptet. Bei korrelierten Merkmalen können glatte Terme Vorhersagestruktur untereinander aufteilen. Zentrierung beseitigt konstante Mehrdeutigkeit, aber keine solche inhaltliche Nichttrennbarkeit.
+
+Bei festen übrigen Merkmalen beschreibt $\exp\{f_j(a)-f_j(b)\}$ eine bedingte Modellrelativität. Sie ist keine kausale Intervention. Punktweise Effektintervalle würden selbst bei korrekter Berechnung weder simultane Kurven- noch Tarif- oder Selektionsunsicherheit abdecken; hier werden keine solchen Bänder berechnet.
+
+\clearpage
+\section{Boosting und Grenzen des Validierungsdesigns}
+Histogramm-Boosting ergänzt die additiven Kandidaten durch Interaktionen und lokale Schwellen, ohne einzelne additive Effekte vorzugeben. Es arbeitet ebenfalls mit Rate $N/e$, Exponierungsgewichten und Poisson-Verlust mit Log-Link. Ausgehend von einer Anfangsprognose wird der Log-Prädiktor schrittweise um Baumfunktionen erweitert,
+\begin{equation}
+ F_M(x)=F_0(x)+\nu\sum_{m=1}^M h_m(x),\qquad \widehat r(x)=\exp F_M(x).
+\end{equation}
+Für den halben Poisson-Verlust sind Gradient und Hesse-Gewicht auf Summenskala $g_i=e_i\exp F(x_i)-N_i$ und $h_i=e_i\exp F(x_i)$. Histogramme verdichten mögliche Aufteilungen der numerischen Merkmale; Bäume approximieren lokale Verlustverbesserungen. Die Implementierung regularisiert Endknotenwerte mit L2-Strafe. Ihre Parametrisierung wird nicht mit der GLM-Ridge-Strafe gleichgesetzt \cite{hgb}.
+
+Der registrierte Vergleich verwendet maximal 15 oder 31 Endknoten je Baum, Lernrate $\nu=0{,}05$, L2-Parameter eins und genau 300 Schritte. Automatischer Frühstopp ist deaktiviert. Ein ausgeschöpftes Schrittbudget ist kein Nachweis eines globalen Optimierungsoptimums. Native Kategorien werden im Training kodiert; unbekannte Stufen folgen beim Boosting dem gelernten Fehlwertzweig, bei GLM/GAM der dokumentierten Trainingsreferenz.
+
+\subsection*{Welche Beobachtungen wann verfügbar sind}
+Der feste schlüsselbasierte Split teilt Verträge in 80\,\% Entwicklung und 20\,\% Evaluation. Entwicklung verwendet fünf Falten. Jede Schadenzeile folgt ihrem Vertrag, sodass die Schadenhöhe eines gehaltenen Vertrags nicht aus dessen Schäden gelernt wird. Je Kandidat besitzt jeder Entwicklungsvertrag genau eine OOF-Vorhersage aus den jeweils anderen Falten. Encoder, Skalierung, Basisbereiche und Smearing werden ausschließlich dort gelernt.
+
+Das Auswahlkriterium der Frequenz ist die gepoolte OOF-Deviance, ergänzt durch Faltenvergleiche und Diagnostik. Die vollständige Frequenz-Schadenhöhen-Regel wird aus Entwicklungsergebnissen festgelegt und anschließend auf allen Entwicklungsdaten angepasst. Erst diese festgelegten Regeln werden gemeinsam auf der Evaluation beurteilt. Leicht bessere Evaluationswerte anderer Varianten lösen keine neue Auswahl aus.
+
+Die ursprüngliche Analyse hatte den gesamten Datenstand exploriert. Die neu geordnete Evaluation ist deshalb keine historisch unangetastete, zeitliche oder externe Validierung. Feste Schlüssel verhindern außerdem keine unbekannte Haushalts- oder Serienabhängigkeit. Die spätere reduzierte Untersuchung findet nach Öffnung der Evaluation statt und bleibt explizit explorativ.
+
+\subsection*{Welche Unsicherheit die Intervalle erfassen}
+Gepaarte Bootstrapziehungen ziehen ganze Verträge einschließlich Nullschäden und sämtlicher zugehöriger Schadenzeilen. In jeder Ziehung bleiben die Vorhersagen fest; alle verglichenen Modelle erhalten dieselben Indizes und den gezogenen Exponierungsnenner. Die 500 Ziehungen ergeben deskriptive 95\,\%-Perzentilintervalle. Sie erfassen weder erneutes Training noch Modell-, Paar- oder Unterstützungsauswahl und auch keine bislang unbeobachteten Extremverluste. Fünf überlappende Trainingsfalten sind keine fünf unabhängigen Experimente. Nach Auswahl sind die Intervalle kein bestätigender Signifikanztest.
+\evidence{config/validation_protocol.json; config/frequency_protocol.json; reports/s5/evaluation_release.json}
+
+\clearpage
+\section{Schadenhöhe, Gewichte und Rücktransformation}
+Sei $Y_{ik}>0$ der Betrag der $k$-ten erfassten positiven Schadenzeile von Vertrag $i$. Die Schadenhöhenmodelle erhalten Gewicht eins pro Trainingsschadenzeile, keinen Exponierungsoffset und weder realisierte Anzahl noch Verlust als Merkmal. Alle Verträge, auch solche ohne beobachteten Schaden, erhalten dieselbe prospektive Vorhersageregel $\widehat m(x)$.
+
+Die einfache Basis ist das arithmetische Mittel aller Trainingsschadenzeilen. Das unpenalisierte Gamma-GLM mit Log-Link minimiert bis auf Konstanten
+\begin{equation}
+ \frac1K\sum_{i,k}\{Y_{ik}/m_i+\log m_i\},\qquad m_i=\exp\eta(x_i).
+\end{equation}
+Es verwendet dieselben gruppierten Ursprungsmerkmale wie die Schadenhöhen-Designmatrix. Die Scoregleichung des Intercepts lautet $\sum_{i,k}(Y_{ik}/\widehat m_i-1)=0$. Anders als beim Poisson-Log-Link folgt daraus keine allgemeine Gleichheit von beobachteter und prognostizierter Betragssumme.
+
+\subsection*{Schadenzeile versus Vertragsmittel}
+Für Verträge mit $N_i>0$ sei $\overline Y_i=N_i^{-1}\sum_kY_{ik}$. Weil $x_i$ und somit $m_i$ innerhalb des Vertrags gleich sind, gilt für den parameterabhängigen Gamma-Verlust
+\begin{equation}
+ \sum_k(Y_{ik}/m_i+\log m_i)
+ =N_i\{\overline Y_i/m_i+\log m_i\}.
+\end{equation}
+Ein Vertragsmittel mit Gewicht $N_i$ ergäbe hier dieselben Optima, sofern auch Vorverarbeitung und Merkmalsbasis gleich bleiben. Ein Vertragsmittel mit Gewicht eins gäbe Mehrschadenverträgen relativ weniger Einfluss. Nullschadenverträge haben kein definiertes positives Schadenmittel. Sie werden bei der Frequenz und dem Verlustziel vollständig berücksichtigt.
+
+Diese Identität ist verlustspezifisch: OLS auf $\log Y$ ist nicht allgemein OLS auf $\log\overline Y$. Eine Änderung der Beobachtungseinheit oder Transformation kann daher Ziel und Optimum ändern. Insbesondere sind Exponierungsgewichte auf positiven Claims hier keine passende Ersetzung der verwendeten Schadenzeilengewichte.
+
+\subsection*{Der implementierte Log-Smearing-Ansatz}
+Die Alternative passt OLS auf $Z=\log Y=\eta(x)+\varepsilon$ an. Für endliches bedingtes Exponentialmoment folgt exakt
+\begin{equation}
+ \E[Y\mid x]=\exp\eta(x)\,\E[\exp\varepsilon\mid x].
+\end{equation}
+Der verwendete Duan-Faktor ist $\widehat c=K^{-1}\sum_{i,k}\exp\{\log Y_{ik}-\widehat\eta(x_i)\}$ ausschließlich aus dem Training; prognostiziert wird $\widehat m(x)=\exp\widehat\eta(x)\widehat c$ \cite{duan}. Ein globaler Faktor verlangt für eine bedingt passende Rücktransformation insbesondere ein konstantes bedingtes Exponentialmoment sowie konsistente Schätzung und geeignete Stichprobenbedingungen. Unabhängig von $x$ identisch verteilte Fehler wären hinreichend, Normalität ist nicht nötig. Bei heterogenem Moment ist der globale Faktor eine Approximation, keine universell unverzerrte Korrektur. Es wird $\log Y$, nicht $\log(1+Y)$ verwendet; daher entfällt ein abschließendes Minus eins.
+\evidence{src/severity_models.py; config/severity_protocol.json}
+
+\clearpage
+\section{Vom Schadenmittel zum Verlustziel und zum Tail}
+Der erfasste Periodenverlust ist $S_i=\sum_{k=1}^{N_i}Y_{ik}$, mit $S_i=0$ bei $N_i=0$. Für die gemeinsame Vorhersage genügt folgende bedingte Mittelwertannahme:
+\begin{equation}\label{eq:productassumption}
+ \E[S_i\mid N_i,x_i,e_i]=N_i m(x_i),\qquad
+ \E[N_i\mid x_i,e_i]=e_i r(x_i).
+\end{equation}
+Bei nichtnegativen Beträgen und endlichen beteiligten bedingten Mitteln liefert iterierte Erwartungsbildung
+\begin{equation}
+ \E[S_i\mid x_i,e_i]=e_i r(x_i)m(x_i),\qquad q(x_i)=r(x_i)m(x_i).
+\end{equation}
+Gleichung~\eqref{eq:productassumption} verlangt keine vollständige Unabhängigkeit aller einzelnen Schadenbeträge. Sie verlangt aber insbesondere, dass die mittlere Summe je Anzahl nicht zusätzlich von $N_i$ oder Dauer abhängt. Weder der Zeilenabgleich noch ein guter Score beweist diese Annahme. Fehlen Nutzung oder Deckungsinformationen, bleibt sie eine Modellierungsannahme.
+
+Die Jahresrisikoprämie $q$ hat die Einheit EUR/Vertragsjahr. Erwartete Periodenbeträge sind $e_i\widehat r_i\widehat m_i$. Die Portfolioprognose ist
+\begin{equation}
+ \widehat Q=\frac{\sum_i e_i\widehat r_i\widehat m_i}{\sum_i e_i}.
+\end{equation}
+Im Allgemeinen ist das nicht das Produkt zweier separat exponierungsgewichteter Komponentenmittel: Die Differenz ist deren gewichtete Kovarianz. Selbst ein je Trainingsfold konstantes Schadenmittel kann zwischen OOF-Falten variieren. Eine erst nach Komponentenaggregation gebildete Multiplikation ist deshalb keine allgemeine Ersatzregel.
+
+\subsection*{Der tatsächlich verwendete Verlustscore}
+Mit Jahresverlust $a_i=S_i/e_i$ und fester Power $p=1{,}5$ wird
+\begin{align}
+ d_p(a,q)&=2\left\{\frac{a^{2-p}}{(1-p)(2-p)}
+             -\frac{a q^{1-p}}{1-p}+\frac{q^{2-p}}{2-p}\right\},\\
+ D_L&=\frac{\sum_i e_i d_p(S_i/e_i,\widehat q_i)}{\sum_i e_i}
+\end{align}
+verglichen, mit $0^{2-p}=0$ und $\widehat q_i>0$. Seine Ableitung nach $q$ ist $2q^{-p}(q-a)$ und richtet sich auf den Mittelwert. Das ist ein fester Punktprognosevergleich, kein Nachweis einer vollständigen Tweedie-Verteilung. Power und Skala werden nicht nach Evaluation optimiert. Anders als beim Poisson-Fall ist $d_p(S,eq)=e^{2-p}d_p(S/e,q)$; die mittlere Periodendeviance ist daher ein anders gewichtetes Kriterium.
+
+\subsection*{Kappung beantwortet eine andere Frage}
+Für $Y\geq0$ und $u\geq0$ gilt punktweise $Y=\min(Y,u)+(Y-u)_+$. Unter $\E[Y]<\infty$ folgt mit Tonelli
+\begin{equation}
+ \E[Y]-\E[\min(Y,u)]=\E[(Y-u)_+]=\int_u^\infty\Pr(Y>t)\,dt.
+\end{equation}
+Entsprechend ändert $\min(N,c)$ die erwartete Anzahl; für ganzzahliges $c\geq0$ ist der entfernte Erwartungsanteil $\sum_{k=c+1}^\infty\Pr(N\geq k)$. Die Hauptanalyse kappt weder Anzahl noch Betrag. Kappungen in EDA und Geografiediagnostik zeigen Tail-Sensitivität und schätzen gedeckelte Ziele. Sie sind keine begründete Schätzung des entfernten Tails oder automatische Datenbereinigung.
+
+\clearpage
+\section{Verifizierte Ergebnisse und Kalibrierung}
+\begin{center}\small\FrequencyTable\end{center}
+\evidence{reports/s6/results.json: development_frequency}
+Die Tabelle zeigt ausschließlich Entwicklungs-OOF. Zehn Konfigurationen mit je fünf Falten ergeben 50 Frequenzfits. Das GLM-Familienminimum enthält die Alters-BM-Interaktion; es ist nicht das rein additive GLM. Das GAM-Familienminimum verwendet zwanzig Basisfunktionen und $\lambda=10$. Histogramm-Poisson mit 15 Endknoten hat im registrierten Kreis die geringste Frequenzdeviance. Die größere Einstellung mit 31 Endknoten liefert keinen zusätzlichen Gewinn. Das belegt keine universelle Überlegenheit von Boosting außerhalb dieses Bestands und Suchbudgets.
+
+\begin{center}\small\LossTable\end{center}
+\evidence{reports/s6/results.json: loss_comparison}
+Hier ist $D_L$ die gewichtete Jahresraten-Tweedie-Deviance. Entwicklung und Evaluation sind getrennte Populationen mit jeweils eigener Anpassungsrolle. Die Regel HGB mal Trainingsschadenmittel wurde vor Öffnung der Evaluation gewählt. Auf \EvalPolicies\ Evaluationsverträgen mit \EvalClaims\ positiven Schadenzeilen prognostiziert sie \EvalPredicted\ EUR je Vertragsjahr; beobachtet werden \EvalObserved\ EUR. A/P bedeutet tatsächlich durch vorhergesagt und beträgt \EvalAP. Gegenüber der vollständigen Interceptbasis sinkt die Evaluationsdeviance um \EvalGain\,\%.
+
+Gamma und Smearing haben geringfügig niedrigere Evaluations-Verlustscores. Die gepaarten 95\,\%-Differenzintervalle (Variante minus gewählte Regel) betragen $[-2{,}101030;1{,}353089]$ für Gamma und $[-0{,}723433;0{,}275174]$ für Smearing. Beide enthalten null; die Auswahl bleibt bestehen. Gamma verbessert die separate Schaden-Gamma-Deviance in der Evaluation. Daraus folgt kein allgemeines Argument gegen Schadenhöhenmerkmale.
+
+\subsection*{Portfoliobalance reicht für einen Tarif nicht aus}
+Kalibrierung vergleicht in einer Gruppe $G$ die Summenverhältnisse
+\begin{equation}
+ \operatorname{A/P}_N(G)=\frac{\sum_G N_i}{\sum_Ge_i\widehat r_i},\qquad
+ \operatorname{A/P}_L(G)=\frac{\sum_G S_i}{\sum_Ge_i\widehat q_i}.
+\end{equation}
+Gruppen nach vorhergesagter Jahresrate halten gleiche Raten zusammen. Daneben werden Tarifmerkmale und Dauer geprüft. Im gewählten Evaluationsprodukt liegt Verlust-A/P bei sieben Tagen bis unter 0,1 Jahren bei ungefähr $3{,}057$, ab einem Jahr bei $0{,}607$. Das ist trotz nahe ausgeglichener Entwicklung materiell und mit unterschiedlichem Mix oder informativem Beobachtungsende vereinbar, identifiziert aber keine Ursache. Ein Dauerterm wäre ohne prospektive Interpretation keine automatische Lösung. Die Ergebnisse begründen weitere Diagnostik, keine Tarifabnahme.
+\evidence{reports/s5/evaluation_bootstrap.json; reports/s5/evaluation_loss_segments.json; reports/s5/evaluation_severity_scores.json}
+
+\clearpage
+\section{Zwei Merkmale und geografische Assoziationen}\label{sec:reduced}
+Der nach geöffneter Evaluation durchgeführte Zusatzvergleich beschränkt die gesamte Regel auf Fahreralter und genau ein weiteres Ursprungsmerkmal. Area, log-Dichte, Region oder Bonus-Malus werden jeweils mit einem gruppierten GLM und einem additiven kubischen Spline-GAM kombiniert. Die Schadenhöhe ist pro Falte dasselbe Trainingsclaim-Mittel ohne weitere Merkmale. Damit zählen Transformationen und Dummies nicht als zusätzliche Ursprungsmerkmale.
+
+Wichtig ist die andere Strafe: Das reduzierte GAM nutzt acht uniforme Knoten, eine zentrierte reduzierte B-Spline-Basis und Gleichung~\eqref{eq:ridge} mit $\alpha=10^{-4}$. Ridge bestraft hier \emph{alle} nichtkonstanten Koeffizienten einschließlich vorhandener Faktorindikatoren. Dies ist keine zweite Differenzen- oder Ableitungs-Rauigkeitsstrafe. Das reduzierte GLM verwendet $\alpha=0$. Es erfolgen 40 Frequenzfits und fünf Trainingsschadenmittel ohne zusätzliche Suche.
+\begin{center}\ReducedTable\end{center}
+\evidence{reports/s6a/scores.json; config/interpretation_protocol.json}
+Das kleinste reduzierte Punktergebnis ist Alter plus Bonus-Malus im GAM mit \ReducedScore\ gegenüber \FullScore\ beim vollständigen Entwicklungs-OOF-Produkt, also $+\ReducedGap\,\%$. Die Differenz reduziert minus vollständig ist \FullGap\ mit bedingtem 95\,\%-Intervall $[\FullGapLo;\FullGapHi]$. Zwischen BM-GLM und BM-GAM beträgt die Differenz dagegen \BMGap\ mit $[\BMGapLo;\BMGapHi]$. Der eingeschlossene Nullwert erlaubt keinen gesicherten GAM-Vorteil. Die Empfehlung gilt für den registrierten Kandidatenkreis, nicht für alle denkbaren Paare, und ist keine neue bestätigende Evaluation.
+
+\subsection*{Frequenz und Schadenhöhe erzählen unterschiedliche Geschichten}
+\begin{center}\small\GeoTable\end{center}
+\evidence{reports/s6a/geo.json}
+AB bündelt ländlichere Area-Stufen A/B, CD die mittleren und EF die urbaneren E/F. Die geografische Frequenz nimmt klar zu. Im vollen Entwicklungsbestand liegt das gepaarte Intervall für EF minus AB bei $[0{,}034239;0{,}040683]$ Schäden/Jahr. Das Schadenmittel ist dagegen in AB im Punktergebnis höher; sein entsprechendes Differenzintervall beträgt $[-2\,865{,}56;409{,}89]$ EUR/Schaden und enthält null.
+
+Gemeinsame Zellen nach Alter, BM, Fahrzeugalter und Kraftstoff, zusätzlich mit oder ohne Dauer, behalten den positiven Frequenzkontrast. Schadenhöhenkontraste enthalten in allen drei Populationen null. Mit Dauerunterstützung sinkt das beobachtete AB-Schadenmittel von rund 2\,879 im Vollbestand auf 2\,017 EUR; der größte AB-Schaden entfällt aus dieser Population. Das ist Support- und Tail-Abhängigkeit, kein isolierter Dauereffekt. Die genaue Standardisierung steht im Anhang.
+
+\clearpage
+\section{Externe Evidenz und Grenzen der Interpretation}
+Wohnort, Unfallort und versicherter Betrag müssen inhaltlich getrennt werden. Die folgenden Primärquellen liefern Kontext für Hypothesen, keine Verknüpfung mit den Einzelverträgen:
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}L{25mm}YY@{}}\toprule
+Quelle & Population, Zeitraum und Messung & Aussage und Übertragungsgrenze\\\midrule
+freMTPL2 & Historischer privater Haftpflichtbestand, ungefähr 2011--2013; Area/Density zum Fahrerwohnort, Region zum Vertrag; positive Schadenzeilen und EUR-Beträge. & Vertragsjahre als Nenner; Zahlbeträge einschließlich konventionsgeprägter Beträge. Unfallstraße und physische Schwere fehlen.\\[5pt]
+ONISR 2012 und 2024 \cite{onisr2012,onisr2024} & Amtliche Personenschadenunfälle bzw. Opfer im französischen Straßenverkehr; 2024 Frankreich métropolitaine und alle Verkehrsarten. Ort bezieht sich auf Unfallstraßen. & 2024 entfallen 60\,\% der Toten und 47\,\% der Schwerverletzten auf Straßen außerorts. Anteile ohne passenden Vertrags-/Kilometernenner; keine Wohnort-Schadenmittel. 2012 liegt zeitlich näher, misst aber ebenfalls Personenschäden.\\[5pt]
+Cerema 2020 \cite{cerema} & Betroffene Straßen mit Gegenverkehr ohne Mitteltrennung in Frankreich métropolitaine; Referenz 2013--2017, Hauptnachperiode Juli 2018 bis Dezember 2019. & 80-km/h-Regel: Vorher/nachher mit übrigem Straßennetz als Kontrolle. Berichtete Geschwindigkeits- und Mortalitätsabnahme stützt Geschwindigkeit als Schwerefaktor; keine Messung versicherter Wohnortgradienten.\\\bottomrule
+\end{tabularx}
+\end{center}
+Die ONISR-Zahlen zur schweren Verletzung sind Schätzungen aus der ONISR-/Université-Gustave-Eiffel-Methodik auf Basis polizeilicher Personenschadenunfälle. Die Übersichtsseite 2012 enthält widersprüchliche Gesamtzahlen; diese werden hier nicht übernommen. Ceremas Vergleich ist eine beobachtende Maßnahmenevaluation mit Annahmen über Vergleichbarkeit und zeitgleiche Veränderungen. Er ist kein randomisiertes Experiment im Versicherungsbestand.
+
+\textbf{Mehr urbane Kontakte oder Nutzung?} Der positive EF-AB-Frequenzkontrast bleibt im gemeinsamen beobachteten Mix sichtbar. Das ist mit mehr Kontakten oder Fahrten vereinbar und schwächt die Erklärung durch \emph{nur} die kontrollierten Zusammensetzungsmerkmale. Ohne Kilometer, Fahrten und Unfallort bleiben diese Mechanismen ununterscheidbar.
+
+\textbf{Höhere Geschwindigkeit als ländliche Schadenhöhenerklärung?} ONISR und Cerema machen physische Schwere als Mechanismus plausibel. Das höhere AB-Claimmittel allein trägt die konkrete Versicherungserklärung jedoch nicht: Sein Kontrast ist unsicher, \RuralTailShare\,\% der AB-Verlustsumme stammen aus Schäden ab 100\,000 EUR, und die Dauer-Supportvariante verändert das Mittel erheblich. Diese Befunde schwächen eine stabile ländliche Zahlbetragsgeschichte. Tail, Regulierung und Selektion konkurrieren; Unfallortstatistik identifiziert keinen Wohnorteffekt, Personenschwere keine versicherte Schadenhöhe.
+
+\textbf{Alter als reine Erfahrung?} Der adjustierte Wiederanstieg im mittleren Alter reicht gegen eine einfache monotone Erfahrungsgeschichte. Er trennt Erfahrung, Nutzung, tatsächlichen Unfallfahrer und Auswahl dennoch nicht. Ein kausaler Effekt erfordert eine definierte Intervention und zusätzliche Identifikationsannahmen \cite{hernan}.
+
+Vor Tarifverwendung fehlen insbesondere Unfallort, Fahrleistung, Nutzung, tatsächlicher Fahrer, Beendigungsgründe sowie Unfall-, Melde- und Regulierungszeitpunkte. Für Deutschland sind zusätzlich ein aktueller Zielbestand, vergleichbare Deckung und Bewertung sowie zeitliche externe Validierung erforderlich. Französischer Bonus-Malus ist keine direkt übertragbare SF-Klasse. Die Risikoprämie enthält keine belegten Kosten-, Kapital- oder Marktzuschläge; eine Szenariorechnung im Anhang ersetzt weder Profitabilitätsnachweis noch deutschen Markttarif.
+
+\clearpage
+\begingroup\raggedright
+\bibliographystyle{plain}
+\bibliography{literatur}
+\endgroup
+
+\clearpage\appendix
+\section{Standardisierung und Kostenrechnung}
+\subsection*{Was die Geografiestandardisierung vergleicht}
+Für behaltene Zellen $c$ und geografische Gruppe $g$ seien $E_{gc}$, $N_{gc}$ und $S_{gc}$ die Exponierungs-, Anzahl- und Verlustsummen. Alle drei Geografiegruppen müssen je Zelle mindestens 100 Vertragsjahre und zehn Schadenzeilen beitragen. Mit gepooltem Referenzgewicht $w_c=\sum_gE_{gc}/\sum_{c,g}E_{gc}$ werden
+\begin{equation}
+ r_g^{\rm std}=\sum_cw_c\frac{N_{gc}}{E_{gc}},\quad
+ q_g^{\rm std}=\sum_cw_c\frac{S_{gc}}{E_{gc}},\quad
+ m_g^{\rm std}=\frac{q_g^{\rm std}}{r_g^{\rm std}}
+\end{equation}
+gebildet. Die letzte Größe ist ein Verhältnis standardisierter Verlust- und Frequenzraten, kein exponierungsgewichtetes Mittel der Zellschadenmittel. Die modellierten Profile mitteln in derselben Struktur feste Entwicklungsrefit-Prognosen. Innerhalb der Zellen bleibt anderer Mix verschieden; es ist kein isolierter Area-Partialeffekt.
+\begin{center}\StandardTable\end{center}
+\evidence{reports/s6a/standardized_without_duration.json; reports/s6a/standardized_with_duration.json}
+Die beiden Varianten haben verschiedene behaltene Populationen und Referenzgewichte. Der Übergang zwischen ihnen ist deshalb keine kausale Zerlegung eines Dauereffekts. Intervalle halten die ausgewählte Unterstützung fest. Weder grobe Zellüberschneidung noch engere Intervalle der festen Modellprofile erfassen vollständige Refit- oder Selektionsunsicherheit.
+
+\subsection*{Prämienanteil und prozentualer Aufschlag}
+Seien $q$ der jährliche erwartete Schadenbedarf, $F$ definierte jährliche Fixkosten und $v\in[0,1)$ ein Kostenanteil an der \emph{finalen} jährlichen Prämie. Ohne andere Lasten und Steuern gilt
+\begin{equation}
+ P=q+F+vP\quad\Longrightarrow\quad P=\frac{q+F}{1-v}.
+\end{equation}
+Die getrennten Szenarien verwenden $P_{\rm fix}=q+50$ und $P_{\rm var}=q/0{,}85$. Ein 15\,\%-Aufschlag auf den Schadenbedarf wäre hingegen $1{,}15q$. Aus $q+50=q/0{,}85$ folgt $q=850/3$ EUR/Jahr. Darunter ist das variable Szenario günstiger, darüber die Fixkostenregel.
+
+In den berechneten OOF-Risikogruppen des reduzierten BM-GAM liegt $q$ beispielsweise bei 86,98 EUR/Jahr für Alter 25--34 mit BM 50 und 760,11 EUR/Jahr für Alter 35--49 mit BM ab 101. Das sind Mittel prognostizierter Vertragsprodukte, keine unabhängig geschätzten beobachteten Zellmittel. Kosten sind vor Anwendung gegen bereits enthaltene Schadenregulierung abzugrenzen. Der Bestand identifiziert weder Kanalvollkosten noch Preiselastizität, Selektion durch Preise oder Gewinn. Ein niedrigerer Direktpreis kann daher nur unter zusätzlichen Kosten- und Bestandsannahmen beurteilt werden.
+\evidence{reports/s6a/costs.json}
+
+\clearpage
+\section{Quellenpfad, Implementierung und Reproduktion}
+Die Tabellen werden aus bestehenden aggregierten JSON-Artefakten erzeugt. Es werden für das Paper keine Modelle angepasst und keine Evaluation erneut geöffnet. \code{paper/evidence.json} speichert die gelesenen Dateihashes, Herkunft und Rundung der Zahlenmakros sowie die Ursprünge aller generierten Tabellen. Das maschinenlesbare Quellenverzeichnis ergänzt die Literatur um Abrufdatum und tatsächlich geprüften Quellinhalt.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}L{38mm}Y@{}}\toprule
+Gegenstand & Maßgebliche Implementierung oder Ergebnisquelle\\\midrule
+Poisson und Splines & \code{src/frequency_models.py}: \code{FrequencyGLM}, \code{FrequencyGAM}, \code{FrequencyHistogram}; Spezifikation in \code{config/frequency_protocol.json}.\\[5pt]
+Schadenhöhe & \code{src/severity_models.py}: \code{GammaSeverity}, \code{LogSmearingSeverity}, \code{ClaimMeanSeverity}.\\[5pt]
+Messgrößen & \code{src/metrics.py}, \code{src/severity.py}; Jahresratenverlust, Periodenverlust, A/P und schlüsselbasierte Ausrichtung bleiben getrennt.\\[5pt]
+Vollständiger Vergleich & \code{reports/s6/results.json}; ursprüngliche Schadenhöhenregel \code{s5sev-2c4bc0d8ad1fd1c1}, Entscheidung \code{s5decision-df9a82872ec16be6}.\\[5pt]
+Reduzierter Vergleich & \code{src/interpretation.py}: \code{TwoFeaturePoisson}; aktueller Lauf \code{s6af633eebaf65aa470}. \code{reports/s6a/release.json} verbindet Quellstand und Ergebnisnachweise.\\[5pt]
+Geografie und Mechanismen & \code{reports/s6a/geo.json}, Standardisierungen und zugehörige Intervalle; \code{docs/aktuarische_einordnung.md} und \code{reports/s6a/sources.json}.\\\bottomrule
+\end{tabularx}
+\end{center}
+Die frühere und die integrierte Reproduktion besitzen teilweise unterschiedliche Laufkennungen, ohne verschiedene empirische Vergleiche zu bezeichnen. Maßgeblich sind deshalb die expliziten Ergebnisdateien und ihre Hashes. Die S6a-Ergänzung verwendet bestehende Frequenzfits und änderte weder ausgewählte Regel noch wissenschaftliche Werte. Interne Ablaufaufzeichnungen sind keine Literaturquelle des Papers.
+
+Aus dem Repositorywurzelverzeichnis erzeugt \code{python scripts/build_paper.py --compile} die Zahlenquellen und kompiliert mit pdfLaTeX, BibTeX und zwei weiteren pdfLaTeX-Durchläufen. \code{python scripts/build_paper.py --check} prüft die Aktualität der generierten Eingaben ohne Fits. LaTeX-Quelle, Bibliografie, generierte Tabellen und finales PDF liegen gemeinsam unter \code{paper/}; temporäre TeX-Dateien bleiben in \code{paper/build/}. Erforderliche TeX-Pakete und die geprüfte Umgebung beschreibt die dortige README.
+
+Das Projekt enthält keine gemeinsame prospektive Prüfung von Modellwahl, Tarifgestaltung und Markttransfer. Die vorgestellten Mittelwertmodelle lassen sich mathematisch begründen und auf dem historischen Bestand vergleichen. Ihre verbleibenden Kalibrierungs- und Informationslücken sind eigenständige Ergebnisse dieser angewandten Studie.
+\end{document}

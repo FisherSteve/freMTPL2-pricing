@@ -71,3 +71,12 @@
 /docs/aktuarische_einordnung.md text eol=lf
 /notebooks/06_actuarial_interpretation.ipynb text eol=lf
 /reports/s6a/*.json text eol=lf
+
+# Mathematical companion: preserve source/evidence bytes across checkouts.
+/scripts/build_paper.py text eol=lf
+/paper/*.tex text eol=lf
+/paper/*.bib text eol=lf
+/paper/*.json text eol=lf
+/paper/*.md text eol=lf
+/paper/.gitignore text eol=lf
+/paper/*.pdf binary

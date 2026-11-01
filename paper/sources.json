@@ -1,0 +1,86 @@
+{
+  "accessed": "2026-11-01",
+  "sources": [
+    {
+      "bibkey": "cas",
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd",
+      "checked": "Originale gepinnte Datensatzdokumentation: freMTPL2-Verträge, Zeitraum, Wohnortmerkmale, unbekannter Versicherer, IRSA-IDA.",
+      "limit": "Keine individuelle Unfallort-, Nutzungs- oder Personenschwereinformation."
+    },
+    {
+      "bibkey": "example",
+      "url": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html",
+      "version_seen": "1.9.1",
+      "checked": "Originales Versicherungsbeispiel als Referenz für Frequenz-Schadenhöhen-Zerlegung und Tweedie-Score.",
+      "limit": "Projekt verwendet eigenen Datenstand, ungekappte Ziele, eigene Splits und Kandidaten."
+    },
+    {
+      "bibkey": "glm",
+      "url": "https://scikit-learn.org/1.9/modules/linear_model.html#generalized-linear-models",
+      "checked": "Gewichtete mittlere Deviance mit L2-Strafe; Anzahl/Exponierung als Ziel mit Exponierungsgewichten.",
+      "limit": "Projektmathematik zusätzlich gegen lokale Implementierung geprüft."
+    },
+    {
+      "bibkey": "hgb",
+      "url": "https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html",
+      "checked": "Halbe Poisson-Deviance, Log-Link, sample_weight, Endknoten-L2, Frühstopp-Option.",
+      "limit": "Konkrete Konfiguration folgt config/frequency_protocol.json."
+    },
+    {
+      "bibkey": "eilers",
+      "url": "https://sites.stat.washington.edu/courses/stat527/s14/readings/EilersMarx_StatSci_1996.pdf",
+      "doi": "10.1214/ss/1038425655",
+      "checked": "Originalartikel Flexible Smoothing with B-splines and Penalties, Statistical Science 11(2), 89–102; Differenzenstrafe und Basisidee.",
+      "limit": "Nicht die S6a-Ridge-Strafe; kein Gleichsetzen von Differenzen- und Ableitungsstrafe."
+    },
+    {
+      "bibkey": "wood",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/identifiability.html",
+      "checked": "Autordokumentation zu konstanter Mehrdeutigkeit und Zentrierung glatter Terme.",
+      "limit": "mgcv ist methodischer Bezug und keine verwendete Fitbibliothek."
+    },
+    {
+      "bibkey": "gneiting",
+      "url": "https://arxiv.org/pdf/0912.0902",
+      "doi": "10.1198/jasa.2011.r10138",
+      "checked": "Autorenfassung Making and Evaluating Point Forecasts; Mittelwert und Bregman-Scoring.",
+      "limit": "Konkreter Poisson-Beweis und Momentpräzisierung im Paper selbst angegeben."
+    },
+    {
+      "bibkey": "duan",
+      "url": "https://communities.sas.com/kntur85557/attachments/kntur85557/statistical_procedures/43866/1/Duan_1983_Smearing%20estimate.pdf",
+      "doi": "10.1080/01621459.1983.10478017",
+      "checked": "Originalartikel Smearing Estimate: A Nonparametric Retransformation Method, 1983, 605–610, als gespiegelter Verlagsscan; Rücktransformation aus empirischer Residuenverteilung.",
+      "limit": "Globaler Faktor bei heterogenen bedingten Exponentialmomenten nicht allgemein bedingt korrekt."
+    },
+    {
+      "bibkey": "onisr2012",
+      "url": "https://www.onisr.securite-routiere.gouv.fr/etat-de-l-insecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2012-de-la-securite-routiere",
+      "checked": "Amtliche Originalübersichtsseite des Berichts 2012: Population, zeitliche Nähe, Personenschadenunfälle; widersprüchliche Gesamtzahlen erkannt und nicht übernommen.",
+      "limit": "Keine vollständige Berichtlektüre behauptet; keine Versicherungszahlungen und keine Wohnorteffekte."
+    },
+    {
+      "bibkey": "onisr2024",
+      "url": "https://www.onisr.securite-routiere.gouv.fr/etat-de-linsecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2024-de-la-securite-routiere",
+      "checked": "Amtliche Originalergebnisdarstellung: 60 Prozent der Toten und 47 Prozent der Schwerverletzten außerorts, Frankreich métropolitaine 2024; ONISR-U. Gustave Eiffel-Schätzmethodik.",
+      "limit": "Unfallstraßen und Personen aller Verkehrsarten; keine passenden Vertrags-/Kilometernenner, keine Wohnort-Zahlbeträge."
+    },
+    {
+      "bibkey": "cerema",
+      "url": "https://www.cerema.fr/en/actualites/lowering-maximum-authorised-speed-80-kmh-final-assessment",
+      "checked": "Originäre Ergebnisdarstellung vom 20.07.2020: Gegenverkehr ohne Mitteltrennung, Regel ab Juli 2018, Vorher/Nachher und übriges Netz als Kontrolle, Referenz 2013–2017, Hauptnachperiode bis Dezember 2019.",
+      "limit": "Beobachtende Maßnahmenevaluation mit Vergleichsannahmen; keine Verknüpfung mit freMTPL2, keine Versicherungs-Zahlbetragswirkung."
+    },
+    {
+      "bibkey": "hernan",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2652882/",
+      "doi": "10.1136/jech.2004.029496",
+      "checked": "Originaler Methodenartikel: kausaler Vergleich, definierte Intervention, Austauschbarkeit, Positivität und Konsistenz.",
+      "limit": "Methodische Referenz, keine Identifikation eines Effekts im vorliegenden Portfolio."
+    }
+  ],
+  "additional_implementation_reference": {
+    "url": "https://scikit-learn.org/1.9/modules/generated/sklearn.preprocessing.SplineTransformer.html",
+    "checked": "Kubische Basis, Anzahl der Knoten/Basisfunktionen und konstante Randfortsetzung."
+  }
+}
