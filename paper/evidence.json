@@ -1,9 +1,11 @@
 {
   "scope": "Existing aggregate evidence only; no fitting or evaluation rerun",
   "s6a_run": "s6af633eebaf65aa470",
+  "o2_run": "o2-b71e81d7f2c7a4fe",
   "sources_sha256": {
     "reports/s6/results.json": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
     "reports/o2/report.json": "7b8dcb418ece0b8d7453196c1ea7eef6f0f4b5801e926e633010925eecc213eb",
+    "reports/o2/joint_support.json": "3baf9fb1459cfc75260a77dc9a00b5c79ab0c654883ad09aba6b23ad36057d36",
     "reports/o2/sources.json": "5d9af0f35611a04a447a8657bc00dd38bdaa512788a06e0d42510da8c9a466c0",
     "config/augmentation_protocol.json": "d6ef4bc506d6a3ba3e6acc350f6a03965e343c913ea297f95653f424659d7265",
     "reports/s6a/scores.json": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d",
@@ -55,6 +57,30 @@
       "origin": "reports/o2/report.json:seconds",
       "digits": 1,
       "latex": "1\\,614{,}5"
+    },
+    "AugmentationMinLoss": {
+      "value": 0.3680991193865494,
+      "origin": "reports/o2/report.json:100*vs_real.difference/real.D_N, minimum",
+      "digits": 2,
+      "latex": "0{,}37"
+    },
+    "AugmentationMaxLoss": {
+      "value": 3.0598717063281864,
+      "origin": "reports/o2/report.json:100*vs_real.difference/real.D_N, maximum",
+      "digits": 2,
+      "latex": "3{,}06"
+    },
+    "AugmentationSupportMin": {
+      "value": 73.77,
+      "origin": "reports/o2/joint_support.json:outside_training_Area_density_fraction, minimum percent",
+      "digits": 2,
+      "latex": "73{,}77"
+    },
+    "AugmentationSupportMax": {
+      "value": 80.39500000000001,
+      "origin": "reports/o2/joint_support.json:outside_training_Area_density_fraction, maximum percent",
+      "digits": 2,
+      "latex": "80{,}40"
     },
     "ReducedScore": {
       "value": 82.02785598518176,
@@ -184,6 +210,6 @@
     "GeoTable": "reports/s6a/geo.json",
     "AgeTable": "reports/s6a/existing_age_profiles.json",
     "StandardTable": "reports/s6a/standardized_{without,with}_duration.json",
-    "AugmentationTable": "reports/o2/report.json:scores.ctgan"
+    "AugmentationTable": "reports/o2/report.json:scores.ctgan and matching scores.bootstrap; paired CTGAN-minus-bootstrap"
   }
 }

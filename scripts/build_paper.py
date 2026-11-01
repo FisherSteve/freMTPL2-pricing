@@ -51,6 +51,7 @@ def row(table, key, wanted):
 def generate():
     core = read("reports/s6/results.json")
     augmentation = read("reports/o2/report.json")
+    joint_support = read("reports/o2/joint_support.json")
     read("reports/o2/sources.json")
     read("config/augmentation_protocol.json")
     if not augmentation["exploratory"] or augmentation["evaluation_used"]:
@@ -58,11 +59,21 @@ def generate():
     real = row(augmentation["scores"], "method", "real")
     value("AugmentationBaseline", real["poisson_deviance_per_exposure"], "reports/o2/report.json:scores.real")
     value("AugmentationSeconds", augmentation["seconds"], "reports/o2/report.json:seconds", 1)
-    augment = [r"\begin{tabular}{rrrrr}\toprule", r"Ratio & Seed & CTGAN $D_N$ & $D_N-D_{\rm real}$ & A/P\\\midrule"]
+    ctgan = [r for r in augmentation["scores"] if r["method"] == "ctgan"]
+    relative = [100*r["vs_real"]["difference"]/real["poisson_deviance_per_exposure"] for r in ctgan]
+    value("AugmentationMinLoss", min(relative), "reports/o2/report.json:100*vs_real.difference/real.D_N, minimum", 2)
+    value("AugmentationMaxLoss", max(relative), "reports/o2/report.json:100*vs_real.difference/real.D_N, maximum", 2)
+    outside = [100*r["outside_training_Area_density_fraction"] for r in joint_support["rows"]]
+    value("AugmentationSupportMin", min(outside), "reports/o2/joint_support.json:outside_training_Area_density_fraction, minimum percent", 2)
+    value("AugmentationSupportMax", max(outside), "reports/o2/joint_support.json:outside_training_Area_density_fraction, maximum percent", 2)
+    augment = [r"\begin{tabular}{rrrrrr}\toprule", r"Ratio & Seed & Bootstrap $D_N$ & CTGAN $D_N$ & $\Delta_{\rm CT-Boot}$ & CTGAN A/P\\\midrule"]
     for r in augmentation["scores"]:
         if r["method"] == "ctgan":
-            augment.append(f"{number(r['ratio'],2)} & {r['seed']} & {number(r['poisson_deviance_per_exposure'])} & "
-                f"{number(r['vs_real']['difference'])} & {number(r['actual_over_predicted'],4)}"+r"\\")
+            control = next(b for b in augmentation["scores"] if b["method"] == "bootstrap" and
+                           b["ratio"] == r["ratio"] and b["seed"] == r["seed"])
+            augment.append(f"{number(r['ratio'],2)} & {r['seed']} & {number(control['poisson_deviance_per_exposure'])} & "
+                f"{number(r['poisson_deviance_per_exposure'])} & {number(r['vs_bootstrap']['difference'])} & "
+                f"{number(r['actual_over_predicted'],4)}"+r"\\")
     augment.append(r"\bottomrule\end{tabular}")
     conclusion = ("Die vorab festgelegte Bedingung für einen über beide Ratios und alle drei Seeds konsistenten Vorteil gegenüber real-only und Bootstrap wird nicht erfüllt. Die Augmentation wird für diesen Pilot verworfen."
         if augmentation["decision"] == "discard_for_this_pilot" else
@@ -151,13 +162,14 @@ def generate():
     for name,lines in [("FrequencyTable",freq),("LossTable",loss),("ReducedTable",pairs),("GeoTable",geotab),("AgeTable",agetab),("StandardTable",standard),("AugmentationTable",augment)]:
         macro += [f"\\newcommand{{\\{name}}}{{%",*lines,"}"]
     manifest={"scope":"Existing aggregate evidence only; no fitting or evaluation rerun", "s6a_run":"s6af633eebaf65aa470",
+              "o2_run":augmentation["run_id"],
               "sources_sha256":SOURCES,
               "versioned_inputs":{p:REFERENCE_COMMIT for p in sorted(VERSIONED_INPUTS)},
               "numeric_macros":VALUES,
               "table_origins":{"FrequencyTable":"reports/s6/results.json:development_frequency", "LossTable":"reports/s6/results.json:loss_comparison",
                                "ReducedTable":"reports/s6a/scores.json", "GeoTable":"reports/s6a/geo.json",
                                "AgeTable":"reports/s6a/existing_age_profiles.json", "StandardTable":"reports/s6a/standardized_{without,with}_duration.json",
-                               "AugmentationTable":"reports/o2/report.json:scores.ctgan"}}
+                               "AugmentationTable":"reports/o2/report.json:scores.ctgan and matching scores.bootstrap; paired CTGAN-minus-bootstrap"}}
     return {PAPER/"generated.tex":"\n".join(macro)+"\n",PAPER/"evidence.json":json.dumps(manifest,ensure_ascii=False,indent=2)+"\n"}
 
 

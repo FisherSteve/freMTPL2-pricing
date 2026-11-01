@@ -10,11 +10,11 @@
     "docs/synthetische_trainingsdaten.md": "5aa054444b080f601bf82c54127db811d5a12808f78e46ebfd3ecd7d736d912a",
     "notebooks/07_synthetic_augmentation.ipynb": "05bc1c37b360ecdd9e76423b175f8a11bf2c856139fb3c90c0f621d8676cce5c",
     "notebooks/README.md": "f7fe912e514c925a0aab56b6876f469f461f508fc00de44189fa5d7366ad80be",
-    "paper/README.md": "829968ddf0e12565e97e531dfcd78d5d815eb4076522b773ece764cf47aa168a",
-    "paper/begleitpaper.pdf": "ad811024605cac9b4791c33e0de76c47e2cc10f74f5d9a167bdaa9107310651f",
-    "paper/begleitpaper.tex": "601fdea685c31a6594bd00fbade3a0a004026d01a65a32ea2d16eca38e9e75c3",
-    "paper/evidence.json": "90b98af1beb31d0266ad8ac57d10483a0ebf920f40ff07ccb253c2f5316217f4",
-    "paper/generated.tex": "cf05c08f099dab9945b8ffaa6ead88b0e8b6f624bef69e8e8e4f124a29f0d9d5",
+    "paper/README.md": "cc94fd821b90b56e5634c817cb448d74284c3745880952cc38bbbeac552d1b26",
+    "paper/begleitpaper.pdf": "c46d61ce0cbe145eca655c8e70ae1484a91953da1e4530e8f4d34fbe7f85e9b1",
+    "paper/begleitpaper.tex": "48cbd033d36262268360d98ce99f3d4a097efab71e25ccf81d504091d50ea7f2",
+    "paper/evidence.json": "7112b54e8a08fdaa5080850f23d056ced4a7877f5dee7c79e91635504ac3dd4d",
+    "paper/generated.tex": "8791d95747df9e34ec9644309fd566d50c99b9209861c4848bece56e829c7084",
     "paper/literatur.bib": "cea688544e5bbc296e1c1b6282cda260ef9e6879b5a6f71b8d1503c2d86e875b",
     "paper/sources.json": "5d18c65a912b3841484ca0775f92bd6bf928365ec53e70912f98a9cc84c5bf1d",
     "reports/o2/figures/vergleich.png": "36b80d286dd3bd9317073721b3c37da1c6f749071e5b09285447b91d790e8689",
@@ -27,11 +27,17 @@
     "requirements-o2.txt": "1336ac7acc9640461f8fb63e05d5db488a647d4b082817eff479438a7e834b2b",
     "scripts/augmentation_support_diagnostics.py": "6fa9df016a78a02ec7553af543f581f874967570da33b1ed04be9b7633776cb3",
     "scripts/build_augmentation_results.py": "711e72a0b52dfd39e12c509b6ff06466bdc574f5a88778b744d26a6c6031fb26",
-    "scripts/build_paper.py": "115e302705c560d38f3594116e10284c7e7f946a225ce7183f4f40ded102f28b",
+    "scripts/build_paper.py": "ac934bd76033d0905e464a56f898bda7a82221f91b5315d0b4c3a0d8820afd82",
     "scripts/verify_augmentation.py": "ec27eebb1803c3cdab3b3883d7db8ee5e701e7cdb7bbb40f9f9ce9840d9eafa7",
     "src/augmentation.py": "0a9678a9c0baa349ea4d1d1e647140c5a8da4f55f7fa3aad25f7f9856bb29081",
     "tests/test_augmentation.py": "61f2813e5055812f5f8e63de956e2cc5edd1a3a5926c48c706bf9d1665ba963c"
   },
   "local_verification_sha256": "2b75bc0279671d32f45c0b1a54db5095dd70a0158f324283519638079e9fe790",
-  "run_id": "o2-b71e81d7f2c7a4fe"
+  "run_id": "o2-b71e81d7f2c7a4fe",
+  "paper_revision": {
+    "scope": "Erweiterte Darstellung der unveränderten CTGAN-Ergebnisse: beide Kontrollen, gemeinsamer Support, Normierung und Intervallherleitung",
+    "run_id": "o2-b71e81d7f2c7a4fe",
+    "main_text_pages": 12,
+    "total_pages": 16
+  }
 }
