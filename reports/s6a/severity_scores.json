@@ -1,0 +1,17 @@
+[
+  {
+    "model_id":"severity_mean",
+    "run_id":"s6af633eebaf65aa470",
+    "split":"development",
+    "policies_predicted":542392,
+    "claims":21066,
+    "observed_loss_eur":47480754.650000005960464,
+    "predicted_total_for_observed_claims_eur":47502047.728002101182938,
+    "observed_claim_mean_eur":2253.904616443558552,
+    "predicted_claim_mean_eur":2254.915395803764568,
+    "claim_actual_over_predicted":0.999551743997985,
+    "mean_gamma_deviance":1.7735036195485,
+    "claim_mae_eur":2255.478077766313163,
+    "claim_rmse_eur":31384.354328247060039
+  }
+]

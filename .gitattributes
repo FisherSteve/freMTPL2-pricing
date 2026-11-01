@@ -62,3 +62,12 @@
 /reports/s6/*.json text eol=lf
 /figures/README.md text eol=lf
 /reports/figs/README.md text eol=lf
+
+# Reduced tariffs and actuarial interpretation: retain exact evidence bytes.
+/src/interpretation.py text eol=lf
+/tests/test_interpretation.py text eol=lf
+/scripts/s6a_diagnostics.py text eol=lf
+/scripts/verify_interpretation.py text eol=lf
+/docs/aktuarische_einordnung.md text eol=lf
+/notebooks/06_actuarial_interpretation.ipynb text eol=lf
+/reports/s6a/*.json text eol=lf
