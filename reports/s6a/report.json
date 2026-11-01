@@ -1,6 +1,6 @@
 {
   "best_registered_candidate": "two_BonusMalus_gam",
-  "elapsed_seconds": 367.7755150999999,
+  "elapsed_seconds": 335.2601128000001,
   "frequency_fold_audit": [
     {
       "deviance_per_exposure": 0.4790474355108402,
@@ -1087,7 +1087,7 @@
       "src/data.py": "76cc5561b3e9da720d3972a9e72d94b9a08b9c5ab2f3020d069657e6ff6f071d",
       "src/eda.py": "61a05277e2402ef17348984f6907f8279913ac6fdabcbcad3d2c9294e4236f73",
       "src/frequency_models.py": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
-      "src/interpretation.py": "b18addb036851e138489445dcfff186f464aa0cc643e796b4b46b27756b78031",
+      "src/interpretation.py": "5bebde8c9a5a3ff0d2d956bfe48de19ba8e082adab7f1ac7f8250a6143b7e8ae",
       "src/metrics.py": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
       "src/severity_diagnostics.py": "569a0edc0dfeb7a7328076edfd7b4e47ced6785425d80fc5e447b4250ebefe6e",
       "src/validation.py": "680557fa40bbe2115ba45db0148112de4cb0cfa5bda739b71a2c277796832932"
@@ -1102,9 +1102,9 @@
   },
   "reference_cache_manifest_sha256": "18ed2f4cfad250b8d1c4bd1e4a0d3431ba1c624f7b1859074c39aa93ca115285",
   "reference_original_run_id": "s5sev-2c4bc0d8ad1fd1c1",
-  "registration_sha256": "3cd9c137c9e7058138de766a9512168d5dd11f77b5e08d257f15cd28ca6dad7c",
-  "results_manifest_sha256": "f3957da7abe73a0a285ad7be22f70c7a8a46aa7ca647e54f83a60596076b5ac6",
-  "run_id": "s6af8e1bc99500e7ac6",
+  "registration_sha256": "3a3f8e0146f87c047b193b5a13047d03d80c4130cde8fc6cd875590530c1c368",
+  "results_manifest_sha256": "3d8a8eb45a492e6ed3686a4adcabdec29aa0cfdf8670b22e4b1c8b28f7eeda7e",
+  "run_id": "s6af633eebaf65aa470",
   "scope": "Explorativer Entwicklungsvergleich nach geöffneter S5-Evaluation; keine Änderung der gesperrten S5-Entscheidung.",
   "severity_fold_audit": [
     {
@@ -1153,5 +1153,5 @@
       "validation_policies": 108478
     }
   ],
-  "verified_frequency_cache_origin": "s6a42bfaef602c6abec"
+  "verified_frequency_cache_origin": "s6af8e1bc99500e7ac6"
 }

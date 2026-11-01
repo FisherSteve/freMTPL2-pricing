@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import argparse
 import ast
+import hashlib
 from importlib.metadata import version
 from pathlib import Path
 import platform
@@ -348,6 +349,22 @@ def register_run(path, registration):
     return registration
 
 
+def persist_source_snapshot(directory, identity, source_path):
+    """Create the registered UTF-8/LF source snapshot once, before any fit."""
+    raw = source_path.read_bytes()
+    expected = identity["source_sha256"]["src/interpretation.py"]
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise DataContractError("Execution source changed after registration")
+    snapshot = directory/"executed_source.py"
+    try:
+        with snapshot.open("xb") as stream:
+            stream.write(raw)
+    except FileExistsError:
+        if snapshot.read_bytes() != raw:
+            raise DataContractError("Immutable executed source snapshot differs")
+    return snapshot
+
+
 def run(reuse_frequency_from=None):
     started = time.perf_counter()
     cfg = configuration()
@@ -366,6 +383,7 @@ def run(reuse_frequency_from=None):
                     "verified_frequency_cache_origin": reuse_frequency_from}
     rp = directory/"registration.json"
     registration = register_run(rp, registration)
+    persist_source_snapshot(directory, identity, Path(__file__))
     reuse_frequency_from = registration["verified_frequency_cache_origin"]
     reuse = verified_fit_reuse(reuse_frequency_from, identity)
     print(f"Registered {run_id}: 40 OOF frequency fits, 5 training claim means", flush=True)

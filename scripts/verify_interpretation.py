@@ -31,6 +31,7 @@ def verify(check=False):
         assert sha256(ROOT/path) == expected, path
     d, c, membership, _, _, _ = load_inputs()
     directory = ROOT/"data/interpretation"/r["run_id"]/"results"
+    assert sha256(directory.parent/"executed_source.py") == r["identity"]["source_sha256"]["src/interpretation.py"]
     assert sha256(directory/"manifest.json") == r["results_manifest_sha256"]
     manifest = json.loads((directory/"manifest.json").read_text(encoding="utf-8"))
     ppath = directory/"pp_predictions.parquet"

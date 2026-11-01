@@ -1,14 +1,17 @@
 """Statistical boundaries of the reduced tariff, support and expense arithmetic."""
 import unittest
 import tempfile
+import hashlib
 from pathlib import Path
+from unittest import mock
 
 import numpy as np
 import pandas as pd
 
 from src.data import DataContractError
 from src.interpretation import (TwoFeaturePoisson, cost_scenarios, feature_budget,
-    fold_severity, groups, register_run, standardized, support_cells)
+    fold_severity, groups, persist_source_snapshot, register_run, standardized,
+    support_cells, verified_fit_reuse)
 from src.severity_diagnostics import compose_pure_premium, paired_policy_bootstrap, tweedie_deviance_rows
 
 
@@ -168,6 +171,63 @@ class InterpretationTests(unittest.TestCase):
                 register_run(path, {**copy.deepcopy(registration), "specification": {"scope": "changed"}})
             with self.assertRaises(DataContractError):
                 register_run(path, {**copy.deepcopy(registration), "verified_frequency_cache_origin": "other"})
+
+    def test_registered_snapshot_can_be_reused_and_is_immutable(self):
+        import src.interpretation as module
+        source = Path(module.__file__)
+        identity = {"source_sha256": {"src/interpretation.py": hashlib.sha256(source.read_bytes()).hexdigest()}}
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]/"data/test-tmp") as tmp:
+            root = Path(tmp)
+            directory = root/"data/interpretation/previous"
+            directory.mkdir(parents=True)
+            register_run(directory/"registration.json", {"identity": identity,
+                "specification": {"scope": "Schadenhöhe"}, "verified_frequency_cache_origin": None})
+            snapshot = persist_source_snapshot(directory, identity, source)
+            before = snapshot.stat().st_mtime_ns
+            self.assertEqual(snapshot.read_bytes(), source.read_bytes())
+            persist_source_snapshot(directory, identity, source)
+            self.assertEqual(snapshot.stat().st_mtime_ns, before)
+            with mock.patch.object(module, "ROOT", root):
+                self.assertEqual(verified_fit_reuse("previous", identity), directory)
+            snapshot.write_bytes(b"tampered\n")
+            with self.assertRaisesRegex(DataContractError, "Immutable"):
+                persist_source_snapshot(directory, identity, source)
+            self.assertEqual(snapshot.read_bytes(), b"tampered\n")
+            with mock.patch.object(module, "ROOT", root), self.assertRaises(DataContractError):
+                verified_fit_reuse("previous", identity)
+
+    def test_source_change_after_registration_fails_before_snapshot_write(self):
+        import src.interpretation as module
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]/"data/test-tmp") as tmp:
+            directory = Path(tmp)
+            with self.assertRaisesRegex(DataContractError, "changed after registration"):
+                persist_source_snapshot(directory, {"source_sha256": {"src/interpretation.py": "different"}}, Path(module.__file__))
+            self.assertFalse((directory/"executed_source.py").exists())
+
+    def test_standard_run_persists_snapshot_before_any_training(self):
+        import src.interpretation as module
+        class ReachedTraining(Exception):
+            pass
+        raw = Path(module.__file__).read_bytes()
+        digest = hashlib.sha256(raw).hexdigest()
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]/"data/test-tmp") as tmp:
+            root = Path(tmp)
+            def before_training(*args):
+                snapshots = list((root/"data/interpretation").glob("*/executed_source.py"))
+                self.assertEqual(len(snapshots), 1)
+                self.assertEqual(snapshots[0].read_bytes(), raw)
+                raise ReachedTraining()
+            with mock.patch.object(module, "ROOT", root), \
+                    mock.patch.object(module, "configuration", return_value={}), \
+                    mock.patch.object(module, "load_inputs", return_value=(None, None, None,
+                        {"source_id": "source", "preparation_id": "prep"}, {"split_id": "split"}, None)), \
+                    mock.patch.object(module, "text_sha256", return_value=digest), \
+                    mock.patch.object(module, "sha256", return_value="input"), \
+                    mock.patch.object(module, "fold_severity", side_effect=before_training), \
+                    mock.patch.object(module, "run_oof") as frequency_fit:
+                with self.assertRaises(ReachedTraining):
+                    module.run()
+                frequency_fit.assert_not_called()
 
 
 if __name__ == "__main__":
