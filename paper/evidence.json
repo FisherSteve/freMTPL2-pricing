@@ -1,0 +1,172 @@
+{
+  "scope": "Existing aggregate evidence only; no fitting or evaluation rerun",
+  "s6a_run": "s6af633eebaf65aa470",
+  "sources_sha256": {
+    "reports/s6/results.json": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
+    "reports/s6a/scores.json": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d",
+    "reports/s6a/release.json": "4e1833eaf7ccf044978458fa5b1fd68ae97a34c34c4ca42414b6518f87a31f56",
+    "config/frequency_protocol.json": "6f521356ca8b199b086fa3d8f3dbbd94679dd054c1473aed7b7ee4121b665674",
+    "config/interpretation_protocol.json": "56dd2fc8c60b41ea83bc6cfbbf1d3a318e9dde11babb9291fdaedda0dd073e8d",
+    "config/severity_protocol.json": "e5700649e5048299982c74c5d1cc9367df0d35f7631a17e50efab6f81479d69b",
+    "config/validation_protocol.json": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+    "reports/s6a/bootstrap_best.json": "238a9fb5b2f2e3576bc067912e48c52795a5f3e75988b7381fa7dfa39cedd0a1",
+    "reports/s6a/geo.json": "eeea7ea2e232b57ebfb823e993767225f1d7bd8e966a01be0f46a824ec6faa3b",
+    "reports/s3/tail_concentration.json": "96c0cf3c792bdd079d4f0eb40843cdc4679d5ad77e0549360af2637e3698731a",
+    "reports/s6a/existing_age_profiles.json": "c66199a688daebe91c490ae7048ea462192d5e8739d150013f44f72760f4487a",
+    "reports/s6a/standardized_without_duration.json": "99f3a06a8f35974322290c026cd0651ce3594a40afa13d2cb07e919c2e1dcc76",
+    "reports/s6a/standardized_with_duration.json": "37e12fde2b0db4d49a266cccf995bd08aa0f9e7251863de1a54baef7724de737",
+    "reports/s6a/geo_intervals.json": "ee644edeb7289a73e84a8a15afd0a137bf5da06863430f06d48baa174a22bcaa",
+    "reports/s6a/standardized_intervals_without_duration.json": "299ed26ee38d0a6e3d393e750590baaf9b7ea70843ee21045eecd782b5d59abe",
+    "reports/s6a/standardized_intervals_with_duration.json": "1a701212f7b0964636e76f76795407b5e028886208707e9c9f17b8313268e2b9",
+    "reports/s6a/common_geo_with_duration.json": "677c2ba1cb91d4f19f0f4c04959900a03ff42b1fc9862df21c7c4c3f26d2f9c9",
+    "reports/s5/evaluation_bootstrap.json": "9fef0ccdb813aee57e56cda94bcc552bee616e6e25a3bdb43034665a1116b2b3",
+    "reports/s6a/geography_calibration.json": "6b64acd5672ea8d5a67b70ecf093044671f7eaf69464eea28fd739ab2ca6c339",
+    "reports/s0/source_comparison.json": "3dd88b7e0b4c6dff4500d4bf822407b5b5cf2d1d07da0b24c7f3eeef68991486",
+    "reports/s3/eda_report.json": "e31a303409f7a2c4e92628d486cacd83e571c445af1fb2f4ad33ff01b8c07cb4",
+    "reports/s6a/existing_age_contrasts.json": "d9feb0367f1fe208b358d9538d69225a0ca5d5837fd72aaf58ba3586acb1389c",
+    "reports/s6a/costs.json": "0157c8cac2d436872370a78c2e8db8a6b38a9f8f246b0e981459040a8222a14b",
+    "reports/s5/evaluation_loss_segments.json": "2c3cdef1b91b422e2c55220279c43159957048ddcced04ce93c7a36d5506a381",
+    "reports/s5/evaluation_severity_scores.json": "6a664b29b7045f1536f12cf613f9f2bc3e449a15dc632e6f640cb55efa7c281a",
+    "paper/sources.json": "cdc25732c590dfb9bef1f683190a664487be01ca878175654a8aad05d32e2f8d",
+    "src/frequency_models.py": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
+    "src/severity_models.py": "48f8b34173fa3f7942eb2ee4b1fc0cc595e1626ccae81e6577449d1aee1b56a0",
+    "src/interpretation.py": "5bebde8c9a5a3ff0d2d956bfe48de19ba8e082adab7f1ac7f8250a6143b7e8ae",
+    "src/metrics.py": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
+    "src/severity.py": "b1650b327c50efa9b55c8f2617dcddf15bb24f31d75fb1de6643654b02154b4a",
+    "requirements.lock.txt": "11c6e45da9e3efddcdd7e3ad4654e356dc30210d97b7144434880d8a367f98b5"
+  },
+  "versioned_inputs": {
+    "reports/s3/eda_report.json": "a44c7e91c481fab9312af66bdc08cb96ffd1ab85",
+    "reports/s3/tail_concentration.json": "a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+  },
+  "numeric_macros": {
+    "ReducedScore": {
+      "value": 82.02785598518176,
+      "origin": "reports/s6a/scores.json:two_BonusMalus_gam",
+      "digits": 10,
+      "latex": "82{,}0278559852"
+    },
+    "FullScore": {
+      "value": 79.19484353652985,
+      "origin": "reports/s6a/scores.json:pp_hgb_mean",
+      "digits": 10,
+      "latex": "79{,}1948435365"
+    },
+    "ReducedGap": {
+      "value": 3.577268824762747,
+      "origin": "100*(two_BonusMalus_gam/pp_hgb_mean-1)",
+      "digits": 4,
+      "latex": "3{,}5773"
+    },
+    "EvalPolicies": {
+      "value": 135599,
+      "origin": "reports/s6/results.json:selected_evaluation.policies",
+      "digits": 0,
+      "latex": "135\\,599"
+    },
+    "EvalClaims": {
+      "value": 5378,
+      "origin": "reports/s6/results.json:selected_evaluation.observed_claims",
+      "digits": 0,
+      "latex": "5\\,378"
+    },
+    "EvalObserved": {
+      "value": 173.57698056447532,
+      "origin": "reports/s6/results.json:selected_evaluation.observed_annual_loss_cost",
+      "digits": 2,
+      "latex": "173{,}58"
+    },
+    "EvalPredicted": {
+      "value": 165.60320922796276,
+      "origin": "reports/s6/results.json:selected_evaluation.predicted_annual_loss_cost",
+      "digits": 2,
+      "latex": "165{,}60"
+    },
+    "EvalAP": {
+      "value": 1.048149859979683,
+      "origin": "reports/s6/results.json:selected_evaluation.actual_over_predicted",
+      "digits": 4,
+      "latex": "1{,}0481"
+    },
+    "EvalGain": {
+      "value": 9.796976773288858,
+      "origin": "reports/s6/results.json:relative_loss_deviance_reduction",
+      "digits": 2,
+      "latex": "9{,}80"
+    },
+    "FullGap": {
+      "value": 2.833012448651852,
+      "origin": "reports/s6a/bootstrap_best.json:pp_hgb_mean, sign=-1",
+      "digits": 6,
+      "latex": "2{,}833012"
+    },
+    "FullGapLo": {
+      "value": 1.462607577171601,
+      "origin": "reports/s6a/bootstrap_best.json:pp_hgb_mean:oriented lower",
+      "digits": 6,
+      "latex": "1{,}462608"
+    },
+    "FullGapHi": {
+      "value": 4.807078551522135,
+      "origin": "reports/s6a/bootstrap_best.json:pp_hgb_mean:oriented upper",
+      "digits": 6,
+      "latex": "4{,}807079"
+    },
+    "BMGap": {
+      "value": 0.592656365842458,
+      "origin": "reports/s6a/bootstrap_best.json:two_BonusMalus_glm, sign=1",
+      "digits": 6,
+      "latex": "0{,}592656"
+    },
+    "BMGapLo": {
+      "value": -0.188275916045842,
+      "origin": "reports/s6a/bootstrap_best.json:two_BonusMalus_glm:oriented lower",
+      "digits": 6,
+      "latex": "-0{,}188276"
+    },
+    "BMGapHi": {
+      "value": 1.959059393181793,
+      "origin": "reports/s6a/bootstrap_best.json:two_BonusMalus_glm:oriented upper",
+      "digits": 6,
+      "latex": "1{,}959059"
+    },
+    "RuralTailShare": {
+      "value": 43.1478004005448,
+      "origin": "reports/s6a/geo.json:AB.loss_share_ge_100000",
+      "digits": 2,
+      "latex": "43{,}15"
+    },
+    "LargestShare": {
+      "value": 8.583268294788999,
+      "origin": "reports/s3/tail_concentration.json:rows[0].loss_share",
+      "digits": 2,
+      "latex": "8{,}58"
+    },
+    "LargestClaim": {
+      "value": 4075400.56,
+      "origin": "reports/s3/tail_concentration.json:rows[0].loss_eur",
+      "digits": 2,
+      "latex": "4\\,075\\,400{,}56"
+    },
+    "AgePolicies": {
+      "value": 291234,
+      "origin": "reports/s6a/existing_age_profiles.json:reference_policies",
+      "digits": 0,
+      "latex": "291\\,234"
+    },
+    "AgeExposure": {
+      "value": 163403.34100980614,
+      "origin": "reports/s6a/existing_age_profiles.json:reference_exposure_years",
+      "digits": 2,
+      "latex": "163\\,403{,}34"
+    }
+  },
+  "table_origins": {
+    "FrequencyTable": "reports/s6/results.json:development_frequency",
+    "LossTable": "reports/s6/results.json:loss_comparison",
+    "ReducedTable": "reports/s6a/scores.json",
+    "GeoTable": "reports/s6a/geo.json",
+    "AgeTable": "reports/s6a/existing_age_profiles.json",
+    "StandardTable": "reports/s6a/standardized_{without,with}_duration.json"
+  }
+}

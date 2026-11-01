@@ -15,6 +15,7 @@ Der Vergleich verwendet dieselben Vertragsaufteilungen, prospektive Merkmale und
 | [Schadenhöhe und Risikoprämie](docs/schadenhoehe_risikopraemie.md) | Gamma-GLM, Log-Smearing, konstantes Schadenmittel und gemeinsame Evaluation |
 | [Berechnete Kernergebnisse](docs/ergebnisse.md) | Automatisch erzeugte Tabelle und [kleines Ergebnis-JSON](reports/s6/results.json) für weitere Darstellungen |
 | [Messgrößen und Validierung](docs/validierung.md) | Exponierung, Schlüsselzuordnung, Auswahlgrenzen und Unsicherheit |
+| [Mathematisch-statistisches Begleitpaper](paper/README.md) | [PDF](paper/begleitpaper.pdf), LaTeX und Literatur zu Modellen, Herleitungen, Ergebnissen und aktuarischer Einordnung |
 | [Reproduktion](docs/reproduktion.md) | Vollständiger Ablauf, Umgebung, Laufkennungen und gemessener Ressourcenbedarf |
 
 ### Frequenz: Mehrwert flexibler Struktur
