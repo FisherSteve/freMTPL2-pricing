@@ -1,6 +1,7 @@
 {
   "scope": "Existing aggregate evidence only; no fitting or evaluation rerun",
   "s6a_run": "s6af633eebaf65aa470",
+  "s6a_ablation_run": "s6aablationc96e669c79e96e5c",
   "o2_run": "o2-b71e81d7f2c7a4fe",
   "sources_sha256": {
     "reports/s6/results.json": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
@@ -9,11 +10,16 @@
     "reports/o2/sources.json": "5d9af0f35611a04a447a8657bc00dd38bdaa512788a06e0d42510da8c9a466c0",
     "config/augmentation_protocol.json": "d6ef4bc506d6a3ba3e6acc350f6a03965e343c913ea297f95653f424659d7265",
     "reports/s6a/scores.json": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d",
-    "reports/s6a/release.json": "4e1833eaf7ccf044978458fa5b1fd68ae97a34c34c4ca42414b6518f87a31f56",
+    "reports/s6a/release.json": "2af2c2f1626180592de2936f000a1d58069a7d6bd3918652e402f2c9fef0f842",
     "config/frequency_protocol.json": "6f521356ca8b199b086fa3d8f3dbbd94679dd054c1473aed7b7ee4121b665674",
     "config/interpretation_protocol.json": "56dd2fc8c60b41ea83bc6cfbbf1d3a318e9dde11babb9291fdaedda0dd073e8d",
     "config/severity_protocol.json": "e5700649e5048299982c74c5d1cc9367df0d35f7631a17e50efab6f81479d69b",
     "config/validation_protocol.json": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+    "reports/s6a/ablation/scores.json": "6f4de7fc4009c6ba93bda855dbecf5452ba3df7e6f4c2dbd68c4adf0ee236b28",
+    "reports/s6a/ablation/report.json": "24a870fd80a3d43542e7dd53fe979e2abfcdd44ecda95f6abab645301d4b6b97",
+    "config/feature_ablation_protocol.json": "1c2aaff46d62db14d8fb5c6f29d305437d1f7836be8f62027469b182090d3856",
+    "reports/s6a/ablation/dependence.json": "715f29782a4e705cc869eb90c62b64a0c11de8b1fe5076331b6c843620239b2b",
+    "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json": "0daf1034b573f25906086c3a65548a59bcaf3ab7ef74523fdc6ebe3df163431a",
     "reports/s6a/bootstrap_best.json": "238a9fb5b2f2e3576bc067912e48c52795a5f3e75988b7381fa7dfa39cedd0a1",
     "reports/s6a/geo.json": "eeea7ea2e232b57ebfb823e993767225f1d7bd8e966a01be0f46a824ec6faa3b",
     "reports/s3/tail_concentration.json": "96c0cf3c792bdd079d4f0eb40843cdc4679d5ad77e0549360af2637e3698731a",
@@ -81,6 +87,60 @@
       "origin": "reports/o2/joint_support.json:outside_training_Area_density_fraction, maximum percent",
       "digits": 2,
       "latex": "80{,}40"
+    },
+    "AgeBMRho": {
+      "value": -0.4442230401717849,
+      "origin": "reports/s6a/ablation/dependence.json:exposure_weighted_pearson",
+      "digits": 3,
+      "latex": "-0{,}444"
+    },
+    "AgeBMRank": {
+      "value": -0.5718668150852597,
+      "origin": "reports/s6a/ablation/dependence.json:spearman",
+      "digits": 3,
+      "latex": "-0{,}572"
+    },
+    "ExpandedScore": {
+      "value": 82.02785598518176,
+      "origin": "reports/s6a/ablation/scores.json:two_BonusMalus_gam",
+      "digits": 6,
+      "latex": "82{,}027856"
+    },
+    "ExpandedDifference": {
+      "value": 0.593107986803581,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_Area_gam.deviance_difference",
+      "digits": 6,
+      "latex": "0{,}593108"
+    },
+    "ExpandedLo": {
+      "value": -0.143607021084711,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_Area_gam.lower",
+      "digits": 6,
+      "latex": "-0{,}143607"
+    },
+    "ExpandedHi": {
+      "value": 1.803305202432902,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_Area_gam.upper",
+      "digits": 6,
+      "latex": "1{,}803305"
+    },
+    "BMOnlyDifference": {
+      "value": 0.509349747900737,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_gam.deviance_difference",
+      "digits": 6,
+      "latex": "0{,}509350"
+    },
+    "BMOnlyLo": {
+      "value": 0.1148794020954,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_gam.lower",
+      "digits": 6,
+      "latex": "0{,}114879"
+    },
+    "BMOnlyHi": {
+      "value": 1.103115052419412,
+      "origin": "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_gam.upper",
+      "digits": 6,
+      "latex": "1{,}103115"
     },
     "ReducedScore": {
       "value": 82.02785598518176,
@@ -206,7 +266,7 @@
   "table_origins": {
     "FrequencyTable": "reports/s6/results.json:development_frequency",
     "LossTable": "reports/s6/results.json:loss_comparison",
-    "ReducedTable": "reports/s6a/scores.json",
+    "ReducedTable": "reports/s6a/scores.json and reports/s6a/ablation/scores.json",
     "GeoTable": "reports/s6a/geo.json",
     "AgeTable": "reports/s6a/existing_age_profiles.json",
     "StandardTable": "reports/s6a/standardized_{without,with}_duration.json",

@@ -99,11 +99,33 @@ def generate():
     for label, r in zip(labels, core["loss_comparison"]):
         loss.append(f"{label} & {number(r['development_deviance'])} & {number(r['evaluation_deviance'])} & {number(r['evaluation_actual_over_predicted'],4)}" + r"\\")
     loss.append(r"\bottomrule\end{tabular}")
-    pairs = [r"\begin{tabular}{lrr}\toprule", r"Zweites Merkmal neben Alter & GLM $D_L$ & GAM $D_L$\\\midrule"]
+    ablation = read("reports/s6a/ablation/scores.json")
+    ablation_report = read("reports/s6a/ablation/report.json")
+    read("config/feature_ablation_protocol.json")
+    dep = read("reports/s6a/ablation/dependence.json")
+    value("AgeBMRho", dep["exposure_weighted_pearson"], "reports/s6a/ablation/dependence.json:exposure_weighted_pearson", 3)
+    value("AgeBMRank", dep["spearman"], "reports/s6a/ablation/dependence.json:spearman", 3)
+    expanded_best = ablation_report["best_expanded_candidate"]
+    value("ExpandedScore", row(ablation, "model_id", expanded_best)["tweedie_deviance_per_exposure"],
+          f"reports/s6a/ablation/scores.json:{expanded_best}")
+    expanded_boot = read("reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json")
+    read(f"reports/s6a/ablation/bootstrap_{expanded_best}.json")
+    for name, field in [("ExpandedDifference", "deviance_difference"), ("ExpandedLo", "lower"), ("ExpandedHi", "upper")]:
+        value(name, row(expanded_boot, "model_id", "abl_BonusMalus_Area_gam")[field],
+              f"reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_Area_gam.{field}")
+    for name, field in [("BMOnlyDifference", "deviance_difference"), ("BMOnlyLo", "lower"), ("BMOnlyHi", "upper")]:
+        value(name, row(expanded_boot, "model_id", "abl_BonusMalus_gam")[field],
+              f"reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json:abl_BonusMalus_gam.{field}")
+    pairs = [r"\begin{tabular}{lrr}\toprule", r"Merkmale & GLM $D_L$ & GAM $D_L$\\\midrule"]
+    for features, label in [("DrivAge", "Alter allein"), ("BonusMalus", "Bonus-Malus allein"),
+                             ("Area", "Area allein"), ("BonusMalus_Area", "Bonus-Malus + Area")]:
+        a = row(ablation, "model_id", f"abl_{features}_glm")
+        b = row(ablation, "model_id", f"abl_{features}_gam")
+        pairs.append(f"{label} & {number(a['tweedie_deviance_per_exposure'])} & {number(b['tweedie_deviance_per_exposure'])}" + r"\\")
     for feature, label in [("Area", "Area"), ("Density", r"$\log(\mathrm{Density})$"), ("Region", "Region"), ("BonusMalus", "Bonus-Malus")]:
         a = row(reduced, "model_id", f"two_{feature}_glm")
         b = row(reduced, "model_id", f"two_{feature}_gam")
-        pairs.append(f"{label} & {number(a['tweedie_deviance_per_exposure'])} & {number(b['tweedie_deviance_per_exposure'])}" + r"\\")
+        pairs.append(f"Alter + {label} & {number(a['tweedie_deviance_per_exposure'])} & {number(b['tweedie_deviance_per_exposure'])}" + r"\\")
     pairs.append(r"\bottomrule\end{tabular}")
     best = row(reduced, "model_id", "two_BonusMalus_gam")["tweedie_deviance_per_exposure"]
     full = row(reduced, "model_id", "pp_hgb_mean")["tweedie_deviance_per_exposure"]
@@ -162,12 +184,13 @@ def generate():
     for name,lines in [("FrequencyTable",freq),("LossTable",loss),("ReducedTable",pairs),("GeoTable",geotab),("AgeTable",agetab),("StandardTable",standard),("AugmentationTable",augment)]:
         macro += [f"\\newcommand{{\\{name}}}{{%",*lines,"}"]
     manifest={"scope":"Existing aggregate evidence only; no fitting or evaluation rerun", "s6a_run":"s6af633eebaf65aa470",
+              "s6a_ablation_run":ablation_report["run_id"],
               "o2_run":augmentation["run_id"],
               "sources_sha256":SOURCES,
               "versioned_inputs":{p:REFERENCE_COMMIT for p in sorted(VERSIONED_INPUTS)},
               "numeric_macros":VALUES,
               "table_origins":{"FrequencyTable":"reports/s6/results.json:development_frequency", "LossTable":"reports/s6/results.json:loss_comparison",
-                               "ReducedTable":"reports/s6a/scores.json", "GeoTable":"reports/s6a/geo.json",
+                               "ReducedTable":"reports/s6a/scores.json and reports/s6a/ablation/scores.json", "GeoTable":"reports/s6a/geo.json",
                                "AgeTable":"reports/s6a/existing_age_profiles.json", "StandardTable":"reports/s6a/standardized_{without,with}_duration.json",
                                "AugmentationTable":"reports/o2/report.json:scores.ctgan and matching scores.bootstrap; paired CTGAN-minus-bootstrap"}}
     return {PAPER/"generated.tex":"\n".join(macro)+"\n",PAPER/"evidence.json":json.dumps(manifest,ensure_ascii=False,indent=2)+"\n"}

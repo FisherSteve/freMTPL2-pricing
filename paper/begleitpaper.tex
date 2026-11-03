@@ -34,10 +34,10 @@
 \vspace{5pt}
 {\large Interpretierbare Modelle und Grenzen eines französischen Kfz-Portfolios\par}
 \vspace{5pt}
-{\small freMTPL2-Portfolio \quad Stand: 1. November 2026}
+{\small freMTPL2-Portfolio \quad Stand: 3. November 2026}
 \end{center}
 \begin{abstract}
-\noindent Die Studie verbindet den Abgleich eines historischen Kfz-Haftpflichtbestands mit exponierungsabhängigen Frequenzmodellen und einer separaten Schadenhöhe. Im begrenzten Entwicklungsvergleich liefert Histogramm-Poisson-Boosting die beste Frequenzvorhersage. Die vor der Evaluation gewählte Kombination mit dem arithmetischen Trainingsschadenmittel reduziert dort die Verlustdeviance gegenüber der Interceptbasis um \EvalGain\,\%. Komplexere Schadenhöhen sind damit nicht allgemein widerlegt. Ein explorativer Zwei-Merkmale-Vergleich bevorzugt Alter und Bonus-Malus im Punktergebnis; die Trennung von reduziertem GLM und GAM bleibt unsicher. Ein anschließender CTGAN-Pilot verschlechtert die reale OOF-Frequenzdeviance gegenüber real-only und Bootstrap-Kontrollen. Dauerabhängige Fehlkalibrierung, große Schäden und fehlende Nutzungsinformationen verhindern eine unmittelbare Tarifempfehlung.
+\noindent Die Studie verbindet den Abgleich eines historischen Kfz-Haftpflichtbestands mit exponierungsabhängigen Frequenzmodellen und einer separaten Schadenhöhe. Im begrenzten Entwicklungsvergleich liefert Histogramm-Poisson-Boosting die beste Frequenzvorhersage. Die vor der Evaluation gewählte Kombination mit dem arithmetischen Trainingsschadenmittel reduziert dort die Verlustdeviance gegenüber der Interceptbasis um \EvalGain\,\%. Komplexere Schadenhöhen sind damit nicht allgemein widerlegt. Ein explorativer Vergleich mit festem Alter bevorzugt zunächst Alter und Bonus-Malus; eine Erweiterung um Einzelmerkmale und Bonus-Malus plus Area präzisiert die Merkmalswahl; die Trennung von reduziertem GLM und GAM bleibt unsicher. Ein anschließender CTGAN-Pilot verschlechtert die reale OOF-Frequenzdeviance gegenüber real-only und Bootstrap-Kontrollen. Dauerabhängige Fehlkalibrierung, große Schäden und fehlende Nutzungsinformationen verhindern eine unmittelbare Tarifempfehlung.
 \end{abstract}
 \section{Fragestellung, Daten und Beitrag}
 Gesucht ist der erwartete erfasste Schadenaufwand eines Vertrags mit vorab verfügbaren Merkmalen. Wie viel Vorhersagestruktur erfassen GLMs, additive Splines und Boosting, und verbessert eine variable Schadenhöhe das Verlustziel? Ein ergänzender Pilot prüft synthetische Trainingsverträge bei begrenztem realem Trainingsbudget. Der Beitrag liegt im konsistenten Daten- und Validierungsbezug, nicht in einer neuen Modellklasse.
@@ -270,12 +270,12 @@ Gruppen nach vorhergesagter Jahresrate halten gleiche Raten zusammen. Daneben we
 
 \clearpage
 \section{Zwei Merkmale und geografische Assoziationen}\label{sec:reduced}
-Der nach geöffneter Evaluation durchgeführte Zusatzvergleich beschränkt die gesamte Regel auf Fahreralter und genau ein weiteres Ursprungsmerkmal. Area, log-Dichte, Region oder Bonus-Malus werden jeweils mit einem gruppierten GLM und einem additiven kubischen Spline-GAM kombiniert. Die Schadenhöhe ist pro Falte dasselbe Trainingsclaim-Mittel ohne weitere Merkmale. Damit zählen Transformationen und Dummies nicht als zusätzliche Ursprungsmerkmale.
+Der ursprüngliche Zusatzvergleich kombiniert Alter mit Area, log-Dichte, Region oder Bonus-Malus, je als GLM und GAM. Alle Regeln verwenden pro Falte dasselbe Trainingsclaim-Mittel ohne weitere Merkmale. Die Auswahl erfolgt explorativ nach geöffneter Evaluation; diese wird nicht erneut verwendet.
 
-Wichtig ist die andere Strafe: Das reduzierte GAM nutzt acht uniforme Knoten, eine zentrierte reduzierte B-Spline-Basis und Gleichung~\eqref{eq:ridge} mit $\alpha=10^{-4}$. Ridge bestraft hier \emph{alle} nichtkonstanten Koeffizienten einschließlich vorhandener Faktorindikatoren. Dies ist keine zweite Differenzen- oder Ableitungs-Rauigkeitsstrafe. Das reduzierte GLM verwendet $\alpha=0$. Es erfolgen 40 Frequenzfits und fünf Trainingsschadenmittel ohne zusätzliche Suche.
-\begin{center}\ReducedTable\end{center}
-\evidence{reports/s6a/scores.json; config/interpretation_protocol.json}
-Das kleinste reduzierte Punktergebnis ist Alter plus Bonus-Malus im GAM mit \ReducedScore\ gegenüber \FullScore\ beim vollständigen Entwicklungs-OOF-Produkt, also $+\ReducedGap\,\%$. Die Differenz reduziert minus vollständig ist \FullGap\ mit bedingtem 95\,\%-Intervall $[\FullGapLo;\FullGapHi]$. Zwischen BM-GLM und BM-GAM beträgt die Differenz dagegen \BMGap\ mit $[\BMGapLo;\BMGapHi]$. Der eingeschlossene Nullwert erlaubt keinen gesicherten GAM-Vorteil. Die Empfehlung gilt für den registrierten Kandidatenkreis, nicht für alle denkbaren Paare, und ist keine neue bestätigende Evaluation.
+Das reduzierte GAM verwendet acht uniforme Knoten und eine zentrierte kubische B-Spline-Basis. Ridge mit $\alpha=10^{-4}$ bestraft alle nichtkonstanten Koeffizienten einschließlich Faktoren; es ist keine Differenzenstrafe. Das GLM verwendet $\alpha=0$. Auf zunächst 40 Frequenzfits folgen 40 weitere für Alter, BM und Area jeweils allein sowie BM + Area, bei identischen Folds, Kodierungen und Strafen.
+\begin{center}\small\ReducedTable\end{center}
+\evidence{reports/s6a/scores.json; reports/s6a/ablation/scores.json; config/feature_ablation_protocol.json}
+Alter + BM (GAM) bleibt mit \ExpandedScore\ im erweiterten Kreis vorn; die volle OOF-Regel erreicht \FullScore. BM + Area (GAM) minus Alter-BM-GAM beträgt \ExpandedDifference\ mit bedingtem 95\,\%-Intervall $[\ExpandedLo;\ExpandedHi]$. Der Nullwert erlaubt keinen eindeutigen Rangvorteil. Der kleinere Zusatznutzen von Alter neben BM ist im bedingten Vergleich sichtbar (Anhang~\ref{app:ablation}). Die Auswahl bleibt explorativ und auf den untersuchten Kreis begrenzt. Prognoseleistung, Erklärbarkeit und Effektstabilität sind gemeinsam abzuwägen. Die Ablation prüft keine vollständige Refit-/Concurvity-Stabilität; auch ein Stabilitätsvorteil von Area ist unbelegt.
 
 \subsection*{Frequenz und Schadenhöhe erzählen unterschiedliche Geschichten}
 \begin{center}\small\GeoTable\end{center}
@@ -363,11 +363,12 @@ Schadenhöhe & \code{src/severity_models.py}: \code{GammaSeverity}, \code{LogSme
 Messgrößen & \code{src/metrics.py}, \code{src/severity.py}; Jahresratenverlust, Periodenverlust, A/P und schlüsselbasierte Ausrichtung bleiben getrennt.\\[5pt]
 Vollständiger Vergleich & \code{reports/s6/results.json}; ursprüngliche Schadenhöhenregel \code{s5sev-2c4bc0d8ad1fd1c1}, Entscheidung \code{s5decision-df9a82872ec16be6}.\\[5pt]
 Reduzierter Vergleich & \code{src/interpretation.py}: \code{TwoFeaturePoisson}; aktueller Lauf \code{s6af633eebaf65aa470}. \code{reports/s6a/release.json} verbindet Quellstand und Ergebnisnachweise.\\[5pt]
+Merkmalsablation & \code{src/feature_ablation.py}: \code{FeaturePoisson}; ergänzender Lauf \code{s6aablationc96e669c79e96e5c}. Ergebnisse und Abhängigkeiten stehen unter \code{reports/s6a/ablation/}.\\[5pt]
 Geografie und Mechanismen & \code{reports/s6a/geo.json}, Standardisierungen und zugehörige Intervalle; \code{docs/aktuarische_einordnung.md} und \code{reports/s6a/sources.json}.\\[5pt]
 Synthetische Verträge & \code{src/augmentation.py}; \code{config/augmentation_protocol.json}; Ergebnisse und Quellen unter \code{reports/o2/}.\\\bottomrule
 \end{tabularx}
 \end{center}
-Die frühere und die integrierte Reproduktion besitzen teilweise unterschiedliche Laufkennungen, ohne verschiedene empirische Vergleiche zu bezeichnen. Maßgeblich sind deshalb die expliziten Ergebnisdateien und ihre Hashes. Die S6a-Ergänzung verwendet bestehende Frequenzfits und änderte weder ausgewählte Regel noch wissenschaftliche Werte. Interne Ablaufaufzeichnungen sind keine Literaturquelle des Papers.
+Die frühere und die integrierte Reproduktion besitzen teilweise unterschiedliche Laufkennungen, ohne verschiedene empirische Vergleiche zu bezeichnen. Maßgeblich sind deshalb die expliziten Ergebnisdateien und ihre Hashes. Die erste S6a-Wartungsreparatur verwendete bestehende Fits ohne geänderte wissenschaftliche Werte. Die spätere Merkmalsablation ergänzt dagegen 40 neue Development-Fits und erweitert die Auswahlbegründung; die vollständige S5-Regel bleibt unverändert. Interne Ablaufaufzeichnungen sind keine Literaturquelle des Papers.
 
 Aus dem Repositorywurzelverzeichnis erzeugt \code{python scripts/build_paper.py --compile} die Zahlenquellen und kompiliert mit pdfLaTeX, BibTeX und zwei weiteren pdfLaTeX-Durchläufen. \code{python scripts/build_paper.py --check} prüft die Aktualität der generierten Eingaben ohne Fits. LaTeX-Quelle, Bibliografie, generierte Tabellen und finales PDF liegen gemeinsam unter \code{paper/}; temporäre TeX-Dateien bleiben in \code{paper/build/}. Erforderliche TeX-Pakete und die geprüfte Umgebung beschreibt die dortige README.
 
@@ -401,4 +402,14 @@ Ausgegeben wird $\widehat\Delta\pm\Phi^{-1}(0{,}975)\widehat{\operatorname{SE}}$
 
 Die realen OOF-Prognosen stammen aus überlappenden Trainingsmengen; das Festhalten dieser Prognosen erfasst weder deren Abhängigkeit durch erneutes Training noch Generatorstreuung oder unbekannte Haushaltsabhängigkeit. Daher sind die Intervalle eine bedingte Streuungsdiagnose. Die drei Seeds und fünf Folds werden zusätzlich separat betrachtet; sie sind keine unabhängigen Portfolios. Die Entscheidung beruht auf der vorab festgelegten Konsistenz- und Kalibrierungsregel, nicht auf einer nachträglichen Suche nach einem signifikanten Einzelresultat.
 \evidence{src/augmentation.py: augmented_training, paired_difference; reports/o2/report.json; reports/o2/joint_support.json}
+
+\clearpage
+\section{Überlappende Information und Merkmalswahl}\label{app:ablation}
+Alter und Bonus-Malus sind gemeinsam verteilt. Ihre exponierungsgewichtete Pearson-Korrelation beträgt \AgeBMRho, die ungewichtete Spearman-Korrelation \AgeBMRank. Der Verlustscore von BM allein liegt um \BMOnlyDifference\ über dem Alter-BM-GAM, mit bedingtem Intervall $[\BMOnlyLo;\BMOnlyHi]$. Alter ist damit unter diesen Spezifikationen nicht vollständig redundant. BM=50 häuft sich; ein einzelner linearer Korrelationswert beschreibt die Abhängigkeit daher nur teilweise. Area wird nominal behandelt. Die berichteten Korrelationsverhältnisse $\eta^2$ messen numerische Streuung zwischen Area-Gruppen, keine vollständige Unabhängigkeit und keine unmittelbar identische Skala zur Alter-BM-Korrelation.
+
+Eine weniger überlappende oder leichter erklärbare Variable kann für eine Tarifstruktur interessant sein. Diesen möglichen Vorteil muss man gegen gemessene Prognoseleistung und Stabilität der einzelnen Effekte abwägen. Auch abhängige Merkmale können gemeinsam zusätzliche Vorhersageinformation liefern. Umgekehrt belegt ein kleiner OOF-Score keine stabile oder kausale Zerlegung in Alters- und BM-Effekte. Die aktuelle Ablation prüft keinen vollständigen Stabilitätsvorteil einer Merkmalsmenge; hierzu wären zusätzliche Refit-/Concurvity-Diagnosen erforderlich.
+
+Die 500 gepaarten Ziehungen ganzer Development-Verträge halten sämtliche Fits fest. Sie berücksichtigen weder erneutes Training noch Auswahl im nachträglich erweiterten Kreis oder unbekannte Haushaltsabhängigkeit. Das neue Punktergebnis ist daher eine begrenzte Prognoseempfehlung. Einzelmerkmal-Baselines, Falten und Segmentkalibrierung ergänzen den Score; ein direkter Markttarif folgt daraus nicht. Der ursprüngliche Kostenanhang und die früheren Alters-/Geografiediagnosen bleiben auf ihre jeweiligen Regeln und Populationen bezogen.
+\evidence{reports/s6a/ablation/report.json; dependence.json; scores.json; bootstrap_two_BonusMalus_gam.json}
+
 \end{document}

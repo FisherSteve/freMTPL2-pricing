@@ -1,0 +1,48 @@
+{
+  "Area_BonusMalus_weighted_eta_squared": 0.016716674548225625,
+  "Area_DrivAge_weighted_eta_squared": 0.0025984993634779237,
+  "age_bands": [
+    {
+      "age_band": "[0.0, 25.0)",
+      "exposure_years": 9983.892166329815,
+      "policies": 24175,
+      "weighted_bm50_share": 0.040657324260987386,
+      "weighted_bm_mean": 88.91819555503646
+    },
+    {
+      "age_band": "[25.0, 35.0)",
+      "exposure_years": 51739.77961748633,
+      "policies": 112770,
+      "weighted_bm50_share": 0.16904432402834818,
+      "weighted_bm_mean": 67.89106662609395
+    },
+    {
+      "age_band": "[35.0, 50.0)",
+      "exposure_years": 104969.17197619582,
+      "policies": 201767,
+      "weighted_bm50_share": 0.6718269053637493,
+      "weighted_bm_mean": 55.575706630076624
+    },
+    {
+      "age_band": "[50.0, 65.0)",
+      "exposure_years": 81729.27111535295,
+      "policies": 145111,
+      "weighted_bm50_share": 0.8213349977103137,
+      "weighted_bm_mean": 53.091709983024835
+    },
+    {
+      "age_band": "[65.0, inf)",
+      "exposure_years": 38458.70395164309,
+      "policies": 58569,
+      "weighted_bm50_share": 0.8681259081608048,
+      "weighted_bm_mean": 52.114751929630984
+    }
+  ],
+  "exposure_weighted_midrank_correlation": -0.5418946761989459,
+  "exposure_weighted_pearson": -0.4442230401717849,
+  "exposure_years": 286880.818827008,
+  "pearson": -0.48040203796150505,
+  "policies": 542392,
+  "rank_definition": "Average unweighted ranks for ties; exposure weights applied to rank covariance",
+  "spearman": -0.5718668150852597
+}
