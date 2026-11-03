@@ -1,6 +1,6 @@
 # Zwei Tarifmerkmale und die Erklärung des Schadenbedarfs
 
-Wie viel Information geht bei einer Beschränkung auf zwei Tarifmerkmale verloren, und welche beobachteten Muster tragen eine aktuarische Erklärung? Die Empfehlung dieser Untersuchung gilt für vier Paare mit Fahreralter. Sie ist keine Suche über sämtliche Kombinationen und kein unmittelbar einsetzbarer Tarif.
+Wie viel Information geht bei einer Beschränkung auf zwei Tarifmerkmale verloren, und welche beobachteten Muster tragen eine aktuarische Erklärung? Der ursprüngliche Vergleich hielt Alter in vier Paaren fest. Die nachträgliche Erweiterung prüft Einzelmerkmale und Bonus-Malus + Area; die aktualisierte Einordnung steht im Ergänzungsabschnitt. Sie ist keine Suche über sämtliche Kombinationen und kein unmittelbar einsetzbarer Tarif.
 
 ## Daten, Ziel und Einheiten
 
@@ -24,7 +24,7 @@ Hauptkriterium ist `sum(e_i*d_1.5(S_i/e_i,q_i))/sum(e_i)` mit fester Tweedie-Pow
 
 Der empirische Bootstrap kann zudem noch nicht beobachtete Extremverluste nicht darstellen. Seine Intervalle sind keine umfassenden Prämien- oder Reserveunsicherheitsintervalle.
 
-### Ergebnis und Empfehlung
+### Ergebnis des ursprünglichen Vergleichs
 
 Lauf `s6af633eebaf65aa470` verwendet 542.392 Entwicklungsverträge, 286.880,82 Vertragsjahre und 21.066 positive Schadenzeilen mit 47.480.754,65 historischen EUR. Alle Kandidaten prognostizieren dieselben Verträge, darunter 522.548 Nullschadenverträge. Quelle `cas-744e13a80283a07a`, Split `s2split-fe11d414168572dd`. [Scores](../reports/s6a/scores.json), [Foldmengen und Trainingsclaims](../reports/s6a/report.json).
 
@@ -35,12 +35,49 @@ Lauf `s6af633eebaf65aa470` verwendet 542.392 Entwicklungsverträge, 286.880,82 V
 | Fahreralter + Region | 84,667702 | 84,216007 |
 | Fahreralter + Bonus-Malus | 82,620512 | 82,027856 |
 
-**Im registrierten Kreis empfehle ich Fahreralter und Bonus-Malus mit dem reduzierten Spline-GAM.** Sein Score beträgt 82,027856 gegenüber 79,194844 beim vollständigen OOF-Modell: 3,58 % höher. Die gepaarte Scoreverschlechterung beträgt 2,833012, bedingtes 95%-Intervall [1,462608; 4,807079]. Unter den acht reduzierten Regeln gewinnt das BM-GAM zwei Fold-Punktvergleiche, das BM-GLM die übrigen drei. Das vollständige Modell liegt in allen fünf Folds vor sämtlichen reduzierten Regeln. Nach der vorab festgelegten 0,5%-Nähe-Regel liegt nur `two_BonusMalus_gam` im engsten Kandidatenkreis. Das ist keine globale Paaroptimalität. [Gepaarter Vergleich zur vollständigen Regel](../reports/s6a/bootstrap_full.json), [Falten](../reports/s6a/fold_scores.json).
+**Im ursprünglichen Vier-Paare-Kreis lag Fahreralter + Bonus-Malus mit dem reduzierten Spline-GAM vorn.** Sein Score beträgt 82,027856 gegenüber 79,194844 beim vollständigen OOF-Modell: 3,58 % höher. Die gepaarte Scoreverschlechterung beträgt 2,833012, bedingtes 95%-Intervall [1,462608; 4,807079]. Unter den acht reduzierten Regeln gewinnt das BM-GAM zwei Fold-Punktvergleiche, das BM-GLM die übrigen drei. Das vollständige Modell liegt in allen fünf Folds vor sämtlichen reduzierten Regeln. Nach der vorab festgelegten 0,5%-Nähe-Regel liegt nur `two_BonusMalus_gam` im engsten Kandidatenkreis. Das ist keine globale Paaroptimalität. [Gepaarter Vergleich zur vollständigen Regel](../reports/s6a/bootstrap_full.json), [Falten](../reports/s6a/fold_scores.json).
 
 Der Punktabstand des BM-GLM zum BM-GAM beträgt 0,592656, sein bedingtes Intervall [-0,188276; 1,959059]. Das Intervall enthält null: Der Vorteil des GAM gegenüber dem BM-GLM ist damit unter dieser bedingten Unsicherheitsbetrachtung nicht eindeutig getrennt. Die Paarwahl ist belastbarer als eine eindeutige Rangbehauptung zwischen diesen beiden Spezifikationen. Diese Intervallinformation ergänzt die praktische Nähe-Regel; sie korrigiert nicht für nachträgliche Auswahl. Das Portfolio-A/P des empfohlenen Modells ist 1,000146. Fast exakte Gesamtbalance ersetzt weder Segmentkalibrierung noch eine unabhängige Validierung. Das konstante Trainingsclaim-Mittel begrenzt alle reduzierten Regeln besonders dort, wo Schadenhöhen stark variieren. [Claim-Score](../reports/s6a/severity_scores.json), [Segmentkalibrierung](../reports/s6a/geography_calibration.json).
 
 ![Vier Paare im Entwicklungs-OOF-Vergleich](../reports/s6a/figures/zwei_merkmale.png)
 
+
+## Ergänzung: Zusatznutzen und Abhängigkeit
+
+Die Frage nach redundanter Information wird nach Kenntnis des ursprünglichen Ergebnisses ergänzt. Der alte Vergleich setzte Alter voraus; er konnte weder den Zusatznutzen von Alter gegenüber Bonus-Malus allein noch Bonus-Malus + Area prüfen. Die [neue Spezifikation](../config/feature_ablation_protocol.json) ergänzt Alter, Bonus-Malus und Area jeweils allein sowie Bonus-Malus + Area, je als GLM und GAM. 40 zusätzliche Fits verwenden dieselben fünf Development-Folds, Kodierungen und Strafen. Sämtliche Regeln behalten das Trainingsclaim-Mittel als Schadenhöhe. Die acht ursprünglichen Regeln und die vollständige Referenz werden mit unveränderten Vorhersagen übernommen; die geöffnete Evaluation bleibt unbenutzt.
+
+| Merkmalsmenge | GLM-Deviance | GAM-Deviance |
+|---|---:|---:|
+| Alter allein | 84,716678 | 84,317644 |
+| Bonus-Malus allein | 83,239732 | 82,537206 |
+| Area allein | 87,282513 | 87,279540 |
+| Alter + Bonus-Malus | 82,620512 | 82,027856 |
+| Alter + Area | 84,620291 | 84,181046 |
+| Bonus-Malus + Area | 83,389222 | 82,620964 |
+| Alter + log(Density) | 84,503809 | 84,057302 |
+| Alter + Region | 84,667702 | 84,216007 |
+
+Kleinere exponierungsgewichtete Jahresraten-Tweedie-Deviance ist besser. [Scores](../reports/s6a/ablation/scores.json), [Falten](../reports/s6a/ablation/fold_scores.json).
+
+Im erweiterten Kreis hat **Alter + Bonus-Malus (GAM)** mit **82,027856** das kleinste Punktergebnis. Gegenüber der vollständigen OOF-Regel entspricht dies 3,58 % mehr Deviance. Bonus-Malus + Area (GAM) minus ursprüngliches Alter-BM-GAM beträgt 0,593108 mit bedingtem 95%-Intervall [-0,143607; 1,803305]. Das Intervall enthält null: Der Vorhersagevorteil gegenüber Bonus-Malus + Area ist unter dieser bedingten Unsicherheitsbetrachtung nicht eindeutig getrennt. Innerhalb von 0,5 % des Minimums liegen: Alter + Bonus-Malus (GAM). Das ist eine explorative Empfehlung im erweiterten Kreis, keine globale Paaroptimalität oder neue unabhängige Evaluation.
+
+Alter zusätzlich zu Bonus-Malus verbessert den Hauptscore um 0,509350 (rund 0,62 % gegenüber Bonus-Malus allein); das bedingte Intervall für allein minus Paar [0,114879; 1,103115] liegt über null. Die gemessene Abhängigkeit macht Alter damit nicht vollständig redundant. Bonus-Malus + Area verbessert gegenüber Bonus-Malus allein die Frequenzdeviance (0,461053 statt 0,462314), aber nicht den primären Verlustscore (82,620964 statt 82,537206). Area enthält also durchaus Prognoseinformation; ihre Hinzunahme garantiert bei konstanter Schadenhöhe keinen besseren Schadenbedarfsscore.
+
+Die Einzelmerkmale machen den zusätzlichen Prognosewert sichtbar. Positive Differenzen in der folgenden Tabelle bedeuten einen besseren Score des erweiterten Punktsiegers:
+
+| Vergleich | Deviance-Differenz | bedingtes 95%-Intervall |
+|---|---:|---:|
+| Bonus-Malus allein (GAM) minus Punktsieger | 0,509350 | [0,114879; 1,103115] |
+| Alter allein (GAM) minus Punktsieger | 2,289788 | [1,785603; 2,812738] |
+| Area allein (GAM) minus Punktsieger | 5,251684 | [2,070311; 11,212510] |
+
+[Alle gepaarten Vergleiche](../reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json) verwenden 500 Ziehungen ganzer Verträge bei festen Vorhersagen. Sie enthalten weder Refit- noch nachträgliche Auswahlunsicherheit. Einzelmerkmal-Ablation zeigt einen Nutzen unter der jeweiligen Spezifikation, keinen kausalen Beitrag einer Variablen.
+
+Alter und Bonus-Malus haben eine Pearson-Korrelation von -0,480, exponierungsgewichtet -0,444; die ungewichtete Spearman-Rangkorrelation beträgt -0,572. Bindungen und die Häufung bei BM=50 bleiben relevant. Die [Altersgruppen](../reports/s6a/ablation/dependence.json) zeigen dazu BM-Mittel und BM=50-Anteile. Area wird nominal behandelt: Die exponierungsgewichteten Korrelationsverhältnisse eta² betragen 0,00260 für Alter und 0,01672 für Bonus-Malus. Sie messen den Anteil der numerischen Streuung zwischen Area-Gruppen und sind keine unmittelbar vergleichbare Skala zur Alter-BM-Korrelation. Kleine Werte belegen keine statistische Unabhängigkeit.
+
+Ein möglicher Vorteil weniger überlappender oder leichter erklärbarer Merkmale muss gegen die gemessene Prognoseleistung und die Stabilität der einzelnen Effekte abgewogen werden. Die Abhängigkeitsmaße und OOF-Ablationen prüfen noch nicht, wie stabil ein GAM das Risiko zwischen Alter und Bonus-Malus aufteilt. Dafür fehlen etwa Refit- und Concurvity-Diagnostik. Ein Stabilitätsvorteil von Area ist hier ebenfalls nicht nachgewiesen. Korrelation ist kein Ausschlusskriterium für Prognosen, aber ein Anlass, getrennte Effektinterpretationen vorsichtig zu formulieren.
+
+Lauf `s6aablationc96e669c79e96e5c` ergänzt den ursprünglichen Lauf, ohne ihn umzudeuten. Die [prüfbare Herkunft](../reports/s6a/ablation/report.json) hält Umfang und Grenzen fest. Die folgenden Geografie-, Kosten- und Kalibrierungsbeispiele behalten ihren ursprünglichen Bezug. Die modellbezogenen Beispiele gelten weiterhin für das unveränderte Alter-BM-GAM; zusätzliche Segmenttabellen der Erweiterung stehen in [segments.json](../reports/s6a/ablation/segments.json).
 
 ## Beobachtung und adjustierte Assoziation
 
@@ -132,7 +169,7 @@ Beide Szenarien setzen ausdrücklich jährliche Kosten an. Ohne weitere Lasten u
 Die Beispiele verteilen sich über die unterstützten berechneten Risikogruppen; alle Gruppen stehen in [costs.json](../reports/s6a/costs.json). Die Gruppenwerte sind durchschnittliche OOF-Risikoprämien, keine unabhängig geschätzten beobachteten Zellmittel.
 
 
-Die Gruppen verwenden exponierungsgewichtete OOF-Vertragsprodukte des empfohlenen reduzierten Modells. Schäden und Schadenregulierungskosten sind abzugrenzen, damit Aufwand nicht doppelt geladen wird. Mit zusätzlich definierten jährlichen festen Kosten F, Risiko-/Kapitallast R, Gewinnbetrag G und variablem Anteil v wäre eine mögliche Nettopreisregel `P=(q+F+R+G)/(1-v)`. Ein angenommener Steuersatz t würde bei passender Bemessungsbasis `P*(1+t)` ergeben. Hier werden keine tatsächlichen Kosten, Kapitallasten oder Steuersätze geschätzt.
+Die Gruppen verwenden exponierungsgewichtete OOF-Vertragsprodukte des ursprünglich ausgewählten Alter-BM-GAM. Schäden und Schadenregulierungskosten sind abzugrenzen, damit Aufwand nicht doppelt geladen wird. Mit zusätzlich definierten jährlichen festen Kosten F, Risiko-/Kapitallast R, Gewinnbetrag G und variablem Anteil v wäre eine mögliche Nettopreisregel `P=(q+F+R+G)/(1-v)`. Ein angenommener Steuersatz t würde bei passender Bemessungsbasis `P*(1+t)` ergeben. Hier werden keine tatsächlichen Kosten, Kapitallasten oder Steuersätze geschätzt.
 
 Bei gleichem q und tatsächlich niedrigeren zurechenbaren Kanalvollkosten könnte ein Direktpreis denselben erwarteten Deckungsbeitrag wie ein höherer Agenturpreis erreichen. Digitale Akquisitionskosten und ungünstige Selektion könnten dies umkehren. Benötigt werden zurechenbare Akquisitions-/Betreuungskosten, Provisionen, Konversion, Vertragsdauer, Storno und Schadenverläufe nach Kanal und vergleichbarer Deckung. freMTPL2 belegt keine Kanal-, Preiselastizitäts- oder Wettbewerbseffekte. Daraus folgt keine generelle Notwendigkeit verschiedener Preise.
 
@@ -147,7 +184,7 @@ Für Deutschland fehlen ein aktueller Zielbestand, vergleichbare Deckungs-/Haftu
 
 **3. Warum Frequenz mal Schadenhöhe?** Die Rate wird mit Vertragsjahren zur erwarteten Anzahl; ein Trainingsclaim-Mittel liefert die Schadenkomponente. Ich multipliziere je Vertrag und aggregiere danach. Die bedingte Mittelwertannahme ist eine Annahme, kein Ergebnis des Zeilenabgleichs. [Zerlegung](#daten-ziel-und-einheiten).
 
-**4. Wo passt das Modell?** Gesamtbalance ist gut, Segmente weichen deutlich ab. Beim reduzierten BM-GAM zeigen die folgenden OOF-Werte Grenzen, die vor einem Tarif weitere Arbeit verlangen:
+**4. Wo passt das Modell?** Gesamtbalance ist gut, Segmente weichen deutlich ab. Beim ursprünglich ausgewählten Alter-BM-GAM zeigen die folgenden OOF-Werte Grenzen, die vor einem Tarif weitere Arbeit verlangen:
 
 | Dimension | Gruppe | beobachtet EUR/Jahr | vorhergesagt EUR/Jahr | A/P |
 | --- | --- | --- | --- | --- |
@@ -162,7 +199,7 @@ Für Deutschland fehlen ein aktueller Zielbestand, vergleichbare Deckungs-/Haftu
 
 **5. Wie erkläre ich Geografie dem Produktmanagement?** Höhere Frequenz und höhere mittlere Schadenhöhe sind verschiedene Befunde. Wohngebiet ist nicht Unfallort; die höhere Frequenz in EF bleibt im gemeinsamen Mix, der Schadenhöhenunterschied ist tail- und populationsabhängig. [Mechanismen](#welche-mechanismen-lassen-sich-unterscheiden).
 
-**6. Welche zwei Tarifmerkmale?** Im registrierten Vergleich Fahreralter und Bonus-Malus als additives Spline-GAM. Die vereinfachte Regel verliert rund 3,58 % im Hauptscore gegenüber der vollständigen Entwicklungsregel; die Empfehlung gilt für diesen Kandidatenkreis. Die geöffnete Evaluation wird nicht neu zur Auswahl benutzt. [Empfehlung](#ergebnis-und-empfehlung).
+**6. Welche zwei Tarifmerkmale?** Der ursprüngliche Vergleich bevorzugte Alter + Bonus-Malus. Im erweiterten Kreis liegt Alter + Bonus-Malus (GAM) im Punktergebnis vorn (82,028); nahe Alternativen und die bedingte Unsicherheit sind mitzunennen. Prognoseleistung, Erklärbarkeit und Effektstabilität sind getrennte Kriterien. Vollständige Stabilitätsdiagnostik fehlt; die Evaluation wird nicht neu zur Auswahl benutzt. [Aktualisierte Einordnung](#ergänzung-zusatznutzen-und-abhängigkeit).
 
 **7. Was kommt zum Schadenbedarf?** Abgegrenzte Schadenregulierung, Abschluss/Verwaltung, Risiko/Kapital, Gewinn und gegebenenfalls definierte Steuern. Dafür brauche ich echte Kosten- und Deckungsdefinitionen, sonst rechne ich transparent Szenarien. [Prämienbestandteile](#vom-schadenbedarf-zur-prämie).
 
@@ -182,6 +219,8 @@ Nach der [Vorbereitung und Kernanalyse](reproduktion.md):
 python -m src.interpretation
 python scripts/s6a_diagnostics.py
 python scripts/verify_interpretation.py
+python -m src.feature_ablation
+python scripts/verify_feature_ablation.py
 python -m unittest discover -s tests -q
 python scripts/execute_notebook.py notebooks/06_actuarial_interpretation.ipynb --output data/notebooks/06_actuarial_interpretation.executed.ipynb
 ```

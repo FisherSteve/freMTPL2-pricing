@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "scope": "Nachträgliche explorative S6a-Erweiterung zur Redundanzfrage; nach geöffneter Evaluation und bekanntem ursprünglichem Ergebnis, keine bestätigende Auswahl.",
+  "new_feature_sets": [["DrivAge"], ["BonusMalus"], ["Area"], ["BonusMalus", "Area"]],
+  "families": ["glm", "gam"],
+  "frequency_fit_budget": 40,
+  "hyperparameter_search": 0,
+  "estimation": "Identische Kodierung, Zentrierung, Ridge-Strafe, Solver und Glättungseinstellungen wie S6a; nur Merkmalsmenge geändert. Schadenhöhe weiterhin Trainingsclaim-Mittel je Fold.",
+  "old_reference_run": "s6af633eebaf65aa470",
+  "bootstrap": {"replicates": 500, "seed": 20261031},
+  "comparisons": "Alle 16 reduzierten Regeln und unveränderte volle OOF-Referenz; gepaarte Intervalle gegen ursprüngliches Alter-BM-GAM und gegen erweiterten Punktsieger. Einzelmerkmale zeigen Zusatznutzen der Paare.",
+  "dependence": "Nur Development: ungewichtete und exponierungsgewichtete Pearson- und Rangkorrelation Alter/BM; BM=50-Anteile nach Alter; exponierungsgewichtetes Korrelationsverhältnis eta^2 zwischen Area und Alter/BM. Area wird nominal behandelt. Keine Unabhängigkeit aus kleinen Korrelationsmaßen ableiten.",
+  "limits": "Feste Fits, keine Refit-/Selektionsunsicherheit oder kausale Identifikation. Keine Evaluation, keine Änderung der S5-Kernentscheidung, keine globale Paaroptimalität. Keine vollständige Concurvity- oder Koeffizientenstabilitätsanalyse."
+}

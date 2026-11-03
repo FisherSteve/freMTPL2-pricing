@@ -2,7 +2,7 @@
 
 [PDF lesen](begleitpaper.pdf) · [LaTeX-Quelle](begleitpaper.tex) · [Bibliografie](literatur.bib)
 
-**Von der Exposition zum Schadenbedarf** erklärt die tatsächlich verwendeten Frequenz- und Schadenhöhenmodelle, ihre Annahmen und die Ergebnisse des historischen französischen Kfz-Portfolios. Zum Haupttext kommen Literatur und drei kurze technische Anhänge. Entwicklungs-OOF, Evaluation und die späteren explorativen Zwei-Merkmale- und CTGAN-Vergleiche bleiben getrennt.
+**Von der Exposition zum Schadenbedarf** erklärt die tatsächlich verwendeten Frequenz- und Schadenhöhenmodelle, ihre Annahmen und die Ergebnisse des historischen französischen Kfz-Portfolios. Zum Haupttext kommen Literatur und vier kurze technische Anhänge. Entwicklungs-OOF, Evaluation und die späteren explorativen Zwei-Merkmale- und CTGAN-Vergleiche bleiben getrennt.
 
 Die CTGAN-Ergänzung untersucht zusätzliche synthetische Trainingsverträge bei jeweils 20.000 realen Trainingsverträgen je Fold. Drei Seeds, zwei Ratios und gewöhnliche Bootstrap-Kontrollen werden ausschließlich auf realen OOF-Verträgen verglichen. Alle sechs CTGAN-Varianten verschlechtern die Deviance gegenüber beiden Kontrollen; die Kernmodellwahl bleibt unverändert. Der Haupttext enthält beide Kontrollen und die Diagnose des gemeinsamen Supports. Ein zusätzlicher technischer Anhang leitet das normalisierte Trainingsziel und die tatsächlich verwendeten gepaarten Delta-Methoden-Intervalle her. [Auswertung und vollständige Nachweise](../docs/synthetische_trainingsdaten.md) erläutern auch die explizite Samplingkorrektur im gepinnten Release und die begrenzte Aussagekraft dieses Pilots.
 
@@ -31,3 +31,5 @@ Die S3-Berichte `tail_concentration.json` und `eda_report.json` werden aus dem f
 - [Aktueller ergänzender Ergebnisstand](../reports/s6a/release.json), Lauf `s6af633eebaf65aa470`.
 
 Die Bootstrapintervalle der Kernstudie und die Delta-Methoden-Intervalle des CTGAN-Pilots gelten bedingt auf feste Vorhersagen und gegebenenfalls ausgewählte Unterstützung. Das Paper weist keine kausalen Effekte, Profitabilität oder Übertragbarkeit auf einen deutschen Markttarif nach.
+
+Die Merkmalsablation ergänzt Einzelmerkmale und Bonus-Malus + Area. Prognoseleistung, Erklärbarkeit und Effektstabilität werden gemeinsam diskutiert; vollständige Refit-/Concurvity-Diagnostik fehlt ausdrücklich. Tabelle und zusätzlicher Anhang verwenden die [neuen S6a-Berichte](../reports/s6a/ablation/report.json).

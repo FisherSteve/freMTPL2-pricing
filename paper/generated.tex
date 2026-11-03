@@ -5,6 +5,15 @@
 \newcommand{\AugmentationMaxLoss}{3{,}06}
 \newcommand{\AugmentationSupportMin}{73{,}77}
 \newcommand{\AugmentationSupportMax}{80{,}40}
+\newcommand{\AgeBMRho}{-0{,}444}
+\newcommand{\AgeBMRank}{-0{,}572}
+\newcommand{\ExpandedScore}{82{,}027856}
+\newcommand{\ExpandedDifference}{0{,}593108}
+\newcommand{\ExpandedLo}{-0{,}143607}
+\newcommand{\ExpandedHi}{1{,}803305}
+\newcommand{\BMOnlyDifference}{0{,}509350}
+\newcommand{\BMOnlyLo}{0{,}114879}
+\newcommand{\BMOnlyHi}{1{,}103115}
 \newcommand{\ReducedScore}{82{,}0278559852}
 \newcommand{\FullScore}{79{,}1948435365}
 \newcommand{\ReducedGap}{3{,}5773}
@@ -46,11 +55,15 @@ HGB $\times$ Smearing & 79{,}370343 & 80{,}026128 & 1{,}0308\\
 }
 \newcommand{\ReducedTable}{%
 \begin{tabular}{lrr}\toprule
-Zweites Merkmal neben Alter & GLM $D_L$ & GAM $D_L$\\\midrule
-Area & 84{,}620291 & 84{,}181046\\
-$\log(\mathrm{Density})$ & 84{,}503809 & 84{,}057302\\
-Region & 84{,}667702 & 84{,}216007\\
-Bonus-Malus & 82{,}620512 & 82{,}027856\\
+Merkmale & GLM $D_L$ & GAM $D_L$\\\midrule
+Alter allein & 84{,}716678 & 84{,}317644\\
+Bonus-Malus allein & 83{,}239732 & 82{,}537206\\
+Area allein & 87{,}282513 & 87{,}279540\\
+Bonus-Malus + Area & 83{,}389222 & 82{,}620964\\
+Alter + Area & 84{,}620291 & 84{,}181046\\
+Alter + $\log(\mathrm{Density})$ & 84{,}503809 & 84{,}057302\\
+Alter + Region & 84{,}667702 & 84{,}216007\\
+Alter + Bonus-Malus & 82{,}620512 & 82{,}027856\\
 \bottomrule\end{tabular}
 }
 \newcommand{\GeoTable}{%

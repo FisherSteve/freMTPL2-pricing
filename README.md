@@ -74,7 +74,7 @@ Die feste schlüsselbasierte Aufteilung verwendet 80 % Entwicklung mit fünf Fal
 
 ## Vollständig ausführen
 
-Die [aktuarische Einordnung](docs/aktuarische_einordnung.md) ergänzt einen Entwicklungs-OOF-Vergleich von vier Zwei-Merkmale-Paaren, Geografie-/Alters-/Dauerdiagnostik, Mechanismushypothesen und Kostenszenarien. Im registrierten Kreis liegt Fahreralter plus Bonus-Malus vorn; das beste reduzierte Punktergebnis hat 3,58 % mehr Jahresraten-Tweedie-Deviance als die vollständige Entwicklungs-OOF-Regel. Zwischen den beiden BM-Spezifikationen ist der Unterschied im bedingten Intervall nicht eindeutig getrennt. Das [sechste Notebook](notebooks/06_actuarial_interpretation.ipynb) zeigt berechnete Tabellen und Abbildungen. Dieser explorative Vergleich ändert die bereits evaluierte vollständige Modellregel nicht.
+Die [aktuarische Einordnung](docs/aktuarische_einordnung.md) vergleicht reduzierte Merkmalsmengen und untersucht Geografie, Alter, Vertragsdauer, Mechanismen und Kostenszenarien. Der ursprüngliche Vergleich setzte Alter in jedem Paar voraus. Die Ergänzung prüft Einzelmerkmale sowie Bonus-Malus + Area; im erweiterten Kreis liegt Alter + Bonus-Malus (GAM) im Punktergebnis vorn (82,028 gegenüber 79,195 für die vollständige OOF-Regel). Merkmalsabhängigkeit, zusätzlicher Prognosewert und fehlende Stabilitätsevidenz werden getrennt erläutert. Das [sechste Notebook](notebooks/06_actuarial_interpretation.ipynb) zeigt die Ergebnisse. Die explorative Erweiterung ändert die bereits evaluierte vollständige Modellregel nicht.
 
 Geprüft wird Windows x64 mit CPython 3.12 und den [festgelegten Paketversionen](requirements.lock.txt). In einem separaten frischen Clone:
 
@@ -93,6 +93,8 @@ Der ergänzende Zwei-Merkmale-Vergleich und das sechste Notebook folgen auf dies
 .\.venv\Scripts\python.exe -m src.interpretation
 .\.venv\Scripts\python.exe scripts/s6a_diagnostics.py
 .\.venv\Scripts\python.exe scripts/verify_interpretation.py
+.\.venv\Scripts\python.exe -m src.feature_ablation
+.\.venv\Scripts\python.exe scripts/verify_feature_ablation.py
 .\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/06_actuarial_interpretation.ipynb --output data/notebooks/06_actuarial_interpretation.executed.ipynb
 ```
 
