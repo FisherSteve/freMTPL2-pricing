@@ -32,4 +32,4 @@ Die S3-Berichte `tail_concentration.json` und `eda_report.json` werden aus dem f
 
 Die Bootstrapintervalle der Kernstudie und die Delta-Methoden-Intervalle des CTGAN-Pilots gelten bedingt auf feste Vorhersagen und gegebenenfalls ausgewählte Unterstützung. Das Paper weist keine kausalen Effekte, Profitabilität oder Übertragbarkeit auf einen deutschen Markttarif nach.
 
-Die Merkmalsablation ergänzt Einzelmerkmale und Bonus-Malus + Area. Prognoseleistung, Erklärbarkeit und Effektstabilität werden gemeinsam diskutiert; vollständige Refit-/Concurvity-Diagnostik fehlt ausdrücklich. Tabelle und zusätzlicher Anhang verwenden die [neuen S6a-Berichte](../reports/s6a/ablation/report.json).
+Die Merkmalsablation ergänzt Einzelmerkmale und Bonus-Malus + Area. Prognoseleistung, Erklärbarkeit und Effektstabilität werden gemeinsam diskutiert; vollständige Refit-/Concurvity-Diagnostik fehlt ausdrücklich. Tabelle und zusätzlicher Anhang verwenden die [Ergebnisse der Merkmalsablation](../reports/s6a/ablation/report.json).

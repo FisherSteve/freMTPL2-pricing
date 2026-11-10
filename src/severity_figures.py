@@ -106,8 +106,8 @@ def render(reports: Path, output: Path) -> dict:
     for ax in axes:
         ax.set_xticks(x, [NAMES[m] for m in SEVERITY_IDS], rotation=12)
         ax.legend(fontsize=8)
-    axes[0].set(ylabel="Mittlere Gamma-Deviance je positiver Schadenzeile", title="Schadenhöhe: Gewicht eins je Schadenzeile")
-    axes[1].set(ylabel="EUR je beobachteter positiver Schadenzeile", title="Schadenhöhenkalibrierung in der Evaluation")
+    axes[0].set(ylabel="Mittlere Gamma-Deviance je Schadenzeile", title="Deviance positiver Beträge nach Modell und Bestand")
+    axes[1].set(ylabel="EUR je positiver Schadenzeile", title="Mittlere Schadenhöhe im Evaluationsbestand")
     save(fig, "schadenhoehe_vergleich")
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5.5), layout="constrained")
@@ -124,9 +124,9 @@ def render(reports: Path, output: Path) -> dict:
         axes[1].bar(y+shift*1.5, values.tweedie_deviance_per_exposure, width=.36, color=color, label=label)
     axes[0].axvline(1, color="grey", linestyle="--", lw=1)
     axes[0].set_yticks(y, [NAMES[m] for m in PREMIUM_IDS])
-    axes[0].set(xlabel="Verlust-A/P: beobachtet / vorhergesagt", title="95%-Perzentile bei festen Vorhersagen\nGanze Verträge einschließlich Nullverlusten")
+    axes[0].set(xlabel="Verlust-A/P: beobachtet / vorhergesagt", title="Verlustkalibrierung auf allen Verträgen\n95-%-Intervalle bei festen Vorhersagen")
     axes[1].set_xticks(y, [NAMES[m] for m in PREMIUM_IDS], rotation=18, ha="right")
-    axes[1].set(ylabel="Exponierungsgewichtete Jahresraten-Tweedie-Deviance", title="Gemeinsamer Verlustscore, Power = 1,5\nKeine EUR-Fehler und keine Periodenscore-Identität")
+    axes[1].set(ylabel="Exponierungsgewichtete Jahresraten-Tweedie-Deviance", title="Verlustdeviance nach Bestand und Produkt\nTweedie-Power 1,5")
     for ax in axes:
         ax.legend(fontsize=8)
     save(fig, "risikopraemie_kalibrierung")
@@ -158,13 +158,13 @@ def render(reports: Path, output: Path) -> dict:
         part = components.loc[components.model_id.eq(model_id)].set_index("age_band").reindex(ages)
         axes[1, 1].plot(x, part.mean_product_annual_pp-part.product_of_separate_exposure_means, "o-", label=NAMES[model_id])
     axes[1, 1].axhline(0, color="grey", lw=.7)
-    axes[1, 1].set(ylabel="Differenz EUR je Vertragsjahr", title="Mittel(r × m) minus Mittel(r) × Mittel(m)\nIdentische Exponierungsgewichte; keine Kausalwirkung")
+    axes[1, 1].set(ylabel="Differenz in EUR je Vertragsjahr", title="Mittel der Produkte minus Produkt der Mittel\nEinheitliche Exponierungsgewichte")
     support_labels = [f"{age}\n{years:,.0f} J.".replace(",", ".") for age, years in zip(ages, support.exposure_years)]
     for ax in axes.flat:
         ax.set_xticks(x, support_labels, rotation=45, ha="right", fontsize=8)
         ax.legend(fontsize=7)
         ax.set_xlabel("Fahreraltersgruppe und beobachtete Vertragsjahre")
-    fig.suptitle("Evaluation im tatsächlichen Merkmalsmix: Gruppenprofile, keine adjustierten oder kausalen Alterskurven", fontsize=12)
+    fig.suptitle("Frequenz, Schadenhöhe und Verlustkosten nach Fahreralter im Evaluationsbestand", fontsize=12)
     save(fig, "alter_zerlegung")
 
     tail = documents["development_report"]["tail_diagnostics"]
@@ -173,14 +173,14 @@ def render(reports: Path, output: Path) -> dict:
     axes[0].bar(np.arange(len(quantiles)), [value for _, value in quantiles], color="#426b9b")
     axes[0].set_xticks(np.arange(len(quantiles)), [f"{100*q:g} %".replace(".", ",") for q, _ in quantiles])
     axes[0].set_yscale("log")
-    axes[0].set(xlabel="Empirisches Quantil positiver Entwicklungs-Schadenzeilen", ylabel="Tatsächlicher Schadenbetrag EUR, logarithmische Achse", title="Ungekappte beobachtete Schadenhöhen\nKeine Verteilung vorhergesagter Prämien")
+    axes[0].set(xlabel="Empirisches Quantil positiver Entwicklungsbeträge", ylabel="Schadenbetrag in EUR (logarithmische Achse)", title="Quantile der ungekapp­ten Schadenbeträge")
     influence = pd.DataFrame(tail["influence_refits"]).set_index("model_id").loc[SEVERITY_IDS]
     axes[1].bar(np.arange(len(SEVERITY_IDS)), influence.relative_change*100, color="#dc8a35")
     axes[1].axhline(0, color="grey", lw=.7)
     axes[1].set_xticks(np.arange(len(SEVERITY_IDS)), [NAMES[m] for m in SEVERITY_IDS], rotation=12)
     axes[1].set(ylabel="Änderung der vorhergesagten Portfoliosumme in %", title="Refit ohne größten Verlustvertrag\nGleiche Entwicklungs-Prognoseverträge und Frequenz")
     share_label = f"{tail['largest_claim_share']:.2%}".replace(".", ",")
-    fig.suptitle(f"Entwicklungsdiagnostik: größter Schaden {share_label} der Summe; kein Ausschluss im Primärbestand", fontsize=11)
+    fig.suptitle(f"Schadenhöhe im Entwicklungsbestand: größter Betrag trägt {share_label} zur Verlustsumme bei", fontsize=11)
     save(fig, "tail_einfluss")
 
     manifest = {"run_id": documents["development_report"]["run_id"],

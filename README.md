@@ -1,111 +1,37 @@
 # Von der Exponierung zum erwarteten Schadenaufwand
 
-Eine aktuarielle Modellierungsstudie zum französischen Kfz-Haftpflichtportfolio **freMTPL2**.
+Wie gut lassen sich Schadenanzahl und Schadenaufwand in einem Kfz-Haftpflichtportfolio vorhersagen? Die Studie verwendet **freMTPL2**, einen historischen französischen Versicherungsbestand. Sie vergleicht einen Exponierungs-Intercept mit Poisson-GLM, Spline-GAM und Histogramm-Boosting. Für den erwarteten Aufwand verbindet sie die Jahresfrequenz mit der erwarteten Höhe je positivem Schaden.
 
-Wie viel der Vorhersagestruktur erfassen ein Poisson-GLM und ein Spline-GAM? Welchen zusätzlichen Nutzen liefert Histogramm-Boosting, und verbessert eine merkmalsabhängige Schadenhöhe auch die Vorhersage des gesamten Schadenaufwands?
+## Was die Modelle vorhersagen
 
-Der Vergleich verwendet dieselben Vertragsaufteilungen, prospektive Merkmale und ungekappte Zielgrößen. Die vor der Evaluation gewählte Kombination aus **HGB-Frequenz und konstanter mittlerer Schadenhöhe** senkt die Verlustdeviance gegenüber der vollständigen Interceptbasis um **9,80 %**. Erhebliche Abweichungen nach Vertragsdauer und Alter sowie die Unsicherheit großer Schäden begrenzen die Anwendung als Tarif.
+Auf den **542.392 Entwicklungsverträgen** sinkt die Poisson-Deviance von **0,478094** beim Intercept auf **0,457123** beim besten GLM, **0,454637** beim besten GAM und **0,446749** beim Boosting. Alle Werte beziehen sich auf dieselben Entwicklungsverträge. Die Vorhersagen stammen jeweils aus einem Fit ohne den betreffenden Vertrag (Out-of-Fold, kurz OOF). Der Score ist auf die Exponierung in Vertragsjahren normiert. Beim Boosting liefert die Obergrenze von 15 Endknoten je Baum (`max_leaf_nodes=15`) den besten Wert der untersuchten Einstellungen. Die Option mit 31 Endknoten erzielt keinen zusätzlichen Gewinn. [Frequenzmodelle und Kalibrierung](docs/frequenzmodelle.md)
 
-## Ergebnisse lesen
+Die auf der Entwicklung gewählte Kombination aus Boosting und konstantem Schadenmittel senkt die Verlustdeviance in der **gemeinsamen Evaluation** um **9,80 %** gegenüber dem Intercept mit konstantem Schadenmittel. Auf den 135.599 Evaluationsverträgen prognostiziert sie **165,60 EUR je Vertragsjahr**, beobachtet werden **173,58 EUR**. Gamma-GLM und Log-Smearing erzielen etwas niedrigere Verlustscores in der Evaluation. Ihre gepaarten Differenzintervalle umfassen null. Das Gamma-GLM verbessert dort die separate Gamma-Deviance der positiven Schadenbeträge. [Ergebnistabelle](docs/ergebnisse.md) · [Schadenhöhe und reine Risikoprämie](docs/schadenhoehe_risikopraemie.md)
 
-| Untersuchung | Inhalt und Nachweise |
-|---|---|
-| [Entwicklungs-EDA](docs/eda.md) | Alter, Bonus-Malus, Bestandsmix, kurze Exponierungen und große Schäden |
-| [Frequenzmodelle](docs/frequenzmodelle.md) | Substantieller GLM-/GAM-Vergleich mit einem begrenzten Boosting-Benchmark |
-| [Synthetische Trainingsverträge](docs/synthetische_trainingsdaten.md) | Exploratives CTGAN-Experiment mit begrenzter Trainingsmenge, Bootstrap-Kontrollen und realen OOF-Verträgen |
-| [Schadenhöhe und Risikoprämie](docs/schadenhoehe_risikopraemie.md) | Gamma-GLM, Log-Smearing, konstantes Schadenmittel und gemeinsame Evaluation |
-| [Berechnete Kernergebnisse](docs/ergebnisse.md) | Automatisch erzeugte Tabelle und [kleines Ergebnis-JSON](reports/s6/results.json) für weitere Darstellungen |
-| [Messgrößen und Validierung](docs/validierung.md) | Exponierung, Schlüsselzuordnung, Auswahlgrenzen und Unsicherheit |
-| [Mathematisch-statistisches Begleitpaper](paper/README.md) | [PDF](paper/begleitpaper.pdf), LaTeX und Literatur zu Modellen, Herleitungen, Ergebnissen und aktuarischer Einordnung |
-| [Reproduktion](docs/reproduktion.md) | Vollständiger Ablauf, Umgebung, Laufkennungen und gemessener Ressourcenbedarf |
+Der Vorhersagefehler ist je nach Vertragsdauer sehr unterschiedlich. Bei sieben Tagen bis unter 0,1 Vertragsjahren liegt der beobachtete Verlust beim **3,057-Fachen** der Vorhersage, ab einem Jahr beim **0,607-Fachen**. Große Schäden erschweren die Schätzung des Schadenmittels. Allein der größte Entwicklungsbetrag trägt **8,58 %** zum dort erfassten Verlust bei. [Bestandsanalyse](docs/eda.md)
 
-### Frequenz: Mehrwert flexibler Struktur
+![Verlustkalibrierung und Tweedie-Deviance für Entwicklungs-OOF und Evaluation](reports/s5/figures/risikopraemie_kalibrierung.png)
 
-Zehn Konfigurationen einschließlich Intercept ergeben 50 echte Faltenfits auf 542.392 Entwicklungsverträgen. GLM und GAM bleiben ernsthafte Kandidaten; der größere Boosting-Baum verbessert die kleinere Einstellung nicht.
+## Welche Merkmale liefern zusätzliche Information?
 
-| Kandidat | OOF-Poisson-Deviance je Vertragsjahr | Reduktion zum Intercept | A/P |
-|---|---:|---:|---:|
-| Exponierungs-Intercept | 0,478094 | 0,00 % | 1,0000 |
-| GLM, numerisches Familienminimum | 0,457123 | 4,39 % | 1,0000 |
-| GAM, numerisches Familienminimum | 0,454637 | 4,91 % | 1,0000 |
-| Histogramm-Poisson, `max_leaf_nodes=15` | 0,446749 | 6,56 % | 0,9996 |
+Die Frequenz steigt im mittleren Alter auch bei gemeinsamem beobachtetem Merkmalsmix wieder an. Die Höhe dieses Anstiegs hängt vom Modell und der Referenzpopulation ab. Im explorativen Vergleich mit zwei Merkmalen erreicht das GAM aus Fahreralter und Bonus-Malus mit **82,028** den besten Verlustscore im untersuchten Kreis. Das vollständige Modell aus Boosting und konstantem Schadenmittel erreicht **79,195** auf denselben Entwicklungsverträgen. Trotz Überlappung verbessert Alter die Prognose zusätzlich zu Bonus-Malus. Zwei Merkmale ergeben eine einfacher erklärbare Tarifstruktur, kosten hier aber Prognoseleistung. Offen bleibt, wie stabil Alter und Bonus-Malus ihre jeweiligen Beiträge zum Risiko bei erneuter Anpassung behalten. [Merkmalswahl und aktuarische Einordnung](docs/aktuarische_einordnung.md)
 
-[Berechnete Frequenzkennzahlen](reports/s4/scores.json), ursprünglicher Lauf `s4freq-4b7f4f42e310c304`. A/P bedeutet tatsächlich durch vorhergesagt. Auswahlwerte aus OOF sind keine unverzerrte Bewertung des gesamten abgestimmten Verfahrens.
+Ein zweiter explorativer Vergleich untersucht, ob synthetische Trainingsverträge helfen, wenn pro Fold nur 20.000 reale Trainingsverträge zur Verfügung stehen. Alle sechs CTGAN-Varianten schneiden auf den realen Entwicklungs-OOF-Verträgen schlechter ab als beide Kontrollen. Dieser Befund gilt für das dokumentierte Trainingsbudget, den Generator und das verwendete Frequenz-GLM. [CTGAN-Pilot](docs/synthetische_trainingsdaten.md)
 
-Der erneute Frequenzanstieg im mittleren Alter bleibt auch unter gemeinsam unterstütztem beobachtetem Merkmalsmix sichtbar. Die Höhe ist modellabhängig; daraus folgt keine kausale Alterswirkung.
+## Daten und Grenzen
 
-### Schadenhöhe: komplexer ist hier nicht automatisch besser
+Die Analyse verwendet [CASdatasets 1.2-1](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd). Gezählt werden erfasste positive Schadenzeilen je Vertragsperiode. Exponierung misst die beobachtete Dauer in Vertragsjahren. Die Modellierung verwendet ungekappte Exponierungen und historische EUR. Der [Quellenvergleich](reports/s0/source_comparison.json) dokumentiert Abweichungen zu OpenML, darunter 195 dort nicht zuordenbare Schadenzeilen.
 
-Die Entwicklungsentscheidung bevorzugt das arithmetische Trainingsschadenmittel gegenüber Gamma-GLM und Log-OLS mit Trainings-Smearing. Alle 135.599 Evaluationsverträge erhalten dieselbe prospektive Vorhersageregel, einschließlich der 130.499 Verträge ohne Verlust; 5.378 positive Schadenzeilen gehen in die Bewertung ein.
+Vor der heutigen Aufteilung wurde der Gesamtbestand exploriert. Für den aktuellen Vergleich wurde jeder Vertrag fest der Entwicklung (80 %) oder der Evaluation (20 %) zugeteilt. Bei der Cross-Validation erhält jeder Entwicklungsvertrag eine Vorhersage aus einem Fit auf den übrigen vier Folds. Merkmale, Vorverarbeitung und Modellwahl werden innerhalb der Entwicklung beurteilt. Die gemeinsame Evaluation bewertet die zuvor festgelegten Regeln. Merkmalsablation und CTGAN-Pilot verwenden erneut die Entwicklung und sind explorativ. [Messgrößen und Validierung](docs/validierung.md)
 
-| Produkt | OOF-Verlustdeviance | Evaluations-Verlustdeviance | Verlust-A/P |
-|---|---:|---:|---:|
-| Intercept × Schadenmittel | 87,233849 | 88,917790 | 1,0488 |
-| HGB × Schadenmittel (gewählt) | 79,194844 | 80,206534 | 1,0481 |
-| HGB × Gamma | 80,386955 | 80,063797 | 1,0807 |
-| HGB × Log-Smearing | 79,370343 | 80,026128 | 1,0308 |
+Der Bestand stammt ungefähr aus den Jahren 2011–2013. Die Beträge enthalten französische Regulierungskonventionen. Eine Prüfung in späteren Zeiträumen, auf unabhängigen Daten und im deutschen Markt steht aus. Die reine Risikoprämie erfasst den modellierten Schadenbedarf. Ein Marktbeitrag hängt außerdem von Kosten, Sicherheitszuschlägen und Steuern ab.
 
-Score: exponierungsgewichtete Jahresraten-Tweedie-Deviance mit fester Power 1,5. [Berechnete Verlustkennzahlen](reports/s5/evaluation_loss_scores.json), Lauf `s5sev-2c4bc0d8ad1fd1c1`. Die etwas besseren Evaluationsscores anderer Varianten führen zu keiner nachträglichen Neuwahl; ihre bedingten gepaarten Differenzintervalle enthalten null. Das Gamma-Modell verbessert die separate Schaden-Gamma-Deviance in der Evaluation, weshalb das Ergebnis keine allgemeine Aussage gegen Schadenhöhenmerkmale ist.
+## Analysen, Paper und Vortrag
 
-Das gewählte Produkt prognostiziert **165,60 EUR je Vertragsjahr**, beobachtet werden **173,58 EUR**. Verlust-A/P beträgt dagegen etwa **3,057** bei sieben Tagen bis unter 0,1 Vertragsjahren und **0,607** ab einem Jahr. Der größte Entwicklungsschaden trägt **8,58 %** der Verlustsumme; ein Entwicklungsrefit ohne dessen gesamten Vertrag verändert die Portfoliovorhersage um etwa **6–9 %**. Diese Sensitivität rechtfertigt keine automatische Kappung.
+- [Sieben Notebooks mit Tabellen und Grafiken](notebooks/README.md)
+- [Begleitpaper als PDF](paper/begleitpaper.pdf) · [LaTeX-Quellen und Literatur](paper/README.md)
+- [Hauptvortrag als PDF](slides/hauptvortrag.pdf) · [Backups](slides/backup.pdf) · [Sprechernotizen](slides/sprechernotizen.md)
+- [Ergebnisse reproduzieren und Herkunft prüfen](docs/reproduktion.md)
+- [Frühere Notebooks](notebooks/legacy/) · [Historische Modellgrafiken](figures/README.md) · [Historische EDA-Grafiken](reports/figs/README.md)
 
-![Verlustkalibrierung und Unsicherheit](reports/s5/figures/risikopraemie_kalibrierung.png)
-
-## Daten, Zielgröße und Modellannahmen
-
-Verwendet wird **CASdatasets 1.2-1**, Commit [`227fb56b8734bdb7c0327a41180e01d2ddaeaf26`](https://github.com/dutangc/CASdatasets/commit/227fb56b8734bdb7c0327a41180e01d2ddaeaf26). Die Zielgröße zählt erfasste positive Schadenzeilen je Vertragsperiode. Sie bezeichnet weder sämtliche gemeldeten Schäden noch alle wirtschaftlichen Verluste.
-
-Der [Quellenvergleich](reports/s0/source_comparison.json) zeigt, weshalb die Version relevant ist:
-
-| Größe | CASdatasets, festgelegter Commit | OpenML 41214/41215, Version 1 |
-|---|---:|---:|
-| Vertragszeilen | 677.991 | 678.013 |
-| Exponierung in Vertragsjahren | 358.482,835463 | 358.499,445463 |
-| Mitgelieferte Schadenanzahl | 26.444 | 36.102 |
-| Verknüpfte positive Schadenzeilen | 26.444 | 26.444 |
-| Verknüpfte Beträge, historische EUR | 59.909.216,50 | 59.909.216,50 |
-| Nicht zuordenbare Schadenzeilen | 0 | 195 |
-
-Die 195 nicht zuordenbaren OpenML-Zeilen umfassen 788.714,18 EUR. Bei 9.095 gemeinsamen Verträgen unterscheidet sich die mitgelieferte Anzahl; der Vergleich erklärt die Ursache nicht. CAS-Anzahl und rekonstruierte Zeilenanzahl stimmen überein. Beide bleiben getrennt gespeichert. Exponierungen, Anzahlen und Beträge werden primär nicht gekappt; keine Vertrags- oder Schadenzeile wird ausgeschlossen.
-
-`Exposure` misst Vertragsjahre. Frequenzmodelle prognostizieren Jahresraten; erwartete Periodenanzahlen sind Exponierung × Rate. Schadenhöhe wird mit Gewicht eins pro positiver Trainingsschadenzeile und ohne Exponierungsoffset angepasst. Jahresrisikoprämien entstehen je Vertrag als Frequenz × Schadenhöhe; erst danach werden die erwarteten Periodenbeträge aggregiert. Dafür genügt die bedingte Mittelwertannahme `E[S | N,x,e] = N*m(x)` zusammen mit `E[N | x,e] = e*r(x)` bei geeigneten endlichen Momenten. Der Zeilenabgleich belegt diese Annahme nicht.
-
-Die feste schlüsselbasierte Aufteilung verwendet 80 % Entwicklung mit fünf Falten und 20 % Evaluation. Jede Schadenzeile folgt ihrem Vertrag. Encoder, Skalierung, Splines und Smearing werden ausschließlich im jeweiligen Training gelernt. Die ursprüngliche Analyse hatte den gesamten Datenstand betrachtet; die neue Evaluation ist daher keine externe oder historisch unberührte Validierung. Es fehlen zudem belastbare Zeit-, Haushalts-, Nutzungs- und Beendigungsinformationen. Bootstrap-Intervalle bei festen Vorhersagen erfassen keine erneute Anpassung, Auswahl oder bislang unbeobachtete Extremverluste.
-
-## Vollständig ausführen
-
-Die [aktuarische Einordnung](docs/aktuarische_einordnung.md) vergleicht reduzierte Merkmalsmengen und untersucht Geografie, Alter, Vertragsdauer, Mechanismen und Kostenszenarien. Der ursprüngliche Vergleich setzte Alter in jedem Paar voraus. Die Ergänzung prüft Einzelmerkmale sowie Bonus-Malus + Area; im erweiterten Kreis liegt Alter + Bonus-Malus (GAM) im Punktergebnis vorn (82,028 gegenüber 79,195 für die vollständige OOF-Regel). Merkmalsabhängigkeit, zusätzlicher Prognosewert und fehlende Stabilitätsevidenz werden getrennt erläutert. Das [sechste Notebook](notebooks/06_actuarial_interpretation.ipynb) zeigt die Ergebnisse. Die explorative Erweiterung ändert die bereits evaluierte vollständige Modellregel nicht.
-
-Geprüft wird Windows x64 mit CPython 3.12 und den [festgelegten Paketversionen](requirements.lock.txt). In einem separaten frischen Clone:
-
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
-.\.venv\Scripts\python.exe scripts/reproduce.py --fresh
-.\.venv\Scripts\python.exe scripts/build_results.py --check
-```
-
-Der letzte Workflow lädt die festgelegten CAS-Dateien herunter, prüft sie vor dem Lesen und führt Vorbereitung, Aufteilung, EDA, sämtliche Modelle, Evaluation, Abbildungen und die fünf [Kernnotebooks](notebooks/README.md) in frischen Kerneln aus. Rohdaten, Modelle, Vorhersagen und ausgeführte Notebookkopien liegen unter `data/` und bleiben lokal. Die Ausführung schreibt aktuelle aggregierte Berichte in diesem Clone. `--fresh` verlangt leere Analysecaches und löscht nichts. Ein erneuter Download des historischen OpenML-Vergleichs ist dafür nicht erforderlich.
-
-Der ergänzende Zwei-Merkmale-Vergleich und das sechste Notebook folgen auf diesen Kernablauf:
-
-```powershell
-.\.venv\Scripts\python.exe -m src.interpretation
-.\.venv\Scripts\python.exe scripts/s6a_diagnostics.py
-.\.venv\Scripts\python.exe scripts/verify_interpretation.py
-.\.venv\Scripts\python.exe -m src.feature_ablation
-.\.venv\Scripts\python.exe scripts/verify_feature_ablation.py
-.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/06_actuarial_interpretation.ipynb --output data/notebooks/06_actuarial_interpretation.executed.ipynb
-```
-
-Linux/macOS sind noch nicht ausgeführt. Dort ist die direkte [Abhängigkeitsliste](requirements.txt) der Ausgangspunkt; Paketauflösung und Ergebnisse müssen gesondert geprüft werden. Der [Reproduktionsnachweis](docs/reproduktion.md) beschreibt die tatsächlich geprüfte Plattform und die Grenzen der Bytegleichheit zwischen Softwareständen.
-
-## Bezug zur Referenz und Grenzen der Übertragung
-
-Die Zerlegung in Poisson-Frequenz, positive Schadenhöhe und deren Produkt folgt dem [scikit-learn-Versicherungsbeispiel](https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html). Diese Studie verwendet einen eigens abgeglichenen CAS-Datenstand, ein ungekapp­tes Zeilenziel, ganze Vertragsfalten, trainingsweise Vorverarbeitung und eine begrenzte GLM-/P-Spline-GAM-/Boosting-Gegenüberstellung. Der direkte Tweedie-Regressor des Beispiels gehört nicht zum registrierten Kandidatenumfang. Eigene Prüfungen von Gradienten, Strafen, Metriken und Vorhersageausrichtung ersetzen keine externe Validierung.
-
-Die [Anbieterbeschreibung](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd) nennt einen unbekannten privaten Versicherer, ungefähr 2011–2013 und teilweise feste IRSA-IDA-Regulierungsbeträge. Die historischen französischen EUR sind keine heutigen deutschen Schadenkosten. Kosten, Sicherheitszuschläge, Steuern, Wettbewerb und Vertriebsverhalten werden nicht modelliert; die reine Risikoprämie ist kein Marktpreis.
-
-Quellenangabe: C. Dutang und A. Charpentier (2026), *CASdatasets: Insurance datasets*, [DOI 10.57745/P0KHAG](https://doi.org/10.57745/P0KHAG). [Quellenmanifest](reports/s0/source_manifest.json) und [Datenvertrag](config/data_contract.json) halten Quelle, Nutzungsangaben und Einheiten fest. Projektcode: [MIT](LICENSE). CASdatasets deklariert [GPL ≥2](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION); die beiden OpenML-Metadaten deklarieren CC0. Die Projektlizenz lizenziert Quelldaten nicht um.
-
-Die ursprünglichen [Notebooks](notebooks/legacy/), [Abbildungen](figures/README.md) und [EDA-Bilder](reports/figs/README.md) bleiben als historische Analyse erhalten. Dazu gehören auch der alte [GLM-Helfer](src/features_glm.py) und die [frühere Metrikimplementierung](src/legacy/metrics.py). Ihre alten Kennzahlen und Grafiken sind keine bestätigten Resultate des aktuellen Ablaufs.
+C. Dutang und A. Charpentier (2026), *CASdatasets: Insurance datasets*. [DOI 10.57745/P0KHAG](https://doi.org/10.57745/P0KHAG). Der [Datenvertrag](config/data_contract.json) und das [Quellenmanifest](reports/s0/source_manifest.json) dokumentieren Einheiten, Versionen und Nutzungsangaben. Der Projektcode steht unter [MIT](LICENSE). Für CASdatasets gelten die [Lizenzangaben der Quelle](https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/DESCRIPTION).

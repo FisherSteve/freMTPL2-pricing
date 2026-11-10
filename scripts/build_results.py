@@ -124,18 +124,18 @@ def markdown(result: dict) -> str:
     labels = {"pp_intercept_mean": "Intercept × Schadenmittel", "pp_hgb_mean": "HGB × Schadenmittel",
               "pp_hgb_gamma": "HGB × Gamma", "pp_hgb_log_smear": "HGB × Log-Smearing"}
     labels[result["selected_model_id"]] += " (gewählt)"
-    lines = ["# Berechnete Kernergebnisse", "",
-             "Automatisch aus den [numerischen Nachweisen](../reports/s6/results.json) erzeugt; keine neue Modellwahl.", "",
-             f"Quelle `{result['source_id']}`, Split `{result['split_id']}`, Schadenhöhenlauf `{result['severity_run_id']}`.", "",
-             "| Produkt | OOF-Verlustdeviance | Evaluations-Verlustdeviance | Verlust-A/P |", "|---|---:|---:|---:|"]
+    lines = ["# Vorhersage des jährlichen Schadenbedarfs", "",
+             "Vier Produkte aus Jahresfrequenz und erwarteter Schadenhöhe werden je Bestand auf denselben Verträgen verglichen. "
+             "Die Entwicklungsspalte enthält Out-of-Fold-Vorhersagen. A/P ist die beobachtete geteilt durch die erwartete Verlustsumme in der Evaluation.", "",
+             "| Produkt | Verlustdeviance Entwicklungs-OOF | Verlustdeviance Evaluation | Verlust-A/P Evaluation |", "|---|---:|---:|---:|"]
     for row in result["loss_comparison"]:
         lines.append(f"| {labels[row['model_id']]} | {german(row['development_deviance'],6)} | {german(row['evaluation_deviance'],6)} | {german(row['evaluation_actual_over_predicted'],4)} |")
     selected = result["selected_evaluation"]
-    lines.extend(["", "Score: exponierungsgewichtete Jahresraten-Tweedie-Deviance mit fester Power 1,5.", "",
-        f"Das gewählte Produkt senkt sie gegenüber der Interceptbasis um {german(100*result['relative_loss_deviance_reduction'],2)} %. "
-        f"Die vorhergesagten Jahreskosten betragen {german(selected['predicted_annual_loss_cost'],2)} EUR, beobachtet werden {german(selected['observed_annual_loss_cost'],2)} EUR.", "",
-        "Die Auswahl bleibt vor der Evaluation festgelegt. Abweichungen in Dauer- und Altersgruppen sowie seltene große Schäden begrenzen die Anwendung. "
-        "Ein guter Gesamtscore belegt keinen unmittelbar verwendbaren Tarif. Einzelheiten: [Methodik und Grenzen](schadenhoehe_risikopraemie.md).", ""])
+    lines.extend(["", "Die Tabelle verwendet die exponierungsgewichtete Tweedie-Deviance der Jahresraten mit Power 1,5.", "",
+        f"In der Evaluation senkt das zuvor gewählte Produkt die Verlustdeviance gegenüber der Interceptbasis um {german(100*result['relative_loss_deviance_reduction'],2)} %. "
+        f"Es prognostiziert {german(selected['predicted_annual_loss_cost'],2)} EUR je Vertragsjahr gegenüber beobachteten {german(selected['observed_annual_loss_cost'],2)} EUR.", "",
+        "Die Gesamtsummen verdecken Abweichungen in Dauer- und Altersgruppen. Einzelne Großschäden prägen die beobachteten Verluste. "
+        "[Segmentbefunde und Unsicherheit](schadenhoehe_risikopraemie.md) · [Zahlen und Herkunft](../reports/s6/results.json)", ""])
     return "\n".join(lines)
 
 

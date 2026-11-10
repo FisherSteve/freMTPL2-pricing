@@ -3,19 +3,19 @@
   "figures": {
     "alter_zerlegung": {
       "filename": "alter_zerlegung.png",
-      "sha256": "cd4d60f4b51931fdc6970775d0841687e97b54fa71d29e96bac04d94d79f7023"
+      "sha256": "90666314e79f4ced9e02b8590245ac4debf861527673a64b57b03a11dfa30ebe"
     },
     "risikopraemie_kalibrierung": {
       "filename": "risikopraemie_kalibrierung.png",
-      "sha256": "ed016e625ed9e824bb5338d23ea08ced799d1e7ecc5f4f1c1fae65b6daea4933"
+      "sha256": "e55238bec4d0444c884aa0da3ee1b22fb61018c26714eec355a5101476eb3618"
     },
     "schadenhoehe_vergleich": {
       "filename": "schadenhoehe_vergleich.png",
-      "sha256": "09fe8d6e803d5017ed5d708122ff72fb7c9edc90dbf089b6fff6902b1476a8e1"
+      "sha256": "078aa595d8e055d7557f2bc58daf7dbf0bac45a5cfbd17890e8c03f9de344185"
     },
     "tail_einfluss": {
       "filename": "tail_einfluss.png",
-      "sha256": "edfc4f8b7f7af9cddaafacd5506cffeef936cb6e40729587723de621d1de53a5"
+      "sha256": "9134e4f554b510e3e1f9554f649e24c1cb7cd8deb8d60fc33e78c289496524ec"
     }
   },
   "input_sha256": {
@@ -40,6 +40,6 @@
     "pandas": "3.0.1"
   },
   "source_sha256": {
-    "src/severity_figures.py": "40091b151156a4935d9baa4c569e28ad94b4966fc9cc1949a542779c6af42f12"
+    "src/severity_figures.py": "f469c9ae34f871be442415b7413f1b2ea933c04d9ff8a4142f5485e0abb699bc"
   }
 }

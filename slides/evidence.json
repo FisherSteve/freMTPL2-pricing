@@ -1,0 +1,1272 @@
+{
+  "schema": 1,
+  "build": "python scripts/build_slides.py --compile",
+  "scope": "aggregate-only authoring, no model fitting, prediction generation or resampling",
+  "baseline_commit": "ce3f18243ac508152d3eeae8099b03c22b447fe1",
+  "inputs": {
+    "reports/s6/results.json": {
+      "sha256": "72a42ca1c70684cd69834fb9fb77e705d846baadd8dd53373bf07c6c40c5bc13",
+      "origin": "checkout"
+    },
+    "reports/s4/scores.json": {
+      "sha256": "b35d05c0069c049d3580a3437df3a2880152f9625ab42b36f800ede106c01e76",
+      "origin": "checkout"
+    },
+    "reports/s5/evaluation_loss_scores.json": {
+      "sha256": "b4d24d590299951733eb2f5c073fa1ed29363a8a1edae654d618e9324769ea11",
+      "origin": "checkout"
+    },
+    "reports/s5/development_loss_scores.json": {
+      "sha256": "9b1c9fc8c9df84e18a70d2601eecfa3dd08162c8a7c2715b4731c8a2c85abc9d",
+      "origin": "checkout"
+    },
+    "reports/s0/source_comparison.json": {
+      "sha256": "3dd88b7e0b4c6dff4500d4bf822407b5b5cf2d1d07da0b24c7f3eeef68991486",
+      "origin": "checkout"
+    },
+    "reports/s6a/scores.json": {
+      "sha256": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d",
+      "origin": "checkout"
+    },
+    "reports/s6a/ablation/scores.json": {
+      "sha256": "6f4de7fc4009c6ba93bda855dbecf5452ba3df7e6f4c2dbd68c4adf0ee236b28",
+      "origin": "checkout"
+    },
+    "reports/s6a/ablation/dependence.json": {
+      "sha256": "715f29782a4e705cc869eb90c62b64a0c11de8b1fe5076331b6c843620239b2b",
+      "origin": "checkout"
+    },
+    "reports/s3/tail_concentration.json": {
+      "sha256": "96c0cf3c792bdd079d4f0eb40843cdc4679d5ad77e0549360af2637e3698731a",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s3/age_bootstrap.json": {
+      "sha256": "fe7aa64be573221468526275a7bb0c170deb49a0dfede368bb4a75ddffb539d7",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s3/bm_standardized.json": {
+      "sha256": "49dcba807a48c07dcfd8cd56e2871e402b525142c7d39b77db9b01ea2ec32a8f",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s6a/existing_age_profiles.json": {
+      "sha256": "c66199a688daebe91c490ae7048ea462192d5e8739d150013f44f72760f4487a",
+      "origin": "checkout"
+    },
+    "reports/s6a/geo.json": {
+      "sha256": "eeea7ea2e232b57ebfb823e993767225f1d7bd8e966a01be0f46a824ec6faa3b",
+      "origin": "checkout"
+    },
+    "reports/s6a/standardized_with_duration.json": {
+      "sha256": "37e12fde2b0db4d49a266cccf995bd08aa0f9e7251863de1a54baef7724de737",
+      "origin": "checkout"
+    },
+    "reports/s6a/standardized_without_duration.json": {
+      "sha256": "99f3a06a8f35974322290c026cd0651ce3594a40afa13d2cb07e919c2e1dcc76",
+      "origin": "checkout"
+    },
+    "reports/o2/report.json": {
+      "sha256": "7b8dcb418ece0b8d7453196c1ea7eef6f0f4b5801e926e633010925eecc213eb",
+      "origin": "checkout"
+    },
+    "reports/o2/joint_support.json": {
+      "sha256": "3baf9fb1459cfc75260a77dc9a00b5c79ab0c654883ad09aba6b23ad36057d36",
+      "origin": "checkout"
+    },
+    "reports/s6a/report.json": {
+      "sha256": "c81650481643d75e833779562dd048dca8f55a2ed6fe4f3f64e752352529a1a2",
+      "origin": "checkout"
+    },
+    "reports/s6a/ablation/report.json": {
+      "sha256": "24a870fd80a3d43542e7dd53fe979e2abfcdd44ecda95f6abab645301d4b6b97",
+      "origin": "checkout"
+    },
+    "reports/s6a/release.json": {
+      "sha256": "2af2c2f1626180592de2936f000a1d58069a7d6bd3918652e402f2c9fef0f842",
+      "origin": "checkout"
+    },
+    "reports/s6a/bootstrap_best.json": {
+      "sha256": "238a9fb5b2f2e3576bc067912e48c52795a5f3e75988b7381fa7dfa39cedd0a1",
+      "origin": "checkout"
+    },
+    "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json": {
+      "sha256": "0daf1034b573f25906086c3a65548a59bcaf3ab7ef74523fdc6ebe3df163431a",
+      "origin": "checkout"
+    },
+    "reports/s6a/existing_age_contrasts.json": {
+      "sha256": "d9feb0367f1fe208b358d9538d69225a0ca5d5837fd72aaf58ba3586acb1389c",
+      "origin": "checkout"
+    },
+    "reports/s6a/support_with_duration.json": {
+      "sha256": "a24ff231af95632707731f504ab4c410838c55b445325bd8e280efc9e7fe4745",
+      "origin": "checkout"
+    },
+    "reports/s6a/support_without_duration.json": {
+      "sha256": "d34a9edcce2955b198853d4003c0c055e7a7404b42fb03f2bbad56bd469ce166",
+      "origin": "checkout"
+    },
+    "reports/s6a/standardized_intervals_with_duration.json": {
+      "sha256": "1a701212f7b0964636e76f76795407b5e028886208707e9c9f17b8313268e2b9",
+      "origin": "checkout"
+    },
+    "reports/s6a/standardized_intervals_without_duration.json": {
+      "sha256": "299ed26ee38d0a6e3d393e750590baaf9b7ea70843ee21045eecd782b5d59abe",
+      "origin": "checkout"
+    },
+    "reports/s6a/costs.json": {
+      "sha256": "0157c8cac2d436872370a78c2e8db8a6b38a9f8f246b0e981459040a8222a14b",
+      "origin": "checkout"
+    },
+    "reports/s6a/sources.json": {
+      "sha256": "fbb0bfb4513f7cc3f08e55cf6c407450acececc435cb11f829f44aff5e71e8b5",
+      "origin": "checkout"
+    },
+    "reports/o2/sources.json": {
+      "sha256": "5d9af0f35611a04a447a8657bc00dd38bdaa512788a06e0d42510da8c9a466c0",
+      "origin": "checkout"
+    },
+    "reports/s3/eda_report.json": {
+      "sha256": "e31a303409f7a2c4e92628d486cacd83e571c445af1fb2f4ad33ff01b8c07cb4",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s3/age_contrasts.json": {
+      "sha256": "fd40dca7d21440465153421b2ecf33b6e831e89552183cf3a9569f749a7fc78a",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s3/bm_common_cells.json": {
+      "sha256": "88949ec8e7fbb31baa730c66fe6acecdbdf55fadfcd743b592dfbea07229ad79",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s3/sensitivities.json": {
+      "sha256": "548d2893b879189f380cb59e98be2191869ee5f177e2576434692656cb697bba",
+      "origin": "git:a44c7e91c481fab9312af66bdc08cb96ffd1ab85"
+    },
+    "reports/s4/paired_bootstrap.json": {
+      "sha256": "35cb4498f28b5c489f88e00a2850d581990f3ef3404054bdaac7e8d3fc7ffec9",
+      "origin": "checkout"
+    },
+    "reports/s4/segments.json": {
+      "sha256": "7740ed30c0a04e400129c8b603264e088afc970ec07555bffcd8e4ff58c6d6fc",
+      "origin": "checkout"
+    },
+    "reports/s5/evaluation_loss_segments.json": {
+      "sha256": "2c3cdef1b91b422e2c55220279c43159957048ddcced04ce93c7a36d5506a381",
+      "origin": "checkout"
+    },
+    "reports/s5/evaluation_bootstrap.json": {
+      "sha256": "9fef0ccdb813aee57e56cda94bcc552bee616e6e25a3bdb43034665a1116b2b3",
+      "origin": "checkout"
+    },
+    "config/frequency_protocol.json": {
+      "sha256": "6f521356ca8b199b086fa3d8f3dbbd94679dd054c1473aed7b7ee4121b665674",
+      "origin": "checkout"
+    },
+    "config/interpretation_protocol.json": {
+      "sha256": "56dd2fc8c60b41ea83bc6cfbbf1d3a318e9dde11babb9291fdaedda0dd073e8d",
+      "origin": "checkout"
+    },
+    "config/feature_ablation_protocol.json": {
+      "sha256": "1c2aaff46d62db14d8fb5c6f29d305437d1f7836be8f62027469b182090d3856",
+      "origin": "checkout"
+    },
+    "config/severity_protocol.json": {
+      "sha256": "e5700649e5048299982c74c5d1cc9367df0d35f7631a17e50efab6f81479d69b",
+      "origin": "checkout"
+    },
+    "config/augmentation_protocol.json": {
+      "sha256": "d6ef4bc506d6a3ba3e6acc350f6a03965e343c913ea297f95653f424659d7265",
+      "origin": "checkout"
+    },
+    "config/validation_protocol.json": {
+      "sha256": "52b950d5a2963bee76d9867cd9849f1a226184fdbbd4735ed374b2d8dd398d7b",
+      "origin": "checkout"
+    },
+    "paper/evidence.json": {
+      "sha256": "73bbf8c0a30cd0303ea37b578bcef7b67dd8c5a616bde3a837b4240e3c9d55c4",
+      "origin": "checkout"
+    },
+    "paper/sources.json": {
+      "sha256": "5d18c65a912b3841484ca0775f92bd6bf928365ec53e70912f98a9cc84c5bf1d",
+      "origin": "checkout"
+    },
+    "slides/sources.json": {
+      "sha256": "883fb52d91ad069a83613829339fd97c995bc2ed82a81dcefa1bb93033399e11",
+      "origin": "checkout"
+    },
+    "scripts/build_slides.py": {
+      "sha256": "f031810c1cfff23df21984dc6559a808d2af37449035101653db99d85928fa28",
+      "origin": "checkout"
+    },
+    "slides/fachvortrag.tex": {
+      "sha256": "0313cf5543263db4c6c5b2965db482605053bc9913d163cf49e735a2caa2e92e",
+      "origin": "checkout"
+    },
+    "slides/sprechernotizen.md": {
+      "sha256": "c967a05b8a573d9c761233fac3a6a57f8a64a0e2e3a0288887ad824cb6ebd672",
+      "origin": "checkout"
+    },
+    "src/frequency_models.py": {
+      "sha256": "e032520cca9bce66d8f08bfa87b9e9f4f86b693960d411c7480fa6eadeee41db",
+      "origin": "checkout"
+    },
+    "src/severity_models.py": {
+      "sha256": "48f8b34173fa3f7942eb2ee4b1fc0cc595e1626ccae81e6577449d1aee1b56a0",
+      "origin": "checkout"
+    },
+    "src/interpretation.py": {
+      "sha256": "5bebde8c9a5a3ff0d2d956bfe48de19ba8e082adab7f1ac7f8250a6143b7e8ae",
+      "origin": "checkout"
+    },
+    "src/metrics.py": {
+      "sha256": "7cd350de64f838a27cbde7fade73f20160578dbc7cd6ff8c2c16ed8d321e86bb",
+      "origin": "checkout"
+    },
+    "src/severity.py": {
+      "sha256": "b1650b327c50efa9b55c8f2617dcddf15bb24f31d75fb1de6643654b02154b4a",
+      "origin": "checkout"
+    },
+    "src/augmentation.py": {
+      "sha256": "0a9678a9c0baa349ea4d1d1e647140c5a8da4f55f7fa3aad25f7f9856bb29081",
+      "origin": "checkout"
+    },
+    "paper/begleitpaper.tex": {
+      "sha256": "a38c99ca6a282242454b89984c9396378178d594d9d920adaf953c74bba6cd9b",
+      "origin": "checkout"
+    },
+    "paper/literatur.bib": {
+      "sha256": "cea688544e5bbc296e1c1b6282cda260ef9e6879b5a6f71b8d1503c2d86e875b",
+      "origin": "checkout"
+    }
+  },
+  "numeric_macros": {
+    "EvalGain": {
+      "value": 9.796976773288858,
+      "origin": "reports/s5/evaluation_loss_scores.json:1-D_selected/D_intercept",
+      "digits": 2,
+      "latex": "9{,}80"
+    },
+    "EvalObserved": {
+      "value": 173.57698056447532,
+      "origin": "reports/s6/results.json:selected_evaluation.observed_annual_loss_cost",
+      "digits": 2,
+      "latex": "173{,}58"
+    },
+    "EvalPredicted": {
+      "value": 165.60320922796276,
+      "origin": "reports/s6/results.json:selected_evaluation.predicted_annual_loss_cost",
+      "digits": 2,
+      "latex": "165{,}60"
+    },
+    "EvalAP": {
+      "value": 1.048149859979683,
+      "origin": "reports/s6/results.json:selected_evaluation.actual_over_predicted",
+      "digits": 3,
+      "latex": "1{,}048"
+    },
+    "EvalPolicies": {
+      "value": 135599,
+      "origin": "reports/s6/results.json:selected_evaluation.policies",
+      "digits": 0,
+      "latex": "135\\,599"
+    },
+    "ReducedGap": {
+      "value": 3.577268824762747,
+      "origin": "reports/s6a/scores.json:100*(two_BonusMalus_gam/pp_hgb_mean-1)",
+      "digits": 4,
+      "latex": "3{,}5773"
+    },
+    "AgeBMRho": {
+      "value": -0.4442230401717849,
+      "origin": "reports/s6a/ablation/dependence.json:exposure_weighted_pearson",
+      "digits": 3,
+      "latex": "-0{,}444"
+    },
+    "AgeBMRank": {
+      "value": -0.5718668150852597,
+      "origin": "reports/s6a/ablation/dependence.json:spearman",
+      "digits": 3,
+      "latex": "-0{,}572"
+    },
+    "AreaAgeEta": {
+      "value": 0.0025984993634779237,
+      "origin": "reports/s6a/ablation/dependence.json:Area_DrivAge_weighted_eta_squared",
+      "digits": 5,
+      "latex": "0{,}00260"
+    },
+    "AreaBMEta": {
+      "value": 0.016716674548225625,
+      "origin": "reports/s6a/ablation/dependence.json:Area_BonusMalus_weighted_eta_squared",
+      "digits": 5,
+      "latex": "0{,}01672"
+    },
+    "LargestShare": {
+      "value": 8.583268294788999,
+      "origin": "reports/s3/tail_concentration.json:rows[0].loss_share",
+      "digits": 2,
+      "latex": "8{,}58"
+    },
+    "LargestClaim": {
+      "value": 4075400.56,
+      "origin": "reports/s3/tail_concentration.json:rows[0].loss_eur",
+      "digits": 2,
+      "latex": "4\\,075\\,400{,}56"
+    },
+    "AugMin": {
+      "value": 0.3680991193865494,
+      "origin": "reports/o2/report.json:100*vs_real.difference/real.deviance, min",
+      "digits": 2,
+      "latex": "0{,}37"
+    },
+    "AugMax": {
+      "value": 3.0598717063281864,
+      "origin": "reports/o2/report.json:100*vs_real.difference/real.deviance, max",
+      "digits": 2,
+      "latex": "3{,}06"
+    },
+    "AugBaseline": {
+      "value": 0.46438556950014975,
+      "origin": "reports/o2/report.json:scores.real",
+      "digits": 6,
+      "latex": "0{,}464386"
+    },
+    "SupportMin": {
+      "value": 73.77,
+      "origin": "reports/o2/joint_support.json:outside_training_Area_density_fraction, min",
+      "digits": 2,
+      "latex": "73{,}77"
+    },
+    "SupportMax": {
+      "value": 80.39500000000001,
+      "origin": "reports/o2/joint_support.json:outside_training_Area_density_fraction, max",
+      "digits": 2,
+      "latex": "80{,}40"
+    }
+  },
+  "tables_and_figures": {
+    "FrequencyTable": {
+      "origin": "reports/s6/results.json:development_frequency; checked against reports/s4/scores.json",
+      "rows": [
+        [
+          "Intercept",
+          "0{,}478094",
+          "0{,}00"
+        ],
+        [
+          "GLM",
+          "0{,}457123",
+          "4{,}39"
+        ],
+        [
+          "GAM",
+          "0{,}454637",
+          "4{,}91"
+        ],
+        [
+          "HGB",
+          "0{,}446749",
+          "6{,}56"
+        ]
+      ]
+    },
+    "LossTable": {
+      "origin": "reports/s6/results.json:loss_comparison; independently checked S5 dev/eval scores",
+      "rows": [
+        [
+          "Mittel (gewählt)",
+          "79{,}195",
+          "80{,}207"
+        ],
+        [
+          "Gamma-GLM",
+          "80{,}387",
+          "80{,}064"
+        ],
+        [
+          "Log-Smearing",
+          "79{,}370",
+          "80{,}026"
+        ]
+      ]
+    },
+    "FeatureTable": {
+      "origin": "reports/s6a/{scores.json,ablation/scores.json}",
+      "rows": [
+        [
+          "Alle Merkmale (HGB)",
+          "79{,}195"
+        ],
+        [
+          "Alter + BM (GAM)",
+          "82{,}028"
+        ],
+        [
+          "BM allein (GAM)",
+          "82{,}537"
+        ],
+        [
+          "BM + Area (GAM)",
+          "82{,}621"
+        ]
+      ]
+    },
+    "AllFeatureTable": {
+      "origin": "reports/s6a/{scores.json,ablation/scores.json}",
+      "rows": [
+        [
+          "Alter",
+          "84{,}717",
+          "84{,}318"
+        ],
+        [
+          "BM",
+          "83{,}240",
+          "82{,}537"
+        ],
+        [
+          "Area",
+          "87{,}283",
+          "87{,}280"
+        ],
+        [
+          "BM + Area",
+          "83{,}389",
+          "82{,}621"
+        ],
+        [
+          "Alter + Area",
+          "84{,}620",
+          "84{,}181"
+        ],
+        [
+          "Alter + log(Density)",
+          "84{,}504",
+          "84{,}057"
+        ],
+        [
+          "Alter + Region",
+          "84{,}668",
+          "84{,}216"
+        ],
+        [
+          "Alter + BM",
+          "82{,}621",
+          "82{,}028"
+        ]
+      ]
+    },
+    "AgeProfileTable": {
+      "origin": "reports/s6a/existing_age_profiles.json",
+      "rows": [
+        [
+          "GLM",
+          "0{,}06451",
+          "0{,}08177",
+          "0{,}07227"
+        ],
+        [
+          "GAM",
+          "0{,}05249",
+          "0{,}07773",
+          "0{,}07411"
+        ],
+        [
+          "HGB",
+          "0{,}05588",
+          "0{,}07707",
+          "0{,}07233"
+        ]
+      ]
+    },
+    "GeoTable": {
+      "origin": "reports/s6a/geo.json",
+      "rows": [
+        [
+          "AB",
+          "0{,}0572",
+          "2\\,879"
+        ],
+        [
+          "CD",
+          "0{,}0743",
+          "2\\,079"
+        ],
+        [
+          "EF",
+          "0{,}0948",
+          "2\\,050"
+        ]
+      ]
+    },
+    "StandardTable": {
+      "origin": "reports/s6a/standardized_{without,with}_duration.json",
+      "rows": [
+        [
+          "ohne Dauer",
+          "AB",
+          "0{,}05958",
+          "177{,}15"
+        ],
+        [
+          "ohne Dauer",
+          "CD",
+          "0{,}07176",
+          "149{,}13"
+        ],
+        [
+          "ohne Dauer",
+          "EF",
+          "0{,}08647",
+          "177{,}83"
+        ],
+        [
+          "mit Dauer",
+          "AB",
+          "0{,}05643",
+          "112{,}51"
+        ],
+        [
+          "mit Dauer",
+          "CD",
+          "0{,}06732",
+          "137{,}59"
+        ],
+        [
+          "mit Dauer",
+          "EF",
+          "0{,}08051",
+          "154{,}70"
+        ]
+      ]
+    },
+    "FrequencyDuration": {
+      "origin": "reports/s4/segments.json",
+      "rows": [
+        [
+          "7 Tage--<0,1 J.",
+          "1{,}794"
+        ],
+        [
+          "0,1--<0,5 J.",
+          "1{,}237"
+        ],
+        [
+          "0,5--<1 J.",
+          "0{,}998"
+        ],
+        [
+          "1+ J.",
+          "0{,}833"
+        ]
+      ]
+    },
+    "LossDuration": {
+      "origin": "reports/s5/evaluation_loss_segments.json",
+      "rows": [
+        [
+          "7 Tage--<0,1 J.",
+          "3{,}057"
+        ],
+        [
+          "0,1--<0,5 J.",
+          "2{,}152"
+        ],
+        [
+          "0,5--<1 J.",
+          "0{,}797"
+        ],
+        [
+          "1+ J.",
+          "0{,}607"
+        ]
+      ]
+    },
+    "AgeChart": {
+      "origin": "reports/s3/age_bootstrap.json",
+      "rows": [
+        {
+          "age_band": "18–24",
+          "claims": 1575,
+          "exposure": 9983.892166329815,
+          "frequency": 0.15775410769275,
+          "frequency_lower": 0.14910882931145,
+          "frequency_upper": 0.166486904419477,
+          "loss_cost_eur_per_year": 889.8364787994163,
+          "loss_cost_eur_per_year_lower": 310.7034190732448,
+          "loss_cost_eur_per_year_upper": 1904.0848544740002,
+          "loss_eur": 8884031.45,
+          "policies": 24175,
+          "replicates": 500,
+          "severity_eur": 5640.654888888888,
+          "severity_eur_lower": 1973.6542620192604,
+          "severity_eur_upper": 12000.540490979487,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "25–29",
+          "claims": 1820,
+          "exposure": 20675.999427352348,
+          "frequency": 0.088024765448209,
+          "frequency_lower": 0.084115511293134,
+          "frequency_upper": 0.092821269819357,
+          "loss_cost_eur_per_year": 190.09362685513008,
+          "loss_cost_eur_per_year_lower": 147.70823052883168,
+          "loss_cost_eur_per_year_upper": 241.32070559651902,
+          "loss_eur": 3930375.7200000007,
+          "policies": 47046,
+          "replicates": 500,
+          "severity_eur": 2159.547098901099,
+          "severity_eur_lower": 1689.5288892499902,
+          "severity_eur_upper": 2721.891085661744,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "30–34",
+          "claims": 2153,
+          "exposure": 31063.780190133988,
+          "frequency": 0.069309014769677,
+          "frequency_lower": 0.066338648467733,
+          "frequency_upper": 0.072457826805856,
+          "loss_cost_eur_per_year": 133.04254777442057,
+          "loss_cost_eur_per_year_lower": 111.28312043521106,
+          "loss_cost_eur_per_year_upper": 162.24343901424947,
+          "loss_eur": 4132804.4600000004,
+          "policies": 65724,
+          "replicates": 500,
+          "severity_eur": 1919.5561820715284,
+          "severity_eur_lower": 1610.6867069013015,
+          "severity_eur_upper": 2300.9068839463366,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "35–39",
+          "claims": 2409,
+          "exposure": 34828.23355116401,
+          "frequency": 0.069168021296891,
+          "frequency_lower": 0.0661714003486,
+          "frequency_upper": 0.07211078709636,
+          "loss_cost_eur_per_year": 137.66569162792797,
+          "loss_cost_eur_per_year_lower": 110.46346889790622,
+          "loss_cost_eur_per_year_upper": 167.0083510492022,
+          "loss_eur": 4794652.859999999,
+          "policies": 69153,
+          "replicates": 500,
+          "severity_eur": 1990.3083686176835,
+          "severity_eur_lower": 1609.8000814953766,
+          "severity_eur_upper": 2407.050223799091,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "40–44",
+          "claims": 2532,
+          "exposure": 35030.41044539262,
+          "frequency": 0.072280055180827,
+          "frequency_lower": 0.069518678776412,
+          "frequency_upper": 0.075531919679239,
+          "loss_cost_eur_per_year": 145.78953158317069,
+          "loss_cost_eur_per_year_lower": 115.01536668405521,
+          "loss_cost_eur_per_year_upper": 198.40822373774756,
+          "loss_eur": 5107067.13,
+          "policies": 67279,
+          "replicates": 500,
+          "severity_eur": 2017.00913507109,
+          "severity_eur_lower": 1594.8240425928598,
+          "severity_eur_upper": 2738.8231087765535,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "45–49",
+          "claims": 2707,
+          "exposure": 35110.5279796392,
+          "frequency": 0.077099381745834,
+          "frequency_lower": 0.074296722027951,
+          "frequency_upper": 0.079815642454442,
+          "loss_cost_eur_per_year": 137.01482594593085,
+          "loss_cost_eur_per_year_lower": 120.56348830202765,
+          "loss_cost_eur_per_year_upper": 159.811171370153,
+          "loss_eur": 4810662.88,
+          "policies": 65335,
+          "replicates": 500,
+          "severity_eur": 1777.1196453638713,
+          "severity_eur_lower": 1573.2766175729082,
+          "severity_eur_upper": 2075.115717189731,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "50–54",
+          "claims": 2766,
+          "exposure": 36840.18359907179,
+          "frequency": 0.075081059044171,
+          "frequency_lower": 0.071910325641124,
+          "frequency_upper": 0.078197340030641,
+          "loss_cost_eur_per_year": 145.16796355311178,
+          "loss_cost_eur_per_year_lower": 128.0885083661713,
+          "loss_cost_eur_per_year_upper": 165.5273561297868,
+          "loss_eur": 5348014.43,
+          "policies": 65905,
+          "replicates": 500,
+          "severity_eur": 1933.4831634128705,
+          "severity_eur_lower": 1712.475523238946,
+          "severity_eur_upper": 2178.753474394677,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "55–59",
+          "claims": 1733,
+          "exposure": 27050.422482221722,
+          "frequency": 0.064065542826142,
+          "frequency_lower": 0.061027082848268,
+          "frequency_upper": 0.067135431517732,
+          "loss_cost_eur_per_year": 117.90062325629368,
+          "loss_cost_eur_per_year_lower": 93.41292236764298,
+          "loss_cost_eur_per_year_upper": 156.96368289538825,
+          "loss_eur": 3189261.67,
+          "policies": 47992,
+          "replicates": 500,
+          "severity_eur": 1840.3125620311598,
+          "severity_eur_lower": 1467.4067426659183,
+          "severity_eur_upper": 2449.260023774925,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "60–64",
+          "claims": 1117,
+          "exposure": 17838.665034059435,
+          "frequency": 0.062616793233536,
+          "frequency_lower": 0.05897398024996,
+          "frequency_upper": 0.066089558931436,
+          "loss_cost_eur_per_year": 127.89441618215199,
+          "loss_cost_eur_per_year_lower": 95.00459659932025,
+          "loss_cost_eur_per_year_upper": 170.89458873969627,
+          "loss_eur": 2281465.65,
+          "policies": 31214,
+          "replicates": 500,
+          "severity_eur": 2042.4938675022381,
+          "severity_eur_lower": 1547.3638598924772,
+          "severity_eur_upper": 2674.7067794852364,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "65–74",
+          "claims": 1474,
+          "exposure": 25871.0919327794,
+          "frequency": 0.056974788842693,
+          "frequency_lower": 0.053900536443221,
+          "frequency_upper": 0.059974621769909,
+          "loss_cost_eur_per_year": 112.97091315642851,
+          "loss_cost_eur_per_year_lower": 88.20388817679321,
+          "loss_cost_eur_per_year_upper": 139.96012588465157,
+          "loss_eur": 2922680.88,
+          "policies": 40748,
+          "replicates": 500,
+          "severity_eur": 1982.8228493894164,
+          "severity_eur_lower": 1560.5152027213294,
+          "severity_eur_upper": 2452.5383810023045,
+          "undefined_severity_draws": 0
+        },
+        {
+          "age_band": "75+",
+          "claims": 780,
+          "exposure": 12587.612018863689,
+          "frequency": 0.061965684899654,
+          "frequency_lower": 0.057332225267521,
+          "frequency_upper": 0.066309160614986,
+          "loss_cost_eur_per_year": 165.2209741516757,
+          "loss_cost_eur_per_year_lower": 109.25951465623105,
+          "loss_cost_eur_per_year_upper": 228.96176789283228,
+          "loss_eur": 2079737.52,
+          "policies": 17821,
+          "replicates": 500,
+          "severity_eur": 2666.3301538461537,
+          "severity_eur_lower": 1815.0781894718202,
+          "severity_eur_upper": 3645.3261056734455,
+          "undefined_severity_draws": 0
+        }
+      ],
+      "unit": "claims / policy-year; exposure in thousands of policy-years",
+      "uncertainty": "pointwise 95% whole-policy percentile bootstrap, 500 draws; not simultaneous"
+    },
+    "BMChart": {
+      "origin": "reports/s3/bm_standardized.json",
+      "rows": [
+        {
+          "age10_band": "30–39",
+          "all_age_frequency": 0.06923449050914,
+          "claims": 4356,
+          "excluded_claims": 206,
+          "excluded_exposure": 644.6047720637653,
+          "excluded_loss_eur": 543453.8600000003,
+          "excluded_policies": 1382,
+          "exposure": 65247.40896923423,
+          "frequency": 0.066761271731939,
+          "loss_cost_eur_per_year": 128.49557695008647,
+          "loss_eur": 8384003.46,
+          "lower": 0.054396607321236,
+          "policies": 133495,
+          "severity_eur": 1924.702355371901,
+          "standardized_frequency": 0.056383797921793,
+          "upper": 0.058413569097891
+        },
+        {
+          "age10_band": "40–49",
+          "all_age_frequency": 0.074692470868487,
+          "claims": 5135,
+          "excluded_claims": 104,
+          "excluded_exposure": 326.2237832173123,
+          "excluded_loss_eur": 171616.01999999955,
+          "excluded_policies": 671,
+          "exposure": 69814.7146418145,
+          "frequency": 0.073551829672945,
+          "loss_cost_eur_per_year": 139.59971103516776,
+          "loss_eur": 9746113.99,
+          "lower": 0.076821079607715,
+          "policies": 131943,
+          "severity_eur": 1897.9774079844208,
+          "standardized_frequency": 0.079100159782917,
+          "upper": 0.081334413052037
+        },
+        {
+          "age10_band": "50–59",
+          "all_age_frequency": 0.07041723777476,
+          "claims": 4413,
+          "excluded_claims": 86,
+          "excluded_exposure": 225.91190283704054,
+          "excluded_loss_eur": 138190.90000000224,
+          "excluded_policies": 485,
+          "exposure": 63664.69417845647,
+          "frequency": 0.069316283647418,
+          "loss_cost_eur_per_year": 131.92689148017882,
+          "loss_eur": 8399085.2,
+          "lower": 0.079658103036343,
+          "policies": 113412,
+          "severity_eur": 1903.259732608203,
+          "standardized_frequency": 0.082412948968879,
+          "upper": 0.085017437248964
+        }
+      ],
+      "unit": "claims / policy-year",
+      "uncertainty": "pointwise 95% bootstrap with fixed common BM mixture; selected support"
+    },
+    "AugChart": {
+      "origin": "reports/o2/report.json:scores.ctgan",
+      "rows": [
+        {
+          "actual_over_predicted": 0.9974665051881005,
+          "expected_claims": 21119.506159284425,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.24669609761166322,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.46641664759215423,
+          "policies": 542392,
+          "predicted_annual_rate": 0.07361770035946424,
+          "ratio": 0.25,
+          "seed": 17,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.0007511757974757977,
+              0.001958306077265773
+            ],
+            "difference": 0.0013547409373707855,
+            "standard_error": 0.0003079470565050341
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.001468532976030007,
+              0.002593623207978959
+            ],
+            "difference": 0.002031078092004483,
+            "standard_error": 0.00028701808829741766
+          }
+        },
+        {
+          "actual_over_predicted": 0.9253071027773326,
+          "expected_claims": 22766.495509188106,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.24732971059318318,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.46761458969814007,
+          "policies": 542392,
+          "predicted_annual_rate": 0.07935872325753689,
+          "ratio": 0.25,
+          "seed": 29,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.001372280619004083,
+              0.002838593333792709
+            ],
+            "difference": 0.002105436976398396,
+            "standard_error": 0.00037406623957243957
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.0025476427026113217,
+              0.003910397693369169
+            ],
+            "difference": 0.0032290201979902453,
+            "standard_error": 0.0003476479673879431
+          }
+        },
+        {
+          "actual_over_predicted": 0.9223214473608436,
+          "expected_claims": 22840.19314554469,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.2465259558944832,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.46609496869203804,
+          "policies": 542392,
+          "predicted_annual_rate": 0.07961561612565514,
+          "ratio": 0.25,
+          "seed": 43,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.00036479988217324327,
+              0.0016623826280797501
+            ],
+            "difference": 0.0010135912551264966,
+            "standard_error": 0.0003310220892173718
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.0010999169425371788,
+              0.002318881441239348
+            ],
+            "difference": 0.0017093991918882634,
+            "standard_error": 0.00031096604537563086
+          }
+        },
+        {
+          "actual_over_predicted": 0.9494530285590201,
+          "expected_claims": 22187.51151067658,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.25067542664323494,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.4739401768434904,
+          "policies": 542392,
+          "predicted_annual_rate": 0.07734051931877631,
+          "ratio": 1.0,
+          "seed": 17,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.0069695577768290355,
+              0.009113072833722875
+            ],
+            "difference": 0.008041315305275956,
+            "standard_error": 0.0005468251135739263
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.00852525877072546,
+              0.010583955915955831
+            ],
+            "difference": 0.009554607343340646,
+            "standard_error": 0.0005251874936144518
+          }
+        },
+        {
+          "actual_over_predicted": 0.8211028546053566,
+          "expected_claims": 25655.738354636298,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.2531375368237685,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.4785951721495559,
+          "policies": 542392,
+          "predicted_annual_rate": 0.08942995373318062,
+          "ratio": 1.0,
+          "seed": 29,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.011305717706157672,
+              0.01369401978464614
+            ],
+            "difference": 0.012499868745401906,
+            "standard_error": 0.0006092719298229689
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.013064203986181891,
+              0.015355001312630305
+            ],
+            "difference": 0.014209602649406098,
+            "standard_error": 0.0005843978115205
+          }
+        },
+        {
+          "actual_over_predicted": 0.8349378236978475,
+          "expected_claims": 25230.62125356953,
+          "exposure_years": 286880.818827008,
+          "mean_count_deviance": 0.2507750400840961,
+          "method": "ctgan",
+          "observed_annual_rate": 0.07343119029753958,
+          "observed_claims": 21066,
+          "poisson_deviance_per_exposure": 0.4741285112662534,
+          "policies": 542392,
+          "predicted_annual_rate": 0.08794809411354841,
+          "ratio": 1.0,
+          "seed": 43,
+          "vs_bootstrap": {
+            "conditional_95_interval": [
+              0.007227901025605507,
+              0.009349966722627312
+            ],
+            "difference": 0.00828893387411641,
+            "standard_error": 0.0005413532375493598
+          },
+          "vs_real": {
+            "conditional_95_interval": [
+              0.00869519365321528,
+              0.010790689878992014
+            ],
+            "difference": 0.009742941766103647,
+            "standard_error": 0.0005345751866630559
+          }
+        }
+      ],
+      "unit": "Poisson deviance / policy-year, candidate minus control",
+      "uncertainty": "fixed-prediction paired asymptotic 95% ratio intervals vs real-only; bootstrap controls shown as points"
+    }
+  },
+  "main_slides": {
+    "1": {
+      "sources": [
+        "reports/s6/results.json"
+      ],
+      "population": "existing common evaluation; selected HGB x mean vs intercept x mean",
+      "unit": "relative loss deviance reduction",
+      "uncertainty": "point estimate; evaluation has historical prior exploration"
+    },
+    "2": {
+      "sources": [
+        "reports/s0/source_comparison.json",
+        "paper/sources.json"
+      ],
+      "population": "full source datasets",
+      "unit": "contracts; positive claim rows; policy-years; historical EUR",
+      "uncertainty": "source reconciliation, not sampling inference"
+    },
+    "3": {
+      "sources": [
+        "reports/s3/age_bootstrap.json",
+        "reports/s3/bm_standardized.json",
+        "reports/s3/bm_common_cells.json",
+        "reports/s3/age_contrasts.json"
+      ],
+      "population": "development; BM plot only common support, distinct from full age bins",
+      "unit": "claims/policy-year",
+      "uncertainty": "500 pointwise contract bootstrap draws; BM reference held fixed"
+    },
+    "4": {
+      "sources": [
+        "reports/s6a/geo.json",
+        "reports/s6a/standardized_with_duration.json",
+        "reports/s6a/standardized_intervals_with_duration.json",
+        "reports/s6a/existing_age_profiles.json",
+        "paper/sources.json"
+      ],
+      "population": "development; supported subset; external road users distinct",
+      "unit": "claims/year; EUR/claim; external physical injury shares",
+      "uncertainty": "observational; support/tail-dependent; no source linkage"
+    },
+    "5": {
+      "sources": [
+        "config/frequency_protocol.json"
+      ],
+      "population": "training folds only",
+      "unit": "rate/year; exposure in years",
+      "uncertainty": "model specifications, no effect interval claim"
+    },
+    "6": {
+      "sources": [
+        "reports/s6/results.json",
+        "reports/s4/scores.json",
+        "reports/s4/segments.json",
+        "reports/s4/paired_bootstrap.json",
+        "config/validation_protocol.json"
+      ],
+      "population": "development OOF",
+      "unit": "Poisson deviance/policy-year; count A/P",
+      "uncertainty": "selection estimates; 500 fixed-prediction paired draws"
+    },
+    "7": {
+      "sources": [
+        "reports/s6/results.json",
+        "reports/s5/development_loss_scores.json",
+        "reports/s5/evaluation_loss_scores.json",
+        "reports/s5/evaluation_bootstrap.json",
+        "reports/s3/tail_concentration.json"
+      ],
+      "population": "development OOF vs existing evaluation; tail development only",
+      "unit": "annual-rate Tweedie deviance p=1.5; EUR/policy-year; loss share",
+      "uncertainty": "fixed-prediction intervals; no post-evaluation reselection"
+    },
+    "8": {
+      "sources": [
+        "reports/s6a/scores.json",
+        "reports/s6a/ablation/scores.json",
+        "reports/s6a/ablation/dependence.json",
+        "reports/s6a/ablation/bootstrap_two_BonusMalus_gam.json"
+      ],
+      "population": "exploratory development extension on existing folds",
+      "unit": "annual-rate Tweedie deviance p=1.5; weighted correlation",
+      "uncertainty": "fixed-fit 500-draw intervals; no effect-stability evidence"
+    },
+    "9": {
+      "sources": [
+        "reports/o2/report.json",
+        "reports/o2/joint_support.json",
+        "config/augmentation_protocol.json"
+      ],
+      "population": "542392 real OOF policies; 20000 training policies/fold",
+      "unit": "Poisson deviance/policy-year; ratio of additional rows",
+      "uncertainty": "paired fixed-prediction asymptotic intervals; seed/fold diagnostics separate"
+    },
+    "10": {
+      "sources": [
+        "reports/s6/results.json",
+        "reports/s6a/sources.json",
+        "reports/s6a/ablation/report.json"
+      ],
+      "population": "historical French insurer; no German transfer validation",
+      "unit": "qualitative implications",
+      "uncertainty": "external/temporal/German validation and refit stability missing"
+    }
+  },
+  "backup_slides": {
+    "B1": {
+      "sources": [
+        "src/frequency_models.py",
+        "paper/begleitpaper.tex"
+      ],
+      "unit": "count; rate/year; exposure years",
+      "uncertainty": "likelihood identity; balance only at an appropriate training optimum"
+    },
+    "B2": {
+      "sources": [
+        "src/metrics.py",
+        "src/severity.py",
+        "paper/begleitpaper.tex"
+      ],
+      "unit": "Poisson deviance/year; annual-rate Tweedie deviance p=1.5",
+      "uncertainty": "score identities and explicitly stated mean/moment assumptions"
+    },
+    "B3": {
+      "sources": [
+        "config/frequency_protocol.json",
+        "config/interpretation_protocol.json",
+        "src/frequency_models.py",
+        "src/interpretation.py"
+      ],
+      "unit": "objective normalization; basis dimension; conditional EDF",
+      "uncertainty": "fixed smoothing, no effect-stability inference"
+    },
+    "B4": {
+      "sources": [
+        "config/severity_protocol.json",
+        "src/severity_models.py"
+      ],
+      "unit": "EUR/positive claim row; unit row weights",
+      "uncertainty": "global smearing need not be conditionally correct"
+    },
+    "B5": {
+      "sources": [
+        "paper/begleitpaper.tex",
+        "reports/s3/tail_concentration.json"
+      ],
+      "unit": "EUR/policy-year; period EUR; EUR/claim",
+      "uncertainty": "finite conditional means and product assumption; capping changes estimand"
+    },
+    "B6": {
+      "sources": [
+        "reports/s6a/existing_age_profiles.json",
+        "reports/s3/bm_common_cells.json",
+        "reports/s3/bm_standardized.json"
+      ],
+      "unit": "claims/year; contracts; policy-years",
+      "population": "291234 supported reference contracts vs separate BM support",
+      "uncertainty": "no model-refit bands; selected coarse common cells"
+    },
+    "B7": {
+      "sources": [
+        "reports/s6a/support_with_duration.json",
+        "reports/s6a/support_without_duration.json",
+        "reports/s6a/standardized_with_duration.json",
+        "reports/s6a/standardized_without_duration.json",
+        "reports/s6a/standardized_intervals_with_duration.json",
+        "reports/s6a/standardized_intervals_without_duration.json"
+      ],
+      "unit": "claims/year; EUR/year; contracts/cells",
+      "population": "different support populations with vs without duration",
+      "uncertainty": "500 whole-policy draws; support and reference weights fixed"
+    },
+    "B8": {
+      "sources": [
+        "slides/sources.json",
+        "reports/s0/source_comparison.json"
+      ],
+      "unit": "source populations, periods, geography and physical injury vs payments",
+      "uncertainty": "read scope limited to actual original documentation/pages; no linked insurance causal effect"
+    },
+    "B9": {
+      "sources": [
+        "reports/s6a/scores.json",
+        "reports/s6a/bootstrap_best.json",
+        "reports/s6a/ablation/scores.json",
+        "reports/s6a/ablation/dependence.json"
+      ],
+      "unit": "annual-rate Tweedie deviance; weighted Pearson, unweighted Spearman, weighted eta squared",
+      "population": "exploratory development only",
+      "uncertainty": "500 fixed-fit draws; no full refit or concurvity stability study"
+    },
+    "B10": {
+      "sources": [
+        "reports/s4/paired_bootstrap.json",
+        "reports/s5/evaluation_bootstrap.json",
+        "reports/s6a/bootstrap_best.json",
+        "src/augmentation.py",
+        "paper/begleitpaper.tex"
+      ],
+      "unit": "paired score difference on whole contracts",
+      "uncertainty": "fixed predictions; O2 ratio delta method vs percentile resampling for core"
+    },
+    "B11": {
+      "sources": [
+        "reports/o2/report.json",
+        "reports/o2/joint_support.json",
+        "reports/o2/sources.json",
+        "config/augmentation_protocol.json",
+        "src/augmentation.py"
+      ],
+      "unit": "epochs; candidate/accepted rows; outside empirical conditional range share",
+      "population": "15 generators, 20000 real training contracts per fold",
+      "uncertainty": "joint-support diagnostic added after registration; no privacy or convergence guarantee"
+    },
+    "B12": {
+      "sources": [
+        "reports/s6a/costs.json",
+        "paper/begleitpaper.tex"
+      ],
+      "unit": "hypothetical EUR/year costs and premium share",
+      "population": "scenarios, no estimated channel effect",
+      "uncertainty": "conditional on stipulated costs; no profitability or German transfer proof"
+    },
+    "B13": {
+      "sources": [
+        "paper/sources.json",
+        "paper/literatur.bib",
+        "slides/sources.json"
+      ],
+      "unit": "bibliographic identifiers",
+      "uncertainty": "methodological references versus actual implementation distinguished"
+    }
+  },
+  "reference_notes": "All S3 inputs explicitly read from published a44c7e91; foreign replay reports never overwritten. S4 replay metadata discrepancy is not used to regenerate S6. S6 numeric fields are checked directly against S4/S5 score artifacts.",
+  "bibliography": "../paper/literatur.bib",
+  "external_read_scope": "sources.json lists original pages read for S8; no full ONISR report reading claimed."
+}

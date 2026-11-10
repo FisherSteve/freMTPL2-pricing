@@ -1,6 +1,6 @@
 # Schadenhöhe und reine Risikoprämie
 
-Die Erweiterung prüft, ob eine modellierte Schadenhöhe gegenüber einem arithmetischen Trainingsmittel zusätzlichen Vorhersagenutzen liefert. Alle Hauptbeträge bleiben ungekappt. Die Entwicklungsentscheidung entsteht aus echten Vorhersagen außerhalb der jeweiligen Trainingsfalte; die gemeinsame Evaluation von Frequenz, Schadenhöhe und Verlustkosten wird erst anschließend geöffnet. Ein fehlender Mehrwert der Schadenhöhenmodelle ist ein zulässiges Ergebnis.
+Verbessert eine merkmalsabhängige Schadenhöhe den erwarteten Aufwand je Vertragsjahr? Auf den Entwicklungs-OOF-Verträgen erzielt das konstante Schadenmittel mit der gewählten Boosting-Frequenz die kleinste Verlustdeviance. Die anschließende Evaluation zeigt kleine Vorteile anderer Produkte im Punktscore. Ihre gepaarten Differenzintervalle umfassen null. Alle Hauptvergleiche verwenden die ungekappte Summe der erfassten positiven Beträge.
 
 ## Zielgröße, Gewichtung und Vorhersagezeitpunkt
 
@@ -14,7 +14,7 @@ Die [Spezifikation](../config/severity_protocol.json) legt vor der ersten Anpass
 
 ## Drei gezielte Kandidaten
 
-**Arithmetischer Mittelwert.** `sum(Y_train)/n_claims_train` ist das konstante Modell für Euro je Schadenzeile. In jeder der fünf Entwicklungsfalten werden alle Schäden der anderen vier Falten verwendet. Es ist weder ein geometrischer Mittelwert noch der Mittelwert von Vertragsdurchschnitten. Multipliziert mit der vorhergesagten Jahresfrequenz ergibt es eine vollständig prospektive Basis.
+**Arithmetischer Mittelwert.** `sum(Y_train)/n_claims_train` ist das konstante Modell für Euro je Schadenzeile. In jeder der fünf Entwicklungs-OOF-Folds werden alle Schäden der anderen vier Folds verwendet. Es ist weder ein geometrischer Mittelwert noch der Mittelwert von Vertragsdurchschnitten. Multipliziert mit der vorhergesagten Jahresfrequenz ergibt es eine vollständig prospektive Basis.
 
 **Gamma-GLM mit Log-Link.** Die additive Spezifikation enthält feste Alters-, Fahrzeugalters- und Bonus-Malus-Gruppen, log-Dichte sowie Referenzfaktoren für Leistung, Marke, Kraftstoff, Area und Region. Sie prüft bei denselben sinnvollen Merkmalen wie im Frequenzmodell unmittelbar den positiven bedingten Schadenmittelwert. Die Kategorien und Rangprüfung betreffen die Trainingsschäden. Das Modell wird ohne Regularisierung angepasst. Die [verwendete Implementierung](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.GammaRegressor.html) verwendet einen Log-Link; Konvergenz und volle Rangidentifikation werden geprüft.
 
@@ -53,13 +53,13 @@ Für Verlustkosten ist vorab **Tweedie-Power 1,5** festgelegt. Dies ist eine gem
 
 Die getrennt ausgewiesene mittlere Perioden-Deviance `mean d_1.5(S_i,e_i*p_i)` ist bei wechselnder Exponierung **nicht identisch**. Aus der Homogenität folgt `d_p(e*y,e*mu)=e^(2-p)*d_p(y,mu)`. Die aus dem Poisson-Fall bekannte einfache Identität darf nicht ungeprüft auf Tweedie übertragen werden. Keiner dieser Scores ist ein Eurofehler oder ein Prozentwert.
 
-Die feste S4-Frequenz `hgb_l15` wird mit den drei Schadenhöhenvarianten kombiniert. Eine vierte Basis kombiniert Trainingsinterceptfrequenz und Trainingsschadenmittel; ihre konstante Jahresprämie entspricht der Trainingsverlustsumme geteilt durch Trainingsexponierung. Sie ersetzt nicht nachträglich die bereits festgelegte Frequenzauswahl. Die Entwicklungsentscheidung zur Schadenhöhe verwendet die kleinste gemeinsame OOF-Verlustdeviance bei derselben HGB-Frequenz; liegt die konstante Schadenhöhe innerhalb von 0,5 % des Minimums, wird sie vorgezogen.
+Das auf der Entwicklung gewählte Frequenzmodell `hgb_l15` wird mit den drei Schadenhöhenvarianten kombiniert. Eine vierte Basis kombiniert Trainingsinterceptfrequenz und Trainingsschadenmittel; ihre konstante Jahresprämie entspricht der Trainingsverlustsumme geteilt durch Trainingsexponierung. Sie ersetzt nicht nachträglich die bereits festgelegte Frequenzauswahl. Die Entwicklungsentscheidung zur Schadenhöhe verwendet die kleinste gemeinsame OOF-Verlustdeviance bei derselben HGB-Frequenz; liegt die konstante Schadenhöhe innerhalb von 0,5 % des Minimums, wird sie vorgezogen.
 
 500 gepaarte Vertragsziehungen halten alle festen Vorhersagen gemeinsam; Nullen bleiben enthalten und alle Schadenzeilen werden über den aggregierten Vertragsverlust mitgeführt. Score-Differenzen und A/P-Perzentile verwenden pro Ziehung denselben Vertragsindex und den gezogenen Exponierungsnenner. Die Intervalle enthalten weder erneutes Fitten, Auswahlunsicherheit, unbekannte Haushaltsabhängigkeit noch Schutz gegen unbeobachtete extreme Schäden. Die fünf überlappenden Trainingsfits sind keine fünf unabhängigen Wiederholungen für einen Standardfehler.
 
-Nach Auswahl werden alle drei Schadenhöhenmodelle ausschließlich auf den vollständigen Entwicklungsschäden angepasst. Ihre Dateien, die S4-Frequenzrefits, Trainingsintercept, Konfiguration, Quellstand und Entwicklungsartefakte werden in der [Entwicklungsentscheidung](../reports/s5/development_decision.json) gesperrt. Erst anschließend öffnet der zweite Befehl die gemeinsame Evaluation. Dort werden alle drei Schadenhöhenvarianten, die vier Verlustkombinationen und die unveränderten Frequenzfamilien GLM/GAM/HGB mit Intercept auf denselben Evaluationsverträgen geprüft. Die Auswahl bleibt auch bei abweichender Evaluationsrangfolge unverändert. Die frühere vollständige Exploration bleibt offengelegt; das ist keine externe oder buchstäblich nie zuvor gesehene Validierung.
+Nach Auswahl werden alle drei Schadenhöhenmodelle ausschließlich auf den vollständigen Entwicklungsschäden angepasst. Ihre Dateien, die auf allen Entwicklungsverträgen angepassten Frequenzmodelle, Trainingsintercept, Konfiguration, Quellstand und Entwicklungsartefakte werden in der [Entwicklungsentscheidung](../reports/s5/development_decision.json) vor der Evaluation festgehalten. Erst anschließend öffnet der zweite Befehl die gemeinsame Evaluation. Dort werden alle drei Schadenhöhenvarianten, die vier Verlustkombinationen und die unveränderten Frequenzfamilien GLM/GAM/HGB mit Intercept auf denselben Evaluationsverträgen geprüft. Die Auswahl bleibt auch bei abweichender Evaluationsrangfolge unverändert. Der [Validierungsabschnitt](validierung.md) erklärt, wie sich die frühere Exploration des Gesamtbestands zur heutigen internen Evaluation verhält.
 
-## Tails, Hebel und Einfluss
+## Einfluss großer Schadenbeträge
 
 Der Entwicklungsnachweis enthält tatsächliche Schadenquantile, Verlustkonzentration und die Euroauswirkung der bereits in der EDA untersuchten hypothetischen Kappung bei 25.000 EUR. Diese Kappung ändert die Zielgröße; sie wird nicht als Datenbereinigung und nicht zur Hauptanpassung verwendet. Alle Hauptzeilen und ihre Beträge bleiben erhalten.
 
@@ -69,7 +69,7 @@ Designhebel und wirtschaftlicher Einfluss sind verschiedene Größen. Für das G
 
 ## Ausführen und Nachweise
 
-Nach der vorhandenen Datenvorbereitung und S4-Berechnung:
+Nach der Datenvorbereitung und dem Frequenzvergleich:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/verify_severity_inputs.py
@@ -77,16 +77,16 @@ Nach der vorhandenen Datenvorbereitung und S4-Berechnung:
 # Entwicklungsentscheidung und Modellnachweise sind jetzt gespeichert.
 .\.venv\Scripts\python.exe -m src.severity evaluate
 .\.venv\Scripts\python.exe -m src.severity_figures
-.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/05_severity_pure_premium.ipynb --output data/notebooks/05_severity_pure_premium.executed.ipynb
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/05_severity_pure_premium.ipynb
 ```
 
-Der neue [Eingangsnachweis](../reports/s5/input_snapshot.json) überbrückt den unabhängig geprüften lokalen Wechsel von CPython 3.12.14 auf 3.12.10. Quelle, Aufteilung und numerische S4-Vorhersagen sind identisch; Laufkennungen ändern sich durch die dokumentierte Softwareidentität. Die Ausführung dieses bereits vorhandenen Wiederholungslaufs wurde nicht nachträglich als beobachtetes Experiment ausgegeben. Historische Nachweise bleiben ihrer damaligen Identität zugeordnet. Vorhandene Notebook-Ausgaben und lokale Ergebnisdateien wurden erhalten.
+Der [Eingangsnachweis](../reports/s5/input_snapshot.json) verbindet den verwendeten Frequenzlauf mit der numerisch identischen Referenz unter einer anderen Python-Patchversion. Die [Reproduktion](reproduktion.md) erklärt die Zuordnung.
 
 Unveränderliche Vertragsvorhersagen und Modellartefakte liegen lokal unter `data/severity/<Laufkennung>/`. Öffentliche JSON-Dateien enthalten aggregierte Scores, Segmente, Komponentenzerlegung, bedingte Bootstrap-Intervalle und Herkunftsnachweise. Die [Entwicklungsergebnisse](../reports/s5/development_report.json) und [Evaluationsergebnisse](../reports/s5/evaluation_report.json) tragen dieselbe Modell- und Konfigurationsidentität. Die gespeicherte Freigabe verhindert eine neue Entwicklungsidentität unter derselben geöffneten Evaluation. Wiederholungen lesen geprüfte Caches und erzeugen keine neue Auswahl. Nur Windows x64 mit den aufgezeichneten Python- und Paketversionen ist hier geprüft.
 
 ## Ergebnisse und Grenzen der gemeinsamen Evaluation
 
-Lauf `s5sev-2c4bc0d8ad1fd1c1` verwendet den unveränderten Quellstand `cas-744e13a80283a07a`, Vorbereitung `s1-6b71086d8adc0e3c` und Split `s2split-fe11d414168572dd`. Die Entscheidung `s5decision-df9a82872ec16be6` wurde vor Einsicht in die neuen Evaluationsscores gesperrt. Sie wählt `pp_hgb_mean`, also die eingefrorene HGB-Frequenz und die arithmetische Trainingsschadenhöhe. Quelle, Einheiten und die frühe vollständige Analysegeschichte bleiben offengelegt.
+Lauf `s5sev-2c4bc0d8ad1fd1c1` verwendet den unveränderten Quellstand `cas-744e13a80283a07a`, Vorbereitung `s1-6b71086d8adc0e3c` und Split `s2split-fe11d414168572dd`. Die Entscheidung `s5decision-df9a82872ec16be6` wurde vor der gemeinsamen Evaluation festgehalten. Sie wählt `pp_hgb_mean`, also die eingefrorene HGB-Frequenz und die arithmetische Trainingsschadenhöhe.
 
 ### Schadenhöhenvergleich
 
@@ -113,7 +113,7 @@ Das vorab gewählte Produkt prognostiziert 11.857.523,74 EUR Periodenverlust, en
 
 Gegenüber der vollständigen Interceptbasis sinkt die Evaluations-Verlustdeviance um 9,80 %. Die gepaarte Differenz Basis minus gewähltes Produkt beträgt etwa 8,711, mit bedingtem Perzentilbereich [4,258; 15,396]. Diese Aussage betrifft den vorab festgelegten Score; sie belegt weder einen marktfähigen Preis noch ausreichende Segmentkalibrierung.
 
-Die Produkte mit Gamma und Log-Smearing haben in der Evaluation leicht niedrigere Verlustscores als das ausgewählte Produkt. Ihre Differenzen Kandidat minus ausgewählte Konstante betragen ungefähr -0,143 beziehungsweise -0,180; die bedingten Perzentilintervalle [-2,101; 1,353] und [-0,723; 0,275] enthalten null. Das rechtfertigt keinen Wechsel der gesperrten Entwicklungsentscheidung. Es wird kein erfolgreicher Schadenhöhengewinn aus der Evaluation heraus ausgesucht.
+Die Produkte mit Gamma und Log-Smearing haben in der Evaluation leicht niedrigere Verlustscores als das ausgewählte Produkt. Ihre Differenzen Kandidat minus ausgewählte Konstante betragen ungefähr -0,143 beziehungsweise -0,180; die bedingten Perzentilintervalle [-2,101; 1,353] und [-0,723; 0,275] enthalten null. Die Evaluation beschreibt die Unterschiede zwischen den bereits festgelegten Kandidaten. Die ausgewählte Regel bleibt das Produkt mit konstantem Schadenmittel.
 
 Die getrennte mittlere Perioden-Tweedie-Deviance des gewählten Produkts beträgt 63,701881. Sie hat wegen der anderen Exponierungsskalierung nicht denselben Zahlenwert wie der primäre Score 80,206534. Die Eurojahresprämie wird als Quotient erwarteter Periodenkostensumme und Exponierungssumme berechnet, nicht als ungewichteter Vertragsmittelwert.
 
@@ -121,11 +121,11 @@ Die getrennte mittlere Perioden-Tweedie-Deviance des gewählten Produkts beträg
 
 Die gleichzeitig geöffneten Frequenzscores betragen 0,484115 für den Intercept, 0,461123 für das GLM-Familienminimum, 0,457762 für das GAM und 0,451766 für das gewählte HGB. Die HGB-Frequenzentscheidung bleibt damit auch in dieser Auswertung nachvollziehbar. GLM und GAM wurden vollständig als substantielle Kandidaten berücksichtigt; ihre Rangfolge wird nicht aus dem Modellnamen abgeleitet.
 
-### Segmentabweichungen und Tails begrenzen die Anwendung
+### Segmentabweichungen und große Schäden
 
 Beim ausgewählten Produkt beträgt das Evaluations-Verlust-A/P ungefähr 3,057 für sieben Tage bis unter 0,1 Vertragsjahre, 2,152 für 0,1 bis unter 0,5 Jahre und 0,607 ab einem Jahr. Die Gruppe ein bis unter sieben Tage hat A/P 14,94, aber lediglich 18,71 Vertragsjahre und 16 Schäden; sie verfehlt die Unterstützungsschwelle. Diese Unterschiede bleiben als gemessene Vorhersageabweichungen stehen. Die Daten trennen unvollständige Mittelwertmodellierung, Nutzung, Risikomix und Beobachtungsende nicht. Sie begründen keine automatische Quellkorrektur oder Exponierungskappung.
 
-Auch Alters- und andere Segmente sind nicht hinreichend kalibriert. Beispielsweise stehen bei den 18- bis 24-Jährigen 2,857 Mio. EUR beobachtete Verluste rund 0,904 Mio. EUR Erwartung gegenüber, A/P etwa 3,160, bei 436 Schadenzeilen und 2.503 Vertragsjahren. Die Altersgruppe 25–29 hat dagegen A/P etwa 0,657. Die Schwellen 100 Schadenzeilen beziehungsweise 500 Vertragsjahre sind sichtbare Unterstützung, keine Garantie präziser Euroerwartungen. Diese tatsächlichen Altersgruppenprofile hängen vom beobachteten Mix und schweren Schäden ab; sie sind keine standardisierten oder kausalen Alterswirkungen. Ein erfolgreiches Frequenzmodell heilt diese Schadenhöhen- und Verlustprobleme nicht. **Ein unmittelbar einsetzbarer Tarif wird nicht behauptet.**
+Auch Alters- und andere Segmente sind nicht hinreichend kalibriert. Beispielsweise stehen bei den 18- bis 24-Jährigen 2,857 Mio. EUR beobachtete Verluste rund 0,904 Mio. EUR Erwartung gegenüber, A/P etwa 3,160, bei 436 Schadenzeilen und 2.503 Vertragsjahren. Die Altersgruppe 25–29 hat dagegen A/P etwa 0,657. Die Schwellen 100 Schadenzeilen beziehungsweise 500 Vertragsjahre sind sichtbare Unterstützung, keine Garantie präziser Euroerwartungen. Diese tatsächlichen Altersgruppenprofile hängen vom beobachteten Mix und schweren Schäden ab; sie sind keine standardisierten oder kausalen Alterswirkungen. Auch mit besserer Frequenzprognose begrenzen die Unterschiede zwischen den Altersgruppen den Einsatz als Tarif.
 
 Im Entwicklungsbestand beträgt der größte Schaden 4.075.400,56 EUR beziehungsweise 8,58 % der Verlustsumme; die größten aufgerundeten 1 % der Schadenzeilen tragen 38,04 %. Das Entfernen des größten Verlustvertrags nur für den zusätzlichen Einflussrefit verändert die erwartete Entwicklungs-Portfoliosumme um −8,58 % beim Schadenmittel, −5,75 % beim Gamma-Modell und −8,86 % beim Log-Smearing. Der größte Schaden hat im Gamma-Design lediglich Hebel 0,00242; der maximale Designhebel beträgt etwa 0,03789. Mäßiger Designhebel schützt nicht vor großem wirtschaftlichem Einfluss.
 
@@ -133,4 +133,4 @@ Der globale Entwicklungs-Smearingfaktor beträgt 2,4045. Für die Trainingsgrupp
 
 Die Kappung bei 25.000 EUR je Entwicklungs-Schadenzeile würde 13.227.184,49 EUR entfernen. Sie wird allein als bereits spezifizierte Zieländerung bilanziert. Der vollständige ungekappte Schadenaufwand bleibt das Hauptziel.
 
-Die vier [Abbildungen mit Herkunftsnachweis](../reports/s5/figures/manifest.json), das [ausführbare Notebook](../notebooks/05_severity_pure_premium.ipynb) und der [Reproduzierbarkeitsnachweis](../reports/s5/reproducibility.json) verbinden diese Aussagen mit den tatsächlich berechneten Artefakten. Der nächste Schritt ist die integrierte Reproduktion und öffentliche Konsistenzprüfung; aus der geöffneten Evaluation wird keine weitere Auswahl abgeleitet.
+Die vier [Abbildungen mit Herkunftsnachweis](../reports/s5/figures/manifest.json), das [ausführbare Notebook](../notebooks/05_severity_pure_premium.ipynb) und der [Reproduzierbarkeitsnachweis](../reports/s5/reproducibility.json) verbinden diese Aussagen mit den tatsächlich berechneten Artefakten. Der [integrierte Reproduktionsnachweis](reproduktion.md) ordnet die Ergebnisse den Referenzläufen zu.

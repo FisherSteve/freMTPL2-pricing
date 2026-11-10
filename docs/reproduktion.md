@@ -1,27 +1,30 @@
 # Die Studie vollständig nachrechnen
 
-Der zusätzliche [CTGAN-Pilot](synthetische_trainingsdaten.md) verwendet eine eigene, festgelegte Umgebung und die bestehenden Entwicklungsfolds. Seine begrenzten Trainingssubsets, Generatoren und Bootstrap-Kontrollen gehören zu einem gesonderten explorativen Experiment. Der unten gemessene vollständige Kernlauf enthält dieses spätere Experiment nicht. Das [siebte Notebook](../notebooks/07_synthetic_augmentation.ipynb) zeigt dessen gespeicherte reale OOF-Ergebnisse ohne neue Fits.
+## Notebooks und Darstellungen
 
-Der unterstützte Ablauf beginnt mit den Rohdateien vom festgelegten CASdatasets-Commit und endet mit aggregierten Ergebnissen, Abbildungen und fünf ausgeführten Notebooks. Die einzelnen Rechenschritte sind dieselben Funktionen, die auch die Notebooks verwenden. Es gibt keine versteckten Notebookvariablen zwischen den Schritten.
-
-## Umgebung und vollständiger Ablauf
-
-In einem separaten Clone unter Windows x64 mit CPython 3.12:
+Die [sieben Notebooks](../notebooks/README.md) enthalten ihre Ergebnisse am regulären Pfad. Die Darstellung liest geprüfte Aggregate. Neue statistische Läufe sind dafür entbehrlich. In der Umgebung aus [requirements.lock.txt](../requirements.lock.txt) führt der folgende Befehl ein Notebook mit einem frischen Kernel aus und speichert die Ergebnisse nach erfolgreicher Ausführung.
 
 ```powershell
+python scripts/execute_notebook.py notebooks/04_frequency_models.ipynb
+```
+
+Paper und Beamer lesen ihre Zahlen aus den Ergebnisdateien. Beide Builds benötigen pdfLaTeX, das Paper zusätzlich BibTeX. Die Befehle und Quellen stehen bei [Paper](../paper/README.md) und [Vortrag](../slides/README.md). Der [CTGAN-Bericht](synthetische_trainingsdaten.md) und das zugehörige Diagramm lassen sich aus dem gespeicherten Pilotbericht mit `python scripts/build_augmentation_results.py` erzeugen. Danach aktualisiert der Notebook-Befehl die Darstellung im siebten Notebook.
+
+## Statistischen Kernlauf reproduzieren
+
+Der gemessene Kernlauf basierte auf `53018083970c9b1e6def77f7783518b9703ca6f0`. Commit `b29b38d95cca5d46b8cdca2336dc1b8af96d2682` enthält die ausgeführten Skripte und Notebook-Quellen mit denselben im Laufnachweis verzeichneten Prüfsummen. In einem separaten Clone unter Windows x64 mit CPython 3.12:
+
+```powershell
+git switch --detach b29b38d95cca5d46b8cdca2336dc1b8af96d2682
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python.exe scripts/reproduce.py --fresh
 .\.venv\Scripts\python.exe scripts/build_results.py --check
 ```
 
-Die [Lockdatei](../requirements.lock.txt) legt alle aufgelösten Paketversionen fest. Der Runner führt `pip check`, API-Beispiele und die Tests aus. Er lädt die fehlenden CAS-Dateien von den festgelegten URLs, prüft Größe, SHA-256 und archivierten MD5 und erstellt die ungekappte Datenbasis. Danach folgen schlüsselbasierte Vertragsaufteilung, OOF-Intercept, Entwicklungs-EDA, Frequenzvergleich, separate Interaktionsprüfung, Schadenhöhenentwicklung, gesperrte gemeinsame Evaluation, Abbildungen und berechnete Kernergebnisse. Abschließend laufen alle fünf aktiven Notebooks jeweils in einem neuen Kernel desselben Interpreters.
+Der Runner prüft die Umgebung, lädt die CAS-Dateien mit Prüfsummenabgleich und berechnet Vorbereitung, Vertragsaufteilung, OOF-Basis, Bestandsanalyse, Frequenz, Schadenhöhe und gemeinsame Evaluation. Er erzeugt Abbildungen und führt die fünf damaligen Kernnotebooks in eigenen Kerneln aus. `--fresh` setzt leere Analysecaches voraus. Logs und Laufzeitmessungen stehen unter `data/reproduction/`.
 
-`--fresh` prüft, dass keine Analyse- oder Notebookcaches vorliegen. Es löscht nichts. Vorhandene Rohdaten, Modelle, Ergebnisse und die Sperre einer geöffneten Evaluation bleiben erhalten. Nach einem fehlgeschlagenen vollständigen Lauf stehen Logs und Teilnachweise unter `data/reproduction/`; die gemeldete Stufe lässt sich mit ihrem einzelnen dokumentierten Befehl untersuchen. Für eine neue vollständige Laufzeitmessung ist ein weiterer Clone erforderlich. Die spezifischen Einzelbefehle stehen im [Notebookverzeichnis](../notebooks/README.md).
-
-Die wissenschaftlichen Befehle veröffentlichen ihre aktuellen aggregierten JSON-Dateien unter `reports/s1` bis `reports/s5`. Ein neuer Python-Patchstand kann andere Laufkennungen und damit andere Datei-Hashes erzeugen, auch bei gleichen Vorhersagen. Die ursprünglichen Reproduzierbarkeitsnachweise behalten ihre damalige Bedeutung; sie sind keine Behauptung einer erneuten Ausführung. Ein separater Clone schützt sie und andere lokale Arbeiten. Der [integrierte Nachweis](../reports/s6/reproduction.json) ordnet die erneut berechneten Ergebnisse den veröffentlichten Referenzdateien zu.
-
-Vollständige Rohdaten, Vertragstabellen, Vorhersagen, Refits und ausgeführte Notebooks bleiben unter `data/` lokal und sind von Git ausgeschlossen. Öffentliche JSON-Tabellen enthalten aggregierte Ergebnisse. Linux/macOS wurden nicht ausgeführt; dort müssen Paketauflösung und numerische Übereinstimmung gesondert geprüft werden. Die Windows-Lockdatei ist keine plattformübergreifende Binärgarantie.
+Rohdaten, Vertragstabellen, Vorhersagen und Refits bleiben lokal unter `data/`. Öffentliche JSON-Dateien enthalten aggregierte Ergebnisse. Die dokumentierte Laufzeit und numerische Übereinstimmung beziehen sich auf Windows x64 und CPython 3.12.10.
 
 ## Ergebnisse und Quellen zuordnen
 
@@ -31,18 +34,18 @@ Die ursprünglichen Entwicklungsnachweise verwenden CPython 3.12.14: Vorbereitun
 
 Das [kleine Ergebnis-JSON](../reports/s6/results.json) und die daraus [erzeugte Tabelle](ergebnisse.md) enthalten Einheiten und die Hashes ihrer verwendeten Nachweise. `scripts/build_results.py` prüft die unveränderte Entscheidungskette. Mit lokalen Ergebnissen prüft es auch den JSON-Spiegel gegen die verifizierte aggregierte Parquet-Tabelle; ohne lokale Analysecaches verwendet es die veröffentlichte Ausführungsevidenz. `--check` meldet veraltete Ausgaben. So können weitere Darstellungen dieselben berechneten Werte verwenden.
 
-Aktuelle Abbildungen stehen unter `reports/s3/figures`, `reports/s4/figures` und `reports/s5/figures`. Die Verzeichnisse `figures/` und `reports/figs/` enthalten ausdrücklich historische Bilder. Alte Notebookausgaben und Kennzahlen dienen nicht als Nachweis korrigierter Modellgüte.
+Die laufgebundenen Grafiken liegen bei den jeweiligen Berichten. `python scripts/build_editorial_figures.py` rendert drei neu beschriftete Darstellungen aus den publizierten Aggregaten. Das [Bildmanifest](../reports/editorial_figures/manifest.json) hält die Eingabe- und Ausgabehashes fest. Die Verzeichnisse `figures/` und `reports/figs/` enthalten ausdrücklich historische Bilder. Alte Notebookausgaben und Kennzahlen dienen nicht als Nachweis korrigierter Modellgüte.
+
+Der [Herkunftsnachweis der Darstellung](../reports/editorial.json) verbindet die ausgeführten Notebooks, die redigierten Abbildungen und die PDF-Fassungen mit dem numerischen Referenzstand. Die ursprünglichen Lauf- und Veröffentlichungsnachweise beschreiben jeweils ihren damaligen Dateisatz. Die Basismodell-Diagnostik für Notebook 02 enthält ausschließlich aggregierte Kalibrierungs- und Konzentrationswerte aus den im Basismodellbericht bezeichneten Parquet-Tabellen.
 
 ## Entscheidungen, die die Interpretation bestimmen
 
 - **Einheitliches Verlustziel:** Die Anzahl erfasster positiver Schadenzeilen stimmt in CAS mit der mitgelieferten Anzahl überein. Gemeldete Schäden insgesamt und wirtschaftliche Vollkosten sind damit nicht beobachtet. Primär werden weder Anzahlen noch Exponierungen oder Beträge gekappt.
 - **Exponierung:** Das Frequenzmodell skaliert erwartete Anzahlen proportional zur Dauer. Die starke Fehlkalibrierung nach Dauer ist eine Grenze dieser Annahme und des beobachteten Risikomixes. Ein Dauerterm würde unbekannte Nutzung oder Beendigung nicht automatisch erklären.
-- **Eigenständiger Modellvergleich:** GLM und penalisiertes Spline-GAM werden tatsächlich abgestimmt und geprüft. Ein begrenzter CPU-Boosting-Benchmark misst den zusätzlichen Vorhersagegewinn. Fehlende GAM-Überlegenheit wäre kein Mangel der Untersuchung.
+- **Eigenständiger Modellvergleich:** GLM und penalisiertes Spline-GAM werden tatsächlich abgestimmt und geprüft. Ein begrenzter CPU-Boosting-Benchmark misst den zusätzlichen Vorhersagegewinn. Das Boosting erreicht die kleinste Entwicklungs-OOF-Deviance.
 - **Schadenhöhe und Aggregation:** Jede positive Trainingszeile hat Gewicht eins. Die Produktannahme betrifft den bedingten Erwartungswert. Frequenz und Schadenhöhe werden für denselben Vertrag multipliziert, bevor Periodenbeträge oder Jahresportfoliowerte aggregiert werden.
-- **Auswahl und Evaluation:** OOF dient der Entwicklung. Die vorab gewählte konstante Schadenhöhe bleibt nach der gemeinsamen Evaluation gewählt. Kleine bessere Evaluationswerte anderer Kandidaten sind sichtbar und keine Erlaubnis zur Neuwahl.
+- **Auswahl und Evaluation:** OOF dient der Entwicklung. Die vorab gewählte konstante Schadenhöhe bleibt nach der gemeinsamen Evaluation gewählt. Kleine bessere Evaluationswerte anderer Kandidaten sind sichtbar und führen im festgelegten Verfahren zu keiner neuen Auswahl.
 - **Grenzen der Unsicherheit:** Ganze Vertragsziehungen erhalten Nullschäden und Mehrfachschäden zusammen. Die Intervalle gelten bei festen Vorhersagen; erneute Anpassung, Auswahl, unbekannte Haushalte und noch nicht beobachtete Extremschäden fehlen. Eine nahezu passende Gesamtsumme genügt bei starken Segmentabweichungen nicht für einen Tarif.
-
-Diese Entscheidungen sind Modellierungs- und Bewertungsentscheidungen. Die historischen Einheiten- und Leakagefehler sind im aktiven Ablauf durch geprüfte Verträge ersetzt. Fehlende Nutzungs-, Kalender- und Haushaltsdaten bleiben fehlende Evidenz. GPU, direkte Tweedie-Modelle oder neue Dauerterme sind mögliche spätere Untersuchungen und werden nicht als ausgeführte Verbesserungen dargestellt.
 
 ## Gemessener vollständiger Lauf
 
@@ -56,6 +59,6 @@ Der [maschinenlesbare Ausführungs- und Vergleichsnachweis](../reports/s6/reprod
 
 ## Ergänzender Vergleich der Merkmalsmengen
 
-Nach dem ursprünglichen S6a-Lauf ergänzt `python -m src.feature_ablation` Alter, Bonus-Malus und Area jeweils allein sowie Bonus-Malus + Area. Die [Spezifikation](../config/feature_ablation_protocol.json) begrenzt die Erweiterung auf 40 zusätzliche Frequenzfits auf den eingefrorenen Development-Folds. Die ursprünglichen Vorhersagen werden über ihren geprüften Cache übernommen, neue Fits separat registriert und gespeichert. Die neuen Regeln nutzen dieselben fünf Trainingsclaim-Mittel; die Evaluation wird nicht ausgewertet.
+Nach dem Vergleich der vier Paare mit Alter ergänzt `python -m src.feature_ablation` Alter, Bonus-Malus und Area jeweils allein sowie Bonus-Malus + Area. Die [Spezifikation](../config/feature_ablation_protocol.json) begrenzt die Erweiterung auf 40 zusätzliche Frequenzfits auf den eingefrorenen Entwicklungs-OOF-Folds. Die ursprünglichen Vorhersagen werden über ihren geprüften Cache übernommen, neue Fits separat registriert und gespeichert. Die neuen Regeln nutzen dieselben fünf Trainingsclaim-Mittel; die Evaluation wird nicht ausgewertet.
 
-`python scripts/verify_feature_ablation.py` prüft die neuen Quell-/Artefakthashes, die unveränderten ursprünglichen Vorhersagen, vollständige Development-Schlüssel und Foldzuordnungen, Trainingsclaim-Mittel sowie Deviance und Einheiten mit einer unabhängigen Rechenformel. Der alte 19-Befehle-Nachweis umfasst diese spätere Erweiterung nicht. Ihre [Ergebnisse](../reports/s6a/ablation/report.json) sind separat dokumentiert.
+`python scripts/verify_feature_ablation.py` prüft die neuen Quell-/Artefakthashes, die unveränderten ursprünglichen Vorhersagen, vollständige Entwicklungsschlüssel und Foldzuordnungen, Trainingsclaim-Mittel sowie Deviance und Einheiten mit einer unabhängigen Rechenformel. Der gemessene 19-Befehle-Kernlauf endet vor dieser Erweiterung. Ihre [Ergebnisse](../reports/s6a/ablation/report.json) sind separat dokumentiert.
