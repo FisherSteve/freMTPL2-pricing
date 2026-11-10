@@ -1,0 +1,103 @@
+% Generated from aggregate reports; no model calls.
+\newcommand{\EvalGain}{9{,}80}
+\newcommand{\EvalObserved}{173{,}58}
+\newcommand{\EvalPredicted}{165{,}60}
+\newcommand{\EvalAP}{1{,}048}
+\newcommand{\EvalPolicies}{135\,599}
+\newcommand{\ReducedGap}{3{,}5773}
+\newcommand{\AgeBMRho}{-0{,}444}
+\newcommand{\AgeBMRank}{-0{,}572}
+\newcommand{\AreaAgeEta}{0{,}00260}
+\newcommand{\AreaBMEta}{0{,}01672}
+\newcommand{\LargestShare}{8{,}58}
+\newcommand{\LargestClaim}{4\,075\,400{,}56}
+\newcommand{\AugMin}{0{,}37}
+\newcommand{\AugMax}{3{,}06}
+\newcommand{\AugBaseline}{0{,}464386}
+\newcommand{\SupportMin}{73{,}77}
+\newcommand{\SupportMax}{80{,}40}
+\newcommand{\FrequencyTable}{%
+\begin{tabular}{lrr}\toprule
+Regel & $D_N$ & Gewinn\,\%\\\midrule
+Intercept & 0{,}478094 & 0{,}00\\
+GLM & 0{,}457123 & 4{,}39\\
+GAM & 0{,}454637 & 4{,}91\\
+HGB & 0{,}446749 & 6{,}56\\
+\bottomrule\end{tabular}
+}
+\newcommand{\LossTable}{%
+\begin{tabular}{lrr}\toprule
+Schadenhöhe & OOF $D_L$ & Eval. $D_L$\\\midrule
+Mittel (gewählt) & 79{,}195 & 80{,}207\\
+Gamma-GLM & 80{,}387 & 80{,}064\\
+Log-Smearing & 79{,}370 & 80{,}026\\
+\bottomrule\end{tabular}
+}
+\newcommand{\FeatureTable}{%
+\begin{tabular}{lr}\toprule
+Regel & OOF $D_L$\\\midrule
+Alle Merkmale (HGB) & 79{,}195\\
+Alter + BM (GAM) & 82{,}028\\
+BM allein (GAM) & 82{,}537\\
+BM + Area (GAM) & 82{,}621\\
+\bottomrule\end{tabular}
+}
+\newcommand{\AllFeatureTable}{%
+\begin{tabular}{lrr}\toprule
+Merkmale & GLM $D_L$ & GAM $D_L$\\\midrule
+Alter & 84{,}717 & 84{,}318\\
+BM & 83{,}240 & 82{,}537\\
+Area & 87{,}283 & 87{,}280\\
+BM + Area & 83{,}389 & 82{,}621\\
+Alter + Area & 84{,}620 & 84{,}181\\
+Alter + log(Density) & 84{,}504 & 84{,}057\\
+Alter + Region & 84{,}668 & 84{,}216\\
+Alter + BM & 82{,}621 & 82{,}028\\
+\bottomrule\end{tabular}
+}
+\newcommand{\AgeProfileTable}{%
+\begin{tabular}{lrrr}\toprule
+Refit & 35 Jahre & 45 Jahre & 55 Jahre\\\midrule
+GLM & 0{,}06451 & 0{,}08177 & 0{,}07227\\
+GAM & 0{,}05249 & 0{,}07773 & 0{,}07411\\
+HGB & 0{,}05588 & 0{,}07707 & 0{,}07233\\
+\bottomrule\end{tabular}
+}
+\newcommand{\GeoTable}{%
+\begin{tabular}{lrr}\toprule
+Area & Rate/Jahr & EUR/Schaden\\\midrule
+AB & 0{,}0572 & 2\,879\\
+CD & 0{,}0743 & 2\,079\\
+EF & 0{,}0948 & 2\,050\\
+\bottomrule\end{tabular}
+}
+\newcommand{\StandardTable}{%
+\begin{tabular}{llrr}\toprule
+Mix & Area & Rate/Jahr & EUR/Jahr\\\midrule
+ohne Dauer & AB & 0{,}05958 & 177{,}15\\
+ohne Dauer & CD & 0{,}07176 & 149{,}13\\
+ohne Dauer & EF & 0{,}08647 & 177{,}83\\
+mit Dauer & AB & 0{,}05643 & 112{,}51\\
+mit Dauer & CD & 0{,}06732 & 137{,}59\\
+mit Dauer & EF & 0{,}08051 & 154{,}70\\
+\bottomrule\end{tabular}
+}
+\newcommand{\FrequencyDuration}{%
+\begin{tabular}{lr}\toprule
+Vertragsdauer & A/P\\\midrule
+7 Tage--<0,1 J. & 1{,}794\\
+0,1--<0,5 J. & 1{,}237\\
+0,5--<1 J. & 0{,}998\\
+1+ J. & 0{,}833\\
+\bottomrule\end{tabular}
+}
+\newcommand{\LossDuration}{%
+\begin{tabular}{lr}\toprule
+Vertragsdauer & A/P\\\midrule
+7 Tage--<0,1 J. & 3{,}057\\
+0,1--<0,5 J. & 2{,}152\\
+0,5--<1 J. & 0{,}797\\
+1+ J. & 0{,}607\\
+\bottomrule\end{tabular}
+}
+\newcommand{\AgeLabels}{18--24,25--29,30--34,35--39,40--44,45--49,50--54,55--59,60--64,65--74,75+}

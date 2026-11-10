@@ -1,18 +1,16 @@
-# Berechnete Kernergebnisse
+# Vorhersage des jährlichen Schadenbedarfs
 
-Automatisch aus den [numerischen Nachweisen](../reports/s6/results.json) erzeugt; keine neue Modellwahl.
+Vier Produkte aus Jahresfrequenz und erwarteter Schadenhöhe werden je Bestand auf denselben Verträgen verglichen. Die Entwicklungsspalte enthält Out-of-Fold-Vorhersagen. A/P ist die beobachtete geteilt durch die erwartete Verlustsumme in der Evaluation.
 
-Quelle `cas-744e13a80283a07a`, Split `s2split-fe11d414168572dd`, Schadenhöhenlauf `s5sev-2c4bc0d8ad1fd1c1`.
-
-| Produkt | OOF-Verlustdeviance | Evaluations-Verlustdeviance | Verlust-A/P |
+| Produkt | Verlustdeviance Entwicklungs-OOF | Verlustdeviance Evaluation | Verlust-A/P Evaluation |
 |---|---:|---:|---:|
 | Intercept × Schadenmittel | 87,233849 | 88,917790 | 1,0488 |
 | HGB × Schadenmittel (gewählt) | 79,194844 | 80,206534 | 1,0481 |
 | HGB × Gamma | 80,386955 | 80,063797 | 1,0807 |
 | HGB × Log-Smearing | 79,370343 | 80,026128 | 1,0308 |
 
-Score: exponierungsgewichtete Jahresraten-Tweedie-Deviance mit fester Power 1,5.
+Die Tabelle verwendet die exponierungsgewichtete Tweedie-Deviance der Jahresraten mit Power 1,5.
 
-Das gewählte Produkt senkt sie gegenüber der Interceptbasis um 9,80 %. Die vorhergesagten Jahreskosten betragen 165,60 EUR, beobachtet werden 173,58 EUR.
+In der Evaluation senkt das zuvor gewählte Produkt die Verlustdeviance gegenüber der Interceptbasis um 9,80 %. Es prognostiziert 165,60 EUR je Vertragsjahr gegenüber beobachteten 173,58 EUR.
 
-Die Auswahl bleibt vor der Evaluation festgelegt. Abweichungen in Dauer- und Altersgruppen sowie seltene große Schäden begrenzen die Anwendung. Ein guter Gesamtscore belegt keinen unmittelbar verwendbaren Tarif. Einzelheiten: [Methodik und Grenzen](schadenhoehe_risikopraemie.md).
+Die Gesamtsummen verdecken Abweichungen in Dauer- und Altersgruppen. Einzelne Großschäden prägen die beobachteten Verluste. [Segmentbefunde und Unsicherheit](schadenhoehe_risikopraemie.md) · [Zahlen und Herkunft](../reports/s6/results.json)

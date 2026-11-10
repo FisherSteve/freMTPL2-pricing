@@ -1,0 +1,99 @@
+{
+  "baseline_report_sha256": "9a1be8501e6840ca188eb25b3633e7bb6dc56aa1c029619b03d2f388147d16f4",
+  "tables": {
+    "calibration": {
+      "parquet_sha256": "3f2f8eed9b453f36084c2082500b8aea04d08ce3a25fb52ea00be19728455b63",
+      "rows": [
+        {
+          "actual_over_predicted": 1.023026930751892,
+          "expected_claims": 4197.347959201864,
+          "exposure_years": 57423.75117149487,
+          "group": 2,
+          "max_annual_rate": 0.07309428369920608,
+          "min_annual_rate": 0.07309428369920608,
+          "observed_annual_rate": 0.07477742070830684,
+          "observed_claims": 4294,
+          "policies": 108479,
+          "predicted_annual_rate": 0.07309428369920609
+        },
+        {
+          "actual_over_predicted": 1.0072900748120328,
+          "expected_claims": 4200.378923409459,
+          "exposure_years": 57284.83186915188,
+          "group": 4,
+          "max_annual_rate": 0.07332445232629513,
+          "min_annual_rate": 0.07332445232629513,
+          "observed_annual_rate": 0.07385899306930516,
+          "observed_claims": 4231,
+          "policies": 108478,
+          "predicted_annual_rate": 0.07332445232629514
+        },
+        {
+          "actual_over_predicted": 1.0072651264429227,
+          "expected_claims": 4187.576725599082,
+          "exposure_years": 57109.69827981136,
+          "group": 6,
+          "max_annual_rate": 0.07332514181885316,
+          "min_annual_rate": 0.07332514181885316,
+          "observed_annual_rate": 0.07385785824561236,
+          "observed_claims": 4218,
+          "policies": 108479,
+          "predicted_annual_rate": 0.07332514181885316
+        },
+        {
+          "actual_over_predicted": 0.9822938741767884,
+          "expected_claims": 4249.237534437463,
+          "exposure_years": 57660.99270604087,
+          "group": 8,
+          "max_annual_rate": 0.07369345089322908,
+          "min_annual_rate": 0.07369345089322908,
+          "observed_annual_rate": 0.0723886253793669,
+          "observed_claims": 4174,
+          "policies": 108478,
+          "predicted_annual_rate": 0.07369345089322908
+        },
+        {
+          "actual_over_predicted": 0.9804827840505506,
+          "expected_claims": 4231.588833064193,
+          "exposure_years": 57401.54480050902,
+          "group": 10,
+          "max_annual_rate": 0.07371907581530225,
+          "min_annual_rate": 0.07371907581530225,
+          "observed_annual_rate": 0.07228028469302115,
+          "observed_claims": 4149,
+          "policies": 108478,
+          "predicted_annual_rate": 0.07371907581530224
+        }
+      ]
+    },
+    "concentration": {
+      "parquet_sha256": "35306a3bf5806c98fbefc4ecd93532f88aaf1311b925357962c2dc461d01ad3a",
+      "rows": [
+        {
+          "cumulative_claim_fraction": 0.0,
+          "cumulative_exposure_fraction": 0.0
+        },
+        {
+          "cumulative_claim_fraction": 0.1969524352036457,
+          "cumulative_exposure_fraction": 0.20008847240192354
+        },
+        {
+          "cumulative_claim_fraction": 0.39509161682331717,
+          "cumulative_exposure_fraction": 0.40108132003044006
+        },
+        {
+          "cumulative_claim_fraction": 0.5953194721351942,
+          "cumulative_exposure_fraction": 0.600152483147306
+        },
+        {
+          "cumulative_claim_fraction": 0.7961644355834046,
+          "cumulative_exposure_fraction": 0.7998341213390012
+        },
+        {
+          "cumulative_claim_fraction": 1.0,
+          "cumulative_exposure_fraction": 1.0
+        }
+      ]
+    }
+  }
+}

@@ -93,3 +93,18 @@
 /docs/synthetische_trainingsdaten.md text eol=lf
 /reports/o2/*.json text eol=lf
 /notebooks/07_synthetic_augmentation.ipynb text eol=lf
+
+# Beamer talk: stable aggregate inputs, sources and PDF bytes.
+/scripts/build_slides.py text eol=lf
+/slides/*.tex text eol=lf
+/slides/*.json text eol=lf
+/slides/*.dat text eol=lf
+/slides/*.md text eol=lf
+/slides/.gitignore text eol=lf
+/slides/*.pdf binary
+
+# Editorial provenance for the public presentation.
+/reports/editorial.json text eol=lf
+/scripts/build_editorial_figures.py text eol=lf
+/reports/editorial_figures/*.json text eol=lf
+/reports/editorial_figures/*.png binary

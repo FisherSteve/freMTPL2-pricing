@@ -1,0 +1,39 @@
+{
+  "accessed": "2026-11-03",
+  "bibliography": "../paper/literatur.bib",
+  "methodological_source_manifest": "../paper/sources.json",
+  "sources": [
+    {
+      "id": "Q1",
+      "url": "https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd",
+      "read_for_s8": "Vollständige gepinnte Datensatzdokumentation, insbesondere freMTPL2, Zeitraum, Exponierung, Wohnort/Region, unbekannter Versicherer und IRSA-IDA.",
+      "limit": "Kein individueller Unfallort, keine Fahrleistung, keine Zuordnung physischer Verletzungsschwere zu Zahlbeträgen."
+    },
+    {
+      "id": "Q2",
+      "url": "https://www.onisr.securite-routiere.gouv.fr/etat-de-linsecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2024-de-la-securite-routiere",
+      "read_for_s8": "Originale Ergebnisübersicht, insbesondere Straßen außerorts: 60 Prozent der Toten, 47 Prozent der Schwerverletzten; Population Frankreich métropolitaine 2024, BAAC und Schätzverfahren ONISR-Université Gustave Eiffel.",
+      "limit": "Keine vollständige Lektüre des herunterladbaren Berichts behauptet; Anteile ohne passenden Vertrags-/Kilometernenner, Unfallort statt Wohnort, physische Schwere statt Versicherungszahlung."
+    },
+    {
+      "id": "Q2-context",
+      "url": "https://www.onisr.securite-routiere.gouv.fr/etat-de-l-insecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2012-de-la-securite-routiere",
+      "read_for_s8": "Vollständige Originalübersichtsseite; zeitnähere Personenschadenstatistik. Die Seite enthält widersprüchliche Gesamtzahlen, daher keine numerische Übernahme.",
+      "limit": "Nur die Übersichtsseite, keine vollständige Berichtlektüre; gleiche Messgrößenprobleme wie bei Q2."
+    },
+    {
+      "id": "Q3",
+      "url": "https://www.cerema.fr/en/actualites/lowering-maximum-authorised-speed-80-kmh-final-assessment",
+      "read_for_s8": "Originäre Ergebnis- und Methodendarstellung vom 20.07.2020, vollständig gelesen: Regel ab Juli 2018, Straßen ohne Mitteltrennung, Vorher/Nachher, übriges Netz als Kontrolle, Referenz 2013–2017 und Hauptnachperiode Juli 2018–Dezember 2019; Geschwindigkeit und Mortalität.",
+      "limit": "Beobachtende Maßnahmenevaluation mit Vergleichsannahmen; keine Verknüpfung zu freMTPL2 und keine versicherte Zahlbetragswirkung."
+    }
+  ],
+  "methodological_references": {
+    "M1": "scikit-learn 1.9 / projektseitig gepinnte 1.9.1: GLM und HistGradientBoostingRegressor; genaue Ziele und Parameter zusätzlich anhand lokaler Implementierung und Protokolle geprüft.",
+    "M2": "Eilers und Marx (1996), DOI 10.1214/ss/1038425655; Differenzenstrafe, Bezug über das gelesene S7-Paper und dessen Quellenmanifest.",
+    "M3": "Wood, mgcv Identifiability constraints; methodischer Bezug aus S7, keine mgcv-Fits im Projekt.",
+    "M4": "Xu et al. (2019), Modeling Tabular Data using Conditional GAN; Originallektüre und Releaseprüfung im O2-Quellenmanifest, für S8 kein neuer Generatorfit.",
+    "M5": "Gneiting (2011), DOI 10.1198/jasa.2011.r10138; Mittelwertkonsistenz, konkrete Momentpräzisierung aus dem gelesenen Projektpaper.",
+    "M6": "Duan (1983), DOI 10.1080/01621459.1983.10478017; tatsächliches log(Y)-Smearing anhand src/severity_models.py und Projektpaper."
+  }
+}

@@ -1,0 +1,555 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern,amsmath,amssymb,booktabs,array,tabularx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\definecolor{navy}{HTML}{17324D}
+\definecolor{teal}{HTML}{007F82}
+\definecolor{rust}{HTML}{BC623B}
+\definecolor{muted}{HTML}{586777}
+\setbeamercolor{normal text}{fg=navy,bg=white}
+\setbeamercolor{frametitle}{fg=navy}
+\setbeamercolor{structure}{fg=teal}
+\setbeamercolor{alerted text}{fg=rust}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{normal text}{size=\normalsize}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{\vspace{3mm}\insertframetitle\par\vspace{1mm}}
+\setbeamertemplate{footline}{\hspace{8mm}\color{muted}\scriptsize freMTPL2\hfill\insertframenumber\hspace{8mm}\vspace{2mm}}
+\setbeamertemplate{itemize items}[circle]
+\hypersetup{colorlinks=true,urlcolor=teal,linkcolor=teal,pdftitle={Von der Exponierung zum erwarteten Schadenaufwand},pdfauthor={freMTPL2-Portfolio}}
+\newcommand{\source}[1]{\vfill{\fontsize{6.5}{7.4}\selectfont\color{muted}#1\par}}
+\newcommand{\smalltext}{\fontsize{9}{11.3}\selectfont}
+\newcommand{\takeaway}[1]{\par\medskip{\color{teal}\bfseries #1}\par}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\input{generated.tex}
+\pgfplotsset{every axis/.append style={axis line style={muted!50},tick style={muted!50},
+ tick label style={font=\scriptsize},label style={font=\scriptsize},
+ title style={font=\small\bfseries},grid=major,grid style={gray!15},
+ axis lines=left,scaled ticks=false,/pgf/number format/use comma,/pgf/number format/fixed}}
+
+\begin{document}
+\ifdefined\BackupOnly\else
+
+% 1 / 0:50
+\begin{frame}[t]{Von der Exponierung zum Schadenaufwand}
+\vspace{3mm}
+{\large Wie viel Modellkomplexität hilft bei freMTPL2?}\par
+\medskip
+\[
+\underbrace{q(x)}_{\text{EUR/Vertragsjahr}}
+=\underbrace{r(x)}_{\text{Schäden/Vertragsjahr}}
+\;\times\;
+\underbrace{m(x)}_{\text{EUR/Schaden}}
+\]
+\medskip
+\textbf{HGB-Frequenz mit konstantem Schadenmittel:}
+\EvalGain\,\% weniger Verlustdeviance als die Interceptbasis
+in der bestehenden Evaluation.
+\medskip
+
+Das konstante Schadenmittel erzielt den kleinsten Entwicklungs-Verlustscore.
+Im CTGAN-Pilot schneiden beide Kontrollen besser ab.
+\source{Kernstudie: reports/s6/results.json; CTGAN-Pilot: reports/o2/report.json.\quad
+Historischer französischer Bestand; kein verwendungsfertiger Markttarif.\quad Fassung vom 9. November 2026}
+\end{frame}
+
+% 2 / 1:00
+\begin{frame}[t]{Ein abgeglichener französischer Haftpflichtbestand}
+Unbekannter privater Versicherer, ungefähr 2011--2013.\par
+\medskip
+\begin{center}
+\begin{tabular}{lrr}\toprule
+& CASdatasets 1.2-1 & OpenML v1\\\midrule
+Vertragszeilen & 677\,991 & 678\,013\\
+Mitgelieferte Schadenanzahl & 26\,444 & 36\,102\\
+Verknüpfte positive Schadenzeilen & 26\,444 & 26\,444\\
+Nicht zuordenbare Schadenzeilen & 0 & 195\\\bottomrule
+\end{tabular}
+\end{center}
+\medskip
+\textbf{Primärziel:} erfasste positive Schadenzeilen und zugehörige
+historische Zahlbeträge; Nullschadenverträge bleiben enthalten.
+\smallskip
+
+CAS: 358\,482,84 Vertragsjahre und 59,91 Mio. EUR.
+Anzahl, Exponierung und Beträge bleiben ungekappt.
+\source{reports/s0/source\_comparison.json; CASdatasets-Commit 227fb56b8734, Dokumentation [Q1].
+Bei 9\,095 gemeinsamen Verträgen weicht die mitgelieferte Anzahl ab; die Ursache ist ungeklärt.
+Area/Density: Wohnort; Region: Vertragsregion. Teilweise IRSA-IDA-Konventionsbeträge.}
+\end{frame}
+
+% 3 / 1:25
+\begin{frame}[t]{Der Altersverlauf hängt auch vom Bestandsmix ab}
+\begin{columns}[T,onlytextwidth]
+\column{.58\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=8.0cm,height=3.8cm,title={Beobachtete Frequenz},
+ ymin=0.04,ymax=0.18,xmin=.5,xmax=11.5,xtick={1,...,11},
+ xticklabels={18--24,25--29,30--34,35--39,40--44,45--49,50--54,55--59,60--64,65--74,75+},
+ x tick label style={rotate=55,anchor=east,font=\tiny},ylabel={Schäden/Vertragsjahr}]
+\addplot+[teal,only marks,mark=*,error bars/.cd,y dir=both,y explicit]
+ table[x=x,y=rate,y error minus=low,y error plus=high]{age.dat};
+\end{axis}
+\end{tikzpicture}
+\column{.40\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=5.4cm,height=3.8cm,title={Gemeinsame BM-Mischung},
+ ymin=.04,ymax=.10,xmin=.7,xmax=3.3,xtick={1,2,3},
+ xticklabels={30--39,40--49,50--59},
+ legend style={at={(.5,-.3)},anchor=north,font=\tiny,draw=none}]
+\addplot+[muted,mark=square*] table[x=x,y=raw]{bm.dat};\addlegendentry{marginal, gleicher Support}
+\addplot+[teal,mark=*,error bars/.cd,y dir=both,y explicit]
+ table[x=x,y=standard,y error minus=low,y error plus=high]{bm.dat};\addlegendentry{BM-standardisiert, 95\,\%}
+\end{axis}
+\end{tikzpicture}
+\end{columns}
+\vspace{3mm}
+\smalltext Links: Entwicklung, 542\,392 Verträge. Rechts: nur gemeinsame BM-Unterstützung;
+andere Population. Der Wiederanstieg verschwindet dort nicht.
+\source{reports/s3/age\_bootstrap.json, bm\_standardized.json (gepinnt); punktweise Intervalle aus 500 Vertragsziehungen, kein simultanes Band.
+Die mittleren Fünfjahresgruppen tragen jeweils rund 35\,000 Vertragsjahre; lokale Nachbarkontraste sind unsicher.
+Support und weitere Adjustierung: B6.}
+\end{frame}
+
+% 4 / 1:30
+\begin{frame}[t]{Geografie: mehr Frequenz, unsichere Schadenhöhe}
+\begin{columns}[T,onlytextwidth]
+\column{.43\textwidth}
+\textbf{freMTPL2, Entwicklung}\par\medskip
+{\small\GeoTable}\par\smallskip
+\smalltext AB: ländlicher, EF: urbaner.\par
+EF--AB nach Standardisierung mit Vertragsdauer:
+0,0241 [0,0210; 0,0272] Schäden/Jahr.
+\smallskip
+
+Beim Unterschied der Schadenmittel (EF--AB) schließen die Intervalle null ein.
+\column{.54\textwidth}
+\textbf{Was externe Evidenz beiträgt}\par\medskip
+\smalltext
+\textbf{ONISR 2024 [Q2]:} Auf Außerortsstraßen ohne Autobahnen entfallen 60\,\% der Toten und 47\,\% der geschätzten Schwerverletzten.
+\par\smallskip
+\textbf{Cerema [Q3]:} Nach der 80-km/h-Regel sinken Geschwindigkeit und Mortalität im Straßenvergleich.
+Das stützt Geschwindigkeit als Mechanismus körperlicher Schwere.\par\smallskip
+Unfallort und Verletzungsschwere unterscheiden sich von Wohnort und versichertem Zahlbetrag.
+\end{columns}
+\takeaway{Der Frequenzkontrast bleibt; seine Ursache ist nicht identifiziert}
+\source{reports/s6a/geo.json, standardized\_with\_duration.json und zugehörige Intervalle; bedingte 95\,\%-Intervalle.
+Auch adjustierte Altersprofile bleiben nicht monoton (B6).
+Originalquellen, Vergleichsdesign und Populationen: B8, Q1--Q3.}
+\end{frame}
+
+% 5 / 1:00
+\begin{frame}[t]{Drei Modellklassen für denselben Frequenzmittelwert}
+\[
+\mu_i=e_i\,r(x_i),\qquad \log\mu_i=\underbrace{\log e_i}_{\text{Offset}}+\eta(x_i)
+\]
+\medskip
+\begin{tabularx}{\textwidth}{L{20mm}L{58mm}Y}\toprule
+Modell & Struktur & Welche Frage beantwortet es?\\\midrule
+GLM & Gruppen, Faktoren, log-Dichte; auch Alter--BM-Interaktion & Reichen einfache Relativitäten?\\[5pt]
+GAM & $\eta=\beta_0+z^\top\gamma+\sum_j B_j(x_j)\theta_j$; zweite Differenzenstrafe & Helfen glatte nichtlineare Verläufe?\\[5pt]
+HGB & Poisson-Boosting, bis zu 15 oder 31 Endknoten je Baum & Was fehlt der additiven Struktur?\\\bottomrule
+\end{tabularx}
+\medskip
+Alle lernen $N_i/e_i$ mit Gewicht $e_i$; Vorverarbeitung nur im Trainingsfold.
+\source{config/frequency\_protocol.json; src/frequency\_models.py; [M1--M3].
+300 Boosting-Iterationen. Das GAM mit zwei Merkmalen nutzt eine andere Strafe (B3).}
+\end{frame}
+
+% 6 / 1:15
+\begin{frame}[t]{Boosting senkt die Deviance. Die Dauer bleibt wichtig.}
+\smalltext 80\,\% Entwicklung mit fünf OOF-Folds; 20\,\% gemeinsame Evaluation erst nach Auswahl.
+Historisch bereits explorierte Daten: keine externe oder zeitliche Prüfung.\par\medskip
+\begin{columns}[T,onlytextwidth]
+\column{.50\textwidth}
+\textbf{Entwicklungs-OOF}\par\medskip
+{\small\FrequencyTable}\par\medskip
+\smalltext GAM minus HGB: 0,00789\par
+95\,\%-Intervall [0,00618; 0,00965].\par
+GLM enthält im Familienminimum die Alter--BM-Interaktion.
+\column{.47\textwidth}
+\textbf{HGB-Frequenz-A/P (Entwicklungs-OOF)}\par\medskip
+{\small\FrequencyDuration}\par\medskip
+\smalltext A/P = tatsächliche / erwartete Anzahl.\par
+Gesamt fast eins; deutliche Dauerabweichungen trotz unterstützter Gruppen.
+\end{columns}
+\source{reports/s6/results.json; reports/s4/scores.json, paired\_bootstrap.json, segments.json.
+$D_N$: Poisson-Deviance je Vertragsjahr, kleiner ist besser; Gewinn relativ zum Intercept.
+Intervalle: 500 gepaarte Vertragsziehungen bei festen OOF-Vorhersagen, ohne Refit-/Auswahlunsicherheit.}
+\end{frame}
+
+% 7 / 1:15
+\begin{frame}[t]{Zusätzliche Schadenhöhenmerkmale helfen hier nicht sicher}
+\begin{columns}[T,onlytextwidth]
+\column{.56\textwidth}
+\textbf{HGB-Frequenz $\times$ Schadenhöhe}\par\medskip
+{\small\LossTable}\par\medskip
+\smalltext $D_L$: Jahresraten-Tweedie-Deviance, $p=1{,}5$.\par
+Die Wahl fällt in der Entwicklung auf das Mittel.
+Kleine umgekehrte Evaluationsabstände rechtfertigen keine Neuwahl;
+ihre gepaarten Intervalle enthalten null.
+\column{.40\textwidth}
+\textbf{Gewähltes Produkt, Evaluation}\par\medskip
+\EvalPredicted\ EUR/Jahr prognostiziert\par
+\EvalObserved\ EUR/Jahr beobachtet\par
+\medskip
+Verlust-A/P: \EvalAP\par\medskip
+\smalltext Entwicklung: Ein einziger Schaden trägt \LargestShare\,\% der Verlustsumme.
+\end{columns}
+\medskip
+\[
+\widehat Q=\frac{\sum_i e_i\widehat r_i\widehat m_i}{\sum_i e_i}
+\qquad\text{erst Vertragsprodukte bilden, dann aggregieren}
+\]
+\source{reports/s6/results.json; reports/s5/evaluation\_bootstrap.json; reports/s3/tail\_concentration.json (gepinnt).
+Evaluation: \EvalPolicies\ Verträge. Gamma verbessert dort den separaten Claim-Score;
+kein allgemeines Urteil gegen Schadenhöhenmodelle. Produktannahme: B5.
+Verlust-A/P: 3,057 bei 7 Tagen--unter 0,1 Jahren, 0,607 ab einem Jahr.}
+\end{frame}
+
+% 8 / 1:30
+\begin{frame}[t]{Alter und Bonus-Malus: Prognosewert trotz Überlappung}
+\begin{columns}[T,onlytextwidth]
+\column{.51\textwidth}
+{\small\FeatureTable}\par\medskip
+\smalltext Alter + BM: rund 3,58\,\% höhere Deviance als das vollständige Modell.
+BM + Area minus Alter + BM:\par
+0,593 [--0,144; 1,803].\par $D_L$: exponierungsgewichtete Tweedie-Deviance der Jahresraten.
+\column{.46\textwidth}
+\smalltext
+\textbf{Zusatznutzen von Alter}\par
+Alter neben BM verbessert den Verlustscore um 0,509 [0,115; 1,103].\par\medskip
+\textbf{Überlappung von Alter und BM}\par
+Exponierungsgewichtete Alters-BM-Korrelation: \AgeBMRho.\par\medskip
+\textbf{Stabilität der Einzeleffekte}\par
+Intervalle bei festen Fits erfassen keine Streuung bei erneuter Anpassung. Auch für Area ist die Stabilität offen.
+\end{columns}
+\takeaway{Prognoseleistung, Erklärbarkeit und stabile Einzeleffekte gemeinsam abwägen}
+\source{reports/s6a/scores.json und ablation/\{scores,dependence,bootstrap\_two\_BonusMalus\_gam\}.json.
+Explorativer Vergleich auf den Entwicklungs-OOF-Folds.
+500 Vertragsziehungen bei festen Fits; keine globale Optimalität des Merkmalsduos. Vollständiger Vergleich: B9.}
+\end{frame}
+
+% 9 / 1:05
+\begin{frame}[t]{Synthetische Trainingszeilen liefern im Pilot keinen Nutzen}
+\begin{columns}[T,onlytextwidth]
+\column{.56\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=7.4cm,height=4.7cm,xmin=.5,xmax=6.5,ymin=0,ymax=.018,
+ ytick={0,.005,.010,.015},y tick label style={font=\scriptsize,/pgf/number format/precision=3,/pgf/number format/fixed zerofill},
+ ylabel={$\Delta D_N$ je Vertragsjahr},xtick={1,...,6},
+ xticklabels={{0,25/17},{0,25/29},{0,25/43},{1/17},{1/29},{1/43}},
+ x tick label style={font=\tiny,rotate=30,anchor=east},xlabel={Zusatzratio / Seed},
+ legend style={at={(.02,.98)},anchor=north west,font=\tiny,draw=none}]
+\addplot+[teal,only marks,mark=*,error bars/.cd,y dir=both,y explicit]
+ table[x=x,y=real,y error minus=low,y error plus=high]{augmentation.dat};\addlegendentry{CTGAN minus real-only, 95\,\%}
+\addplot+[rust,only marks,mark=square*] table[x=x,y=bootstrap]{augmentation.dat};\addlegendentry{CTGAN minus Bootstrap, Punktwert}
+\end{axis}
+\end{tikzpicture}
+\column{.41\textwidth}
+\smalltext Fünf bestehende Folds, je 20\,000 reale Trainingsverträge;
+drei Seeds, 30 Epochen. Zusätzliche Zeilen im Verhältnis 0,25 oder 1.\par\medskip
+Alle sechs CTGAN-Varianten sind schlechter als beide Kontrollen:
+\textbf{+\AugMin--\AugMax\,\%} gegenüber real-only.\par\medskip
+Begrenztes Budget, fester GLM. Kein Test der Augmentation des vollständigen Bestands und kein allgemeines CTGAN-Urteil.
+\end{columns}
+\source{reports/o2/report.json; reale Entwicklungs-OOF-Verträge, Basis $D_N=\AugBaseline$.
+Intervalle: gepaarte asymptotische 95\,\%-Intervalle bei festen Vorhersagen; keine Generator-/Refitunsicherheit.
+Sampling, gemeinsame Unterstützung und Datenschutzgrenzen: B11; Xu et al. [M4].}
+\end{frame}
+
+% 10 / 0:50
+\begin{frame}[t]{Was die Studie trägt und was vor Tarifverwendung fehlt}
+\vspace{2mm}
+\begin{tabularx}{\textwidth}{L{55mm}Y}\toprule
+Tragfähiger Befund & Nächster notwendiger Nachweis\\\midrule
+Flexible Frequenz verbessert den historischen Score & Zeitliche und externe Prüfung auf einem aktuellen Zielbestand\\[8pt]
+Wenige Merkmale liefern viel Prognoseinformation & Refit-/Effektstabilität, Segmentkalibrierung und gemeinsame Unterstützung\\[8pt]
+Kurze Laufzeiten sind schlecht kalibriert. Großschäden prägen das Schadenmittel. & Fahrleistung, Nutzung, Beginn/Ende, Schaden- und Regulierungsverlauf\\\bottomrule
+\end{tabularx}
+\takeaway{Ein nachvollziehbares Schadenbedarfsmodell ist die Grundlage; der Marktpreis braucht mehr Evidenz}
+\source{reports/s6/results.json; docs/aktuarische\_einordnung.md; reports/s6a/ablation/report.json.
+Für Deutschland zusätzlich: Deckung, Haftung, Inflation und Zielmix; französischer Bonus-Malus ist keine deutsche SF-Klasse.
+Kosten, Vertrieb und Transfer: B12.}
+\end{frame}
+
+\fi
+\ifdefined\MainOnly\else
+\appendix
+\setcounter{framenumber}{0}
+\setbeamertemplate{footline}{\hspace{8mm}\color{muted}\scriptsize freMTPL2 | Backup\hfill B\insertframenumber\hspace{8mm}\vspace{2mm}}
+
+\begin{frame}[t]{B1 | Offset, Rate und Periodenerwartung}
+\[
+N_i\sim\operatorname{Poisson}(e_i\exp\eta_i),\quad
+\mu_i=e_i r_i,\quad \log\mu_i=\log e_i+\eta_i
+\]
+\[
+-\ell=\sum_i(e_i\exp\eta_i-N_i\eta_i)+C(N,e)
+=\sum_i e_i\{\exp\eta_i-(N_i/e_i)\eta_i\}+C
+\]
+\textbf{Rate als Ziel, Exponierung als Gewicht:} dieselben parameterabhängigen Terme.
+Gebrochene Raten sind keine behaupteten Poisson-Anzahlen.
+\medskip
+
+$r_i$: Schäden/Jahr; $\mu_i$: erwartete Anzahl der tatsächlichen Periode.
+Eine Jahresrate ist keine Schadenwahrscheinlichkeit.
+\medskip
+
+Unbestrafter Intercept: $\sum_iN_i=\sum_i e_i\widehat r_i$ am geeigneten Optimum.
+Trainingsbalance garantiert keine OOF- oder Segmentkalibrierung.
+\source{paper/begleitpaper.tex, Abschnitte 3--4; src/frequency\_models.py; [M1].
+Arbeitsverteilung versus Mittelwertmodell unterscheiden; Unabhängigkeit für eine Produktlikelihood ist eine zusätzliche Annahme.}
+\end{frame}
+
+\begin{frame}[t]{B2 | Welche Verlustmaße werden verglichen?}
+\[
+d(N,\mu)=2\{N\log(N/\mu)-N+\mu\},\quad 0\log0=0
+\]
+\[
+D_N=\frac{\sum_i d(N_i,e_i\widehat r_i)}{\sum_i e_i}
+=\frac{\sum_i e_i d(N_i/e_i,\widehat r_i)}{\sum_i e_i}
+\]
+\[
+D_L=\frac{\sum_i e_i d_{1.5}(S_i/e_i,\widehat q_i)}{\sum_i e_i},\qquad
+d_{1.5}(y,q)=4\frac{(\sqrt y-\sqrt q)^2}{\sqrt q}
+\]
+\smalltext Bei Tweedie gilt $d_p(e y,e q)=e^{2-p}d_p(y,q)$.
+Eine mittlere Periodendeviance gewichtet daher anders als $D_L$.
+Scores sind weder EUR-Fehler noch Prozentsätze; nur ihre relative Änderung wird in Prozent berichtet.\par\medskip
+Poisson-Scoredifferenzen sind bei endlichem positiven bedingten Mittel mittelwertkonsistent.
+Für einzelne erwartete Deviances genügt zusätzlich $E[N\log_+N\mid x,e]<\infty$.
+Bei Mittel null liegt das Optimum am Rand.
+\source{src/metrics.py, src/severity.py; paper Abschnitte 3--4 und 8; Gneiting (2011), [M5].
+Für Kalibrierung gilt A/P = Summe beobachtet / Summe prognostiziert; keine zusätzliche Exponierungsgewichtung von Anzahlen.}
+\end{frame}
+
+\begin{frame}[t]{B3 | Strafen, Identifizierung und effektive Freiheitsgrade}
+\smalltext
+\textbf{Vollständiges GLM:}
+$\sum_i(e_i\exp\eta_i-N_i\eta_i)/\sum_i e_i+\alpha\|b\|^2/2$;
+Intercept unbestraft. Die Summe der Gewichte normiert den Verlust.\par\medskip
+\textbf{GAM im vollständigen Frequenzvergleich:}
+Poisson-Summe $+\lambda\sum_j\|D_2\theta_j\|^2/2$.
+Kubische B-Splines, 10/20 Basen, $\lambda=1/10$;
+Faktoren unbestraft. Numerische Strafparameter sind nicht mit GLM-$\alpha$ vergleichbar.\par\medskip
+\textbf{Identifizierung:} letzte Basisfunktion entfernen, übrige mit Trainings-Exponierung zentrieren;
+Strafe in derselben Parametrisierung abbilden. $\sum_i e_i f_j(x_{ij})=0$.
+\[
+\operatorname{EDF}=\operatorname{tr}\{(H+P)^{-1}H\}
+\]
+EDF gelten bedingt auf die gewählte Glättung; Rang des unbestraften Designs
+und positive Definitheit von $H+P$ sind unterschiedliche Prüfungen.\par\medskip
+\textbf{GAM mit zwei Merkmalen:} acht uniforme Knoten, kubisch und zentriert;
+Ridge $\alpha=10^{-4}$ auf nichtkonstante Koeffizienten, keine $D_2$-Strafe.
+\source{config/frequency\_protocol.json, interpretation\_protocol.json; src/frequency\_models.py, src/interpretation.py.
+Eilers \& Marx (1996), Wood, [M2--M3]. Randfortsetzung konstant; isolierte Effekte bei korrelierten Merkmalen vorsichtig lesen.}
+\end{frame}
+
+\begin{frame}[t]{B4 | Schadenhöhe: Gewicht eins und echtes log(Y)-Smearing}
+\textbf{Population:} positive Trainingsschadenzeilen; jede Zeile Gewicht eins.
+Alle Schäden eines Vertrags bleiben in derselben Aufteilung.
+Kein Exponierungsoffset und keine Exponierungsgewichte.
+\medskip
+
+\smalltext Trainingsclaim-Mittel: $\widehat m=\sum_kY_k/n_{\rm Claims}$.
+Gamma-GLM mit Log-Link: Verlust proportional zu $\sum_k(Y_k/\exp\eta_k+\eta_k)$.
+Seine Interceptgleichung erzwingt $\operatorname{mean}(Y/\widehat m)=1$, keine Euro-Summenbalance.\par\medskip
+Implementiert ist $\log Y=\eta(x)+\varepsilon$, nicht $\log(1+Y)$:
+\[
+\widehat m(x)=\exp(\widehat\eta(x))\,
+\underbrace{\frac1{n_{\rm train}}\sum_{k\in\rm train}
+ \exp(\log Y_k-\widehat\eta(x_k))}_{\text{globaler Trainings-Smearingfaktor}}
+\]
+Kein Abzug von eins. Bedingt korrekt wäre der Faktor
+$E[\exp\varepsilon\mid x]$; seine globale Ersetzung ist eine Annahme.
+Nullmittelwert von Log-Residuen reicht dafür nicht.
+\source{src/severity\_models.py; config/severity\_protocol.json; paper Abschnitt 7; Duan (1983), [M6].
+Dieselbe prospektive Funktion prognostiziert alle Verträge, auch spätere Nullschäden.
+Claim-Gamma-Deviance und Verlustscore beurteilen unterschiedliche Populationen.}
+\end{frame}
+
+\begin{frame}[t]{B5 | Produktannahme, Vertragssummen und Tail}
+\[
+E[S\mid N,x,e]=N m(x),\quad E[N\mid x,e]=e r(x)
+\ \Longrightarrow\ E[S\mid x,e]=e r(x)m(x)
+\]
+\smalltext Hinreichende bedingte Mittelwertannahme und endliche beteiligte Mittel;
+der Datenabgleich beweist sie nicht. Vollständige Unabhängigkeit aller Beträge ist nicht nötig.\par\medskip
+Erwartete Eurosummen: $\sum_i e_i\widehat r_i\widehat m_i$.
+Jahresbedarf: diese Summe geteilt durch $\sum_i e_i$.
+Getrennte exponierungsgewichtete Komponentenmittel ergeben im Allgemeinen ein anderes Produkt.
+Auch konstante Schadenmittel können zwischen OOF-Folds variieren.\par\medskip
+\textbf{Tail:} größter Entwicklungsschaden \LargestClaim\ EUR,
+\LargestShare\,\% der Verlustsumme.
+Kappung ist ein anderes Ziel:
+\[
+E[Y]-E[\min(Y,u)]=E[(Y-u)_+]=\int_u^\infty\Pr(Y>t)\,dt
+\]
+\source{paper Abschnitt 8; reports/s3/tail\_concentration.json (gepinnt).
+Ungekappte Hauptanalyse; empirischer Bootstrap kann unbekannte Extremverluste nicht erzeugen.}
+\end{frame}
+
+\begin{frame}[t]{B6 | Altersprofile, Unterstützung und Beobachtung}
+\begin{center}\small\AgeProfileTable\end{center}
+\smalltext Jahresraten bei gesetztem Alter 35/45/55 auf identischen Referenzverträgen;
+Profile aus Fits auf der vollständigen Entwicklung.\par\smallskip
+291\,234 Verträge, 163\,403,34 Vertragsjahre; Alter 30--59.
+Gemeinsame BM-/Fahrzeugalter-/Kraftstoff-/Regionszellen mit mindestens 100 Vertragsjahren je Altersdekade.
+Kein Nachweis exakten gemeinsamen Supports.\par\smallskip
+Keine rein monotone Erfahrungskurve; Erfahrung, Nutzung und Unfallfahrer sind nicht getrennt beobachtet.
+Drei Punktalter lokalisieren keinen Gipfel.\par\smallskip
+Hauptfolie 3: BM 50/51--75/76--100 gemeinsam mit je mindestens 500 Vertragsjahren.
+Die günstigere BM-Mischung älterer Gruppen verdeckt dort einen Teil des Unterschieds.
+\source{reports/s6a/existing\_age\_profiles.json; reports/s3/bm\_common\_cells.json, bm\_standardized.json, age\_contrasts.json (gepinnt).
+Unterschiedliche Referenzpopulationen nicht direkt subtrahieren.}
+\end{frame}
+
+\begin{frame}[t]{B7 | Geografie: gleiche Zellen, verschiedene Populationen}
+\begin{center}\small\StandardTable\end{center}
+\smalltext Gemeinsame Zellen aus Alter, BM, Fahrzeugalter und Kraftstoff,
+zusätzlich mit/ohne Dauer. Je geografischer Gruppe mindestens 100 Vertragsjahre und zehn Schadenzeilen je Zelle.\par\medskip
+Ohne Dauer: 48 Zellen, 501\,612 Verträge. Mit Dauer: 79 Zellen, 389\,468 Verträge.
+Gewichte: gepoolte Exponierungsanteile, je Vergleich für alle Gruppen gleich.\par\smallskip
+EF--AB: Frequenzkontraste positiv; Schadenhöhen nicht eindeutig getrennt.
+Verlustkontrast ohne Dauer: 0,68 [--146,67; 90,02] EUR/Jahr;
+mit Dauer: 42,19 [7,78; 87,20].
+\source{reports/s6a/standardized\_\{without,with\}\_duration.json, zugehörige Intervalle und support-Dateien.
+500 bedingte Vertragsziehungen; Support und Gewichte fest. Keine isolierte Dauerinterpretation.
+Region, Marke und Leistung bleiben in den Zellen verschieden.}
+\end{frame}
+
+\begin{frame}[t]{B8 | Datenherkunft und externer Methodenvergleich}
+\smalltext
+\textbf{Q1: CASdatasets, freMTPL2-Dokumentation}\par
+Version 1.2-1, Commit 227fb56b8734; unbekannter Versicherer, ungefähr 2011--2013.
+Area/Density: Wohnort; Region: historische Vertragsregion. Einige Zahlbeträge nach IRSA-IDA.
+\href{https://github.com/dutangc/CASdatasets/blob/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd}{Originale Datensatzbeschreibung}\par\medskip
+\textbf{Q2: ONISR, Bilan 2024; zeitnäherer Kontext: Bilan 2012}\par
+Verkehrsteilnehmer aller Verkehrsarten, Frankreich métropolitaine; BAAC und
+ONISR--Université Gustave Eiffel-Schätzungen für Verletzte.
+Unfallort und körperliche Schwere, keine versicherten Wohnort-Zahlbeträge oder passenden Vertrags-/Kilometernenner.
+2012 nur Übersichtsseite gelesen; widersprüchliche Gesamtzahlen nicht übernommen.
+\href{https://www.onisr.securite-routiere.gouv.fr/etat-de-linsecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2024-de-la-securite-routiere}{ONISR 2024}
+\quad\href{https://www.onisr.securite-routiere.gouv.fr/etat-de-l-insecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2012-de-la-securite-routiere}{ONISR 2012}\par\medskip
+\textbf{Q3: Cerema, 20. Juli 2020}\par
+80-km/h-Regel ab Juli 2018 auf Gegenverkehrsstraßen ohne Mitteltrennung;
+Vorher/Nachher mit übrigem Netz als Kontrolle, Referenz 2013--2017,
+Hauptnachperiode Juli 2018--Dezember 2019. Beobachtende Maßnahmenevaluation mit Vergleichsannahmen.
+\href{https://www.cerema.fr/en/actualites/lowering-maximum-authorised-speed-80-kmh-final-assessment}{Originäre Ergebnis- und Methodendarstellung}
+\source{Abruf der Originalseiten am 03.11.2026. Quellen und verwendete Abschnitte stehen in sources.json.
+Kein verknüpfter Versicherungsnachweis. Nötig: Unfallort, Straßentyp, Kilometer, Fahrer, Personenschaden, Deckung und Regulierungsverlauf.}
+\end{frame}
+
+\begin{frame}[t]{B9 | Zwei Ursprungsmerkmale und ihre Zusatzinformation}
+\begin{columns}[T,onlytextwidth]
+\column{.54\textwidth}
+{\smalltext\AllFeatureTable}\par\medskip
+\smalltext Dummy-/Spline-Spalten gehören zum Ursprungsmerkmal.
+Exponierung skaliert die Periode, ist kein drittes Tarifmerkmal.
+\column{.43\textwidth}
+\smalltext Ursprünglich vier Paare mit festem Alter;
+danach Einzelmerkmale und BM + Area ergänzt.
+Gleiche fünf Folds, jeweils Trainingsclaim-Mittel.\par\medskip
+BM-GLM minus BM-GAM (je mit Alter):
+0,593 [--0,188; 1,959]. Modellklassen nicht eindeutig getrennt.\par\medskip
+Gewichtete Korrelation Alter--BM: \AgeBMRho;
+Spearman ungewichtet: \AgeBMRank.\par\smallskip
+Area-$\eta^2$: Alter \AreaAgeEta, BM \AreaBMEta.
+Andere Skala; kleine Werte beweisen keine Unabhängigkeit oder stabileren Effekte.
+\end{columns}
+\source{reports/s6a/scores.json, bootstrap\_best.json; ablation/\{scores,dependence,report\}.json.
+Explorativer Kandidatenkreis, keine globale Paaroptimalität. Fehlende Refit-/Concurvity-Prüfung betrifft Interpretierbarkeit und Effektstabilität.}
+\end{frame}
+
+\begin{frame}[t]{B10 | Was die Intervalle erfassen und was fehlt}
+\smalltext
+\textbf{Kernstudie und Merkmalsvergleich:}
+500 gepaarte Ziehungen ganzer Verträge, einschließlich Nullschäden.
+Gleiche gezogene Indizes für beide Regeln und gezogener Exponierungsnenner;
+2,5-/97,5-Perzentile. Alle Vorhersagen bleiben fest.\par\medskip
+\textbf{O2:} $z_i=d(N_i,e_i\widehat r_i^{\rm neu})-d(N_i,e_i\widehat r_i^{\rm ref})$,
+$\widehat\Delta=\sum_i z_i/\sum_i e_i$.
+\[
+u_i=z_i-\widehat\Delta e_i,\quad
+\widehat{\rm SE}(\widehat\Delta)=\frac{\sqrt{n s_u^2}}{\sum_i e_i},\quad
+\widehat\Delta\pm1{,}96\,\widehat{\rm SE}
+\]
+Asymptotische Verhältnisstatistik bei geeigneten unabhängigen Beiträgen und endlichen zweiten Momenten;
+kein Bootstrapintervall.\par\medskip
+\textbf{Nicht enthalten:} erneutes Training, Modellauswahl, Generatorunsicherheit,
+unbekannte Haushaltsabhängigkeit und bisher unbeobachtete Extremverluste.
+Überlappende Trainingsfolds und drei Seeds sind keine unabhängigen Portfolios.
+\source{reports/s4/paired\_bootstrap.json; reports/s5/evaluation\_bootstrap.json; reports/s6a/bootstrap\_best.json;
+src/augmentation.py: paired\_difference; paper Anhang C. Bedingte Streuungsdiagnosen, keine umfassenden Tarifintervalle.}
+\end{frame}
+
+\begin{frame}[t]{B11 | CTGAN: Sampling und gemeinsame Unterstützung}
+\smalltext
+\textbf{Design:} CTGAN 0.11.1, CPU, 30 Epochen; nur Trainingsmerkmale,
+Anzahl und positive Exposure. Keine IDs, Beträge oder Evaluationszeilen.
+Zusatzratio zählt Zeilen, nicht Vertragsjahre.\par\medskip
+\textbf{Sampling:} Seltene Kategorien werden im Training logarithmisch übergewichtet.
+Der Adapter setzt im verwendeten Release die Samplingwahrscheinlichkeiten danach
+auf empirische Trainingshäufigkeiten zurück. Das garantiert keine korrekte gemeinsame Verteilung.\par\medskip
+\textbf{Ablehnung:} 102\,152 von 600\,000 Kandidaten verworfen (17,03\,\%);
+Werte müssen gültig und im marginalen Trainingssupport liegen. Ablehnung verändert die Verteilung.\par\medskip
+\textbf{Gemeinsamer Support:} \SupportMin--\SupportMax\,\% der akzeptierten Zeilen
+liegen außerhalb des beobachteten Density-Bereichs ihrer Area im Trainingssubset.
+Nachträgliche Diagnose, keine physische Unmöglichkeitsprüfung und keine neue Filter-/Fitregel.\par\medskip
+Globale Gewichtsnormierung ändert die normierte GLM-Strafe nicht;
+Bootstrap-Kontrollen messen stochastische Umgewichtung.
+Zusätzliche Zeilen sind keine unabhängige Information und bieten keine Datenschutzgarantie.
+\source{reports/o2/report.json, joint\_support.json, sources.json; config/augmentation\_protocol.json;
+src/augmentation.py; Xu et al. (2019), [M4]. Keine Behauptung von Generator-Konvergenz oder Differential Privacy.}
+\end{frame}
+
+\begin{frame}[t]{B12 | Kosten, Vertrieb und Übertragung nach Deutschland}
+\[
+P_{\rm fix}=q+50,\qquad P_{\rm var}=q+0{,}15P_{\rm var}=q/0{,}85
+\]
+\smalltext Beide hypothetisch in EUR/Jahr. Schnittpunkt $q=850/3=283{,}33\ldots$ EUR/Jahr:
+darunter variable Regel günstiger, darüber fixe Regel.
+15\,\% Prämienanteil entspricht $1/0{,}85-1\approx17{,}65$\,\% Aufschlag auf $q$.\par\medskip
+Mit definierten jährlichen Kosten $F$, Risiko-/Kapitallast $R$, Gewinnbetrag $G$
+und variablem Prämienanteil $v$: $P=(q+F+R+G)/(1-v)$.
+Regulierungskosten abgrenzen, um Doppelansätze zu vermeiden.\par\medskip
+\textbf{Vertrieb:} Ein günstigerer Direktpreis kann bei tatsächlich niedrigeren Vollkosten denselben Deckungsbeitrag liefern.
+Akquisitionskosten, Konversion und Selektion können das umkehren.
+freMTPL2 identifiziert weder Kanalwirkung noch Profitabilität.\par\medskip
+\textbf{Deutschland:} aktueller Zielbestand, gleiche Deckung/Haftung, Schadeninflation,
+Bewertungspraxis, Nutzung und zeitliche Validierung fehlen.
+Französischer Bonus-Malus ist keine direkt übertragbare SF-Klasse.
+\source{reports/s6a/costs.json; docs/aktuarische\_einordnung.md; paper Anhang A.
+Keine tatsächlichen Kosten, Gewinnspannen, Elastizitäten oder Steuersätze geschätzt. Die Gleichungen sind Szenarien.}
+\end{frame}
+
+\begin{frame}[t]{B13 | Methodische Literatur und nachprüfbare Ergebnisse}
+\smalltext
+\textbf{M1} scikit-learn: \href{https://scikit-learn.org/1.9/modules/linear_model.html}{GLM-Zielfunktion}
+und \href{https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html}{Histogramm-Boosting}.
+Projektparameter in den registrierten JSON-Protokollen.\par\medskip
+\textbf{M2} Eilers \& Marx (1996): \emph{Flexible Smoothing with B-splines and Penalties}.
+\href{https://doi.org/10.1214/ss/1038425655}{Statistical Science 11(2), 89--102}.\par\smallskip
+\textbf{M3} Wood: \href{https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/identifiability.html}{Identifiability constraints}.
+mgcv als methodische Referenz, keine verwendete Fitbibliothek.\par\medskip
+\textbf{M4} Xu et al. (2019): \emph{Modeling Tabular Data using Conditional GAN}.
+\href{https://proceedings.neurips.cc/paper_files/paper/2019/file/254ed7d2de3b23ab10936522dd547b78-Paper.pdf}{NeurIPS 32}.\par\smallskip
+\textbf{M5} Gneiting (2011): \emph{Making and Evaluating Point Forecasts}.
+\href{https://doi.org/10.1198/jasa.2011.r10138}{JASA 106, 746--762}.\par\smallskip
+\textbf{M6} Duan (1983): \emph{Smearing Estimate: A Nonparametric Retransformation Method}.
+\href{https://doi.org/10.1080/01621459.1983.10478017}{JASA 78, 605--610}.\par\medskip
+Zahlen, Tabellen und Diagrammwerte: \texttt{slides/evidence.json}.
+Vollständige Literatur: \texttt{paper/literatur.bib}; Herleitungen: Begleitpaper.
+Externe Quellen und tatsächlich gelesener Umfang: \texttt{slides/sources.json}.
+\source{Ergebnisdateien: reports/s6/results.json, reports/s6a/ und reports/o2/.
+Alle drei Vortrags-PDFs stammen aus derselben Beamer-Quelle. Daten und Modelle werden beim Folienbau nicht neu berechnet.}
+\end{frame}
+
+\fi
+\end{document}

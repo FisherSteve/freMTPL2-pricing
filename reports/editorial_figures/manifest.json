@@ -1,0 +1,15 @@
+{
+  "figures_sha256": {
+    "frequenz_und_grossschaeden.png": "2fa5197e353d962695cdb0a8082a3822c5b66144cf189d599ed1416e56109ab5",
+    "frequenzrelativitaeten.png": "584cadc2b7b81083a62d043288d4ebfc9dfaae213f1b7e7e166c7ff26c392e73",
+    "verlustdeviance_merkmalspaare.png": "16625f1e959a94bff25b7bc054e5052f66233b175c55621372a711ac9f27ba73"
+  },
+  "inputs_sha256": {
+    "reports/s3/b12_new.json": "501791bd9513e8d0e90ee81d21dc577cbd9f2cacae3ff9f142cae1f3670ff50d",
+    "reports/s3/exposure_band.json": "4c0fcc5a328204910db4647b5f9beffae1a488cfcb0c3f090b809d23746211ea",
+    "reports/s3/tail_concentration.json": "96c0cf3c792bdd079d4f0eb40843cdc4679d5ad77e0549360af2637e3698731a",
+    "reports/s4/effects.json": "f08405ea54db02d58d937ad0e99cd847e792ec9ab9d80e9b579b0b7028f3cb89",
+    "reports/s6a/scores.json": "00232e0f75056f60b2d66363299b0ada24da180f3cb2ae01ed53e28908e5bb1d"
+  },
+  "source_sha256": "db261dc7256fb9284e53e7eb46955aa6550f85f327eec5acff4a44e2d02d1f76"
+}

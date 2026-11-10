@@ -4,7 +4,7 @@ Die Schadenfrequenz ist bei jungen eingetragenen Fahrern hoch, sinkt zunächst u
 
 Diese Untersuchung verwendet ausschließlich die **542.392 Entwicklungsverträge** der festgelegten Aufteilung `s2split-fe11d414168572dd`: 286.880,818827 Vertragsjahre, 21.066 positive Schadenzeilen und 47.480.754,65 EUR. Quelle ist CASdatasets 1.2-1, Commit `227fb56b8734bdb7c0327a41180e01d2ddaeaf26`, Quellenkennung `cas-744e13a80283a07a`, Vorbereitung `s1-cb931cb73e410280`. Die aktuelle Laufkennung und sämtliche Prüfsummen stehen im [berechneten Nachweis](../reports/s3/eda_report.json). Historische Zahlen anderer Quellen werden nicht als Vergleichsergebnisse übernommen.
 
-Die frühere Untersuchung des vollständigen Datenstands bleibt Teil der Analysegeschichte. Diese neue Exploration wertet keine Evaluationszeilen aus. Die zufällige Aufteilung ist weder zeitliche noch externe Validierung. Die Daten beschreiben einen französischen Bestand ungefähr 2011–2013; Beträge sind historische erfasste EUR, keine inflationsbereinigten heutigen deutschen Schadenkosten. [Anbieterbeschreibung](https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd).
+Vor der festen Aufteilung wurde der Gesamtbestand exploriert. Die hier dargestellten Zahlen stammen aus dem Entwicklungsbestand. Die Daten beschreiben einen französischen Bestand ungefähr 2011–2013; Beträge sind historische erfasste EUR, keine inflationsbereinigten heutigen deutschen Schadenkosten. [Anbieterbeschreibung](https://raw.githubusercontent.com/dutangc/CASdatasets/227fb56b8734bdb7c0327a41180e01d2ddaeaf26/man/freMTPL.Rd).
 
 ## Größen, Unterstützung und Unsicherheit
 
@@ -14,7 +14,7 @@ Für eine Gruppe gelten mit Anzahl `N`, Exponierung `e` und aggregiertem Betrag 
 - Schadenmittel: `sum S / sum N`, EUR je positiver Schadenzeile; bei null Schäden undefiniert.
 - Beobachtete jährliche Verlustkosten: `sum S / sum e`, EUR je Vertragsjahr, einschließlich schadenfreier Verträge.
 
-Das sind Quotienten von Summen. Der Mittelwert einzelner Jahresraten würde kurze Beobachtungen unangemessen stark gewichten. Beobachtet gilt exakt `Verlustkosten = Frequenz × Schadenmittel`, sofern Schäden vorhanden sind. Dies belegt weder die bedingte Erwartungsannahme eines späteren Frequenz-Schadenhöhenmodells noch eine Vorhersagegüte. Ein Mittel von Produkten lässt sich im Allgemeinen nicht durch das Produkt getrennter Mittel ersetzen. Hier gibt es **keine Prämienvorhersagen**; deren Zerlegung und Abgleich mit beobachteten Verlusten folgen erst mit den Frequenz-/Schadenhöhenmodellen.
+Das sind Quotienten von Summen. Der Mittelwert einzelner Jahresraten würde kurze Beobachtungen unangemessen stark gewichten. Beobachtet gilt exakt `Verlustkosten = Frequenz × Schadenmittel`, sofern Schäden vorhanden sind. Dies belegt weder die bedingte Erwartungsannahme eines späteren Frequenz-Schadenhöhenmodells noch eine Vorhersagegüte. Ein Mittel von Produkten lässt sich im Allgemeinen nicht durch das Produkt getrennter Mittel ersetzen. Die [Schadenhöhenanalyse](schadenhoehe_risikopraemie.md) zerlegt die prognostizierte Risikoprämie und vergleicht sie mit den beobachteten Verlusten.
 
 Die gruppierten Merkmals- und Sensitivitätstabellen enthalten Vertrags-, Exponierungs-, Anzahl- und EUR-Summen. Unter 500 Vertragsjahren wird Unterstützung als gering markiert, nicht die Beobachtung gelöscht. Diese praktische Grenze garantiert keine ausreichende Schadenanzahl. Das [EDA-Protokoll](../config/eda_protocol.json) dokumentiert feste Gruppen, Fenster und Resampling. Die gemeinsame BM-Unterstützung wurde nach einer ersten Prüfung der Entwicklungsunterstützung festgelegt; dies ist explorative Methodenauswahl.
 
@@ -35,15 +35,15 @@ Die übrigen Frequenztabellen enthalten zentrale 95%-Garwood-Intervalle als **Po
 
 Die [vollständige Tabelle](../reports/s3/age_bootstrap.json) enthält die punktweisen Vertragsbootstrap-Intervalle. Die Frequenzdifferenz 40–44 minus 35–39 beträgt 0,00311 Schäden/Jahr, mit Intervall etwa [−0,00086; 0,00752]. Auch 45–49 minus 40–44 schließt null knapp ein. Diese lokalen Kontraste sind **nicht eindeutig**. Breitere Gruppen und Fenster erhalten die allgemeine Form: hohe Frequenz bei jungen Fahrern, Rückgang und ein breiter Wiederanstieg im mittleren Alter. [Kontraste](../reports/s3/age_contrasts.json), [Einzelalter](../reports/s3/DrivAge.json), [Fenster](../reports/s3/age_windows.json).
 
-![Beobachtete Altersprofile](../reports/s3/figures/alter_beobachtet.png)
+![Frequenz, Schadenmittel und Verlustkosten nach Fahreralter im Entwicklungsbestand](../reports/s3/figures/alter_beobachtet.png)
 
 **Komposition, Alternativen und Identifizierbarkeit.** Die Unterstützung ist in den mittleren Gruppen groß, die Schadenhöhenintervalle bleiben wegen großer Schäden breit. Das Einzelalter 40 enthält einen Schaden von 774.411,50 EUR; nach einer Betragkappung verändert sich auch die Form des Verlustprofils. Im Gegensatz zur Frequenz zeigen die ungekappte Schadenhöhe und der Verlust pro Jahr keinen gleichmäßigen Anstieg von 35 bis 54. Einzelalterschwankungen oder eine vorhergesagte Prämienkurve sind daher keine austauschbaren Belege. Die [Alters-Sensitivität](../reports/s3/age_sensitivity.json) trennt Populationsänderungen von der EUR-25.000-Kappung jedes Schadenbetrags.
 
 Die Alterssummen und die Einerstellenhäufigkeiten erlauben die Prüfung möglicher Häufungen, belegen aber keine Altersrundung: schon die Bestandszusammensetzung verändert solche Häufigkeiten. Es gibt nur zwei Entwicklungsverträge mit `DrivAge=100` und zusammen 0,89 Vertragsjahren ohne Schaden. Solche Randwerte werden erhalten, ohne daraus eine verlässliche Alterswirkung abzuleiten.
 
-**Folgerung.** Der nicht monotone Verlauf spricht für eine flexible, nachvollziehbare Altersdarstellung in GLM und GAM. Die unterschiedliche Verlustkurve begründet eine getrennte Untersuchung der Schadenhöhe. Nächste überprüfbare Frage: Bleibt der breite Frequenzverlauf bei gemeinsamen Fahrzeug-, Kraftstoff- und geografischen Merkmalen auf unterstützten Beobachtungen bestehen? Das prüfen die späteren Modelle.
+Der nicht monotone Verlauf motiviert die flexible Altersdarstellung im GLM und GAM. Der [Frequenzvergleich](frequenzmodelle.md) hält Fahrzeug, Kraftstoff und Region auf einem gemeinsamen Referenzbestand fest. Die [Schadenhöhenmodelle](schadenhoehe_risikopraemie.md) untersuchen den Betrag getrennt.
 
-![Gruppierung und Altersunterstützung](../reports/s3/figures/alter_robustheit.png)
+![Schadenfrequenz je Vertragsjahr nach Fahreralter und Gruppierung im Entwicklungsbestand](../reports/s3/figures/alter_robustheit.png)
 
 ## Befund 2: Bonus-Malus verdeckt einen Teil des deskriptiven Altersunterschieds
 
@@ -53,13 +53,13 @@ Eine direkte Standardisierung vergleicht 30–39, 40–49 und 50–59 auf dersel
 
 Die Referenzgewichte aus der gepoolten Exponierung sind 65,7501 % / 25,5218 % / 8,7282 %. Die marginalen Raten innerhalb dieser gemeinsamen Unterstützung betragen 0,06676 / 0,07355 / 0,06932. Bei derselben BM-Mischung betragen sie **0,05638 / 0,07910 / 0,08241**. Der Kontrast 40–49 minus 30–39 liegt bei 0,02272, mit punktweisem Intervall [0,02003; 0,02561]; für 50–59 minus 40–49 schließt das Intervall null ein. [Zellen und Gewichte](../reports/s3/bm_common_cells.json), [Kontraste](../reports/s3/bm_standardized_contrasts.json).
 
-![Stratifizierung und Standardisierung](../reports/s3/figures/alter_zusammensetzung.png)
+![Schäden je Vertragsjahr und Exponierungsanteile nach Alter und Bonus-Malus](../reports/s3/figures/alter_zusammensetzung.png)
 
 **Einordnung.** Die günstigere BM-Mischung älterer Gruppen verdeckt hier einen Teil der Unterschiede innerhalb der BM-Gruppen. Der Anstieg verschwindet bei dieser Standardisierung nicht. Dies ist eine **deskriptiv BM-standardisierte Assoziation**, keine vollständige Adjustierung und keine kausale Alterswirkung. BM ist mit Schadenhistorie und Alter verbunden; seine kausale Rolle ist durch diese Daten nicht geklärt. Innerhalb breiter BM-Gruppen verbleiben Unterschiede. Fahrzeug, Kraftstoff und Geografie sind noch nicht gemeinsam konstant gehalten.
 
 Auch marginale Fahrzeug-/Gebietsmuster dürfen nicht als isolierte Wirkungen gelesen werden. Beispielsweise verändern sich zwischen 35–39 und 45–49 Dieselanteile von etwa 53,1 % auf 49,4 %, B12-Anteile von 17,2 % auf 19,0 %; die Anteile von `Ile-de-France` und `Area F` sind dort wesentlich ähnlicher. Die [Merkmalsprofile](../reports/s3/figures/portfolio_raten.png) zeigen Raten mit Exponierung und Poisson-Referenzintervallen. Die [Regionstabelle](../reports/s3/Region.json) markiert etwa `Franche-Comte` mit nur 456,05 Vertragsjahren als schwach unterstützt. Eine Marktkategorie oder höhere Dichte erklärt keinen individuellen Mechanismus.
 
-**Folgerung.** BM bleibt ein substanzieller Kandidat; flexible additive Alter-/BM-Terme werden in S4 gemeinsam geprüft. Eine Alter-BM-Interaktion ist eine begründete Entwicklungsfrage, noch keine ausgewählte Konfiguration. Geografie und Fahrzeug-/Kraftstoffmischung benötigen gemeinsame Diagnostik; eine reine Randkurve genügt nicht.
+Im [Frequenzvergleich](frequenzmodelle.md) verbessert die Interaktion aus Alter und Bonus-Malus die GLM-Prognose geringfügig gegenüber der additiven Kodierung. Die [Merkmalsablation](aktuarische_einordnung.md#ergänzung-zusatznutzen-und-abhängigkeit) untersucht ergänzend, welche zusätzliche Information Alter neben Bonus-Malus liefert.
 
 **Mögliche Einordnung.** Die Daten sprechen dafür, dass die über das Alter wechselnde Schadenhistorie-/BM-Zusammensetzung einen Teil des marginalen Verlaufs überlagert. Unterschiede in Fahrleistung, Nutzung oder Erfassung könnten zusätzlich beitragen; sie werden hier nicht gemessen. Die Quelle beschreibt `DrivAge` als Fahreralter, ohne die Rolle beim einzelnen Schaden zu identifizieren. Eine plausible praktische Schlussfolgerung ist deshalb, Alter und BM gemeinsam zu modellieren und verbleibende Unterschiede zunächst als Vorhersagezusammenhänge zu behandeln. Für eine Erklärung durch individuelles Fahrverhalten wären zusätzliche Nutzungs- und Verlaufsdaten erforderlich.
 
@@ -71,7 +71,7 @@ Die [Vierfeldertabelle](../reports/s3/b12_new.json) enthält für B12 bei Fahrze
 
 **Kompositionsprüfung und Alternativen.** Ein Ausschluss aller B12 entfernt 132.655 Verträge und 6.898.698,47 EUR; er erhöht die Gesamtrate um etwa 2,92 %. Nur B12 bei `VehAge=0` auszuschließen entfernt dagegen 29.607 Verträge und 927.090,07 EUR. Diese Eingriffe sind nicht dasselbe. Die [altersweisen Vierfelder](../reports/s3/age_b12_new.json) und Ausschlusssensitivitäten zeigen die Zusammensetzung; der mittlere Frequenzanstieg bleibt auch ohne B12 sichtbar. Produktmix, Nutzung und Kodierkonventionen bleiben mögliche, nicht identifizierte Alternativen.
 
-**Folgerung.** Kein B12-Ausschluss als „Bereinigung“. Die Markenklasse und Fahrzeugalter bleiben Modellkandidaten. Ein späterer gemeinsamer Merkmalsvergleich kann prüfen, ob die marginale Differenz verbleibt; die unbekannte reale Marke wird nicht erfunden.
+Die Frequenzmodelle verwenden die Markenklasse und das Fahrzeugalter gemeinsam. B12 bleibt als Quellkategorie erhalten.
 
 ## Befund 4: Kurze Exponierung ist mehr als ein kleiner Nenner
 
@@ -81,7 +81,7 @@ Die [Vierfeldertabelle](../reports/s3/b12_new.json) enthält für B12 bei Fahrze
 
 **Sensitivität und Identifizierbarkeit.** Ohne Perioden unter 0,1 Jahren sinkt die Gesamtrate um 2,56 % und der Verlust pro Jahr um 5,22 %. Der mittlere Altersverlauf bleibt in den deskriptiven Ausschlussszenarien sichtbar. 982 Verträge mit Exponierung über eins werden ebenfalls erhalten. Ein Kappen bei eins würde 115,30 Jahre entfernen und die Rate um 0,0402 % erhöhen. Die [Sensitivitätsbilanz](../reports/s3/sensitivities.json) weist alle Änderungen einzeln aus; sie dürfen nicht addiert werden.
 
-**Folgerung.** Exponierungsproportionalität bleibt eine Modellannahme und muss in S4 diagnostiziert werden. Die Randraten allein beweisen keinen Offsetfehler: unterschiedlicher Risikomix, schadenabhängige Kündigung oder Beobachtungs-/Erfassungsprozesse könnten dieselbe Assoziation erzeugen. Daten über Beginn, Ende und Kündigungsgrund fehlen. Kein Ausschluss allein wegen hoher annualisierter Rate; Exponierung bleibt im Primärmodell Nenner bzw. Offset/Gewicht mit expliziter Einheit.
+Auch beim [gewählten Frequenzmodell](frequenzmodelle.md) bleiben kurze Verträge unterprognostiziert. Unterschiedlicher Risikomix, schadenabhängige Kündigung und Erfassungsprozesse kommen als Erklärung infrage. Daten über Beginn, Ende und Kündigungsgrund fehlen. Die Primärmodelle berücksichtigen die Exponierung in Vertragsjahren.
 
 ## Befund 5: Wenige Schadenbeträge dominieren die Verlustkosten
 
@@ -93,19 +93,18 @@ Eine Kappung jeder Zeile bei 25.000 EUR entfernt 13.227.184,49 EUR bzw. **27,86 
 
 **Unsicherheit, Alternativen und Folgerung.** Die Vertragsbootstrap-Intervalle erfassen Wiederholung oder Ausbleiben beobachteter großer Beträge, aber keine bislang unbeobachteten Extremverluste. Auch Abrechnungs- und Meldekonventionen können die Beträge beeinflussen. Ein hoher Betrag ist kein belegter Fehler. Das ungekappte Ziel bleibt primär. Die anschließende [Schadenhöhenanalyse](schadenhoehe_risikopraemie.md) vergleicht den konstanten Schadenmittel-Benchmark mit Gamma-GLM und Log-Smearing und quantifiziert den Tail-Einfluss. Eine Kappung darf nur als gesonderte Zielgröße mit EUR-Bilanz interpretiert werden, nicht als automatisch besseres Modell.
 
-![Getrennte Alterssensitivitäten](../reports/s3/figures/alter_sensitivitaet.png)
+![Schäden und erfasste EUR je Vertragsjahr nach Alter in Sensitivitätsszenarien](../reports/s3/figures/alter_sensitivitaet.png)
 
 ## Reproduzieren und weiter prüfen
 
-Nach Vorbereitung und Festlegung der S2-Aufteilung:
+Nach Datenvorbereitung und fester Vertragsaufteilung lassen sich die Entwicklungsaggregate mit dem ersten Befehl neu berechnen. Der zweite Befehl aktualisiert die Notebook-Darstellung.
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.eda
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/03_development_eda.ipynb --output data/notebooks/03_development_eda.executed.ipynb
+.\.venv\Scripts\python.exe scripts/execute_notebook.py notebooks/03_development_eda.ipynb
 ```
 
-Der Befehl erstellt lokale unveränderliche Parquet-Tabellen unter `data/eda/<Laufkennung>/` und öffentliche aggregierte JSON-Tabellen/Grafiken unter `reports/s3/`. Quelle, Vorbereitung, Split, Entwicklungstabellen, EDA-Code, Konfiguration und Software identifizieren den Lauf. Das Notebook prüft lokale Tabellen, öffentliche Spiegel und Bild-Hashes, bevor es Ergebnisse anzeigt; es verändert keine Aufteilung und passt kein Modell an. Wiederholungen müssen dieselben Ergebnisbytes erzeugen. Nur die dokumentierte Windows-x64-/Python-3.12-Umgebung ist tatsächlich geprüft.
+Der Befehl erstellt lokale unveränderliche Parquet-Tabellen unter `data/eda/<Laufkennung>/` und öffentliche aggregierte JSON-Tabellen/Grafiken unter `reports/s3/`. Quelle, Vorbereitung, Split, Entwicklungstabellen, EDA-Code, Konfiguration und Software identifizieren den Lauf. Das Notebook zeigt aggregierte Tabellen und Grafiken aus dem Ergebnisbericht. Die [Reproduktion](reproduktion.md) dokumentiert die geprüfte Umgebung und die Zuordnung der Laufkennungen.
 
 Die Tests adressieren unter anderem absichtlich vergiftete Evaluationswerte, Schlüsselvertauschung, Schaden-/EUR-Erhaltung, wiederholte Schadenzeilen, Nullschäden, Intervallreferenzen, gepaarte Vertragsziehungen, fehlende gemeinsame Unterstützung und manipulierte Ergebnisartefakte. Die EDA erzeugt keine Evaluationsmodelle oder Evaluationsscores. Ihre Fragen wurden anschließend im begrenzten [GLM-/GAM-/Histogramm-Poisson-Vergleich](frequenzmodelle.md) auf den festgelegten Entwicklungsfalten untersucht. Die gemeinsame Evaluation bleibt davon getrennt. Der [integrierte Reproduktionsnachweis](reproduktion.md) ordnet ursprüngliche und erneut berechnete Laufkennungen zu.
 
